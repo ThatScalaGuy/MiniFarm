@@ -85,6 +85,7 @@ struct FarmPlayView: View {
                     }
                 }
                 .padding(.horizontal, compact ? 4 : 7).padding(.vertical, 2)
+                .allowsHitTesting(sheet == nil)
                 .accessibilityHidden(sheet != nil)
                 if sheet == .map {
                     map(size: size)

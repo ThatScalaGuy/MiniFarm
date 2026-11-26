@@ -1,3 +1,4 @@
+import RealityKit
 import XCTest
 @testable import MiniFarm
 
@@ -42,5 +43,24 @@ final class WorldLayoutTests: XCTestCase {
         XCTAssertNil(first.first?.choiceID)
         turn.stepIndex = 1
         XCTAssertEqual(WorldObject.targets(turn: turn, site: WorldSite.at(w.locationID), page: 0, perPage: 2).first?.model, "bed")
+    }
+
+    @MainActor func testHenhouseEggIsSmallerThanTheHenButStillPickable() throws {
+        let site = try XCTUnwrap(WorldSite.at("loc.henhouse"))
+        let offer = WorldOffering(id: "collect", activityID: "act.animal.eggs", locationID: site.id)
+        let choice = WorldChoice(id: "nest.1", modelID: "item.egg", label: "Ei im Nest")
+        let turn = WorldTurn(offering: offer, stepID: "collect", stepIndex: 0, stepCount: 2,
+                             choices: [choice], targetID: choice.id)
+        let state = FarmWorldState(locationIDs: [site.id], offerings: [offer], active: turn)
+        let stage = FarmDiorama()
+        stage.render(state: state, site: site, targets: WorldObject.targets(turn: turn, site: site, page: 0, perPage: 2),
+                     framing: WorldFraming(size: CGSize(width: 660, height: 300), site: site, level: 1), motion: false, detail: nil)
+        let egg = try XCTUnwrap(stage.root.findEntity(named: "pick:nest.1"))
+        let hen = try XCTUnwrap(stage.root.findEntity(named: "resident.animal.chicken"))
+        let eggHeight = egg.visualBounds(relativeTo: stage.root).extents.y
+        XCTAssertGreaterThan(eggHeight, 0)
+        XCTAssertLessThan(eggHeight, hen.visualBounds(relativeTo: stage.root).extents.y / 3)
+        XCTAssertNotNil(egg.components[InputTargetComponent.self])
+        XCTAssertFalse(try XCTUnwrap(egg.components[CollisionComponent.self]).shapes.isEmpty)
     }
 }
