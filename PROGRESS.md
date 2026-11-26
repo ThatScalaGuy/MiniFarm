@@ -2,6 +2,27 @@
 
 Die vollständig beschriebenen Sollfunktionen stehen in [docs](docs/README.md). Eine ID im Katalog allein zählt nicht als spielbare Funktion. Die Spalte „offen“ bezeichnet entweder fehlende Implementierung oder eine ausdrücklich ausstehende Abnahme.
 
+## Lokale Spielabnahme vom 26. November 2026
+
+**App-Stand `0ec7c03`, Xcode 27.2, Ziel iOS/iPadOS 18+.** Beide Simulatoren starteten ohne vorbereiteten Hof. Hinter der Elternschranke wurden zwei Tierprofile eingerichtet. Das Kuhprofil setzte nach einem Prozessneustart seinen offenen Saat-Schritt fort, goss das Beet, fütterte das Huhn, schlief, erntete bei Regen und verkaufte bei Tilda. Nach erneutem Öffnen standen beide Profile im Hofladen: Die Kuh hatte **2 Radieschen und 1 Taler**, das Schaf **0 Radieschen und 0 Taler**. `Tools/verify_first_harvest.py` prüfte die Profil- und Hofdateien samt SHA-256-Prüfsummen. Sieben Vollbildaufnahmen je Gerät dokumentieren die Reise in Hoch- und Querformat.
+
+| Simulator (27.2) | Bestanden / fehlgeschlagen / übersprungen | Ernte und Verkauf mit Profilwechsel | Gemeinsamer Korb |
+|---|---|---|---|
+| iPhone 17e | 126 / 0 / 2 | 118,894 s | Nur auf dem iPad angeboten |
+| iPad (A16) | 127 / 0 / 1 | 123,141 s | 63,899 s, fünf Aufnahmen |
+
+Der lange Simulationstest ist auf beiden Geräten standardmäßig deaktiviert. Im separaten Swift-Release-Lauf derselben Revision bestand er mit 100 Höfen zu je 100 Tagen in 21,364 s. Der zweite iPhone-Skip ist ausschließlich die iPad-Korbrunde.
+
+**Mitspielen:** In der iPad-Pause wählte das Kuhprofil das Schaf, lieferte den Korb durch Ziehen und Tippen ab und kehrte zum selben Saat-Schritt zurück. Eine zweite Runde mit der grauen Hand wurde abgebrochen, ohne den Wunsch vorzuspulen. Die weiße Haus-Taste „Zurück zum Hof“ ist auf dunklem Grund sichtbar. Die ergänzende Prüfung mit zwei überlappenden simulierten UIKit-Kontakten ist ein Simulatorbeleg, kein Test mit zwei Kindern auf Touchhardware.
+
+**Speicher:** Vier `HostSaveAcceptanceTests` bestanden auf beiden Geräten. Auch bei geändertem innerem Lernformat bleiben neuere Dateien und Sicherungen bytegleich. Ein nicht schreibbarer Wiederherstellungsort erzeugt keine Erfolgsmeldung; nach Behebung lässt sich dieselbe Sicherung wiederherstellen. Ein tatsächlich beschädigter alter Hof wird dagegen aus seinem gültigen Backup geladen.
+
+**Lieferumfang:** Der unsignierte iOS-Gerätebuild umfasst **32.280.808 Bytes** (878 Dateien, ohne Store-Ausdünnung). Der getrennte Simulator-Releasecheck bestätigte **12 Spielkataloge, 163 USDZ-Modelle, 15 USDZ-Bewegungsvarianten und 679 Tondateien**: 653 zur Piper/Thorsten-CC0-Provenienz passende Sprachaufnahmen sowie 26 WAVs. Dynamische Resttexte dürfen die lokale Systemstimme verwenden. Der Export enthält das Xcode-Projekt mit geteiltem Scheme, Ressourcen, Werkzeuge, Konzept und Protokolle; für das Spielen sind kein Generator, Dienstkonto oder Netzaufruf erforderlich.
+
+Dies ist eine spielbare lokale Übergabe, keine Store-Freigabe. Kinder-Playtests, Signierung und Prüfungen auf physischen Mindestgeräten sowie die offenen Punkte der folgenden Matrix bleiben ausstehend.
+
+## Abdeckung des Konzepts
+
 | Doc | Funktion | Nachweis im integrierten Stand | Offen |
 |---|---|---|---|
 | 01 | Ruhiger Offline-Hof, kein Verlieren | Einfinger-Eingaben, positive Hilfen und unbegrenzte Wünsche in `FarmGame`, `FarmSkills`, `FarmPlayView`; keine Online-Abhängigkeit | Kindliche Verständlichkeit und Spielspaß nicht durch Tests belegbar |
