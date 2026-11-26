@@ -95,4 +95,50 @@ struct FarmStoryTests {
         #expect(FarmFestivalAlbum(entryID: "hofbook.season.autumn.fest", game: restored)?.photos.first?.backdrop == "feast.table")
         #expect(FarmFestivalAlbum(entryID: spring, game: FarmGame(catalog: catalog)) == nil)
     }
+
+    @Test func everyRolledWeatherOfTheYearHasItsOwnCalmSky() throws {
+        let catalog = try catalog()
+        var seen: [String: Set<String>] = [:]
+        for offset in 0..<4 {
+            for day in 1...64 {
+                var state = FarmGame(catalog: catalog).state
+                state.day = day
+                state.seasonOffset = offset
+                let game = FarmGame(catalog: catalog, state: state)
+                seen[game.season, default: []].insert(game.weather)
+            }
+        }
+        #expect(seen["season.winter"]?.contains("snow") == true && seen["season.autumn"]?.contains("wind") == true)
+        for (season, weathers) in seen {
+            let looks = weathers.map { FarmSkyLook(season: season, weather: $0, sunProgress: 0.5) }
+            let signatures = Set(looks.map { "\($0.fall)|\($0.clouds)|\($0.sunVisibility)|\($0.fog > 0)|\($0.rainbow)" })
+            #expect(signatures.count == weathers.count, "\(season): \(weathers.sorted())")
+            #expect(looks.allSatisfy { !$0.animates(moving: true) || $0.fall != .none })
+        }
+    }
+
+    @Test func calmSettingsStillShowTheWeatherWithoutMotion() {
+        let rain = FarmSkyLook(season: "season.spring", weather: "rain", sunProgress: 0.3)
+        let snow = FarmSkyLook(season: "season.winter", weather: "snow", sunProgress: 0.3)
+        #expect(rain.particles == 54 && snow.particles == 42 && rain.animates(moving: true))
+        #expect(FarmSkyLook(season: "season.spring", weather: "rain", sunProgress: 0.3, particleScale: 0.3).particles == 16)
+        #expect(!rain.animates(moving: false))
+        let veryCalm = FarmSkyLook(season: "season.spring", weather: "rain", sunProgress: 0.3, particleScale: 0)
+        let stillSnow = FarmSkyLook(season: "season.winter", weather: "snow", sunProgress: 0.3, particleScale: 0)
+        #expect(veryCalm.particles == 0 && !veryCalm.animates(moving: true) && !stillSnow.animates(moving: true))
+        #expect(veryCalm.fall == .rain && veryCalm.sunVisibility == 0 && stillSnow.snow == 1)
+        for weather in ["sun", "cloud", "rainbow", "fog"] {
+            #expect(!FarmSkyLook(season: "season.autumn", weather: weather, sunProgress: 0.5).animates(moving: true))
+        }
+    }
+
+    @Test func actionDrivenSunWalksFromMorningToEvening() {
+        let phases = [-1, 0, 0.3, 0.5, 0.65, 0.72, 1, 3, .nan].map {
+            FarmSkyLook(season: "season.summer", weather: "sun", sunProgress: $0).phase
+        }
+        #expect(phases == [.morning, .morning, .forenoon, .noon, .afternoon, .evening, .evening, .evening, .morning])
+        let earlyFog = FarmSkyLook(season: "season.autumn", weather: "fog", sunProgress: 0)
+        let lateFog = FarmSkyLook(season: "season.autumn", weather: "fog", sunProgress: 0.9)
+        #expect(earlyFog.fog > lateFog.fog && lateFog.fog > 0)
+    }
 }

@@ -50,7 +50,7 @@ struct FarmPlayView: View {
             let perPage = geo.size.width < 520 || compact || state.stage == .seedling ? 2 : 3
             let targets = state.hasDrivingJob ? [] : WorldObject.targets(turn: state.active, site: site, page: page, perPage: perPage, beds: state.beds)
             ZStack {
-                FarmSky(season: state.season, weather: state.weather, evening: state.sunProgress >= 0.72)
+                FarmSky(season: state.season, weather: state.weather, sunProgress: state.sunProgress, moving: motion)
                 ZStack {
                     // Keep one RealityView alive across rotation. Moving its root
                     // into a second view races with teardown of the old GPU scene.
@@ -58,6 +58,9 @@ struct FarmPlayView: View {
                         .padding(.horizontal, compact ? size * 0.8 : 0)
                         .padding(.top, compact && !state.hasDrivingJob ? 8 : size)
                         .padding(.bottom, (state.hasDrivingJob ? 2 : (compact ? 27 : size)) + (state.caption?.isEmpty == false ? 40 : 0))
+                    FarmWeather(season: state.season, weather: state.weather, sunProgress: state.sunProgress,
+                                particleScale: state.particleScale, moving: motion)
+                        .padding(.horizontal, compact ? -4 : -7).padding(.vertical, -2)
                     VStack(spacing: 0) {
                         topBar(size: size, compact: compact)
                         if site?.id == "loc.shop" {
