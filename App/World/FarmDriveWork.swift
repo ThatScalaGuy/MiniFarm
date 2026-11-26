@@ -42,12 +42,21 @@ struct FarmDriveMotion: Equatable {
     enum Pilot: Equatable { case child, rowTap, pelle, finished }
     private(set) var pilot = Pilot.child
     private(set) var progress = 0.0
+    private(set) var travel = 0.0
+    private(set) var fastRow = false
     private(set) var lateral = 0.0
     private(set) var steering = 0.0
     private(set) var throttle = 0.0
     private var wheelTarget = 0.0
     private var dragStart: Double?
     private(set) var reported = false
+    private let strips: [ClosedRange<Double>]
+    private let workLength: Double
+
+    init(strips: [ClosedRange<Double>] = [0...1]) {
+        self.strips = strips.sorted { $0.lowerBound < $1.lowerBound }
+        workLength = strips.reduce(0) { $0 + $1.upperBound - $1.lowerBound }
+    }
 
     var needsTicks: Bool {
         pilot == .pelle || pilot == .rowTap ||
@@ -58,16 +67,18 @@ struct FarmDriveMotion: Equatable {
         if stage == .seedling, pilot == .child { pilot = .rowTap }
     }
 
+    mutating func setRowPace(fast: Bool) { fastRow = fast }
+
     /// Translation is relative to touch-down, so grabbing a partway-worked row
     /// never jumps back to the child's finger. Sideways misses cannot undo work.
     mutating func drag(stage: WorldStage, along: Double, across: Double) {
         guard stage == .shoot, pilot == .child else { return }
-        let start = dragStart ?? progress
+        let start = dragStart ?? travel
         dragStart = start
         let offset = min(1, max(-1, across))
         let magnet = 0.20 + 0.70 * (1 - abs(offset))
         lateral = offset * (1 - magnet)
-        advance(to: max(progress, start + along))
+        advance(to: max(travel, start + along))
     }
 
     mutating func releaseDrag() { dragStart = nil }
@@ -107,25 +118,37 @@ struct FarmDriveMotion: Equatable {
         let speed: Double
         switch pilot {
         case .pelle, .rowTap:
-            speed = 0.27
+            speed = pilot == .pelle ? 0.27 : (fastRow ? 0.32 : 0.22)
             lateral *= exp(-dt * 5)
         case .child:
             speed = throttle * 0.30
             lateral = max(-1, min(1, lateral + (steering * 2.6 - lateral) * speed * dt))
         case .finished: return
         }
-        advance(to: progress + speed * dt)
+        advance(to: travel + speed * dt)
     }
 
     private mutating func advance(to value: Double) {
+        guard workLength > 0 else { return }
+        let worked = strips.reduce(0.0) { sum, strip in
+            sum + max(0, min(value, strip.upperBound) - strip.lowerBound)
+        }
         if value >= 1, pilot == .pelle {
+            travel = 1
             progress = 1
             pilot = .finished
-        } else if value >= 0.85, pilot != .pelle {
+        } else if worked >= workLength * 0.85, pilot != .pelle {
+            var remaining = workLength * 0.85
+            for strip in strips {
+                let width = strip.upperBound - strip.lowerBound
+                if remaining <= width { travel = strip.lowerBound + remaining; break }
+                remaining -= width
+            }
             progress = 0.85
             assist()
         } else {
-            progress = min(value, 1)
+            travel = min(value, 1)
+            progress = min(1, worked / workLength)
         }
     }
 

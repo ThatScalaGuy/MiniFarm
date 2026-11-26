@@ -28,7 +28,11 @@ private struct DriveLane {
     }
 
     var length: Float { right - left }
-    func x(_ progress: Double) -> Float { right - Float(progress) * length }
+    func x(_ travel: Double) -> Float { right - Float(travel) * length }
+    var workSpans: [ClosedRange<Double>] {
+        guard length > 0 else { return [] }
+        return strips.map { Double((right - $0.upperBound) / length)...Double((right - $0.lowerBound) / length) }
+    }
 }
 
 @MainActor
@@ -37,6 +41,7 @@ private final class DriveRig {
     private let container = Entity()
     private let hitch = Entity()
     private var surfaces: [(entity: Entity, bounds: ClosedRange<Float>)] = []
+    private var guides: [(dot: Entity, x: Float)] = []
 
     func install(in root: Entity, site: WorldSite, lane: DriveLane, job: FarmDriveWork) {
         if container.parent === root { return }
@@ -58,6 +63,13 @@ private final class DriveRig {
                 }
             }
             surfaces.append((patch, bounds))
+            let width = bounds.upperBound - bounds.lowerBound
+            let count = max(1, Int((width / 0.28).rounded()))
+            for i in 0..<count {
+                let x = bounds.lowerBound + (Float(i) + 0.5) * width / Float(count)
+                let dot = workshop.oval(container, [x, lane.ground + 0.025, lane.z], [0.11, 0.035, 0.075], 0xf9d899)
+                guides.append((dot, x))
+            }
         }
         // Small boundary flags mark the row even before the tractor moves.
         for x in [lane.right, lane.left] {
@@ -68,7 +80,7 @@ private final class DriveRig {
     }
 
     func draw(_ motion: FarmDriveMotion, lane: DriveLane, still: Bool) {
-        let x = lane.x(motion.progress)
+        let x = lane.x(motion.travel)
         hitch.position = [x, lane.ground + 0.025, lane.z + Float(motion.lateral) * min(0.35, lane.depth * 0.39)]
         workshop.tilt(hitch, still ? 0 : Float(motion.steering) * 0.28, [0, 1, 0])
         for (patch, bounds) in surfaces {
@@ -78,6 +90,7 @@ private final class DriveRig {
             patch.position = [(end + bounds.upperBound) * 0.5, lane.ground, lane.z]
             patch.scale = [max(0.001, width), 1, 1]
         }
+        for (dot, markerX) in guides { dot.isEnabled = markerX < x }
     }
 
     func remove() {
@@ -85,6 +98,7 @@ private final class DriveRig {
         container.children.removeAll()
         hitch.children.removeAll()
         surfaces.removeAll()
+        guides.removeAll()
     }
 }
 
@@ -125,7 +139,7 @@ struct FarmDriveView: View {
             rowControl(span: max(75, a.x - b.x), slope: (a.y - b.y) / max(1, a.x - b.x))
                 .position(middle)
             if hornVisible {
-                let p = project(row.x(motion.progress), row.ground + 1.0, row.z)
+                let p = project(row.x(motion.travel), row.ground + 1.0, row.z)
                 Image(systemName: "music.note.list").font(.title2.bold()).foregroundStyle(FarmPaper.pine)
                     .padding(7).background(FarmPaper.cream, in: Capsule()).position(p)
                     .allowsHitTesting(false).accessibilityHidden(true)
@@ -139,6 +153,7 @@ struct FarmDriveView: View {
         .frame(width: framing.size.width, height: framing.size.height)
         .disabled(stopped)
         .onAppear {
+            if motion.travel == 0 && motion.pilot == .child { motion = FarmDriveMotion(strips: row.workSpans) }
             rig.install(in: root, site: site, lane: row, job: job)
             rig.draw(motion, lane: row, still: still)
         }
@@ -224,6 +239,7 @@ struct FarmDriveView: View {
         HStack(spacing: compact ? 5 : 9) {
             if state.stage == .bloom {
                 wheel
+                Spacer(minLength: 0)
                 gas
             } else {
                 WorldButton(icon: "speaker.wave.2.fill", label: "Hupen", id: "world.drive.horn",
@@ -233,7 +249,12 @@ struct FarmDriveView: View {
                     hornVisible = true
                     onHorn()
                 }
+                if state.stage == .seedling {
+                    pace(fast: false)
+                    pace(fast: true)
+                }
             }
+
             Spacer(minLength: 0)
             Button { motion.assist() } label: {
                 FarmPictogram(id: "animal.dog")
@@ -246,6 +267,15 @@ struct FarmDriveView: View {
         }
         .foregroundStyle(FarmPaper.pine)
         .padding(.horizontal, compact ? 5 : 8)
+    }
+
+    private func pace(fast: Bool) -> some View {
+        WorldButton(icon: fast ? "hare.fill" : "tortoise.fill",
+                    label: fast ? "Etwas schneller fahren" : "Langsam fahren",
+                    id: fast ? "world.drive.fast" : "world.drive.slow", size: max(44, control * 0.84),
+                    tone: motion.fastRow == fast ? FarmPaper.pine : FarmPaper.cream,
+                    ink: motion.fastRow == fast ? FarmPaper.cream : FarmPaper.pine) { motion.setRowPace(fast: fast) }
+            .accessibilityAddTraits(motion.fastRow == fast ? .isSelected : [])
     }
 
     private var wheel: some View {

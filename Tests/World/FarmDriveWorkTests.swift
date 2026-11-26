@@ -27,12 +27,29 @@ final class FarmDriveWorkTests: XCTestCase {
     func testSeedlingRequestsAVisiblePassRatherThanFinishingOnTap() {
         var drive = FarmDriveMotion()
         drive.tapRow(stage: .seedling)
+        drive.setRowPace(fast: true)
         XCTAssertEqual(drive.pilot, .rowTap)
         XCTAssertEqual(drive.progress, 0)
         for _ in 0..<18 { drive.tick(seconds: 0.1) }
         XCTAssertTrue((0.4...0.6).contains(drive.progress))
         XCTAssertFalse(drive.takeCompletion())
         drive.assist()
+        checkFinish(&drive)
+    }
+
+    func testUnworkedGapBetweenPartialPlotsGivesNoCoverage() {
+        var drive = FarmDriveMotion(strips: [0...0.10, 0.60...1])
+        drive.drag(stage: .shoot, along: 0.10, across: 0)
+        XCTAssertEqual(drive.progress, 0.20, accuracy: 0.00001)
+        drive.drag(stage: .shoot, along: 0.59, across: 0)
+        XCTAssertEqual(drive.travel, 0.59)
+        XCTAssertEqual(drive.progress, 0.20, accuracy: 0.00001)
+        drive.drag(stage: .shoot, along: 0.85, across: 0)
+        XCTAssertEqual(drive.progress, 0.70, accuracy: 0.00001)
+        XCTAssertEqual(drive.pilot, .child)
+        drive.drag(stage: .shoot, along: 1, across: 0)
+        XCTAssertEqual(drive.pilot, .pelle)
+        XCTAssertEqual(drive.travel, 0.925, accuracy: 0.00001)
         checkFinish(&drive)
     }
 
