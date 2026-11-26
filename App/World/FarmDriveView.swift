@@ -154,10 +154,16 @@ struct FarmDriveView: View {
                         .padding(7).background(FarmPaper.cream, in: Capsule()).position(p)
                         .allowsHitTesting(false).accessibilityHidden(true)
                 }
-                VStack(spacing: 0) {
-                    progressBadge
+                // Progress lives in the drive strip, never under the global weather/evening gate.
+                VStack(spacing: 6) {
                     Spacer(minLength: 0)
-                    controls
+                    ViewThatFits(in: .horizontal) {
+                        controls(inlineProgress: true)
+                        VStack(spacing: 6) {
+                            progressBadge
+                            controls(inlineProgress: false)
+                        }
+                    }
                 }
             }
         }
@@ -247,11 +253,15 @@ struct FarmDriveView: View {
         .allowsHitTesting(false)
     }
 
-    private var controls: some View {
+    private func controls(inlineProgress: Bool) -> some View {
         HStack(spacing: compact ? 5 : 9) {
             if state.stage == .bloom {
                 wheel
-                Spacer(minLength: 0)
+                if inlineProgress {
+                    Spacer(minLength: 8)
+                    progressBadge
+                }
+                Spacer(minLength: 8)
                 gas
             } else {
                 WorldButton(icon: "speaker.wave.2.fill", label: "Hupen", id: "world.drive.horn",
@@ -265,9 +275,13 @@ struct FarmDriveView: View {
                     pace(fast: false)
                     pace(fast: true)
                 }
+                if inlineProgress {
+                    Spacer(minLength: 8)
+                    progressBadge
+                }
             }
 
-            Spacer(minLength: 0)
+            Spacer(minLength: 8)
             Button { motion.assist() } label: {
                 FarmPictogram(id: "animal.dog")
                     .frame(width: control * 0.61, height: control * 0.61)
