@@ -85,7 +85,7 @@ final class FamilyJourneyUITests: XCTestCase {
     @MainActor
     private func launch(reset: Bool) -> XCUIApplication {
         let app = XCUIApplication()
-        app.launchArguments = ["-MiniFarmFamilyUITesting"] + (reset ? ["-MiniFarmFamilyReset"] : [])
+        app.launchArguments = ["-MiniFarmFamilyUITesting", "-MiniFarmFamilyManagementUITesting"] + (reset ? ["-MiniFarmFamilyReset"] : [])
         app.launch()
         return app
     }

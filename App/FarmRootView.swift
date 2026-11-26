@@ -1,9 +1,11 @@
 import SwiftUI
 import AVFoundation
 
+extension MiniFarmAudioController: ObservableObject {}
+
 struct FarmRootView: View {
     @State private var family = FamilyStore.live()
-    @State private var preview = MiniFarmAudioController()
+    @StateObject private var preview = MiniFarmAudioController()
     @State private var endPreview: Task<Void, Never>?
     @State private var soundError: String?
     @Environment(\.scenePhase) private var scenePhase
@@ -47,7 +49,7 @@ struct FarmRootView: View {
             try preview.start()
             preview.updateProfileSettings(settings.farmAudio)
             switch bus {
-            case .voice: preview.playVoiceCue(id: "vl.pelle.greet.morning", priority: .normal, text: "Hallo! Schön, dass du da bist!")
+            case .voice: preview.playWelcome()
             case .music: preview.playMusic(season: .spring)
             case .ambience: preview.playAmbient(id: "ambience.farm.day")
             case .sfx: preview.playSoundEffect(id: "sfx.ui.success")
@@ -79,9 +81,20 @@ struct FarmSavedGame {
 
 extension FamilyRuntimeSettings {
     var farmAudio: MiniFarmAudioProfileSettings {
-        .init(levels: .init(voice: Float(voiceVolume), soundEffects: Float(sfxVolume),
-                            music: Float(musicVolume), ambient: Float(ambienceVolume * idleSoundScale)),
+        .init(levels: .applyingUserMultipliers(voice: Float(voiceVolume), soundEffects: Float(sfxVolume),
+                                              music: Float(musicVolume), ambient: Float(ambienceVolume * idleSoundScale)),
               subtitlesEnabled: subtitles,
               speechRate: AVSpeechUtteranceDefaultSpeechRate * (slowSpeech ? 0.75 : 0.9))
+    }
+}
+
+extension MiniFarmAudioController {
+    func playWelcome() {
+        playVoiceCue(id: "vl.pelle.greet.morning", priority: .high, text: "Hallo! Schön, dass du da bist!")
+    }
+
+    func narrate(_ text: String) {
+        clearVoiceCues()
+        playVoiceCue(id: "vl.story.local", priority: .high, text: text)
     }
 }

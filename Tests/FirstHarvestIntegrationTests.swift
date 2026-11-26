@@ -2,6 +2,52 @@ import XCTest
 @testable import MiniFarm
 
 final class FirstHarvestIntegrationTests: XCTestCase {
+    @MainActor
+    func testProfileWelcomeAndBothFirstNightsActuallyStartBundledGermanRecordings() throws {
+        let catalog = try FarmCatalog.load(from: Bundle.main.bundleURL.appendingPathComponent("Content"))
+        var game = FarmGame(catalog: catalog, stage: .sprout)
+        let audio = MiniFarmAudioController()
+        var recordings: [String] = []
+        audio.onVoiceCueEvent = { event in
+            if event.state == .started, event.source == .recording { recordings.append(event.id) }
+        }
+        try audio.start()
+        defer { audio.stop() }
+        audio.playWelcome()
+        XCTAssertEqual(recordings, ["vl.pelle.greet.morning"])
+        func readFirstPage(of evening: FarmGame, file: StaticString = #filePath, line: UInt = #line) throws {
+            var morning = evening
+            morning.send(.sleep)
+            let story = try XCTUnwrap(FarmNightStory(before: evening, after: morning), file: file, line: line)
+            recordings.removeAll()
+            audio.narrate(story.openingWords)
+            XCTAssertEqual(recordings, ["vl.story.local"], story.openingWords, file: file, line: line)
+        }
+        try readFirstPage(of: game)
+        for _ in 0..<3 {
+            game.send(.startWish(try XCTUnwrap(game.wishes.first?.id)))
+            for _ in 0..<20 {
+                guard let requested = game.prompt?.targetID else { break }
+                game.send(.choose(requested))
+            }
+            XCTAssertNil(game.prompt)
+        }
+        try readFirstPage(of: game)
+    }
+
+    func testParentAudioLevelsScaleTheFarmMixRatherThanOverwritingIt() {
+        var profile = FamilyProfile(avatar: .cow)
+        profile.settings.audio.musicVolume = 0.5
+        let normal = FamilyRuntimeSettings(profile: profile, system: .init()).farmAudio.levels
+        XCTAssertEqual(normal.music, 0.125)
+        XCTAssertEqual(normal.soundEffects, 0.6)
+        profile.settings.audio.quietGame = true
+        let quiet = FamilyRuntimeSettings(profile: profile, system: .init()).farmAudio.levels
+        XCTAssertEqual(quiet.music, 0)
+        XCTAssertEqual(quiet.ambient, 0)
+        XCTAssertEqual(quiet.voice, normal.voice)
+    }
+
     func testTimeLimitAllowsTheLastWishButStopsTheWorldBehindGoodNight() throws {
         let catalog = try FarmCatalog.load(from: Bundle.main.bundleURL.appendingPathComponent("Content"))
         var game = FarmGame(catalog: catalog, stage: .sprout)

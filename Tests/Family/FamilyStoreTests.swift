@@ -477,14 +477,18 @@ struct FamilyStoreTests {
         let base = root.url.appending(path: "Support", directoryHint: .isDirectory)
         let regular = FamilyStore.liveRoot(arguments: [], base: base)
         let testing = FamilyStore.liveRoot(arguments: ["-MiniFarmFamilyUITesting"], base: base)
+        let managementArgs = ["-MiniFarmFamilyUITesting", "-MiniFarmFamilyManagementUITesting"]
+        let management = FamilyStore.liveRoot(arguments: managementArgs, base: base)
         #expect(regular.lastPathComponent == "Family")
         #expect(testing.lastPathComponent == "FamilyUITesting")
         #expect(regular.deletingLastPathComponent() == testing.deletingLastPathComponent())
-        for folder in [regular, testing] {
+        for folder in [regular, testing, management] {
             try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
             try Data("keep".utf8).write(to: folder.appending(path: "marker"))
         }
         _ = FamilyStore.liveRoot(arguments: ["-MiniFarmFamilyReset"], base: base)
+        _ = FamilyStore.liveRoot(arguments: managementArgs + ["-MiniFarmFamilyReset"], base: base)
+        #expect(!FileManager.default.fileExists(atPath: management.path(percentEncoded: false)))
         #expect(FileManager.default.fileExists(atPath: testing.appending(path: "marker").path(percentEncoded: false)))
         _ = FamilyStore.liveRoot(arguments: ["-MiniFarmFamilyUITesting", "-MiniFarmFamilyReset"], base: base)
         #expect(!FileManager.default.fileExists(atPath: testing.path(percentEncoded: false)))

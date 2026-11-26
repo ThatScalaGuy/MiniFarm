@@ -15,7 +15,7 @@ struct FarmSessionView: View {
     @State private var album: FarmFestivalAlbum?
     @State private var caption: String?
     @State private var failure: String?
-    @State private var audio = MiniFarmAudioController()
+    @StateObject private var audio = MiniFarmAudioController()
     @State private var audioStarted = false
     @State private var audioInterrupted = false
     @State private var musicSeason: MiniFarmSeason?
@@ -112,9 +112,8 @@ struct FarmSessionView: View {
     }
 
     private func readStory(_ text: String) {
-        audio.clearVoiceCues()
         caption = text
-        audio.playVoiceCue(id: "vl.story.local", priority: .high, text: text)
+        audio.narrate(text)
     }
 
     private func open() {
@@ -146,7 +145,7 @@ struct FarmSessionView: View {
             failure = nil
             audio.onSubtitleChange = { caption = $0 }
             audio.onVoiceCueEvent = { event in
-                if event.state == .unavailable {
+                if event.state == .unavailable, (family.runtimeSettings?.voiceVolume ?? 0) > 0 {
                     notifyParents("Für diesen Satz ist keine deutsche Stimme verfügbar. Die Bildzeichen bleiben nutzbar.")
                 }
             }
@@ -154,13 +153,14 @@ struct FarmSessionView: View {
                 switch error {
                 case .manifestMissing, .manifestInvalid: notifyParents("Der Tonkatalog ist nicht verfügbar.")
                 case .assetUnavailable, .playbackFailed: notifyParents("Ein lokaler Ton konnte nicht abgespielt werden.")
+                case .soundEffectLimitReached: break // An existing sound takes precedence over another simultaneous effect.
                 }
             }
             updateAudio()
             if let prompt = configured.prompt {
                 audio.playVoiceCue(id: prompt.voiceID, priority: .high, text: prompt.text)
             } else {
-                audio.playVoiceCue(id: "vl.pelle.greet.morning", priority: .high, text: "Hallo! Schön, dass du da bist!")
+                audio.playWelcome()
             }
         } catch {
             failure = "Die Hofinhalte konnten nicht geöffnet werden: \(error.localizedDescription)"

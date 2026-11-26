@@ -98,7 +98,8 @@ final class FamilyStore {
     static func liveRoot(arguments: [String], base: URL = .applicationSupportDirectory) -> URL {
         #if DEBUG
         if arguments.contains("-MiniFarmFamilyUITesting") {
-            let root = FamilyStorage.defaultRoot(folderName: "FamilyUITesting", base: base)
+            let name = arguments.contains("-MiniFarmFamilyManagementUITesting") ? "FamilyManagementUITesting" : "FamilyUITesting"
+            let root = FamilyStorage.defaultRoot(folderName: name, base: base)
             if arguments.contains("-MiniFarmFamilyReset") {
                 try? FileManager.default.removeItem(at: root)
             }

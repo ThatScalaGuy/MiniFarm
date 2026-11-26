@@ -1,5 +1,14 @@
 import SwiftUI
 
+extension FarmNightStory {
+    @MainActor var openingWords: String {
+        guard let growth else { return "Pelle schläft. Ganz still liegt unser Hof im Mondlicht. Bald geht die Sonne auf." }
+        let plant = storyLabel(growth.cropID)
+        return growth.to == .ripe ? "Schau ins Beet. \(plant)! Über Nacht ist die Ernte reif geworden."
+            : "Schau ins Beet. \(plant)! Über Nacht ist die Pflanze ein Stück gewachsen."
+    }
+}
+
 struct FarmNightStoryView: View {
     let story: FarmNightStory
     let reduceMotion: Bool
@@ -16,12 +25,7 @@ struct FarmNightStoryView: View {
     private var lastPage: Int { max(1, (story.deeds.count + 2) / 3) }
     private var visibleDeeds: [String] { Array(story.deeds.dropFirst(max(0, (page-1)*3)).prefix(3)) }
     private var words: String {
-        if page == 0 {
-            guard let growth = story.growth else { return "Pelle schläft. Ganz still liegt unser Hof im Mondlicht. Bald geht die Sonne auf." }
-            let plant = storyLabel(growth.cropID)
-            return growth.to == .ripe ? "Schau ins Beet. \(plant)! Über Nacht ist die Ernte reif geworden."
-                : "Schau ins Beet. \(plant)! Über Nacht ist die Pflanze ein Stück gewachsen."
-        }
+        if page == 0 { return story.openingWords }
         if visibleDeeds.isEmpty { return "Heute war ein ruhiger Hoftag. Guten Morgen, kleiner Hof!" }
         return "Das hast du heute gemacht: " + visibleDeeds.map(storyLabel).joined(separator: ". ") + "."
     }

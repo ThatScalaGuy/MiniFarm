@@ -81,8 +81,9 @@ enum FamilyInfo {
         "Anbieter: Angaben folgen vor der Veröffentlichung.",
     ]
 
-    /// Release blocker: names of contributors, the licensed offline voice and licenses. Filled in by the release owner.
-    static let creditLines: [String] = []
+    static let creditLines = [
+        "Die deutsche Hofstimme wurde mit Piper und dem Sprachmodell Thorsten-Voice/Piper-Thorsten-CC0 vorab auf dem Entwicklungsrechner erzeugt. Das Modell steht unter CC0 1.0. Diese Aufnahmen stammen nicht von ElevenLabs.",
+    ]
 
     static let offlineNote = "Dieses Spiel braucht keine Internetverbindung."
 }

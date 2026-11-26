@@ -1,5 +1,6 @@
 """Export a committed MiniFarm project, without worktree files or signing material."""
 import argparse
+import json
 from pathlib import Path, PurePosixPath
 import subprocess
 import tempfile
@@ -22,10 +23,14 @@ def export(revision, destination):
                         "App/MiniFarmApp.swift", "App/Resources/Models/model.crop.radish.ripe.usdz",
                         "App/Resources/Audio/manifest.json", "App/Resources/Content/crops.json",
                         "App/Art/FarmPictograms.xcassets/Contents.json",
+                        "Tools/Audio/voice-catalog.json", "Tools/Audio/piper-provenance.json",
                         "project.yml", "PROGRESS.md", "DESSSICION.md", "README.md"]
             for item in required:
                 if "MiniFarm/" + item not in files:
                     raise ValueError(f"Projektdatei fehlt: {item}")
+            voices = json.loads(bundle.read("MiniFarm/Tools/Audio/piper-provenance.json"))["files"]
+            if not voices or any("MiniFarm/App/Resources/Audio/" + voice["path"] not in files for voice in voices):
+                raise ValueError("Das Sprachpaket fehlt oder ist unvollständig")
             for name in files:
                 path = PurePosixPath(name.lower())
                 if (path.is_absolute() or ".." in path.parts
