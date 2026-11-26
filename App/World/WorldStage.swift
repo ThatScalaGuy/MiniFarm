@@ -81,7 +81,6 @@ final class FarmDiorama {
         let socket: String
         let motion: String
         let siteID: String?
-        let requested: ContinuousClock.Instant
     }
     private var cue: AnimalCue?
     private weak var cuedSocket: Entity?
@@ -245,6 +244,7 @@ final class FarmDiorama {
         focused = site
         if !motion { cue = nil }
         applyCue(at: site)
+        cue = nil
     }
 
     func drag(_ obj: WorldObject, translation: CGSize) {
@@ -268,18 +268,16 @@ final class FarmDiorama {
     }
 
     private func requestCue(_ motion: String, socket: String, at site: WorldSite?) {
-        cue = AnimalCue(socket: socket, motion: motion, siteID: site?.id, requested: .now)
+        cue = AnimalCue(socket: socket, motion: motion, siteID: site?.id)
         cuedSocket = nil
         if focused == site { applyCue(at: site) }
     }
 
     private func applyCue(at site: WorldSite?) {
         // The host may finish the activity immediately and replace its scenery.
-        // Transfer this gesture to the replacement resident, never to a later visit.
-        guard let cue else { return }
-        guard cue.siteID == site?.id, cue.requested.duration(to: .now) < .seconds(1) else {
-            self.cue = nil; return
-        }
+        // Consume on the next snapshot, not a wall clock: building the new
+        // resident can take longer than a second on a cold GPU.
+        guard let cue, cue.siteID == site?.id else { return }
         if let entity = root.findEntity(named: cue.socket), cuedSocket !== entity {
             cuedSocket = entity
             w.setAction(cue.motion, on: entity)
