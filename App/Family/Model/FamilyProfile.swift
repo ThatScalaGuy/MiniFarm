@@ -106,3 +106,15 @@ struct FamilyProfile: Codable, Equatable, Sendable, Identifiable {
         self.settings = settings
     }
 }
+
+extension FamilyProfile {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decode(ProfileID.self, forKey: .id)
+        avatar = try container.decode(ProfileAvatar.self, forKey: .avatar)
+        stage = try container.decode(ProfileStage.self, forKey: .stage)
+        stageRevision = try container.decode(.stageRevision, default: 0)
+        createdAt = try container.decode(Date.self, forKey: .createdAt)
+        settings = try container.decode(.settings, default: ProfileSettings())
+    }
+}

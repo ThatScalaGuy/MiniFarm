@@ -18,8 +18,12 @@ struct ParentAreaView: View {
     var body: some View {
         NavigationStack(path: $path) {
             List {
-                if !store.notices.isEmpty {
+                if !store.notices.isEmpty || store.hasUnavailableProfiles {
                     Section("Hinweise") {
+                        if store.hasUnavailableProfiles {
+                            Text("Ein Profil kann gerade nicht gelesen werden. Seine Daten bleiben erhalten. Entsperren Sie das Gerät oder aktualisieren Sie MiniFarm.")
+                                .accessibilityIdentifier("family.parent.unavailableHint")
+                        }
                         ForEach(store.notices) { notice in
                             HStack(alignment: .top) {
                                 Image(systemName: "exclamationmark.circle")

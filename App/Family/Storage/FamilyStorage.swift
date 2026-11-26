@@ -148,9 +148,7 @@ final class FamilyStorage: Sendable {
         )) ?? []
         for folder in folders {
             guard let id = ProfileID(directoryName: folder.lastPathComponent) else { continue }
-            let outcome = load(slot: .profile, profile: id) { payload in
-                try Self.profileDecoder.decode(FamilyProfile.self, from: payload.data)
-            }
+            let outcome = load(slot: .profile, profile: id, decode: Self.decodeProfile)
             switch outcome {
             case .loaded(let profile):
                 scan.profiles.append(profile.withID(id))
@@ -334,6 +332,17 @@ final class FamilyStorage: Sendable {
     }()
 
     static let profileDecoder = JSONDecoder()
+
+    /// The checksum already proved that the bytes are intact. A record this build cannot read comes from a
+    /// newer app version, so it stays untouched as unavailable instead of being quarantined and replaced.
+    static func decodeProfile(_ payload: StoredPayload) throws -> FamilyProfile {
+        guard payload.schemaVersion <= FamilyProfile.schemaVersion else { throw SaveDataUnsupported() }
+        do {
+            return try profileDecoder.decode(FamilyProfile.self, from: payload.data)
+        } catch is DecodingError {
+            throw SaveDataUnsupported()
+        }
+    }
 
     private static let envelopeEncoder: JSONEncoder = {
         let encoder = JSONEncoder()

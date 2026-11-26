@@ -121,6 +121,63 @@ struct ComfortSettings: Codable, Equatable, Sendable {
     var hapticsEnabled = true
 }
 
+// Missing keys fall back to defaults, so records from an older app version still load after a setting is added.
+
+extension KeyedDecodingContainer {
+    func decode<T: Decodable>(_ key: Key, default fallback: T) throws -> T {
+        try decodeIfPresent(T.self, forKey: key) ?? fallback
+    }
+}
+
+extension ProfileSettings {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let fallback = ProfileSettings()
+        learning = try container.decode(.learning, default: fallback.learning)
+        session = try container.decode(.session, default: fallback.session)
+        audio = try container.decode(.audio, default: fallback.audio)
+        comfort = try container.decode(.comfort, default: fallback.comfort)
+    }
+}
+
+extension LearningSettings {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let fallback = LearningSettings()
+        adaptivityEnabled = try container.decode(.adaptivityEnabled, default: fallback.adaptivityEnabled)
+        memoryMode = try container.decode(.memoryMode, default: fallback.memoryMode)
+        helpTiming = try container.decode(.helpTiming, default: fallback.helpTiming)
+    }
+}
+
+extension AudioSettings {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let fallback = AudioSettings()
+        voiceVolume = try container.decode(.voiceVolume, default: fallback.voiceVolume)
+        sfxVolume = try container.decode(.sfxVolume, default: fallback.sfxVolume)
+        ambienceVolume = try container.decode(.ambienceVolume, default: fallback.ambienceVolume)
+        musicVolume = try container.decode(.musicVolume, default: fallback.musicVolume)
+        quietGame = try container.decode(.quietGame, default: fallback.quietGame)
+        slowSpeech = try container.decode(.slowSpeech, default: fallback.slowSpeech)
+        subtitles = try container.decode(.subtitles, default: fallback.subtitles)
+        monoAudio = try container.decode(.monoAudio, default: fallback.monoAudio)
+    }
+}
+
+extension ComfortSettings {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let fallback = ComfortSettings()
+        calmMode = try container.decode(.calmMode, default: fallback.calmMode)
+        reduceMotion = try container.decode(.reduceMotion, default: fallback.reduceMotion)
+        effectsIntensity = try container.decode(.effectsIntensity, default: fallback.effectsIntensity)
+        highContrast = try container.decode(.highContrast, default: fallback.highContrast)
+        largeSymbols = try container.decode(.largeSymbols, default: fallback.largeSymbols)
+        hapticsEnabled = try container.decode(.hapticsEnabled, default: fallback.hapticsEnabled)
+    }
+}
+
 enum CalmMode: String, Codable, CaseIterable, Sendable, Identifiable {
     case standard
     case calm

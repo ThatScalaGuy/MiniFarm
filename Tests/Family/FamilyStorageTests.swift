@@ -238,6 +238,80 @@ struct FamilyStorageTests {
         #expect(info.quarantinedFiles == 0)
     }
 
+    var profileURL: URL { folder.appending(path: "Profile.json") }
+
+    /// Writes a profile record with a valid checksum, like a different app version would.
+    func writeProfileRecord(_ json: [String: Any], schemaVersion: Int) throws -> Data {
+        let payload = try JSONSerialization.data(withJSONObject: json, options: [.sortedKeys])
+        let envelope = FamilyStorage.Envelope(
+            container: FamilyStorage.containerVersion,
+            schemaVersion: schemaVersion,
+            savedAt: Date(timeIntervalSince1970: 1_800_000_100),
+            checksum: FamilyStorage.checksum(container: FamilyStorage.containerVersion, schemaVersion: schemaVersion, payload: payload),
+            payload: payload
+        )
+        let bytes = try JSONEncoder.iso.encode(envelope)
+        try bytes.write(to: profileURL)
+        return bytes
+    }
+
+    func profileJSON(_ value: FamilyProfile) throws -> [String: Any] {
+        try #require(JSONSerialization.jsonObject(with: FamilyStorage.profileEncoder.encode(value)) as? [String: Any])
+    }
+
+    @Test func olderProfileWithoutNewerSettingsLoadsWithDefaults() throws {
+        var expected = profile
+        expected.settings.audio.musicVolume = 0.4
+        expected.settings.session.timerMinutes = 30
+        var json = try profileJSON(expected)
+        json["stageRevision"] = nil
+        var settings = try #require(json["settings"] as? [String: Any])
+        var audio = try #require(settings["audio"] as? [String: Any])
+        audio["monoAudio"] = nil
+        settings["audio"] = audio
+        settings["comfort"] = nil
+        json["settings"] = settings
+        _ = try writeProfileRecord(json, schemaVersion: FamilyProfile.schemaVersion)
+
+        let scan = storage.scanProfiles()
+        #expect(scan.profiles == [expected])
+        #expect(scan.lostRecords.isEmpty && scan.unavailable.isEmpty)
+        #expect(quarantined().isEmpty)
+    }
+
+    @Test(arguments: ["newerSchema", "unknownAvatar", "unknownCalmMode"])
+    func profileFromNewerAppIsKeptUntouched(_ variant: String) throws {
+        var changed = profile
+        changed.stage = .bloom
+        try storage.updateProfileRecord(changed)
+        let backupURL = folder.appending(path: "Profile.json.bak")
+        let backupBytes = try Data(contentsOf: backupURL)
+
+        var json = try profileJSON(changed)
+        var schemaVersion = FamilyProfile.schemaVersion
+        switch variant {
+        case "newerSchema":
+            schemaVersion += 1
+        case "unknownAvatar":
+            json["avatar"] = "animal.unicorn"
+        default:
+            var settings = try #require(json["settings"] as? [String: Any])
+            var comfort = try #require(settings["comfort"] as? [String: Any])
+            comfort["calmMode"] = "sleepy"
+            settings["comfort"] = comfort
+            json["settings"] = settings
+        }
+        let bytes = try writeProfileRecord(json, schemaVersion: schemaVersion)
+
+        let scan = storage.scanProfiles()
+        #expect(scan.profiles.isEmpty)
+        #expect(scan.unavailable == [profile.id])
+        #expect(scan.lostRecords.isEmpty)
+        #expect(try Data(contentsOf: profileURL) == bytes)
+        #expect(try Data(contentsOf: backupURL) == backupBytes)
+        #expect(quarantined().isEmpty)
+    }
+
     @Test func slotNamesAreRestricted() {
         #expect(SaveSlot.isValid("Farm"))
         #expect(SaveSlot.isValid("Farm_v2-a"))
