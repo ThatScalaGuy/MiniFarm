@@ -6,6 +6,7 @@ struct FarmWorldState: Equatable {
     var locationIDs: [String]
     var offerings: [WorldOffering]
     var active: WorldTurn?
+    var locationID: String?
     var beds: [WorldBed] = []
     var book: [WorldSticker] = []
     var inventory: [String: Int] = [:]
@@ -21,6 +22,8 @@ struct FarmWorldState: Equatable {
     var reduceMotion = false
     var haptics = true
     var stage: WorldStage = .seedling
+    var cameraSpeedScale = 1.0
+    var particleScale = 1.0
 }
 
 enum WorldStage { case seedling, shoot, bloom }
@@ -66,6 +69,7 @@ struct WorldSticker: Identifiable, Equatable {
     var modelID: String
     var label: String
     var discovered: Bool
+    var locationID: String?
 }
 
 enum FarmWorldIntent: Equatable {
