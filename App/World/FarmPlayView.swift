@@ -56,7 +56,7 @@ struct FarmPlayView: View {
                     // into a second view races with teardown of the old GPU scene.
                     stage(targets: targets, size: size)
                         .padding(.horizontal, compact ? size * 0.8 : 0)
-                        .padding(.top, compact ? 8 : size)
+                        .padding(.top, compact && !state.hasDrivingJob ? 8 : size)
                         .padding(.bottom, (state.hasDrivingJob ? 2 : (compact ? 27 : size)) + (state.caption?.isEmpty == false ? 40 : 0))
                     VStack(spacing: 0) {
                         topBar(size: size, compact: compact)

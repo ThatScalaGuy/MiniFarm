@@ -1,3 +1,4 @@
+import Combine
 import OSLog
 import RealityKit
 import UIKit
@@ -9,6 +10,58 @@ extension UIColor {
     }
 }
 
+enum WorldFront: String, Decodable {
+    case positiveX = "+X", negativeX = "-X", positiveZ = "+Z", negativeZ = "-Z"
+
+    private var bearing: Float {
+        switch self { case .positiveX: .pi/2; case .negativeX: -.pi/2; case .positiveZ: 0; case .negativeZ: .pi }
+    }
+    func turn(to target: Self) -> simd_quatf {
+        simd_quatf(angle: target.bearing - bearing, axis: [0, 1, 0])
+    }
+}
+
+private struct WorldModelLibrary {
+    struct Asset: Decodable {
+        let id, file: String
+        let variantOf: String?
+        let frontAxis: WorldFront?
+        let boundsMin, boundsMax: WPoint
+    }
+    private struct Manifest: Decodable { let assets: [Asset] }
+    let assets: [String: Asset]
+    let folder: URL?
+
+    init(bundle: Bundle) {
+        let log = Logger(subsystem: "MiniFarm", category: "WorldModels")
+        let folders: [String?] = ["Models", "Resources/Models", "App/Resources/Models", nil]
+        guard let file = folders.lazy.compactMap({ bundle.url(forResource: "manifest", withExtension: "json", subdirectory: $0) }).first else {
+            log.error("Model manifest missing; using handcrafted farm props")
+            folder = nil; assets = [:]; return
+        }
+        do {
+            let manifest = try JSONDecoder().decode(Manifest.self, from: Data(contentsOf: file))
+            assets = Dictionary(uniqueKeysWithValues: manifest.assets.map { ($0.id, $0) })
+            folder = file.deletingLastPathComponent()
+        } catch {
+            log.error("Invalid model manifest: \(error.localizedDescription, privacy: .public)")
+            assets = [:]; folder = nil
+        }
+    }
+}
+
+@MainActor private final class WorldToySocket: Entity {
+    var assetID = ""
+    var front = WorldFront.positiveZ
+    var span: Float = 1
+    let rest = Entity()
+    var action: String?
+    var generation = 0
+    var variant: Entity?
+    var player: AnimationPlaybackController?
+    var completion: (any Cancellable)?
+}
+
 /// Shared toy parts and normalized, locally bundled USDZ instances. The receiver
 /// is kept when its model arrives so input targets and animations do not jump.
 @MainActor
@@ -18,7 +71,9 @@ final class WorldWorkshop {
     private var meshes: [String: MeshResource] = [:]
     private var materials: [Int: SimpleMaterial] = [:]
     private var templates: [URL: Task<Entity?, Never>] = [:]
-    private var urls: [String: URL] = [:]
+    private static let bundledModels = WorldModelLibrary(bundle: .main)
+    private let models: WorldModelLibrary
+    private let performers = NSHashTable<WorldToySocket>.weakObjects()
     private let logger = Logger(subsystem: "MiniFarm", category: "WorldModels")
     private struct Idle {
         weak var entity: Entity?
@@ -28,6 +83,9 @@ final class WorldWorkshop {
     private var playIdle = false
 
     func setIdleMotion(_ enabled: Bool) {
+        if playIdle && !enabled {
+            for socket in performers.allObjects { setAction(nil, on: socket) }
+        }
         idles.removeAll { loop in
             guard loop.entity?.scene != nil else { loop.player.stop(); return true }
             if playIdle != enabled {
@@ -39,11 +97,7 @@ final class WorldWorkshop {
     }
 
     init(bundle: Bundle = .main) {
-        for folder in [nil, "Models", "Resources/Models", "App/Resources/Models"] as [String?] {
-            for url in bundle.urls(forResourcesWithExtension: "usdz", subdirectory: folder) ?? [] {
-                urls[url.deletingPathExtension().lastPathComponent] = url
-            }
-        }
+        models = bundle == .main ? Self.bundledModels : WorldModelLibrary(bundle: bundle)
     }
 
     func group(_ parent: Entity? = nil, at p: WPoint = .zero) -> Entity {
@@ -185,34 +239,25 @@ final class WorldWorkshop {
 
     @discardableResult func toy(_ id: String, in parent: Entity, at p: WPoint = .zero,
                                 span: Float = 1, yaw: Float = 0, topSurface: Bool = false,
+                                facing: WorldFront = .positiveZ,
                                 fallback: ((Entity) -> Void)? = nil) -> Entity {
-        let socket = group(parent, at: p)
+        let socket = WorldToySocket()
+        parent.addChild(socket)
+        socket.position = p; socket.assetID = id; socket.front = facing; socket.span = span
         tilt(socket, yaw, [0, 1, 0])
-        let proxy = group(socket)
-        if let fallback { fallback(proxy) } else { prop(id, in: proxy) }
+        socket.addChild(socket.rest)
+        let proxy = group(socket.rest)
+        let facingParts = group(proxy)
+        if let fallback { fallback(facingParts) } else { prop(id, in: facingParts) }
+        let proxyFront: WorldFront = id.hasPrefix("veh.") || id.hasPrefix("imp.") ? .positiveX : .positiveZ
+        facingParts.orientation = proxyFront.turn(to: facing)
         normalize(proxy, span: span, topSurface: topSurface)
-        guard let url = urls["model." + id] else { return socket }
-        let task: Task<Entity?, Never>
-        if let cached = templates[url] { task = cached } else {
-            task = Task {
-                do { return try await Entity(contentsOf: url) }
-                catch {
-                    logger.error("Could not load \(url.lastPathComponent, privacy: .public): \(error.localizedDescription, privacy: .public)")
-                    return nil
-                }
-            }
-            templates[url] = task
-        }
+        guard let asset = models.assets[id], let task = load(asset) else { return socket }
         Task { [weak socket, weak proxy] in
             guard let template = await task.value, let socket, let proxy else { return }
-            let holder = group()
             let model = template.clone(recursive: true)
-            if id.hasPrefix("animal.") || id.hasPrefix("npc.") {
-                model.orientation = simd_quatf(angle: .pi, axis: [0, 1, 0]) * model.orientation
-            }
-            holder.addChild(model)
-            normalize(holder, span: span, topSurface: topSurface)
-            socket.addChild(holder)
+            let holder = mounted(model, asset: asset, socket: socket, topSurface: topSurface)
+            socket.rest.addChild(holder)
             proxy.removeFromParent()
             // The Blender export puts the clip on a child, not the USDZ root.
             if id.hasPrefix("animal."), let idle = model.findEntity(named: "Idle"),
@@ -222,6 +267,67 @@ final class WorldWorkshop {
             }
         }
         return socket
+    }
+
+    private func load(_ asset: WorldModelLibrary.Asset) -> Task<Entity?, Never>? {
+        guard let url = models.folder?.appendingPathComponent(asset.file) else { return nil }
+        if let task = templates[url] { return task }
+        let task = Task<Entity?, Never> {
+            do { return try await Entity(contentsOf: url) }
+            catch {
+                logger.error("Could not load \(asset.file, privacy: .public): \(error.localizedDescription, privacy: .public)")
+                return nil
+            }
+        }
+        templates[url] = task
+        return task
+    }
+
+    private func mounted(_ model: Entity, asset: WorldModelLibrary.Asset, socket: WorldToySocket, topSurface: Bool = false) -> Entity {
+        let mount = group()
+        let turn = asset.frontAxis?.turn(to: socket.front) ?? simd_quatf(angle: 0, axis: [0,1,0])
+        // Use the exported first-frame bounds, not the invalid pre-playback pose
+        // of a wheel variant. Do not rotate or rescale a root with its own clip.
+        let extent = asset.boundsMax - asset.boundsMin
+        let k = socket.span / max(0.0001, max(extent.x, max(extent.y, extent.z)))
+        var center = (asset.boundsMin + asset.boundsMax) / 2
+        center.y = topSurface ? asset.boundsMax.y : asset.boundsMin.y
+        mount.orientation = turn; mount.scale = .init(repeating: k); mount.position = -turn.act(center * k)
+        mount.name = asset.id
+        mount.addChild(model)
+        return mount
+    }
+
+    func setAction(_ motion: String?, on entity: Entity, looping: Bool = false) {
+        guard let socket = entity as? WorldToySocket, socket.action != motion else { return }
+        socket.generation += 1
+        let generation = socket.generation
+        socket.completion?.cancel(); socket.completion = nil
+        socket.player?.stop(); socket.player = nil
+        socket.variant?.removeFromParent(); socket.variant = nil
+        socket.rest.isEnabled = true; socket.action = motion
+        guard let motion else { performers.remove(socket); return }
+        let id = "anim." + socket.assetID + "." + motion
+        guard let asset = models.assets[id], asset.variantOf == socket.assetID, let task = load(asset) else { return }
+        performers.add(socket)
+        Task { [weak socket] in
+            guard let template = await task.value, let socket, socket.generation == generation, let scene = socket.scene else { return }
+            let model = template.clone(recursive: true)
+            guard let clip = model.availableAnimations.first else {
+                logger.error("Missing root animation in \(asset.file, privacy: .public)")
+                return
+            }
+            let mount = mounted(model, asset: asset, socket: socket)
+            socket.addChild(mount); socket.variant = mount
+            if !looping {
+                socket.completion = scene.subscribe(to: AnimationEvents.PlaybackCompleted.self, on: model) { [weak self, weak socket] _ in
+                    guard let socket, socket.generation == generation else { return }
+                    self?.setAction(nil, on: socket)
+                }
+            }
+            socket.player = model.playAnimation(looping ? clip.repeat() : clip)
+            socket.rest.isEnabled = false
+        }
     }
 
     private func normalize(_ e: Entity, span: Float, topSurface: Bool) {
