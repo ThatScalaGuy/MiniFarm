@@ -18,18 +18,18 @@ struct FarmRootView: View {
         .onAppear { [family] in
             family.learningSummary = { [weak family] id in
                 guard let family, family.isParentAreaUnlocked else { return [] }
-                switch family.storage.saves(for: id).load(slot: "Farm", decode: FarmSavedGame.decode) {
-                case .loaded(let saved), .recovered(let saved, _):
+                do {
+                    guard let skills = try BasketPractice.visibleSkills(in: family.storage.saves(for: id)) else { return [] }
                     let labels = ["mathCount": "Zählen", "cogSequence": "Reihenfolgen erkennen",
                                   "cogMatching": "Zuordnen", "cogMemory": "Sich erinnern",
                                   "percShape": "Formen erkennen", "langVocab": "Wörter entdecken",
                                   "worldTime": "Den Hoftag erleben", "moTap": "Ziele antippen",
                                   "moDrag": "Dinge bewegen", "moSteer": "Fahrzeuge lenken"]
-                    return saved.state.skills.confidence.filter { $0.value > 0 }
+                    return skills.confidence.filter { $0.value > 0 }
                         .sorted { $0.value == $1.value ? $0.key < $1.key : $0.value > $1.value }
                         .compactMap { labels[$0.key] }.prefix(3).map { "Auf dem Hof geübt: \($0)." }
-                case .empty: return []
-                case .unavailable, .unrecoverable: return ["Der Lernstand ist gerade nicht lesbar."]
+                } catch {
+                    return ["Der Lernstand ist gerade nicht lesbar."]
                 }
             }
             family.previewSound = playPreview

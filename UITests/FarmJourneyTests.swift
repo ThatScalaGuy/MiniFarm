@@ -74,6 +74,7 @@ final class FarmJourneyTests: XCTestCase {
         XCUIDevice.shared.orientation = .landscapeLeft
         XCTAssertTrue(garden.waitForExistence(timeout: 10))
         XCTAssertGreaterThan(app.frame.width, app.frame.height)
+        XCTAssertEqual(node("world.day").value as? String, "Sonnenschein")
         photo("Hofplatz-Querformat")
         tap("world.help")
         tap("world.target.item.seed.radish")
@@ -106,6 +107,7 @@ final class FarmJourneyTests: XCTestCase {
         tap("ritual.night.read")
         photo("Tagesbild-nach-dem-Schlafen")
         tap("world.wake")
+        XCTAssertEqual(node("world.day").value as? String, "Leichter Regen")
         tap("world.map")
         tap("world.map.loc.garden")
         XCTAssertEqual(bed.value as? String, "ripe, nicht gegossen")

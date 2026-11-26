@@ -13,6 +13,7 @@ final class FamilyJourneyUITests: XCTestCase {
 
     @MainActor
     func testFirstSetupAndReentry() throws {
+        XCUIDevice.shared.orientation = .landscapeLeft
         let app = launch(reset: true)
         tap(app, "family.picker.setupButton")
         try solveGate(app)
@@ -118,7 +119,6 @@ final class FamilyJourneyUITests: XCTestCase {
         tap(app, "family.newProfile.avatar.\(avatar)")
         scroll(app, to: element(app, "family.newProfile.stage.sprout"))
         tap(app, "family.newProfile.stage.sprout")
-        scroll(app, to: element(app, "family.newProfile.create"))
         tap(app, "family.newProfile.create")
         XCTAssertTrue(element(app, "family.profile.stage").waitForExistence(timeout: timeout))
         app.navigationBars.buttons.element(boundBy: 0).tap()
@@ -139,10 +139,11 @@ final class FamilyJourneyUITests: XCTestCase {
 
     @MainActor
     private func scroll(_ app: XCUIApplication, to target: XCUIElement) {
+        let form = app.collectionViews.firstMatch
         for _ in 0..<8 where !(target.exists && target.isHittable) {
-            app.swipeUp()
+            (form.exists ? form : app).swipeUp()
         }
-        XCTAssertTrue(target.exists && target.isHittable, "Nicht erreichbar: \(target)")
+        XCTAssertTrue(target.exists && target.isHittable, "Nicht erreichbar: \(target)\n\(app.debugDescription)")
     }
 
     @MainActor

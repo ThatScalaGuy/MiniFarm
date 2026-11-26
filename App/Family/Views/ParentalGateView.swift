@@ -14,12 +14,9 @@ struct ParentalGateView: View {
                 .accessibilityHidden(true)
             VStack(spacing: 20) {
                 header
-                TimelineView(.periodic(from: .now, by: 1)) { _ in
-                    if let remaining = store.gateLockRemaining() {
-                        lockout(remaining: remaining)
-                    } else {
-                        puzzle
-                    }
+                ViewThatFits(in: .vertical) {
+                    gateContents.fixedSize(horizontal: false, vertical: true)
+                    ScrollView { gateContents }
                 }
             }
             .padding(28)
@@ -31,6 +28,16 @@ struct ParentalGateView: View {
         .accessibilityIdentifier("family.gate")
         .accessibilityAddTraits(.isModal)
         .onChange(of: store.gate.puzzle) { _, _ in input = "" }
+    }
+
+    private var gateContents: some View {
+        TimelineView(.periodic(from: .now, by: 1)) { _ in
+            if let remaining = store.gateLockRemaining() {
+                lockout(remaining: remaining)
+            } else {
+                puzzle
+            }
+        }
     }
 
     private var header: some View {

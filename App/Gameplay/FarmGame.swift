@@ -38,6 +38,16 @@ struct FarmGame: Sendable {
         state.skills.recordSession(seconds: seconds, day: state.day)
     }
 
+    /// A shared basket is free play on the hosting farm, not a second harvest or sale.
+    mutating func deliverSharedBasket(round: UUID) {
+        guard state.lastBasketRound != round else { return }
+        state.lastBasketRound = round
+        if state.freeToday.insert("basket.shared").inserted { state.ticks += 1 }
+        if state.adaptive {
+            state.skills.record(lanes: ["cogMatching"], assist: .cue, day: state.day, rules: catalog.adaptive)
+        }
+    }
+
     mutating func resume(afterDays days: Int) {
         if state.adaptive { state.skills.resume(afterDays: days) }
     }

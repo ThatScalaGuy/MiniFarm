@@ -45,6 +45,8 @@ enum FamilyInfoTopic: String, CaseIterable, Hashable, Sendable, Identifiable {
             ]
         case .coPlay:
             [
+                "Am iPad finden Sie in der Hofpause „Gemeinsam tragen“. Wählen Sie das Tier eines zweiten Kindes oder die graue Hilfshand für Erwachsene.",
+                "Jede Hand bringt ihren Korbgriff zur passenden Form: ziehen oder erst den Griff, dann das Ziel antippen. Die erste Hand darf schon loslassen. Der Korb gehört zum geöffneten Hof. Kinder üben für ihr eigenes Profil; die graue Hand sammelt keinen Lernfortschritt.",
                 "Spielen Sie ab und zu mit. Fragen Sie zum Beispiel: Wie viele Äpfel sind das? Welches Tier hat Hunger?",
                 "Lassen Sie Ihr Kind selbst tippen. Pelle hilft von allein, wenn etwas nicht klappt. Lob für das Tun wirkt besser als Lob für das Ergebnis.",
                 "Am Ende eines Hoftags geht der Hof schlafen. Das ist ein guter Moment für eine Pause.",

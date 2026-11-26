@@ -5,6 +5,7 @@ struct FarmPauseMenu: View {
     let onSleep: () -> Void
     let onProfiles: () -> Void
     let onParents: () -> Void
+    var onCoPlay: (() -> Void)?
 
     var body: some View {
         GeometryReader { space in
@@ -34,6 +35,15 @@ struct FarmPauseMenu: View {
                             color: FarmInk.hay, action: onProfiles)
                         key("lock.shield.fill", "Elternbereich öffnen", "pause.parents",
                             color: FarmInk.clay, action: onParents)
+                    }
+                    if let onCoPlay {
+                        Button(action: onCoPlay) {
+                            Label("Gemeinsam tragen", systemImage: "hands.sparkles.fill")
+                                .font(.headline).frame(maxWidth: .infinity, minHeight: 64)
+                                .background(FarmInk.sage, in: .rect(cornerRadius: 16))
+                        }
+                        .buttonStyle(.plain).foregroundStyle(FarmInk.bark)
+                        .accessibilityIdentifier("pause.coPlay")
                     }
                 }
                 .padding(14)

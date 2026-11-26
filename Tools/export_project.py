@@ -9,7 +9,7 @@ import zipfile
 
 def export(revision, destination):
     project = ["App", "Configuration", "MiniFarm.xcodeproj", "Tests", "UITests", "Tools", "docs",
-               "project.yml", "README.md", "PROGRESS.md", "DESSSICION.md"]
+               "project.yml", "README.md", "PROGRESS.md", "DESSSICION.md", "AGEND.md", ".mcp.json", ".gitignore"]
     commit = subprocess.check_output(["git", "rev-parse", "--verify", revision + "^{commit}"], text=True).strip()
     destination = destination.resolve()
     with tempfile.TemporaryDirectory(dir=destination.parent) as work:
@@ -24,7 +24,8 @@ def export(revision, destination):
                         "App/Resources/Audio/manifest.json", "App/Resources/Content/crops.json",
                         "App/Art/FarmPictograms.xcassets/Contents.json",
                         "Tools/Audio/voice-catalog.json", "Tools/Audio/piper-provenance.json",
-                        "project.yml", "PROGRESS.md", "DESSSICION.md", "README.md"]
+                        "project.yml", "PROGRESS.md", "DESSSICION.md", "README.md", "AGEND.md",
+                        ".mcp.json", ".gitignore"]
             for item in required:
                 if "MiniFarm/" + item not in files:
                     raise ValueError(f"Projektdatei fehlt: {item}")

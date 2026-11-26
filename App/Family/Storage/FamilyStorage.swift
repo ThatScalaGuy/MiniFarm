@@ -79,7 +79,8 @@ final class FamilyStorage: Sendable {
     }
 
     /// Loads a slot. Bytes are read under the lock; `decode` runs outside it.
-    func load<Value>(slot: SaveSlot, profile: ProfileID, decode: (StoredPayload) throws -> Value) -> LoadOutcome<Value> {
+    func load<Value>(slot: SaveSlot, profile: ProfileID, repair: Bool = true,
+                     decode: (StoredPayload) throws -> Value) -> LoadOutcome<Value> {
         let folder = folder(for: profile)
         for _ in 0..<3 {
             let snapshot = lock.withLock { _ in Self.readPair(slot: slot, in: folder) }
@@ -95,6 +96,7 @@ final class FamilyStorage: Sendable {
             case .absent where !currentIsCorrupt:
                 return .empty
             case .valid(let value):
+                if !repair { return .loaded(value) }
                 let report = lock.withLock { _ -> RecoveryReport? in
                     guard Self.readPair(slot: slot, in: folder) == snapshot else { return nil }
                     var moved: [String] = []
@@ -108,6 +110,9 @@ final class FamilyStorage: Sendable {
                 }
                 if let report { return .recovered(value, report) }
             case .absent, .corrupt:
+                if !repair {
+                    return .unrecoverable(RecoveryReport(slot: slot, restoredFromBackup: false, quarantinedFiles: []))
+                }
                 let report = lock.withLock { _ -> RecoveryReport? in
                     guard Self.readPair(slot: slot, in: folder) == snapshot else { return nil }
                     var moved: [String] = []

@@ -8,6 +8,7 @@ struct FarmSessionView: View {
     @Environment(\.scenePhase) private var scenePhase
     @State private var game: FarmGame?
     @State private var pauseMenu = false
+    @State private var coPlay = false
     @State private var showPlaza = false
     @State private var decorationBox = false
     @State private var nightStory: FarmNightStory?
@@ -49,6 +50,10 @@ struct FarmSessionView: View {
                 if let album {
                     FarmFestivalAlbumView(album: album, speak: readStory, close: { self.album = nil })
                 }
+                if coPlay {
+                    BasketTogetherView(owner: session.profile, stage: game.state.stage, profiles: family.profiles,
+                                       storage: family.storage, deliver: deliverBasket, close: { coPlay = false })
+                }
             } else {
                 ProgressView("Der Hof wacht auf")
             }
@@ -57,7 +62,12 @@ struct FarmSessionView: View {
                     onContinue: { setPaused(false) },
                     onSleep: { setPaused(false); receive(.endDay) },
                     onProfiles: { family.endSession() },
-                    onParents: { family.requestParentArea(); setPaused(false) }
+                    onParents: { family.requestParentArea(); setPaused(false) },
+                    onCoPlay: UIDevice.current.userInterfaceIdiom == .pad ? {
+                        audio.clearVoiceCues()
+                        coPlay = true
+                        setPaused(false)
+                    } : nil
                 )
             }
         }
@@ -74,7 +84,10 @@ struct FarmSessionView: View {
         }
         .onChange(of: scenePhase) { _, _ in updateAudio() }
         .onChange(of: family.isParentFlowActive) { _, _ in updateAudio() }
-        .onChange(of: family.sessionTimer.phase.blocksFarmPlay) { _, _ in updateAudio() }
+        .onChange(of: family.sessionTimer.phase.blocksFarmPlay) { _, blocked in
+            if blocked { coPlay = false }
+            updateAudio()
+        }
         .onChange(of: pauseMenu) { _, _ in updateAudio() }
         .onChange(of: failure) { _, _ in updateAudio() }
         .onChange(of: game?.season) { _, _ in updateAudio() }
@@ -105,7 +118,7 @@ struct FarmSessionView: View {
         }
     }
 
-    private var covered: Bool { pauseMenu || decorationBox || parcel != nil || album != nil }
+    private var covered: Bool { pauseMenu || coPlay || decorationBox || parcel != nil || album != nil }
 
     private func notifyParents(_ message: String) {
         if !family.notices.contains(where: { $0.message == message }) { family.addNotice(message) }
@@ -120,14 +133,14 @@ struct FarmSessionView: View {
         do {
             let catalog = try FarmCatalog.load(from: Bundle.main.bundleURL.appendingPathComponent("Content", isDirectory: true))
             let outcome = session.saves.load(slot: "Farm", decode: FarmSavedGame.decode)
-            let opening: FarmGame
+            var state: FarmState
             var daysAway = 0
             switch outcome {
             case .empty:
-                opening = FarmGame(catalog: catalog, stage: stage(session.profile.stage))
+                state = FarmGame(catalog: catalog, stage: stage(session.profile.stage)).state
             case .loaded(let saved), .recovered(let saved, _):
                 if case .recovered = outcome { notifyParents("Der Hof wurde aus seiner Sicherungskopie wiederhergestellt.") }
-                opening = FarmGame(catalog: catalog, state: saved.state)
+                state = saved.state
                 let calendar = Calendar.current
                 daysAway = calendar.dateComponents([.day], from: calendar.startOfDay(for: saved.date),
                                                     to: calendar.startOfDay(for: .now)).day ?? 0
@@ -138,7 +151,8 @@ struct FarmSessionView: View {
                 failure = "Beide Kopien des Spielstands sind beschädigt. Sie wurden gesichert. Erneutes Öffnen startet einen neuen Hof."
                 return
             }
-            var configured = opening
+            try BasketPractice.read(session.saves)?.apply(to: &state)
+            var configured = FarmGame(catalog: catalog, state: state)
             if let settings = family.runtimeSettings { apply(settings, to: &configured) }
             configured.resume(afterDays: daysAway)
             guard store(configured) else { return }
@@ -182,8 +196,23 @@ struct FarmSessionView: View {
     }
 
     private func setPaused(_ paused: Bool) {
+        if paused { coPlay = false }
         pauseMenu = paused
         family.setGamePaused(paused)
+    }
+
+    private func deliverBasket(_ round: UUID, visitor: BasketVisitor?) throws {
+        guard coPlay, !pauseMenu, scenePhase == .active, !family.isParentFlowActive,
+              !family.sessionTimer.phase.blocksFarmPlay, let current = family.session, current.id == session.id,
+              current.saves.isValid, var updated = game else { throw FamilyStorageError.sessionInvalidated }
+        // The visitor finished their own side. Retrying this receipt never counts it twice.
+        if let visitor {
+            guard visitor.saves.profile != current.profileID else { throw FamilyStorageError.sessionInvalidated }
+            try visitor.record(round: round, rules: updated.catalog.adaptive)
+        }
+        updated.deliverSharedBasket(round: round)
+        try saveGame(updated)
+        audio.playSoundEffect(id: "sfx.ui.success")
     }
 
     private func updateAudio() {
@@ -286,8 +315,7 @@ struct FarmSessionView: View {
     @discardableResult
     private func store(_ updated: FarmGame) -> Bool {
         do {
-            try session.saves.save(updated.state, slot: "Farm", schemaVersion: 1)
-            game = updated
+            try saveGame(updated)
             return true
         } catch let error as FamilyStorageError where error.isDiscardable {
             return false
@@ -295,5 +323,10 @@ struct FarmSessionView: View {
             failure = "Dein letzter Schritt konnte nicht gesichert werden. Der vorherige Spielstand bleibt erhalten: \(error.localizedDescription)"
             return false
         }
+    }
+
+    private func saveGame(_ updated: FarmGame) throws {
+        try session.saves.save(updated.state, slot: "Farm", schemaVersion: updated.state.schemaVersion)
+        game = updated
     }
 }

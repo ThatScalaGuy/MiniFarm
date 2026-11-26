@@ -331,7 +331,10 @@ struct FarmPlayView: View {
                     .padding(.horizontal, 12).padding(.vertical, 8)
                     .background(state.invitesRest ? Color(red: 0.97, green: 0.84, blue: 0.63) : FarmPaper.cream, in: Capsule())
                     .frame(minWidth: 64, minHeight: 64).contentShape(Rectangle())
-            }.buttonStyle(.plain).accessibilityLabel(state.invitesRest ? "Pelle lädt zum Schlafengehen ein" : "Sonnenbogen und Feierabend").accessibilityIdentifier("world.day")
+            }.buttonStyle(.plain)
+                .accessibilityLabel(state.invitesRest ? "Pelle lädt zum Schlafengehen ein" : "Sonnenbogen und Feierabend")
+                .accessibilityValue(weatherLabel)
+                .accessibilityIdentifier("world.day")
             Spacer(minLength: 1)
             WorldButton(icon: "book.fill", label: "Hofbuch", id: "world.book", size: size) { sheet = .book }
             WorldButton(icon: "pause.fill", label: "Pause", id: "world.pause", size: size) { send(.pause) }
@@ -343,6 +346,19 @@ struct FarmPlayView: View {
         if state.sunProgress >= 0.82 { return "sunset.fill" }
         return ["cloud": "cloud.fill", "rain": "cloud.drizzle.fill", "rainbow": "rainbow", "fog": "cloud.fog.fill",
                 "snow": "cloud.snow.fill", "wind": "wind"][state.weather] ?? "sun.max.fill"
+    }
+
+    private var weatherLabel: String {
+        switch state.weather {
+        case "sun": "Sonnenschein"
+        case "cloud": "Wolken"
+        case "rain": "Leichter Regen"
+        case "rainbow": "Regenbogen"
+        case "fog": "Nebel"
+        case "snow": "Schnee"
+        case "wind": "Wind"
+        default: "Wetter auf dem Hof"
+        }
     }
 
     private func bottomBar(size: CGFloat, perPage: Int) -> some View {

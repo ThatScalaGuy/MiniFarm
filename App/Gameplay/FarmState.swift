@@ -72,6 +72,8 @@ struct FarmState: Codable, Sendable {
     var nextWish = 1
     var introduction = 0
     var skills = FarmSkills()
+    var appliedBasketPractice: UInt64?
+    var lastBasketRound: UUID?
     var production = FarmProduction()
     var life = FarmLife()
     var active: FarmTurn?
@@ -111,6 +113,8 @@ struct FarmState: Codable, Sendable {
         nextWish = try c.decode(Int.self, forKey: .nextWish)
         introduction = try c.decode(Int.self, forKey: .introduction)
         skills = try c.decode(FarmSkills.self, forKey: .skills)
+        appliedBasketPractice = try c.decodeIfPresent(UInt64.self, forKey: .appliedBasketPractice)
+        lastBasketRound = try c.decodeIfPresent(UUID.self, forKey: .lastBasketRound)
         production = try c.decode(FarmProduction.self, forKey: .production)
         life = try c.decode(FarmLife.self, forKey: .life)
         active = try c.decodeIfPresent(FarmTurn.self, forKey: .active)

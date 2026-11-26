@@ -138,8 +138,9 @@ struct ProfileSaves: Sendable {
         try write(encoder.encode(value), slot: slot, schemaVersion: schemaVersion)
     }
 
-    func load<Value>(slot: SaveSlot, decode: (StoredPayload) throws -> Value) -> LoadOutcome<Value> {
-        storage.load(slot: slot, profile: profile, decode: decode)
+    /// Visiting another farm may read a valid backup, but must not restore or quarantine either copy.
+    func load<Value>(slot: SaveSlot, repair: Bool = true, decode: (StoredPayload) throws -> Value) -> LoadOutcome<Value> {
+        storage.load(slot: slot, profile: profile, repair: repair, decode: decode)
     }
 
     func load<T: Decodable>(

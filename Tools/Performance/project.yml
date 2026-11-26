@@ -1,0 +1,28 @@
+# Extends the app spec for Tools/Performance/measure.sh only. The script generates this into a
+# temporary directory, so MiniFarm.xcodeproj in the checkout is never touched.
+include:
+  - project.yml
+name: MiniFarmPerformance
+targets:
+  MiniFarmPerformanceUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources: [PerformanceUITests]
+    dependencies:
+      - target: MiniFarm
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: de.thatscalaguy.minifarm.performance-uitests
+        GENERATE_INFOPLIST_FILE: YES
+        TEST_TARGET_NAME: MiniFarm
+schemes:
+  MiniFarmPerformance:
+    build:
+      targets:
+        MiniFarm: all
+        MiniFarmPerformanceUITests: [test]
+    test:
+      config: Release
+      targets: [MiniFarmPerformanceUITests]
+      language: de
+      region: DE

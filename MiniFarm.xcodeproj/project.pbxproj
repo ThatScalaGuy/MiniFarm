@@ -13,6 +13,8 @@
 		11AFA534502FDF3731FFD0ED /* WorldModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65DF7FE678C30CEC8EA6819 /* WorldModelTests.swift */; };
 		11EF8EBA609B7268AD0579F5 /* FarmDriveWork.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F1E413E976BF09703A21DA /* FarmDriveWork.swift */; };
 		143FC502D5663F615EDCCC43 /* FarmStoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19DE9665D468800E61652C7F /* FarmStoryTests.swift */; };
+		149D54B0D6D3333535890CA7 /* BasketTouchSurface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFE8B05D354411E99AA0A10 /* BasketTouchSurface.swift */; };
+		14D67406D7C5E5A4EF546D2B /* BasketTogetherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B9FA9480E1E711E88580BD /* BasketTogetherView.swift */; };
 		166A0DFA748DD8018C19EF1D /* FarmContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C84ADF4713C263A3B6F10BE /* FarmContent.swift */; };
 		1DEB36A28A9D32461B80E4FC /* WorldLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4224EE447874D1F98C148C27 /* WorldLayout.swift */; };
 		206103952E0A206990568A11 /* FarmWorldBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E08A4AB4A0D3CDA087739CC /* FarmWorldBridge.swift */; };
@@ -30,6 +32,7 @@
 		5A1E0E689281C713377D542B /* FarmPictogram.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33F3ADE1B15D6E7C6EB075E /* FarmPictogram.swift */; };
 		5A5C0560419E22EB83D719A5 /* FarmLevelParcelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8729B14B86F6E5EF3E680FA /* FarmLevelParcelView.swift */; };
 		60F2C6D86293BDB43F1848BC /* Content in Resources */ = {isa = PBXBuildFile; fileRef = 7E101543F32B54901D3309C5 /* Content */; };
+		68D0129427E02EDBB816B81B /* BasketPractice.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66BBE7DFE094508C352E768 /* BasketPractice.swift */; };
 		770C2A745027AE537D4E9DF2 /* WorldStage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C955950EE17D680DD53E483D /* WorldStage.swift */; };
 		7CE06CA73B25F5DFC2F7A2D0 /* MiniFarmAudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF81E6254028A50C9BEC9F6 /* MiniFarmAudioController.swift */; };
 		7DA1D7EE5DB76885B774A167 /* StorageTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B7DAAA2459DCDBDBA7D297 /* StorageTypes.swift */; };
@@ -52,6 +55,7 @@
 		AB510FA2D9F26EF6EBECDE39 /* FarmJourneyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A412B3EEE5D0E43F8E855B1 /* FarmJourneyTests.swift */; };
 		AF02ACB03136472BC2ED0023 /* FarmNightStoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82669CD6BB6A18E67EE38B44 /* FarmNightStoryView.swift */; };
 		AFCC49FCC24714420ED92FD9 /* AvatarArtwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6E84463C8F0B1CF221479B /* AvatarArtwork.swift */; };
+		B32A4677CCAF2EE4ABDEB7F0 /* BasketCarry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C38A2B6225578D5F1A2DD98 /* BasketCarry.swift */; };
 		B7B1EEE3B4FB23F2A2680FC0 /* ProfileSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4A1AE57CDD65DFDFFC375F /* ProfileSettings.swift */; };
 		BB987F51185BA8A306B8BC87 /* WorldDiscoveries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA7A0AB257EC87DE3E2E2D8 /* WorldDiscoveries.swift */; };
 		C584A88C1D6AF7D47AE0CF30 /* Models in Resources */ = {isa = PBXBuildFile; fileRef = 7CF87C24669F75791277B839 /* Models */; };
@@ -67,6 +71,7 @@
 		EC2231FF830245F9B2E7C25C /* FamilyStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD7A603F18CC7AA342BE037 /* FamilyStoreTests.swift */; };
 		ED417E9178A831FD080DD154 /* FamilyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018CD1241096ED89D68521C6 /* FamilyStore.swift */; };
 		EE129B9C4D001385E962FEA0 /* FarmDriveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF41F9872560E7DA463A73D /* FarmDriveView.swift */; };
+		EE24D036FAF092F66C33366D /* BasketJourneyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308285DA648BD34E5CF4EA77 /* BasketJourneyUITests.swift */; };
 		EF53EF36F7048639D0D023BF /* FarmSkills.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A07804EE575FCDB4C2D751 /* FarmSkills.swift */; };
 		F174ADB1FB014BD0F358413C /* ProductionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A112472CDF6CE57017DAF6F3 /* ProductionTests.swift */; };
 		F70CCB903815676860C2DE5A /* FarmOverlays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221CEC5E166FD7358C4D8128 /* FarmOverlays.swift */; };
@@ -75,6 +80,7 @@
 		F9B1B2BB1EECB08C84F9FDFA /* FamilyRuntimeSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFB04307F511D564697BC1F /* FamilyRuntimeSettings.swift */; };
 		F9E9ACE276B7E863212959A4 /* FarmProduction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C414F5D82F03347C3A04F20 /* FarmProduction.swift */; };
 		FC90DF47D003FD118EEA9C81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F078B841284DF0FED2EFECB /* Assets.xcassets */; };
+		FD9228804D44D320C16A1B9A /* BasketCoPlayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42CA1973F9531AD3F740D03 /* BasketCoPlayTests.swift */; };
 		FF0692266EC4BADE03733DEB /* FarmPictogramIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7505769EB05C2CC34DE6BFF6 /* FarmPictogramIndex.swift */; };
 /* End PBXBuildFile section */
 
@@ -110,6 +116,7 @@
 		2EFB04307F511D564697BC1F /* FamilyRuntimeSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilyRuntimeSettings.swift; sourceTree = "<group>"; };
 		2F59A81D3A9F9F4205793FE7 /* FamilyProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilyProfile.swift; sourceTree = "<group>"; };
 		303B66F0E4758049BBCC6644 /* MiniFarmApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniFarmApp.swift; sourceTree = "<group>"; };
+		308285DA648BD34E5CF4EA77 /* BasketJourneyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketJourneyUITests.swift; sourceTree = "<group>"; };
 		31FB672C519F02BEB8BFE71D /* FarmLifeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FarmLifeTests.swift; sourceTree = "<group>"; };
 		393E1531178460A9A19688F9 /* FarmActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FarmActivity.swift; sourceTree = "<group>"; };
 		3AD7A603F18CC7AA342BE037 /* FamilyStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilyStoreTests.swift; sourceTree = "<group>"; };
@@ -141,13 +148,16 @@
 		82669CD6BB6A18E67EE38B44 /* FarmNightStoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FarmNightStoryView.swift; sourceTree = "<group>"; };
 		876ABCE85CD97D60BF0E586E /* MiniFarm.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = MiniFarm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DA7A0AB257EC87DE3E2E2D8 /* WorldDiscoveries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldDiscoveries.swift; sourceTree = "<group>"; };
+		8DFE8B05D354411E99AA0A10 /* BasketTouchSurface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketTouchSurface.swift; sourceTree = "<group>"; };
 		941E87B9DD40D816DBDCF041 /* FamilyInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilyInfo.swift; sourceTree = "<group>"; };
 		94F2BD15543E5B386F997487 /* AdaptiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptiveTests.swift; sourceTree = "<group>"; };
 		97F80516CE9A71F98E47D699 /* FarmDriveWorkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FarmDriveWorkTests.swift; sourceTree = "<group>"; };
+		9C38A2B6225578D5F1A2DD98 /* BasketCarry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketCarry.swift; sourceTree = "<group>"; };
 		9CF81E6254028A50C9BEC9F6 /* MiniFarmAudioController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniFarmAudioController.swift; sourceTree = "<group>"; };
 		9E6361A10A138AE4801A878D /* FarmStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FarmStory.swift; sourceTree = "<group>"; };
 		A112472CDF6CE57017DAF6F3 /* ProductionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductionTests.swift; sourceTree = "<group>"; };
 		A11E41DD006C25205C09BE94 /* FamilyRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilyRootView.swift; sourceTree = "<group>"; };
+		A42CA1973F9531AD3F740D03 /* BasketCoPlayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketCoPlayTests.swift; sourceTree = "<group>"; };
 		A65DF7FE678C30CEC8EA6819 /* WorldModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldModelTests.swift; sourceTree = "<group>"; };
 		AF4A1AE57CDD65DFDFFC375F /* ProfileSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettings.swift; sourceTree = "<group>"; };
 		B4DEEBA25D821E81DEAE2CFB /* FirstHarvestIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstHarvestIntegrationTests.swift; sourceTree = "<group>"; };
@@ -158,6 +168,7 @@
 		C0F1E413E976BF09703A21DA /* FarmDriveWork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FarmDriveWork.swift; sourceTree = "<group>"; };
 		C21CE5C4683E7E6F6B3DEDA4 /* FarmCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FarmCatalog.swift; sourceTree = "<group>"; };
 		C955950EE17D680DD53E483D /* WorldStage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldStage.swift; sourceTree = "<group>"; };
+		D66BBE7DFE094508C352E768 /* BasketPractice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketPractice.swift; sourceTree = "<group>"; };
 		DA12B66E9F448800AE0267DA /* FarmGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FarmGame.swift; sourceTree = "<group>"; };
 		DC59658E1192BCECDC439D73 /* MiniFarmTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = MiniFarmTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD6E84463C8F0B1CF221479B /* AvatarArtwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarArtwork.swift; sourceTree = "<group>"; };
@@ -165,6 +176,7 @@
 		E73529B04B7751057F9FAD35 /* ParentAreaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentAreaView.swift; sourceTree = "<group>"; };
 		F23CEA2E48BDEA2B49FDE251 /* WorldPaper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldPaper.swift; sourceTree = "<group>"; };
 		F33F3ADE1B15D6E7C6EB075E /* FarmPictogram.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FarmPictogram.swift; sourceTree = "<group>"; };
+		F3B9FA9480E1E711E88580BD /* BasketTogetherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketTogetherView.swift; sourceTree = "<group>"; };
 		F721423EE8A9F71B7C4A83B6 /* WorldWorkshop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldWorkshop.swift; sourceTree = "<group>"; };
 		FAEC271EB38DEDBD5672320C /* ParentalGateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentalGateView.swift; sourceTree = "<group>"; };
 		FD2CB9E87041F42F64F721B2 /* Audio */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Audio; path = App/Resources/Audio; sourceTree = SOURCE_ROOT; };
@@ -177,6 +189,7 @@
 				4296CB5F27CF1959E87DC1AC /* AppResourcesTests.swift */,
 				B4DEEBA25D821E81DEAE2CFB /* FirstHarvestIntegrationTests.swift */,
 				AE07861F2A0AD01872F94D71 /* Art */,
+				990FF1444AA7C81796C21FF5 /* CoPlay */,
 				536F92F65737282A8E48BE4F /* Family */,
 				E6442369A1EE82BC84862023 /* Gameplay */,
 				EE81628FF3F4FF3AE527DBBB /* World */,
@@ -223,6 +236,17 @@
 				FCC7D81983F108C87C287C42 /* UITests */,
 				72AB5DF52E94F3F0EA1FC9BB /* Products */,
 			);
+			sourceTree = "<group>";
+		};
+		4A10E3C3DDFCA56CA19956F8 /* CoPlay */ = {
+			isa = PBXGroup;
+			children = (
+				9C38A2B6225578D5F1A2DD98 /* BasketCarry.swift */,
+				D66BBE7DFE094508C352E768 /* BasketPractice.swift */,
+				F3B9FA9480E1E711E88580BD /* BasketTogetherView.swift */,
+				8DFE8B05D354411E99AA0A10 /* BasketTouchSurface.swift */,
+			);
+			path = CoPlay;
 			sourceTree = "<group>";
 		};
 		536F92F65737282A8E48BE4F /* Family */ = {
@@ -293,6 +317,14 @@
 			path = Gameplay;
 			sourceTree = "<group>";
 		};
+		990FF1444AA7C81796C21FF5 /* CoPlay */ = {
+			isa = PBXGroup;
+			children = (
+				A42CA1973F9531AD3F740D03 /* BasketCoPlayTests.swift */,
+			);
+			path = CoPlay;
+			sourceTree = "<group>";
+		};
 		AE07861F2A0AD01872F94D71 /* Art */ = {
 			isa = PBXGroup;
 			children = (
@@ -315,6 +347,7 @@
 		AF66BC0D11CE822E86D5ECFC /* Family */ = {
 			isa = PBXGroup;
 			children = (
+				308285DA648BD34E5CF4EA77 /* BasketJourneyUITests.swift */,
 				BC6D817458BCF25A79E90AFA /* FamilyJourneyUITests.swift */,
 			);
 			path = Family;
@@ -388,6 +421,7 @@
 				221CEC5E166FD7358C4D8128 /* FarmOverlays.swift */,
 				7A1EAF6EA9DB89FA1DF452DA /* FarmSessionView.swift */,
 				6E08A4AB4A0D3CDA087739CC /* FarmWorldBridge.swift */,
+				4A10E3C3DDFCA56CA19956F8 /* CoPlay */,
 			);
 			path = Host;
 			sourceTree = "<group>";
@@ -542,6 +576,7 @@
 			files = (
 				A60E35D9DEB3190C3D60A4CA /* AdaptiveTests.swift in Sources */,
 				D5FBA04469F0055639F14DFC /* AppResourcesTests.swift in Sources */,
+				FD9228804D44D320C16A1B9A /* BasketCoPlayTests.swift in Sources */,
 				2FA4A19989B4973E87294BC9 /* FamilyLogicTests.swift in Sources */,
 				D59854A1606FD7BFB0735BE7 /* FamilyStorageTests.swift in Sources */,
 				EC2231FF830245F9B2E7C25C /* FamilyStoreTests.swift in Sources */,
@@ -560,6 +595,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE24D036FAF092F66C33366D /* BasketJourneyUITests.swift in Sources */,
 				974AF4D385BE320EB2160610 /* FamilyJourneyUITests.swift in Sources */,
 				AB510FA2D9F26EF6EBECDE39 /* FarmJourneyTests.swift in Sources */,
 			);
@@ -570,6 +606,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				AFCC49FCC24714420ED92FD9 /* AvatarArtwork.swift in Sources */,
+				B32A4677CCAF2EE4ABDEB7F0 /* BasketCarry.swift in Sources */,
+				68D0129427E02EDBB816B81B /* BasketPractice.swift in Sources */,
+				14D67406D7C5E5A4EF546D2B /* BasketTogetherView.swift in Sources */,
+				149D54B0D6D3333535890CA7 /* BasketTouchSurface.swift in Sources */,
 				49AA208461C17D256B1B640F /* FamilyInfo.swift in Sources */,
 				A7D4523BE21C6549BF824AAC /* FamilyProfile.swift in Sources */,
 				28FD42F0E161F137FAC892F2 /* FamilyRootView.swift in Sources */,

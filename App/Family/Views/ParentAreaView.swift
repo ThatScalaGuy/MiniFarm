@@ -266,13 +266,15 @@ struct NewProfileView: View {
             } footer: {
                 Text("Das Spiel passt sich danach behutsam an. Sie können das jederzeit ändern.")
             }
-            Section {
+        }
+        .navigationTitle("Neues Profil")
+        .toolbar {
+            ToolbarItem(placement: .confirmationAction) {
                 Button("Profil anlegen") { create() }
                     .disabled(avatar == nil)
                     .accessibilityIdentifier("family.newProfile.create")
             }
         }
-        .navigationTitle("Neues Profil")
         .onAppear {
             store.noteParentActivity()
             if avatar == nil { avatar = store.freeAvatars.first }
