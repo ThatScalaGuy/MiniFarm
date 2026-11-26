@@ -41,7 +41,7 @@ final class FarmDiorama {
     private let w = WorldWorkshop()
     let root = Entity()
     let camera = PerspectiveCamera()
-    private let land = Entity(), furniture = Entity(), objects = Entity(), effects = Entity()
+    private let land = Entity(), furniture = Entity(), objects = Entity(), effects = Entity(), finds = Entity()
     private var frame: WorldFraming?
     private var sceneryKey: SceneryKey?
     private var lastObjects: [WorldObject] = []
@@ -62,6 +62,7 @@ final class FarmDiorama {
     private var residentRest = Transform()
     private var light: DirectionalLight
     private var landKey = ""
+    private var findKey: String?
 
     private struct SceneryKey: Equatable {
         var places: [String]
@@ -81,7 +82,7 @@ final class FarmDiorama {
         light.light.color = UIColor(farmRGB: 0xffedce)
         light.shadow = .init(shadowProjection: .automatic(maximumDistance: 110), depthBias: 1.1)
         light.look(at: .zero, from: [-6, 10, 6], relativeTo: nil)
-        for entity in [land, furniture, objects, effects, camera, light] { root.addChild(entity) }
+        for entity in [land, furniture, objects, finds, effects, camera, light] { root.addChild(entity) }
         camera.camera = .init(near: 0.05, far: 320, fieldOfViewInDegrees: WorldFraming.fov)
     }
 
@@ -93,19 +94,36 @@ final class FarmDiorama {
         subscription = content.subscribe(to: SceneEvents.Update.self) { [weak self] e in self?.tick(e.deltaTime) }
     }
 
-    func render(state: FarmWorldState, site: WorldSite?, targets: [WorldObject], framing: WorldFraming, motion: Bool) {
+    func render(state: FarmWorldState, site: WorldSite?, targets: [WorldObject], framing: WorldFraming, motion: Bool, detail: WorldSticker?) {
         still = !motion
+        w.setIdleMotion(motion)
         particles = max(0, min(1, state.particleScale))
         let key = SceneryKey(places: state.locationIDs, season: state.season, level: state.farmLevel, beds: state.beds,
                              shelf: state.shelf, cared: state.caredFor, focus: site?.id, playing: state.active != nil,
                              decorations: state.decorations)
         let sites = WorldSite.all.filter { key.places.contains($0.id) }
+        let nextFind = detail.map { (site?.id ?? "") + "/" + $0.id }
+        if findKey != nextFind {
+            finds.children.removeAll()
+            if let detail, let site {
+                let id = WorldFind.model(detail.id)
+                w.toy(id, in: finds, at: site.center + WorldFind.point, span: 0.77) { self.w.foundObject(id, in: $0) }
+            }
+            findKey = nextFind
+        }
         let newLand = "\(key.level)|\(key.season)|\(key.places.joined(separator: ","))"
         if landKey != newLand {
             landKey = newLand
             land.children.removeAll()
             let size = WorldFraming.island(level: key.level)
-            w.soil(land, size, season: key.season)
+            let slab = w.toy("terrain.island", in: land, span: 16, topSurface: true) {
+                self.w.soil($0, [16, 12], season: key.season)
+            }
+            slab.scale = [size.x/16, 1, size.y/12]
+            if key.season != "season.spring" {
+                let tint = key.season == "season.winter" ? 0xe0e9dc : (key.season == "season.autumn" ? 0xc1ad63 : 0x92b762)
+                w.box(land, [0,0.007,0], [size.x,0.016,size.y], tint, round: 0.107)
+            }
             for s in sites {
                 // The short branch joins the main east–west lane at a walkable gate.
                 w.lane(land, from: [s.center.x, 0, 0], to: s.center + [0, 0, s.center.z < 0 ? 1.22 : -1.22])
@@ -136,6 +154,11 @@ final class FarmDiorama {
             }
             let pos = site.map { $0.center + [-2.05, 0.08, 0.48] } ?? [-0.63, 0.075, 0.31]
             creature = w.toy("animal.dog", in: furniture, at: pos, span: site == nil ? 1.68 : 1.28, yaw: 0.43)
+            creature?.name = "pelle"
+            creature?.components.set(InputTargetComponent())
+            creature?.components.set(CollisionComponent(shapes: [
+                .generateBox(size: [1.22, 1.55, 1.32]).offsetBy(translation: [0, 0.69, 0])
+            ]))
             creatureBase = pos
             activeObject = nil
             sceneryKey = key

@@ -15,6 +15,7 @@ struct FarmPlayView: View {
     @State private var lastID = ""
     @State private var goodNight = false
     @State private var response: Reaction?
+    @State private var nextFind: [String: String] = [:]
     @Environment(\.accessibilityReduceMotion) private var systemStill
     @Environment(\.scenePhase) private var scenePhase
 
@@ -24,8 +25,16 @@ struct FarmPlayView: View {
         var picture: String
         var label: String
     }
-    private var motion: Bool { !state.reduceMotion && !systemStill && !state.quiet }
+    private var motion: Bool { !state.reduceMotion && !systemStill && !state.quiet && scenePhase == .active && sheet == nil }
     private var site: WorldSite? { WorldSite.at(state.active?.offering.locationID ?? place) }
+    private var discoveries: [WorldSticker] {
+        guard state.active == nil, let site else { return [] }
+        return state.book.filter { $0.id.hasPrefix("hofbook.discovery.") && $0.locationID == site.id }
+    }
+    private var discovery: WorldSticker? {
+        discoveries.first(where: { $0.id == nextFind[site?.id ?? ""] }) ??
+            discoveries.first(where: { !$0.discovered }) ?? discoveries.first
+    }
     private var offers: [WorldOffering] {
         let visible = state.offerings.filter { site == nil ? $0.isWish : $0.locationID == site?.id }
         var seen: Set<String> = []
@@ -42,13 +51,15 @@ struct FarmPlayView: View {
             ZStack {
                 FarmSky(season: state.season, weather: state.weather, evening: state.sunProgress >= 0.72)
                 ZStack {
-                    if compact {
-                        stage(targets: targets, size: size)
-                            .padding(.horizontal, size * 0.8).padding(.top, 8).padding(.bottom, 27)
-                    }
+                    // Keep one RealityView alive across rotation. Moving its root
+                    // into a second view races with teardown of the old GPU scene.
+                    stage(targets: targets, size: size)
+                        .padding(.horizontal, compact ? size * 0.8 : 0)
+                        .padding(.top, compact ? 8 : size)
+                        .padding(.bottom, (compact ? 27 : size) + (state.caption?.isEmpty == false ? 40 : 0))
                     VStack(spacing: 0) {
                         topBar(size: size, compact: compact)
-                        if compact { Spacer(minLength: 0) } else { stage(targets: targets, size: size) }
+                        Spacer(minLength: 0)
                         if let caption = state.caption, !caption.isEmpty {
                             Text(caption).font(.system(.callout, design: .rounded, weight: .semibold))
                                 .multilineTextAlignment(.center).foregroundStyle(FarmPaper.pine)
@@ -78,6 +89,9 @@ struct FarmPlayView: View {
             }
         }
         .onAppear { place = state.active?.offering.locationID ?? state.locationID }
+        .onChange(of: state.eveningDue && state.active == nil, initial: true) { _, due in
+            if due && sheet != .night { goodNight = false; sheet = .night }
+        }
         .onChange(of: state.locationID) { _, id in place = id }
         .onChange(of: state.active?.offering.locationID) { _, id in if let id { place = id } }
         .onChange(of: state.active?.stepID) { _, _ in page = 0; diorama.resetDrag() }
@@ -106,12 +120,13 @@ struct FarmPlayView: View {
             ZStack {
                 RealityView { content in
                     diorama.install(&content)
-                    diorama.render(state: state, site: site, targets: targets, framing: f, motion: false)
+                    diorama.render(state: state, site: site, targets: targets, framing: f, motion: false, detail: discovery)
                 } update: { _ in
-                    diorama.render(state: state, site: site, targets: targets, framing: f, motion: motion)
+                    diorama.render(state: state, site: site, targets: targets, framing: f, motion: motion, detail: discovery)
                 }
                 .gesture(SpatialTapGesture().targetedToAnyEntity().onEnded { tap in
                     if let obj = targets.first(where: { "pick:" + $0.id == tap.entity.name }) { perform(obj) }
+                    else if tap.entity.name == "pelle" { askPelle() }
                 })
                 .accessibilityHidden(true)
                 if let site {
@@ -131,7 +146,11 @@ struct FarmPlayView: View {
                     wishBubbles(framing: f, size: size)
                 }
                 if let response {
-                    FarmPictogram(id: response.picture).frame(width: 33, height: 33)
+                    Group {
+                        if response.picture.hasPrefix("hofbook.discovery.") {
+                            Image(systemName: WorldFind.symbol(response.picture)).foregroundStyle(FarmPaper.pine)
+                        } else { FarmPictogram(id: response.picture) }
+                    }.frame(width: 33, height: 33)
                         .padding(7).background(FarmPaper.cream, in: Capsule())
                         .overlay(Capsule().strokeBorder(FarmPaper.edge.opacity(0.38), lineWidth: 1))
                         .frame(maxHeight: .infinity, alignment: .top).allowsHitTesting(false)
@@ -220,10 +239,12 @@ struct FarmPlayView: View {
             sceneButton(at: f.project(site.center + [-0.55, 1.52, -0.51]), size: size, label: "Hofbaum und Hofbuch",
                         id: "world.tree", picture: "book.fill") { sheet = .book }
         }
-        let discoveries = state.book.filter { $0.id.hasPrefix("hofbook.discovery.") && $0.locationID == site.id }
-        if let find = discoveries.first(where: { !$0.discovered }) ?? discoveries.first {
-            sceneButton(at: f.project(site.center + [1.51, 0.85, -0.04]), size: size,
+        if let find = discovery {
+            sceneButton(at: f.project(site.center + WorldFind.point + [0, 0.3, 0]), size: size,
                         label: find.label, id: "world.discover." + find.id, picture: "magnifyingglass") {
+                if let i = discoveries.firstIndex(where: { $0.id == find.id }) {
+                    nextFind[site.id] = discoveries[(i+1) % discoveries.count].id
+                }
                 send(.discover(find.id)); response = Reaction(picture: find.modelID, label: find.label)
             }
         }
@@ -280,9 +301,10 @@ struct FarmPlayView: View {
                         }
                     }
                 }.foregroundStyle(FarmPaper.pine)
-                    .padding(.horizontal, 12).padding(.vertical, 8).background(FarmPaper.cream, in: Capsule())
+                    .padding(.horizontal, 12).padding(.vertical, 8)
+                    .background(state.invitesRest ? Color(red: 0.97, green: 0.84, blue: 0.63) : FarmPaper.cream, in: Capsule())
                     .frame(minWidth: 64, minHeight: 64).contentShape(Rectangle())
-            }.buttonStyle(.plain).accessibilityLabel("Sonnenbogen und Feierabend").accessibilityIdentifier("world.day")
+            }.buttonStyle(.plain).accessibilityLabel(state.invitesRest ? "Pelle lädt zum Schlafengehen ein" : "Sonnenbogen und Feierabend").accessibilityIdentifier("world.day")
             Spacer(minLength: 1)
             WorldButton(icon: "book.fill", label: "Hofbuch", id: "world.book", size: size) { sheet = .book }
             WorldButton(icon: "pause.fill", label: "Pause", id: "world.pause", size: size) { send(.pause) }
@@ -290,6 +312,7 @@ struct FarmPlayView: View {
     }
 
     private var skySymbol: String {
+        if state.invitesRest { return "moon.stars.fill" }
         if state.sunProgress >= 0.82 { return "sunset.fill" }
         return ["cloud": "cloud.fill", "rain": "cloud.drizzle.fill", "rainbow": "rainbow", "fog": "cloud.fog.fill",
                 "snow": "cloud.snow.fill", "wind": "wind"][state.weather] ?? "sun.max.fill"
@@ -298,7 +321,7 @@ struct FarmPlayView: View {
     private func bottomBar(size: CGFloat, perPage: Int) -> some View {
         HStack(spacing: 2) {
             Button {
-                if state.active == nil, let first = offers.first { start(first) } else { send(.help) }
+                askPelle()
             } label: {
                 ZStack {
                     Circle().fill(FarmPaper.pine)
@@ -431,6 +454,11 @@ struct FarmPlayView: View {
 
     private func startMatching(_ activity: String) {
         if let offer = offers.first(where: { $0.activityID == activity }) ?? offers.first { start(offer) }
+        else { send(.help) }
+    }
+
+    private func askPelle() {
+        if state.active == nil, let wish = offers.first { start(wish) }
         else { send(.help) }
     }
 

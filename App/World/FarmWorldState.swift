@@ -25,6 +25,8 @@ struct FarmWorldState: Equatable {
     var cameraSpeedScale = 1.0
     var particleScale = 1.0
     var decorations: [WorldDecoration] = []
+    var invitesRest = false
+    var eveningDue = false
 }
 
 struct WorldDecoration: Equatable {

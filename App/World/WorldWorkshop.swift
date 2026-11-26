@@ -20,6 +20,23 @@ final class WorldWorkshop {
     private var templates: [URL: Task<Entity?, Never>] = [:]
     private var urls: [String: URL] = [:]
     private let logger = Logger(subsystem: "MiniFarm", category: "WorldModels")
+    private struct Idle {
+        weak var entity: Entity?
+        let player: AnimationPlaybackController
+    }
+    private var idles: [Idle] = []
+    private var playIdle = false
+
+    func setIdleMotion(_ enabled: Bool) {
+        idles.removeAll { loop in
+            guard loop.entity?.scene != nil else { loop.player.stop(); return true }
+            if playIdle != enabled {
+                if enabled { loop.player.resume() } else { loop.player.pause() }
+            }
+            return false
+        }
+        playIdle = enabled
+    }
 
     init(bundle: Bundle = .main) {
         for folder in [nil, "Models", "Resources/Models", "App/Resources/Models"] as [String?] {
@@ -167,12 +184,13 @@ final class WorldWorkshop {
     }
 
     @discardableResult func toy(_ id: String, in parent: Entity, at p: WPoint = .zero,
-                                span: Float = 1, yaw: Float = 0, fallback: ((Entity) -> Void)? = nil) -> Entity {
+                                span: Float = 1, yaw: Float = 0, topSurface: Bool = false,
+                                fallback: ((Entity) -> Void)? = nil) -> Entity {
         let socket = group(parent, at: p)
         tilt(socket, yaw, [0, 1, 0])
         let proxy = group(socket)
         if let fallback { fallback(proxy) } else { prop(id, in: proxy) }
-        normalize(proxy, span: span)
+        normalize(proxy, span: span, topSurface: topSurface)
         guard let url = urls["model." + id] else { return socket }
         let task: Task<Entity?, Never>
         if let cached = templates[url] { task = cached } else {
@@ -193,19 +211,25 @@ final class WorldWorkshop {
                 model.orientation = simd_quatf(angle: .pi, axis: [0, 1, 0]) * model.orientation
             }
             holder.addChild(model)
-            normalize(holder, span: span)
+            normalize(holder, span: span, topSurface: topSurface)
             socket.addChild(holder)
             proxy.removeFromParent()
+            // The Blender export puts the clip on a child, not the USDZ root.
+            if id.hasPrefix("animal."), let idle = model.findEntity(named: "Idle"),
+               let clip = idle.availableAnimations.first {
+                let player = idle.playAnimation(clip.repeat(), startsPaused: !playIdle)
+                idles.append(Idle(entity: idle, player: player))
+            }
         }
         return socket
     }
 
-    private func normalize(_ e: Entity, span: Float) {
+    private func normalize(_ e: Entity, span: Float, topSurface: Bool) {
         let b = e.visualBounds(relativeTo: e)
         let length = max(b.extents.x, b.extents.y, b.extents.z)
         guard length.isFinite, length > 0.0001 else { return }
         let k = span / length
         e.scale = .init(repeating: k)
-        e.position = -k * [b.center.x, b.min.y, b.center.z]
+        e.position = -k * [b.center.x, topSurface ? b.max.y : b.min.y, b.center.z]
     }
 }

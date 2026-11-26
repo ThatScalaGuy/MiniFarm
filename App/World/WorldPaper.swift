@@ -76,15 +76,32 @@ struct WorldBook: View {
     let close: () -> Void
     @State private var page = 0
     @State private var selected: WorldSticker?
-    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    private struct Chapter: Identifiable {
+        let key: String
+        let title: String
+        let symbol: String
+        var id: String { key }
+    }
+    private static let chapters = [
+        Chapter(key: "plant", title: "Pflanzen", symbol: "leaf.fill"),
+        Chapter(key: "animal", title: "Tiere", symbol: "pawprint.fill"),
+        Chapter(key: "machine", title: "Maschinen", symbol: "steeringwheel"),
+        Chapter(key: "npc", title: "Freunde", symbol: "person.2.fill"),
+        Chapter(key: "season", title: "Jahreszeiten", symbol: "sun.max.fill"),
+        Chapter(key: "discovery", title: "Entdeckungen", symbol: "magnifyingglass"),
+    ]
+    @State private var chapter: String?
 
     var body: some View {
         GeometryReader { geo in
             let compact = geo.size.height < 460
+            let available = Self.chapters.filter { category in entries.contains { $0.id.hasPrefix("hofbook." + category.key + ".") } }
+            let key = chapter ?? available.first?.key
+            let section = key.map { k in entries.filter { $0.id.hasPrefix("hofbook." + k + ".") } } ?? entries
             let n = compact ? 3 : 4
-            let pages = max(1, (entries.count+n-1)/n)
+            let pages = max(1, (section.count+n-1)/n)
             let current = min(page, pages-1)
-            let spread = Array(entries.dropFirst(current*n).prefix(n))
+            let spread = Array(section.dropFirst(current*n).prefix(n))
             let card = min(compact ? 112 : 148, max(64, (geo.size.width-100)/CGFloat(compact ? 3 : 2)))
             ZStack {
                 Color(red: 0.25, green: 0.35, blue: 0.28).opacity(0.94).ignoresSafeArea()
@@ -92,9 +109,17 @@ struct WorldBook: View {
                     HStack {
                         WorldButton(icon: "arrow.uturn.backward", label: "Zurück zum Hof", id: "world.book.close", size: size, action: close)
                         Spacer()
-                        Image(systemName: "book.pages.fill").font(.title).foregroundStyle(FarmPaper.edge)
-                        Spacer()
-                        Image(systemName: "leaf.fill").foregroundStyle(FarmPaper.pine).frame(width: size)
+                        ScrollView(.horizontal) {
+                            HStack(spacing: 0) {
+                                ForEach(available) { c in
+                                    WorldButton(icon: c.symbol, label: c.title, id: "world.book.chapter." + c.key, size: 64,
+                                                tone: c.key == key ? FarmPaper.pine : FarmPaper.cream,
+                                                ink: c.key == key ? FarmPaper.cream : FarmPaper.pine) {
+                                        chapter = c.key; page = 0; selected = nil
+                                    }
+                                }
+                            }
+                        }.scrollIndicators(.hidden)
                     }
                     Spacer(minLength: 0)
                     if spread.isEmpty {
@@ -111,7 +136,12 @@ struct WorldBook: View {
                                     ZStack {
                                         RoundedRectangle(cornerRadius: 19).fill(sticker.discovered ? .white.opacity(0.73) : FarmPaper.edge.opacity(0.075))
                                         RoundedRectangle(cornerRadius: 19).strokeBorder(FarmPaper.edge.opacity(0.23), style: StrokeStyle(lineWidth: 1.6, dash: [4, 5]))
-                                        FarmPictogram(id: sticker.modelID)
+                                        Group {
+                                            if sticker.id.hasPrefix("hofbook.discovery.") {
+                                                Image(systemName: WorldFind.symbol(sticker.id))
+                                                    .resizable().scaledToFit().foregroundStyle(FarmPaper.pine).padding(10)
+                                            } else { FarmPictogram(id: sticker.modelID) }
+                                        }
                                             .saturation(sticker.discovered ? 1 : 0)
                                             .brightness(sticker.discovered ? 0 : -0.85)
                                             .opacity(sticker.discovered ? 1 : 0.18)
