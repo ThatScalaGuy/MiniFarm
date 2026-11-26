@@ -1,2 +1,6 @@
 # Local secrets written by `elevenlabs onboard`
 /.env
+/build/
+/DerivedData/
+*.xcuserstate
+xcuserdata/

@@ -1,0 +1,77 @@
+name: MiniFarm
+options:
+  deploymentTarget:
+    iOS: "18.0"
+  developmentLanguage: de
+  createIntermediateGroups: true
+  minimumXcodeGenVersion: 2.42.0
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    DEVELOPMENT_TEAM: V75G3N885G
+    CODE_SIGN_STYLE: Automatic
+    TARGETED_DEVICE_FAMILY: "1,2"
+    SUPPORTS_MACCATALYST: NO
+    ENABLE_USER_SCRIPT_SANDBOXING: YES
+    MARKETING_VERSION: 0.1.0
+    CURRENT_PROJECT_VERSION: 1
+targets:
+  MiniFarm:
+    type: application
+    platform: iOS
+    sources:
+      - path: App
+        excludes:
+          - Resources
+      - path: App/Resources/Assets.xcassets
+        optional: true
+      - path: App/Resources/PrivacyInfo.xcprivacy
+        buildPhase: resources
+      - path: App/Resources/Audio
+        type: folder
+        buildPhase: resources
+        optional: true
+      - path: App/Resources/Models
+        type: folder
+        buildPhase: resources
+        optional: true
+      - path: App/Resources/Content
+        type: folder
+        buildPhase: resources
+        optional: true
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: de.thatscalaguy.minifarm
+        INFOPLIST_FILE: Configuration/Info.plist
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+  MiniFarmTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources: [Tests]
+    dependencies:
+      - target: MiniFarm
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: de.thatscalaguy.minifarm.tests
+        GENERATE_INFOPLIST_FILE: YES
+  MiniFarmUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources: [UITests]
+    dependencies:
+      - target: MiniFarm
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: de.thatscalaguy.minifarm.uitests
+        GENERATE_INFOPLIST_FILE: YES
+schemes:
+  MiniFarm:
+    build:
+      targets:
+        MiniFarm: all
+    test:
+      targets:
+        - MiniFarmTests
+        - MiniFarmUITests
+      language: de
+      region: DE
