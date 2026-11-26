@@ -25,8 +25,10 @@ MANIFESTS = {"Audio/manifest.json", "Models/manifest.json"}
 REQUIRED = CONTENT | MANIFESTS | {"Info.plist", "MiniFarm", "PrivacyInfo.xcprivacy", "Assets.car"}
 RESOURCE_DIRS = {"Content", "Audio", "Models"}
 ID = r"[a-z][a-z0-9_]*(?:\.[a-z0-9_]+)+"
-MODEL = rf"Models/model\.{ID}\.usdz"
+MODEL = rf"Models/(?:model|anim)\.{ID}\.usdz"
 AUDIO = r"Audio/(?:[a-z0-9][a-z0-9_.-]*/)*[a-z0-9][a-z0-9_.-]*\.(?:wav|m4a|caf|mp3|aiff|aac)"
+VOICE = r"voice/[0-9a-f]{20}\.mp3"
+LICENSES = {"CC0-1.0"}
 
 
 class BundleError(ValueError):
@@ -96,10 +98,23 @@ def manifest_rows(app, group):
         yield row, where
 
 
+def recording(item, where, files):
+    # Speech files are pinned to an allowed licence and the exact voice-model revision.
+    path, revision, source = item.get("path"), item.get("modelRevision"), item.get("licenseSource")
+    require(isinstance(path, str) and re.fullmatch(VOICE, path), f"{where}: voice recording must be voice/<hash>.mp3")
+    require(item.get("license") in LICENSES and isinstance(revision, str) and re.fullmatch(r"[0-9a-f]{40}", revision)
+            and isinstance(source, str) and source.startswith("https://") and revision in source,
+            f"{where}: voice recording needs an allowed license, pinned licenseSource and modelRevision")
+    require("Audio/" + path in files, f"{where}: missing Audio/{path}")
+    return "Audio/" + path
+
+
 def asset_paths(app, files):
-    model_ids, sound_ids, declared, speech = set(), set(), set(), 0
+    model_ids, sound_ids, declared, speech, variants = set(), set(), set(), 0, []
     for row, where in manifest_rows(app, "Models"):
-        asset_id = "model." + row["id"]
+        # Animation variants keep their full "anim." ID; they are never catalog model references.
+        variant = row["id"].startswith("anim.")
+        asset_id = row["id"] if variant else "model." + row["id"]
         filename = asset_id + ".usdz"
         require(row.get("file") == filename,
                 f"{where}: file does not match runtime basename for {asset_id}")
@@ -107,32 +122,63 @@ def asset_paths(app, files):
         require(name in files, f"{where}: missing {name}")
         require(type(row.get("bytes")) is int and row["bytes"] == (app / name).stat().st_size,
                 f"{name}: size differs from manifest")
-        model_ids.add(asset_id)
+        if variant:
+            base, motion = asset_id[len("anim."):].rsplit(".", 1)
+            require(row.get("kind") == "animationVariant" and row.get("variantOf") == base
+                    and row.get("motion") == motion,
+                    f"{where}: animation variant must declare kind, variantOf {base} and motion {motion}")
+            variants.append(("model." + base, where))
+        else:
+            require(row.get("kind", "model") == "model" and row.get("variantOf") is None
+                    and row.get("motion") is None, f"{where}: model row declares variant fields")
+            model_ids.add(asset_id)
         declared.add(name)
+    for base, where in variants:
+        require(base in model_ids, f"{where}: animation variant has no base model {base}")
 
     for row, where in manifest_rows(app, "Audio"):
         kind = row.get("kind")
         require(kind in ("sfx", "voice", "music", "ambient"), f"{where}: unknown audio kind")
         if kind == "sfx":
             sound_ids.add(row["id"])
+        voice = kind == "voice"
+        require(not voice or (row["id"].startswith("vl.") and row.get("locale") == "de-DE"),
+                f"{where}: voice must be a German vl.* cue")
+        if "variants" in row:
+            items = row["variants"]
+            require(voice and row.get("path") is None and isinstance(items, list) and items,
+                    f"{where}: variants need a voice row without path")
+            texts = set()
+            for index, item in enumerate(items):
+                at = f"{where}.variants[{index}]"
+                require(isinstance(item, dict) and isinstance(item.get("text"), str) and item["text"].strip()
+                        and item["text"] not in texts, f"{at}: missing or duplicate text")
+                texts.add(item["text"])
+                declared.add(recording(item, at, files))
+            continue
         if row.get("path") is None:
-            require(kind == "voice" and row["id"].startswith("vl.") and row.get("locale") == "de-DE",
-                    f"{where}: only a declared German voice may omit its recording")
+            require(voice, f"{where}: only a declared German voice may omit its recording")
             # Dynamic cues get their text from FarmGame, not a stale manifest subtitle.
             subtitle = row.get("subtitle")
             require(subtitle is None or (isinstance(subtitle, str) and subtitle.strip()),
                     f"{where}: blank fallback subtitle")
             speech += 1
             continue
+        if voice:
+            require(isinstance(row.get("subtitle"), str) and row["subtitle"].strip(),
+                    f"{where}: recorded voice needs its exact subtitle")
+            declared.add(recording(row, where, files))
+            continue
         path = row["path"]
-        require(isinstance(path, str) and re.fullmatch(AUDIO, "Audio/" + path), f"{where}: invalid audio path")
+        require(isinstance(path, str) and re.fullmatch(AUDIO, "Audio/" + path) and not path.startswith("voice/"),
+                f"{where}: invalid audio path")
         name = "Audio/" + path
         require(name in files, f"{where}: missing {name}")
         declared.add(name)
 
     media = {name for name in files if re.fullmatch(MODEL, name) or re.fullmatch(AUDIO, name)}
     require(not media - declared, "unlisted media in product (not opened)")
-    return model_ids, sound_ids, speech
+    return model_ids, sound_ids, speech, len(variants)
 
 
 def archive_inventory(path):
@@ -174,7 +220,7 @@ def check_references(refs, model_ids, sound_ids):
 
 def check(app):
     files = inventory(app)
-    models, sounds, speech = asset_paths(app, files)
+    models, sounds, speech, variants = asset_paths(app, files)
     archives = sorted(app / name for name in files if re.fullmatch(MODEL, name))
     for path in archives:
         archive_inventory(path)
@@ -210,7 +256,8 @@ def check(app):
             with wave.open(str(decoded)) as wav:
                 require(wav.getnframes() > 0, f"{name}: no playable frames")
             decoded.unlink()
-    print(f"MiniFarm.app OK: {len(CONTENT)} catalogs, {len(models)} USDZ, {len(audio)} audio files, "
+    print(f"MiniFarm.app OK: {len(CONTENT)} catalogs, {len(models)} USDZ models, "
+          f"{variants} USDZ animation variants, {len(audio)} audio files, "
           f"{speech} declared local speech fallbacks")
 
 

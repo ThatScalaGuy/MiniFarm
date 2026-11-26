@@ -33,7 +33,7 @@ class BundleTests(unittest.TestCase):
 
     def test_only_explicit_local_speech_may_omit_audio(self):
         files = gate.inventory(self.app)
-        self.assertEqual(gate.asset_paths(self.app, files), ({"model.crop.carrot.ripe"}, set(), 1))
+        self.assertEqual(gate.asset_paths(self.app, files), ({"model.crop.carrot.ripe"}, set(), 1, 0))
         self.write_manifest("Audio", [{"id": "vl.pelle.greet.morning", "kind": "voice", "locale": "de-DE", "path": None}])
         self.assertEqual(gate.asset_paths(self.app, files)[2], 1)
         for invalid in (dict(self.voice, kind="sfx"), dict(self.voice, subtitle=" "),
@@ -41,6 +41,75 @@ class BundleTests(unittest.TestCase):
             with self.subTest(row=invalid), self.assertRaises(gate.BundleError):
                 self.write_manifest("Audio", [invalid])
                 gate.asset_paths(self.app, files)
+
+    def test_only_manifested_animation_variants_of_existing_models_are_packaged(self):
+        variant = self.app / "Models/anim.crop.carrot.ripe.sway.usdz"
+        shutil.copy(self.model, variant)
+        model = {"id": "crop.carrot.ripe", "file": self.model.name, "bytes": self.model.stat().st_size, "kind": "model",
+                 "variantOf": None, "motion": None}
+        row = {"id": "anim.crop.carrot.ripe.sway", "file": variant.name, "bytes": variant.stat().st_size,
+               "kind": "animationVariant", "variantOf": "crop.carrot.ripe", "motion": "sway"}
+        with self.assertRaisesRegex(gate.BundleError, "unlisted media"):
+            gate.asset_paths(self.app, gate.inventory(self.app))
+        self.write_manifest("Models", [model, row])
+        self.assertEqual(gate.asset_paths(self.app, gate.inventory(self.app)), ({"model.crop.carrot.ripe"}, set(), 1, 1))
+        for rows, error in (([model, dict(row, variantOf="crop.carrot")], "must declare"),
+                            ([model, dict(row, kind="model")], "must declare"),
+                            ([model, dict(row, motion=None)], "must declare"),
+                            ([model, dict(row, file="model." + row["file"])], "runtime basename"),
+                            ([dict(model, kind="animationVariant"), row], "declares variant fields")):
+            with self.subTest(rows=rows), self.assertRaisesRegex(gate.BundleError, error):
+                self.write_manifest("Models", rows)
+                gate.asset_paths(self.app, gate.inventory(self.app))
+        orphan = variant.with_name("anim.crop.carrot.seed.sway.usdz")
+        variant.rename(orphan)
+        self.write_manifest("Models", [model, dict(row, id="anim.crop.carrot.seed.sway", file=orphan.name,
+                                                   variantOf="crop.carrot.seed")])
+        with self.assertRaisesRegex(gate.BundleError, "no base model model.crop.carrot.seed"):
+            gate.asset_paths(self.app, gate.inventory(self.app))
+        orphan.rename(variant)
+        self.write_manifest("Models", [model, row])
+        for similar in ("Anim.crop.carrot.ripe.dance.usdz", "animation.crop.carrot.ripe.usdz",
+                        "anim.crop.carrot.ripe.sway.usda", "anim.crop.carrot.ripe.dance.usdz"):
+            with self.subTest(similar=similar), self.assertRaisesRegex(gate.BundleError, "unexpected file|unlisted"):
+                path = self.app / "Models" / similar
+                shutil.copy(variant, path)
+                try:
+                    gate.asset_paths(self.app, gate.inventory(self.app))
+                finally:
+                    path.unlink()
+
+    def test_recorded_speech_needs_the_pinned_allowed_license(self):
+        revision = "9beb8542b91ec176ad58adbf9f6085f96b6caa17"
+        licence = {"license": "CC0-1.0", "modelRevision": revision,
+                   "licenseSource": f"https://huggingface.co/rhasspy/piper-voices/blob/{revision}/MODEL_CARD"}
+        clips = ["voice/0123456789abcdef0123.mp3", "voice/fedcba9876543210fedc.mp3"]
+        for clip in clips:
+            (self.app / "Audio" / clip).parent.mkdir(exist_ok=True)
+            (self.app / "Audio" / clip).write_bytes(b"mp3")
+        single = dict(self.voice, path=clips[0], **licence)
+        varied = dict(self.voice, id="vl.praise.feed", subtitle=None,
+                      variants=[dict(text="Super!", path=clips[1], **licence), dict(text="Toll!", path=clips[1], **licence)])
+        # Keeps both files declared so each case fails only for the field under test.
+        others = [dict(self.voice, id=f"vl.other.{index}", path=clip, **licence) for index, clip in enumerate(clips)]
+        files = gate.inventory(self.app)
+        self.write_manifest("Audio", [single, varied])
+        self.assertEqual(gate.asset_paths(self.app, files)[2], 0)
+        self.write_manifest("Audio", [self.voice, *others])
+        self.assertEqual(gate.asset_paths(self.app, files)[2], 1)
+        broken = [dict(single, license="CC-BY-NC-4.0"), dict(single, modelRevision="main"),
+                  dict(single, licenseSource="https://huggingface.co/rhasspy/piper-voices/blob/main/MODEL_CARD"),
+                  dict(single, licenseSource=licence["licenseSource"].replace("https", "http")),
+                  {k: v for k, v in single.items() if k != "license"}, dict(single, subtitle=None),
+                  dict(single, path="voice/pelle-greeting.mp3"), dict(single, locale="en-US"),
+                  dict(single, kind="sfx", id="sfx.voice.clip"), dict(varied, path=clips[1]),
+                  dict(varied, variants=[]), dict(varied, variants=[varied["variants"][0]] * 2),
+                  dict(varied, variants=[{"text": "Super!", "path": clips[1]}])]
+        for invalid in broken:
+            with self.subTest(row=invalid), self.assertRaises(gate.BundleError) as error:
+                self.write_manifest("Audio", [invalid, *others])
+                gate.asset_paths(self.app, files)
+            self.assertNotIn("unlisted", str(error.exception))
 
     def test_missing_misnamed_or_unlisted_resource_fails(self):
         self.model.rename(self.model.with_name("model.crop.carrot.seed.usdz"))
