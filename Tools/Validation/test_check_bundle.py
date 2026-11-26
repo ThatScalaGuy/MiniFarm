@@ -1,3 +1,4 @@
+import hashlib
 import json
 import shutil
 import subprocess
@@ -33,7 +34,7 @@ class BundleTests(unittest.TestCase):
 
     def test_only_explicit_local_speech_may_omit_audio(self):
         files = gate.inventory(self.app)
-        self.assertEqual(gate.asset_paths(self.app, files), ({"model.crop.carrot.ripe"}, set(), 1, 0))
+        self.assertEqual(gate.asset_paths(self.app, files), ({"model.crop.carrot.ripe"}, set(), 1, 0, {}))
         self.write_manifest("Audio", [{"id": "vl.pelle.greet.morning", "kind": "voice", "locale": "de-DE", "path": None}])
         self.assertEqual(gate.asset_paths(self.app, files)[2], 1)
         for invalid in (dict(self.voice, kind="sfx"), dict(self.voice, subtitle=" "),
@@ -52,7 +53,7 @@ class BundleTests(unittest.TestCase):
         with self.assertRaisesRegex(gate.BundleError, "unlisted media"):
             gate.asset_paths(self.app, gate.inventory(self.app))
         self.write_manifest("Models", [model, row])
-        self.assertEqual(gate.asset_paths(self.app, gate.inventory(self.app)), ({"model.crop.carrot.ripe"}, set(), 1, 1))
+        self.assertEqual(gate.asset_paths(self.app, gate.inventory(self.app)), ({"model.crop.carrot.ripe"}, set(), 1, 1, {}))
         for rows, error in (([model, dict(row, variantOf="crop.carrot")], "must declare"),
                             ([model, dict(row, kind="model")], "must declare"),
                             ([model, dict(row, motion=None)], "must declare"),
@@ -79,29 +80,40 @@ class BundleTests(unittest.TestCase):
                 finally:
                     path.unlink()
 
-    def test_recorded_speech_needs_the_pinned_allowed_license(self):
-        revision = "9beb8542b91ec176ad58adbf9f6085f96b6caa17"
-        licence = {"license": "CC0-1.0", "modelRevision": revision,
-                   "licenseSource": f"https://huggingface.co/rhasspy/piper-voices/blob/{revision}/MODEL_CARD"}
-        clips = ["voice/0123456789abcdef0123.mp3", "voice/fedcba9876543210fedc.mp3"]
-        for clip in clips:
+    REVISION = "9beb8542b91ec176ad58adbf9f6085f96b6caa17"
+    REPOSITORY = "Thorsten-Voice/Piper-Thorsten-CC0"
+    LICENCE = {"license": "CC0-1.0", "modelRevision": REVISION,
+               "licenseSource": f"https://huggingface.co/{REPOSITORY}/raw/{REVISION}/README.md"}
+    CLIPS = ["voice/0123456789abcdef01234567.mp3", "voice/fedcba9876543210fedcba98.mp3",
+             "voice/00112233445566778899aabb.mp3"]
+
+    def write_clips(self):
+        for index, clip in enumerate(self.CLIPS):
             (self.app / "Audio" / clip).parent.mkdir(exist_ok=True)
-            (self.app / "Audio" / clip).write_bytes(b"mp3")
+            (self.app / "Audio" / clip).write_bytes(b"mp3 frames %d" % index)
+
+    def test_recorded_speech_needs_the_pinned_allowed_license(self):
+        licence, clips = self.LICENCE, self.CLIPS
+        self.write_clips()
         single = dict(self.voice, path=clips[0], **licence)
         varied = dict(self.voice, id="vl.praise.feed", subtitle=None,
-                      variants=[dict(text="Super!", path=clips[1], **licence), dict(text="Toll!", path=clips[1], **licence)])
-        # Keeps both files declared so each case fails only for the field under test.
+                      variants=[dict(text="Super!", path=clips[1], **licence), dict(text="Toll!", path=clips[2], **licence)])
+        # Keeps every file declared so each case fails only for the field under test.
         others = [dict(self.voice, id=f"vl.other.{index}", path=clip, **licence) for index, clip in enumerate(clips)]
         files = gate.inventory(self.app)
         self.write_manifest("Audio", [single, varied])
-        self.assertEqual(gate.asset_paths(self.app, files)[2], 0)
+        recordings = gate.asset_paths(self.app, files)[4]
+        self.assertEqual({path: (clip["id"], clip["text"]) for path, clip in recordings.items()},
+                         {clips[0]: ("vl.pelle.greet.morning", "Guten Morgen!"),
+                          clips[1]: ("vl.praise.feed", "Super!"), clips[2]: ("vl.praise.feed", "Toll!")})
         self.write_manifest("Audio", [self.voice, *others])
         self.assertEqual(gate.asset_paths(self.app, files)[2], 1)
         broken = [dict(single, license="CC-BY-NC-4.0"), dict(single, modelRevision="main"),
-                  dict(single, licenseSource="https://huggingface.co/rhasspy/piper-voices/blob/main/MODEL_CARD"),
+                  dict(single, licenseSource=f"https://huggingface.co/{self.REPOSITORY}/raw/main/README.md"),
                   dict(single, licenseSource=licence["licenseSource"].replace("https", "http")),
                   {k: v for k, v in single.items() if k != "license"}, dict(single, subtitle=None),
-                  dict(single, path="voice/pelle-greeting.mp3"), dict(single, locale="en-US"),
+                  dict(single, path="voice/pelle-greeting.mp3"), dict(single, path="voice/0123456789abcdef0123.mp3"),
+                  dict(single, locale="en-US"),
                   dict(single, kind="sfx", id="sfx.voice.clip"), dict(varied, path=clips[1]),
                   dict(varied, variants=[]), dict(varied, variants=[varied["variants"][0]] * 2),
                   dict(varied, variants=[{"text": "Super!", "path": clips[1]}])]
@@ -110,6 +122,60 @@ class BundleTests(unittest.TestCase):
                 self.write_manifest("Audio", [invalid, *others])
                 gate.asset_paths(self.app, files)
             self.assertNotIn("unlisted", str(error.exception))
+            self.assertNotIn("more than one text", str(error.exception))
+        shared = dict(varied, variants=[varied["variants"][0], dict(varied["variants"][1], path=clips[1])])
+        with self.assertRaisesRegex(gate.BundleError, "more than one text"):
+            self.write_manifest("Audio", [single, shared])
+            gate.asset_paths(self.app, files)
+
+    def test_voice_recordings_must_match_their_piper_provenance(self):
+        self.write_clips()
+        varied = dict(self.voice, id="vl.praise.feed", subtitle=None,
+                      variants=[dict(text="Super!", path=self.CLIPS[1], **self.LICENCE),
+                                dict(text="Toll!", path=self.CLIPS[2], **self.LICENCE)])
+        rows = [dict(self.voice, path=self.CLIPS[0], **self.LICENCE), varied]
+        self.write_manifest("Audio", rows)
+        files = gate.inventory(self.app)
+        recordings = gate.asset_paths(self.app, files)[4]
+        provenance = self.app.parent / "piper-provenance.json"
+        self.assertEqual(gate.check_provenance(self.app, {}, provenance), 0)
+        with self.assertRaisesRegex(gate.BundleError, "missing for bundled voice recordings"):
+            gate.check_provenance(self.app, recordings, provenance)
+
+        def render(path, cue, text):
+            data = (self.app / "Audio" / path).read_bytes()
+            return {"id": cue, "path": path, "textSha256": hashlib.sha256(text.encode()).hexdigest(),
+                    "sha256": hashlib.sha256(data).hexdigest(), "bytes": len(data)}
+        model = {"repository": self.REPOSITORY, "revision": self.REVISION, "license": "CC0-1.0"}
+        rendered = [render(self.CLIPS[0], "vl.pelle.greet.morning", "Guten Morgen!"),
+                    render(self.CLIPS[1], "vl.praise.feed", "Super!"), render(self.CLIPS[2], "vl.praise.feed", "Toll!")]
+
+        def check(model=model, rendered=rendered):
+            provenance.write_text(json.dumps({"schemaVersion": 1, "model": model, "files": rendered}))
+            return gate.check_provenance(self.app, recordings, provenance)
+        self.assertEqual(check(), 3)
+        stale = dict(rendered[0], path="voice/ffffffffffffffffffffffff.mp3")
+        for kwargs, error in (({"rendered": rendered[1:]}, "1 bundled recordings without provenance"),
+                              ({"rendered": [*rendered, stale]}, "1 provenance files not bundled"),
+                              ({"rendered": [*rendered, rendered[0]]}, "no unique path"),
+                              ({"model": dict(model, revision="0" * 40)}, "rendered voice model"),
+                              ({"model": dict(model, repository="rhasspy/piper-voices")}, "rendered voice model"),
+                              ({"model": dict(model, license="CC-BY-4.0")}, "allowed model license"),
+                              ({"rendered": [dict(rendered[0], id="vl.pelle.home"), *rendered[1:]]}, "different cue"),
+                              ({"rendered": [*rendered[:2], dict(rendered[2], textSha256=rendered[1]["textSha256"])]},
+                               "different cue or text")):
+            with self.subTest(error=error), self.assertRaisesRegex(gate.BundleError, error):
+                check(**kwargs)
+        # A subtitle edited after rendering no longer matches the spoken clip.
+        self.write_manifest("Audio", [dict(rows[0], subtitle="Guten Abend!"), varied])
+        with self.assertRaisesRegex(gate.BundleError, "different cue or text"):
+            recordings = gate.asset_paths(self.app, files)[4]
+            check()
+        self.write_manifest("Audio", rows)
+        recordings = gate.asset_paths(self.app, files)[4]
+        (self.app / "Audio" / self.CLIPS[2]).write_bytes(b"mp3 frames 9")
+        with self.assertRaisesRegex(gate.BundleError, "differs from its recorded render"):
+            check()
 
     def test_missing_misnamed_or_unlisted_resource_fails(self):
         self.model.rename(self.model.with_name("model.crop.carrot.seed.usdz"))

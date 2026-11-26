@@ -3,6 +3,7 @@
 
 import argparse
 import filecmp
+import hashlib
 import json
 import plistlib
 import re
@@ -27,8 +28,9 @@ RESOURCE_DIRS = {"Content", "Audio", "Models"}
 ID = r"[a-z][a-z0-9_]*(?:\.[a-z0-9_]+)+"
 MODEL = rf"Models/(?:model|anim)\.{ID}\.usdz"
 AUDIO = r"Audio/(?:[a-z0-9][a-z0-9_.-]*/)*[a-z0-9][a-z0-9_.-]*\.(?:wav|m4a|caf|mp3|aiff|aac)"
-VOICE = r"voice/[0-9a-f]{20}\.mp3"
+VOICE = r"voice/[0-9a-f]{24}\.mp3"
 LICENSES = {"CC0-1.0"}
+PROVENANCE = ROOT / "Tools/Audio/piper-provenance.json"
 
 
 class BundleError(ValueError):
@@ -98,19 +100,61 @@ def manifest_rows(app, group):
         yield row, where
 
 
-def recording(item, where, files):
+def recording(item, where, files, recordings, cue, text):
     # Speech files are pinned to an allowed licence and the exact voice-model revision.
     path, revision, source = item.get("path"), item.get("modelRevision"), item.get("licenseSource")
-    require(isinstance(path, str) and re.fullmatch(VOICE, path), f"{where}: voice recording must be voice/<hash>.mp3")
+    require(isinstance(path, str) and re.fullmatch(VOICE, path), f"{where}: voice recording must be voice/<24 hex>.mp3")
     require(item.get("license") in LICENSES and isinstance(revision, str) and re.fullmatch(r"[0-9a-f]{40}", revision)
             and isinstance(source, str) and source.startswith("https://") and revision in source,
             f"{where}: voice recording needs an allowed license, pinned licenseSource and modelRevision")
     require("Audio/" + path in files, f"{where}: missing Audio/{path}")
+    require(path not in recordings, f"{where}: voice recording is used for more than one text")
+    recordings[path] = {"id": cue, "text": text, "license": item["license"], "revision": revision,
+                        "source": source, "where": where}
     return "Audio/" + path
 
 
+def check_provenance(app, recordings, provenance=PROVENANCE):
+    """Every bundled voice file must be the exact Piper render of its manifest text."""
+    if not recordings:
+        return 0
+    name = "Tools/Audio/piper-provenance.json"
+    try:
+        record = json.loads(provenance.read_bytes())
+    except FileNotFoundError:
+        raise BundleError(f"{name}: missing for bundled voice recordings") from None
+    except (ValueError, RecursionError):
+        raise BundleError(f"{name}: invalid JSON") from None
+    model = record.get("model") if isinstance(record, dict) else None
+    files = record.get("files") if isinstance(record, dict) else None
+    require(isinstance(model, dict) and record.get("schemaVersion") == 1 and isinstance(files, list)
+            and model.get("license") in LICENSES and isinstance(model.get("repository"), str)
+            and isinstance(model.get("revision"), str) and re.fullmatch(r"[0-9a-f]{40}", model["revision"]),
+            f"{name}: expected schemaVersion 1, an allowed model license, repository and pinned revision")
+    rendered = {}
+    for index, entry in enumerate(files):
+        require(isinstance(entry, dict) and isinstance(entry.get("path"), str)
+                and entry["path"] not in rendered, f"{name}: files[{index}] has no unique path")
+        rendered[entry["path"]] = entry
+    missing, stale = len(recordings.keys() - rendered.keys()), len(rendered.keys() - recordings.keys())
+    require(not missing and not stale,
+            f"{name}: {missing} bundled recordings without provenance, {stale} provenance files not bundled")
+    for path, clip in recordings.items():
+        entry, where = rendered[path], clip["where"]
+        require(clip["license"] == model["license"] and clip["revision"] == model["revision"]
+                and f"/{model['repository']}/" in clip["source"],
+                f"{where}: license, licenseSource or modelRevision differs from the rendered voice model")
+        require(entry.get("id") == clip["id"]
+                and entry.get("textSha256") == hashlib.sha256(clip["text"].encode()).hexdigest(),
+                f"{where}: Audio/{path} was rendered for a different cue or text")
+        data = (app / "Audio" / path).read_bytes()
+        require(entry.get("bytes") == len(data) and entry.get("sha256") == hashlib.sha256(data).hexdigest(),
+                f"{where}: Audio/{path} differs from its recorded render")
+    return len(recordings)
+
+
 def asset_paths(app, files):
-    model_ids, sound_ids, declared, speech, variants = set(), set(), set(), 0, []
+    model_ids, sound_ids, declared, speech, variants, recordings = set(), set(), set(), 0, [], {}
     for row, where in manifest_rows(app, "Models"):
         # Animation variants keep their full "anim." ID; they are never catalog model references.
         variant = row["id"].startswith("anim.")
@@ -154,7 +198,7 @@ def asset_paths(app, files):
                 require(isinstance(item, dict) and isinstance(item.get("text"), str) and item["text"].strip()
                         and item["text"] not in texts, f"{at}: missing or duplicate text")
                 texts.add(item["text"])
-                declared.add(recording(item, at, files))
+                declared.add(recording(item, at, files, recordings, row["id"], item["text"]))
             continue
         if row.get("path") is None:
             require(voice, f"{where}: only a declared German voice may omit its recording")
@@ -167,7 +211,7 @@ def asset_paths(app, files):
         if voice:
             require(isinstance(row.get("subtitle"), str) and row["subtitle"].strip(),
                     f"{where}: recorded voice needs its exact subtitle")
-            declared.add(recording(row, where, files))
+            declared.add(recording(row, where, files, recordings, row["id"], row["subtitle"]))
             continue
         path = row["path"]
         require(isinstance(path, str) and re.fullmatch(AUDIO, "Audio/" + path) and not path.startswith("voice/"),
@@ -178,7 +222,7 @@ def asset_paths(app, files):
 
     media = {name for name in files if re.fullmatch(MODEL, name) or re.fullmatch(AUDIO, name)}
     require(not media - declared, "unlisted media in product (not opened)")
-    return model_ids, sound_ids, speech, len(variants)
+    return model_ids, sound_ids, speech, len(variants), recordings
 
 
 def archive_inventory(path):
@@ -220,7 +264,8 @@ def check_references(refs, model_ids, sound_ids):
 
 def check(app):
     files = inventory(app)
-    models, sounds, speech, variants = asset_paths(app, files)
+    models, sounds, speech, variants, recordings = asset_paths(app, files)
+    voices = check_provenance(app, recordings)
     archives = sorted(app / name for name in files if re.fullmatch(MODEL, name))
     for path in archives:
         archive_inventory(path)
@@ -257,7 +302,8 @@ def check(app):
                 require(wav.getnframes() > 0, f"{name}: no playable frames")
             decoded.unlink()
     print(f"MiniFarm.app OK: {len(CONTENT)} catalogs, {len(models)} USDZ models, "
-          f"{variants} USDZ animation variants, {len(audio)} audio files, "
+          f"{variants} USDZ animation variants, {len(audio)} audio files "
+          f"({voices} CC0 voice recordings matching their Piper provenance), "
           f"{speech} declared local speech fallbacks")
 
 
