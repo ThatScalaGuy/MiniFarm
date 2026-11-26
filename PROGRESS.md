@@ -19,6 +19,8 @@ Der lange Simulationstest ist auf beiden Geräten standardmäßig deaktiviert. I
 
 **Lieferumfang:** Der unsignierte iOS-Gerätebuild umfasst **32.280.808 Bytes** (878 Dateien, ohne Store-Ausdünnung). Der getrennte Simulator-Releasecheck bestätigte **12 Spielkataloge, 163 USDZ-Modelle, 15 USDZ-Bewegungsvarianten und 679 Tondateien**: 653 zur Piper/Thorsten-CC0-Provenienz passende Sprachaufnahmen sowie 26 WAVs. Dynamische Resttexte dürfen die lokale Systemstimme verwenden. Der Export enthält das Xcode-Projekt mit geteiltem Scheme, Ressourcen, Werkzeuge, Konzept und Protokolle; für das Spielen sind kein Generator, Dienstkonto oder Netzaufruf erforderlich.
 
+**Gegenprobe der ZIP:** In einem leeren Ordner entpackt, meldete `xcodebuild -list` das Scheme `MiniFarm` und alle drei Targets. Das mitgelieferte Projekt baute ohne `xcodegen generate` als unsignierter Simulator-Release. `Tools/Validation/check_bundle.py` bestätigte auch dort dieselben Katalog-, Modell- und Tonzahlen. Die ZIP-Prüfung bestätigte die CRCs, die Blender-Projektkonfiguration und die unveränderte `AGEND.md`; lokale Konten, `.env`, Signaturdateien und Xcode-Benutzerdaten sind nicht Teil der Lieferung.
+
 Dies ist eine spielbare lokale Übergabe, keine Store-Freigabe. Kinder-Playtests, Signierung und Prüfungen auf physischen Mindestgeräten sowie die offenen Punkte der folgenden Matrix bleiben ausstehend.
 
 ## Abdeckung des Konzepts
