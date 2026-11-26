@@ -118,6 +118,18 @@ struct FarmVariant: Codable, Sendable, Equatable {
     fileprivate let activityID: String
     fileprivate let job: FarmJob
     fileprivate let revision: Int
+
+    var workGear: [String] {
+        switch job {
+        case .land(let patch): patch.gear
+        case .outdoor(let gear): gear
+        default: []
+        }
+    }
+
+    var workBeds: [String] {
+        if case .land(let patch) = job { patch.ids } else { [] }
+    }
 }
 
 struct FarmProduction: Codable, Sendable {

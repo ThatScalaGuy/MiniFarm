@@ -166,6 +166,32 @@ struct FarmGameTests {
         #expect(throws: DecodingError.self) { try JSONDecoder().decode(FarmState.self, from: data) }
     }
 
+    @Test func expandedFieldUsesTheSamePlotsForDrivingAndFinishingTheRow() throws {
+        let content = try catalog()
+        var snapshot = FarmState(stage: .bloom)
+        snapshot.level = 4
+        snapshot.introduction = 6
+        for level in [2, 4] {
+            snapshot.production.prepare(day: 1, level: level, stage: .bloom, season: "season.spring", catalog: content)
+        }
+        var game = FarmGame(catalog: content, state: snapshot)
+        let projectedRow = game.beds.filter { $0.locationID == "loc.field" }.prefix(8).map(\.id)
+        #expect(projectedRow == (1...8).map { "plot.field.1.\($0)" })
+        game.send(.startActivityAt("act.field.plow", "loc.field"))
+        for _ in 0..<8 {
+            let p = try #require(game.prompt)
+            if p.stepID == "field" { break }
+            game.send(.choose(p.targetID))
+        }
+        let pass = try #require(game.prompt)
+        #expect(pass.stepID == "field")
+        #expect(pass.workGear == ["veh.tractor", "imp.plow"])
+        #expect(Set(pass.workBeds) == Set(projectedRow))
+        #expect(game.beds.allSatisfy { $0.phase != "plowed" })
+        #expect(game.send(.choose(pass.targetID)).completed)
+        #expect(Set(game.beds.filter { $0.phase == "plowed" }.map(\.id)) == Set(pass.workBeds))
+    }
+
     @Test func waitingOrderLeadsToItsOwnIngredientWithoutConsumingTheWish() throws {
         var game = FarmGame(catalog: try catalog())
         let waiting = try #require(game.state.outstanding.first { $0.activityID == "act.shop.order" })

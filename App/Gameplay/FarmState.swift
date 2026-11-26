@@ -17,6 +17,8 @@ struct FarmPrompt: Sendable {
     let stepIndex, stepCount, targetSize: Int
     let choices: [FarmChoice]
     let assist: FarmAssist
+    var workGear: [String] = []
+    var workBeds: [String] = []
 }
 
 struct FarmBedView: Identifiable, Sendable {

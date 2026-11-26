@@ -56,7 +56,7 @@ struct FarmGame: Sendable {
 
     var locations: [FarmLocation] { catalog.locations.filter { $0.level <= state.level } }
     var beds: [FarmBedView] {
-        state.production.plots.map {
+        state.production.plots.sorted { $0.id.localizedStandardCompare($1.id) == .orderedAscending }.map {
             FarmBedView(id: $0.id, locationID: $0.locationID, cropID: $0.cropID, phase: $0.phase, watered: $0.watered)
         }
     }
@@ -188,7 +188,8 @@ struct FarmGame: Sendable {
         return FarmPrompt(locationID: turn.locationID, activityID: activity.id, stepID: step.id,
                           text: step.text, voiceID: voiceID, targetID: target.id, symbol: target.symbol,
                           stepIndex: turn.index, stepCount: max(1, turn.steps.count), targetSize: params.targetSize,
-                          choices: choices, assist: turn.assist)
+                          choices: choices, assist: turn.assist,
+                          workGear: turn.variant?.workGear ?? [], workBeds: turn.variant?.workBeds ?? [])
     }
 
     @discardableResult
