@@ -19,8 +19,6 @@ struct WorldVignette {
 
     func prop(step: Int) -> String { props[min(max(0, step), props.count - 1)] }
 
-    static let driving: Set<String> = ["act.field.plow", "act.field.combine", "act.field.hay", "act.field.snowplow", "act.shop.market"]
-
     static let all: [String: Self] = [
         "act.field.plow": .init("🚜", "Furchen ziehen", ["veh.tractor", "imp.plow", "veh.tractor"], "bed", "soil"),
         "act.field.sow": .init("🌱", "Samen ins Beet legen", ["item.seed.radish", "bed"], "bed", "seed"),

@@ -20,6 +20,7 @@ struct FarmWorldState: Equatable {
     var caption: String?
     var largeControls = false
     var quiet = false
+    var paused = false
     var reduceMotion = false
     var haptics = true
     var stage: WorldStage = .seedling
@@ -29,6 +30,11 @@ struct FarmWorldState: Equatable {
     var invitesRest = false
     var eveningDue = false
     var nightStory: FarmNightStory?
+
+    var hasDrivingJob: Bool {
+        guard let active else { return false }
+        return FarmDriveWork.job(for: active, farmLevel: farmLevel) != nil
+    }
 }
 
 struct WorldDecoration: Equatable {
@@ -58,6 +64,8 @@ struct WorldTurn: Equatable {
     var choices: [WorldChoice] = []
     var targetID: String?
     var helpLevel = 0
+    var workGear: [String] = []
+    var workBeds: [String] = []
 }
 
 struct WorldChoice: Equatable, Identifiable {
@@ -86,5 +94,5 @@ struct WorldSticker: Identifiable, Equatable {
 enum FarmWorldIntent: Equatable {
     case visit(String), begin(String), perform(String?), help, idleHint, leaveActivity
     case discover(String), readSticker(String), endDay, nextSeason, pause, decorationBox
-    case readStory(String), closeNightStory
+    case readStory(String), closeNightStory, horn
 }

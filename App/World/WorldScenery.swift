@@ -126,10 +126,15 @@ extension WorldWorkshop {
             for i in 0..<n {
                 let w = grid.width, d = grid.depth
                 let b = group(p, at: grid.center(index: i))
+                let plowed = i < beds.count && beds[i].growth == "plowed"
                 box(b, [0, 0.1, 0], [w*0.93, 0.21, d*0.9], 0xb5875d)
-                box(b, [0, 0.21, 0], [w*0.82, 0.045, d*0.77], i < beds.count && beds[i].watered ? 0x685442 : 0x87674b)
-                for r: Float in [-0.2, 0.22] {
-                    oval(b, [r*w, 0.23, 0], [0.18*w, 0.12, d*0.58], 0x9a7655)
+                box(b, [0, 0.21, 0], [w*0.82, 0.045, d*0.77], plowed || (i < beds.count && beds[i].watered) ? 0x685442 : 0x87674b)
+                if plowed {
+                    for z: Float in [-0.24, 0, 0.24] {
+                        oval(b, [0, 0.24, z*d], [w*0.80, 0.105, d*0.13], 0x9a7655)
+                    }
+                } else {
+                    for r: Float in [-0.2, 0.22] { oval(b, [r*w, 0.23, 0], [0.18*w, 0.12, d*0.58], 0x9a7655) }
                 }
                 if i < beds.count, let crop = beds[i].cropID {
                     toy(crop + "." + beds[i].growth, in: b, at: [0, 0.22, 0], span: min(w, d) * 0.77)
@@ -144,7 +149,9 @@ extension WorldWorkshop {
                 }
             } else {
                 fence(p, from: [-1.9, 0, -1.7], to: [1.85, 0, -1.7], posts: 4)
-                toy(site.id == "loc.field" ? "veh.tractor" : "tool.can", in: p, at: [1.88, 0, 0.65], span: site.id == "loc.field" ? 1.25 : 0.64)
+                if site.id != "loc.field" || !state.hasDrivingJob {
+                    toy(site.id == "loc.field" ? "veh.tractor" : "tool.can", in: p, at: [1.88, 0, 0.65], span: site.id == "loc.field" ? 1.25 : 0.64)
+                }
             }
         case "loc.shop", "loc.village":
             let stand = toy(site.id, in: p, at: [-0.48, 0, -0.55], span: 2.8) { self.awning($0) }
@@ -164,7 +171,9 @@ extension WorldWorkshop {
             let kitchen = site.id == "loc.kitchen"
             let build: (Entity) -> Void = { self.cottage($0, color: kitchen ? 0xdab58a : 0x8caa9c, roof: 0x786e67, open: focus) }
             toy(focus ? "cutaway" : site.id, in: p, at: [-0.55, 0, -0.81], span: 2.7, fallback: build)
-            toy(kitchen ? "oven" : "veh.tractor", in: p, at: [0.67, 0, 0.4], span: 1.52)
+            if kitchen || !state.hasDrivingJob {
+                toy(kitchen ? "oven" : "veh.tractor", in: p, at: [0.67, 0, 0.4], span: 1.52)
+            }
         default:
             let pond = site.id == "loc.pond"
             if pond {

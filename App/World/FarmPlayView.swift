@@ -25,7 +25,8 @@ struct FarmPlayView: View {
         var picture: String
         var label: String
     }
-    private var motion: Bool { !state.reduceMotion && !systemStill && !state.quiet && scenePhase == .active && sheet == nil }
+    private var paused: Bool { state.paused || scenePhase != .active || sheet != nil }
+    private var motion: Bool { !state.reduceMotion && !systemStill && !state.quiet && !paused }
     private var site: WorldSite? { WorldSite.at(state.active?.offering.locationID ?? place) }
     private var discoveries: [WorldSticker] {
         guard state.active == nil, let site else { return [] }
@@ -47,7 +48,7 @@ struct FarmPlayView: View {
             let size: CGFloat = state.largeControls ? (compact ? 80 : 96) :
                 (state.stage == .seedling ? (compact ? 68 : 88) : (compact ? 64 : 72))
             let perPage = geo.size.width < 520 || compact || state.stage == .seedling ? 2 : 3
-            let targets = WorldObject.targets(turn: state.active, site: site, page: page, perPage: perPage, beds: state.beds)
+            let targets = state.hasDrivingJob ? [] : WorldObject.targets(turn: state.active, site: site, page: page, perPage: perPage, beds: state.beds)
             ZStack {
                 FarmSky(season: state.season, weather: state.weather, evening: state.sunProgress >= 0.72)
                 ZStack {
@@ -56,7 +57,7 @@ struct FarmPlayView: View {
                     stage(targets: targets, size: size)
                         .padding(.horizontal, compact ? size * 0.8 : 0)
                         .padding(.top, compact ? 8 : size)
-                        .padding(.bottom, (compact ? 27 : size) + (state.caption?.isEmpty == false ? 40 : 0))
+                        .padding(.bottom, (state.hasDrivingJob ? 2 : (compact ? 27 : size)) + (state.caption?.isEmpty == false ? 40 : 0))
                     VStack(spacing: 0) {
                         topBar(size: size, compact: compact)
                         if site?.id == "loc.shop" {
@@ -80,7 +81,7 @@ struct FarmPlayView: View {
                                 .background(FarmPaper.cream, in: Capsule()).lineLimit(2)
                                 .accessibilityIdentifier("world.caption")
                         }
-                        bottomBar(size: size, perPage: perPage)
+                        if !state.hasDrivingJob { bottomBar(size: size, perPage: perPage) }
                     }
                 }
                 .padding(.horizontal, compact ? 4 : 7).padding(.vertical, 2)
@@ -112,7 +113,7 @@ struct FarmPlayView: View {
         .onChange(of: state.active?.offering.locationID) { _, id in if let id { place = id } }
         .onChange(of: state.active?.stepID) { _, _ in page = 0; diorama.resetDrag() }
         .task(id: hintKey) {
-            guard state.active != nil, sheet == nil, scenePhase == .active else { return }
+            guard state.active != nil, !state.hasDrivingJob, !paused else { return }
             while !Task.isCancelled {
                 do { try await Task.sleep(for: .seconds(8)) } catch { return }
                 guard !Task.isCancelled else { return }
@@ -127,7 +128,7 @@ struct FarmPlayView: View {
     }
 
     private var hintKey: String {
-        "\(state.active?.offering.id ?? "")|\(state.active?.stepID ?? "")|\(lastTouch.timeIntervalSinceReferenceDate)|\(scenePhase)|\(String(describing: sheet))"
+        "\(state.active?.offering.id ?? "")|\(state.active?.stepID ?? "")|\(lastTouch.timeIntervalSinceReferenceDate)|\(paused)|\(state.hasDrivingJob)"
     }
 
     private func stage(targets: [WorldObject], size: CGFloat) -> some View {
@@ -141,12 +142,18 @@ struct FarmPlayView: View {
                     diorama.render(state: state, site: site, targets: targets, framing: f, motion: motion, detail: discovery)
                 }
                 .gesture(SpatialTapGesture().targetedToAnyEntity().onEnded { tap in
+                    guard !state.hasDrivingJob, !paused else { return }
                     if let obj = targets.first(where: { "pick:" + $0.id == tap.entity.name }) { perform(obj) }
                     else if tap.entity.name == "pelle" { askPelle() }
                 })
                 .accessibilityHidden(true)
                 if let site {
-                    if state.active == nil {
+                    if let turn = state.active, let job = FarmDriveWork.job(for: turn, farmLevel: state.farmLevel) {
+                        FarmDriveView(job: job, turn: turn, state: state, site: site, framing: f, root: diorama.root,
+                                      paused: paused, onHorn: { send(.horn) },
+                                      onFinish: { send(.perform(turn.targetID)) })
+                            .id([turn.offering.id, turn.stepID, turn.targetID ?? ""].joined(separator: "/"))
+                    } else if state.active == nil {
                         details(site: site, framing: f, size: size)
                     } else {
                         ForEach(targets) { obj in objectButton(obj, framing: f, size: size) }
@@ -276,7 +283,8 @@ struct FarmPlayView: View {
                     Color.clear.frame(width: max(44, size * 0.68), height: max(44, size * 0.68)).contentShape(Rectangle())
                 }.buttonStyle(.plain).position(f.project(site.center + grid.center(index: index) + [0, 0.23, 0]))
                     .accessibilityLabel("Beet \(index+1)")
-                    .accessibilityValue(bed.cropID == nil ? "Erde" : "\(bed.growth), \(bed.watered ? "gegossen" : "nicht gegossen")")
+                    .accessibilityValue(bed.cropID == nil ? (bed.growth == "plowed" ? "Gepflügte Erde" : "Erde") :
+                                            "\(bed.growth), \(bed.watered ? "gegossen" : "nicht gegossen")")
                     .accessibilityIdentifier("world.bed." + bed.id)
             }
         } else if site.animal != nil {
@@ -354,22 +362,13 @@ struct FarmPlayView: View {
                         page = (page+1) % count
                     }
                 }
-                if WorldVignette.driving.contains(turn.offering.activityID) {
-                    WorldButton(icon: "steeringwheel", label: "Pelle fährt mit dir", id: "world.autopilot", size: size) {
-                        guard let idx = turn.choices.firstIndex(where: { $0.id == turn.targetID }) ?? turn.choices.indices.first,
-                              let obj = WorldObject.targets(turn: turn, site: site, page: idx/perPage, perPage: perPage, beds: state.beds)
-                                .first(where: { $0.choiceID == turn.choices[idx].id }) else { send(.help); return }
-                        perform(obj)
+                HStack(spacing: 5) {
+                    FarmPictogram(id: turn.offering.activityID).frame(width: 34, height: 34)
+                    ForEach(0..<min(8, max(1, turn.stepCount)), id: \.self) { i in
+                        Circle().fill(i <= turn.stepIndex ? FarmPaper.pine : FarmPaper.edge.opacity(0.24)).frame(width: 6, height: 6)
                     }
-                } else {
-                    HStack(spacing: 5) {
-                        FarmPictogram(id: turn.offering.activityID).frame(width: 34, height: 34)
-                        ForEach(0..<min(8, max(1, turn.stepCount)), id: \.self) { i in
-                            Circle().fill(i <= turn.stepIndex ? FarmPaper.pine : FarmPaper.edge.opacity(0.24)).frame(width: 6, height: 6)
-                        }
-                    }.padding(8).background(FarmPaper.cream, in: Capsule())
-                        .accessibilityLabel("Bildfolge, Schritt \(turn.stepIndex+1) von \(turn.stepCount)")
-                }
+                }.padding(8).background(FarmPaper.cream, in: Capsule())
+                    .accessibilityLabel("Bildfolge, Schritt \(turn.stepIndex+1) von \(turn.stepCount)")
                 Spacer(minLength: 0)
             } else {
                 ScrollView(.horizontal) {
@@ -482,7 +481,7 @@ struct FarmPlayView: View {
     }
 
     private func perform(_ obj: WorldObject) {
-        guard let turn = state.active, let site else { return }
+        guard !state.hasDrivingJob, !paused, let turn = state.active, let site else { return }
         let key = turn.offering.id + turn.stepID + obj.id
         guard lastID != key || Date.now.timeIntervalSince(lastTouch) >= 0.15 else { return }
         lastID = key; lastTouch = .now
