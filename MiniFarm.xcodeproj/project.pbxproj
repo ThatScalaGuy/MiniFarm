@@ -7,15 +7,73 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		02ADCFE778FBE5986AF0F55E /* WorldScenery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EFA5BF116BC7ED93C9006C1 /* WorldScenery.swift */; };
+		06F8FAE144515E174D639B16 /* ParentalGateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEC271EB38DEDBD5672320C /* ParentalGateView.swift */; };
+		0CA89F138335F590AF7121E9 /* FamilyStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713CC3433EA008AE3DE35AF0 /* FamilyStorage.swift */; };
+		11EF8EBA609B7268AD0579F5 /* FarmDriveWork.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F1E413E976BF09703A21DA /* FarmDriveWork.swift */; };
+		143FC502D5663F615EDCCC43 /* FarmStoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19DE9665D468800E61652C7F /* FarmStoryTests.swift */; };
+		166A0DFA748DD8018C19EF1D /* FarmContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C84ADF4713C263A3B6F10BE /* FarmContent.swift */; };
+		1DEB36A28A9D32461B80E4FC /* WorldLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4224EE447874D1F98C148C27 /* WorldLayout.swift */; };
+		206103952E0A206990568A11 /* FarmWorldBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E08A4AB4A0D3CDA087739CC /* FarmWorldBridge.swift */; };
+		239C10ABBD43B0E94ACC72B8 /* FarmGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA12B66E9F448800AE0267DA /* FarmGame.swift */; };
+		28FD42F0E161F137FAC892F2 /* FamilyRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11E41DD006C25205C09BE94 /* FamilyRootView.swift */; };
+		2950FA2CCE3BE06A920CB229 /* FarmState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFE050635832E3826454DBD /* FarmState.swift */; };
+		2D83CD61111090B96E368E87 /* FarmActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 393E1531178460A9A19688F9 /* FarmActivity.swift */; };
+		2FA4A19989B4973E87294BC9 /* FamilyLogicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7354734F4D0340E68AAD76 /* FamilyLogicTests.swift */; };
+		421A34DB55DBAC67FC1057BE /* ProfilePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529D58144E75B1FAC2AD9DA4 /* ProfilePickerView.swift */; };
+		49AA208461C17D256B1B640F /* FamilyInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941E87B9DD40D816DBDCF041 /* FamilyInfo.swift */; };
+		4CDF71A4BF716D3ADB5D5216 /* WorldWorkshop.swift in Sources */ = {isa = PBXBuildFile; fileRef = F721423EE8A9F71B7C4A83B6 /* WorldWorkshop.swift */; };
+		4E665C5D145BC71DD8F1A48F /* WorldLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5430A858BC0649F949299253 /* WorldLayoutTests.swift */; };
+		4E71D2FBC656B7B478361835 /* FarmWorldState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19822CA2D93958EEBE401258 /* FarmWorldState.swift */; };
+		55DDC4BC67097B8C3E2D797C /* FarmPlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F36C7BBBF27861AAD5EDF0 /* FarmPlayView.swift */; };
+		5A1E0E689281C713377D542B /* FarmPictogram.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33F3ADE1B15D6E7C6EB075E /* FarmPictogram.swift */; };
+		5A5C0560419E22EB83D719A5 /* FarmLevelParcelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8729B14B86F6E5EF3E680FA /* FarmLevelParcelView.swift */; };
 		60F2C6D86293BDB43F1848BC /* Content in Resources */ = {isa = PBXBuildFile; fileRef = 7E101543F32B54901D3309C5 /* Content */; };
+		770C2A745027AE537D4E9DF2 /* WorldStage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C955950EE17D680DD53E483D /* WorldStage.swift */; };
+		7CE06CA73B25F5DFC2F7A2D0 /* MiniFarmAudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF81E6254028A50C9BEC9F6 /* MiniFarmAudioController.swift */; };
+		7DA1D7EE5DB76885B774A167 /* StorageTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B7DAAA2459DCDBDBA7D297 /* StorageTypes.swift */; };
+		7EDBF3A33F99C8BFC66C405A /* WorldProps.swift in Sources */ = {isa = PBXBuildFile; fileRef = C005C36AE0821C93B34014C8 /* WorldProps.swift */; };
+		854773CDE25D5AE3A0C8B1C0 /* ParentalGate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D94EF9E16F989FEAFF7A96A /* ParentalGate.swift */; };
+		8C30C554E1835974872A723F /* FarmStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6361A10A138AE4801A878D /* FarmStory.swift */; };
+		8E77C2CD95BABFF85E73EC86 /* FarmLifeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31FB672C519F02BEB8BFE71D /* FarmLifeTests.swift */; };
+		8F8E62CA240C5D7EB8C387DB /* FarmDecorationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76239B36DD2DCB08175E17B1 /* FarmDecorationView.swift */; };
+		916EF647084CD291F6C11272 /* WorldVignette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B0E3DA55F6D34C9CCEE0F31 /* WorldVignette.swift */; };
+		949237E68812F560EFAFFEFD /* FarmSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1EAF6EA9DB89FA1DF452DA /* FarmSessionView.swift */; };
+		94B7A44317B33B9CCB718852 /* FarmFestivalAlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC894A202A32C216191DB2B /* FarmFestivalAlbumView.swift */; };
+		9AA03AFD5E5697E15C33743E /* FirstHarvestIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DEEBA25D821E81DEAE2CFB /* FirstHarvestIntegrationTests.swift */; };
 		9D7B56C69CC966F467EB11FF /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 0885728DED38B994ABF45AC9 /* PrivacyInfo.xcprivacy */; };
+		9F576F47AFB0C098F5F014EF /* ProfileDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA5F84A2A210AC72E22ABB3 /* ProfileDetailView.swift */; };
+		A4020DAA9D753820A35CCE90 /* SessionTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C93F8404DF460B749E7A9AE /* SessionTimer.swift */; };
+		A60E35D9DEB3190C3D60A4CA /* AdaptiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F2BD15543E5B386F997487 /* AdaptiveTests.swift */; };
 		A68D730DAB11F4FD1566CEB0 /* FarmRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66B3554977D7CB6BE17C33E /* FarmRootView.swift */; };
+		A7D4523BE21C6549BF824AAC /* FamilyProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F59A81D3A9F9F4205793FE7 /* FamilyProfile.swift */; };
 		AB510FA2D9F26EF6EBECDE39 /* FarmJourneyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A412B3EEE5D0E43F8E855B1 /* FarmJourneyTests.swift */; };
+		AF02ACB03136472BC2ED0023 /* FarmNightStoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82669CD6BB6A18E67EE38B44 /* FarmNightStoryView.swift */; };
+		AFCC49FCC24714420ED92FD9 /* AvatarArtwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6E84463C8F0B1CF221479B /* AvatarArtwork.swift */; };
+		B7B1EEE3B4FB23F2A2680FC0 /* ProfileSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4A1AE57CDD65DFDFFC375F /* ProfileSettings.swift */; };
+		BB987F51185BA8A306B8BC87 /* WorldDiscoveries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA7A0AB257EC87DE3E2E2D8 /* WorldDiscoveries.swift */; };
 		C584A88C1D6AF7D47AE0CF30 /* Models in Resources */ = {isa = PBXBuildFile; fileRef = 7CF87C24669F75791277B839 /* Models */; };
+		C86A46B0A7A9CCCBE74B2DCE /* FarmGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BEE022B2F91D7AEE5760D4 /* FarmGameTests.swift */; };
+		CB6CD68FE924EDDF3470431E /* FarmPictograms.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63759C827AFDE13925955852 /* FarmPictograms.xcassets */; };
+		CC57A03FD702F90A99921163 /* FarmLife.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E01F2576E73BCB02A3465C8 /* FarmLife.swift */; };
+		CF6A2B478598C3E4449D8CA0 /* WorldPaper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23CEA2E48BDEA2B49FDE251 /* WorldPaper.swift */; };
 		D1D3237B95DA33F3B7EC3E35 /* Audio in Resources */ = {isa = PBXBuildFile; fileRef = FD2CB9E87041F42F64F721B2 /* Audio */; };
+		D59854A1606FD7BFB0735BE7 /* FamilyStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC6AAF1B713D1A3033D24F0 /* FamilyStorageTests.swift */; };
 		D5FBA04469F0055639F14DFC /* AppResourcesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4296CB5F27CF1959E87DC1AC /* AppResourcesTests.swift */; };
+		D70E20B0B6334B34CB1C8F8C /* FarmDriveWorkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F80516CE9A71F98E47D699 /* FarmDriveWorkTests.swift */; };
+		EA90E74251C721CEBAA39B29 /* ParentAreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73529B04B7751057F9FAD35 /* ParentAreaView.swift */; };
+		EC2231FF830245F9B2E7C25C /* FamilyStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD7A603F18CC7AA342BE037 /* FamilyStoreTests.swift */; };
+		ED417E9178A831FD080DD154 /* FamilyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 018CD1241096ED89D68521C6 /* FamilyStore.swift */; };
+		EE129B9C4D001385E962FEA0 /* FarmDriveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF41F9872560E7DA463A73D /* FarmDriveView.swift */; };
+		EF53EF36F7048639D0D023BF /* FarmSkills.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A07804EE575FCDB4C2D751 /* FarmSkills.swift */; };
+		F174ADB1FB014BD0F358413C /* ProductionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A112472CDF6CE57017DAF6F3 /* ProductionTests.swift */; };
+		F70CCB903815676860C2DE5A /* FarmOverlays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221CEC5E166FD7358C4D8128 /* FarmOverlays.swift */; };
 		F85DE6AC9AE8356865AC8C51 /* MiniFarmApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303B66F0E4758049BBCC6644 /* MiniFarmApp.swift */; };
+		F85E9D16E8400E4A07186FB3 /* FarmCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = C21CE5C4683E7E6F6B3DEDA4 /* FarmCatalog.swift */; };
+		F9B1B2BB1EECB08C84F9FDFA /* FamilyRuntimeSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFB04307F511D564697BC1F /* FamilyRuntimeSettings.swift */; };
+		F9E9ACE276B7E863212959A4 /* FarmProduction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C414F5D82F03347C3A04F20 /* FarmProduction.swift */; };
 		FC90DF47D003FD118EEA9C81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F078B841284DF0FED2EFECB /* Assets.xcassets */; };
+		FF0692266EC4BADE03733DEB /* FarmPictogramIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7505769EB05C2CC34DE6BFF6 /* FarmPictogramIndex.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,17 +94,75 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		018CD1241096ED89D68521C6 /* FamilyStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilyStore.swift; sourceTree = "<group>"; };
 		0885728DED38B994ABF45AC9 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		0C414F5D82F03347C3A04F20 /* FarmProduction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FarmProduction.swift; sourceTree = "<group>"; };
+		0C93F8404DF460B749E7A9AE /* SessionTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTimer.swift; sourceTree = "<group>"; };
+		0D94EF9E16F989FEAFF7A96A /* ParentalGate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentalGate.swift; sourceTree = "<group>"; };
+		11A07804EE575FCDB4C2D751 /* FarmSkills.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FarmSkills.swift; sourceTree = "<group>"; };
+		19822CA2D93958EEBE401258 /* FarmWorldState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FarmWorldState.swift; sourceTree = "<group>"; };
+		19DE9665D468800E61652C7F /* FarmStoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FarmStoryTests.swift; sourceTree = "<group>"; };
+		1E7354734F4D0340E68AAD76 /* FamilyLogicTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilyLogicTests.swift; sourceTree = "<group>"; };
 		1F078B841284DF0FED2EFECB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		221CEC5E166FD7358C4D8128 /* FarmOverlays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FarmOverlays.swift; sourceTree = "<group>"; };
+		2EFB04307F511D564697BC1F /* FamilyRuntimeSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilyRuntimeSettings.swift; sourceTree = "<group>"; };
+		2F59A81D3A9F9F4205793FE7 /* FamilyProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilyProfile.swift; sourceTree = "<group>"; };
 		303B66F0E4758049BBCC6644 /* MiniFarmApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniFarmApp.swift; sourceTree = "<group>"; };
+		31FB672C519F02BEB8BFE71D /* FarmLifeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FarmLifeTests.swift; sourceTree = "<group>"; };
+		393E1531178460A9A19688F9 /* FarmActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FarmActivity.swift; sourceTree = "<group>"; };
+		3AD7A603F18CC7AA342BE037 /* FamilyStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilyStoreTests.swift; sourceTree = "<group>"; };
+		3BC6AAF1B713D1A3033D24F0 /* FamilyStorageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilyStorageTests.swift; sourceTree = "<group>"; };
+		3CFE050635832E3826454DBD /* FarmState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FarmState.swift; sourceTree = "<group>"; };
 		3E32ECC56106246D5DF3C201 /* MiniFarmUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = MiniFarmUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4224EE447874D1F98C148C27 /* WorldLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldLayout.swift; sourceTree = "<group>"; };
 		4296CB5F27CF1959E87DC1AC /* AppResourcesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppResourcesTests.swift; sourceTree = "<group>"; };
+		4C84ADF4713C263A3B6F10BE /* FarmContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FarmContent.swift; sourceTree = "<group>"; };
+		4DF41F9872560E7DA463A73D /* FarmDriveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FarmDriveView.swift; sourceTree = "<group>"; };
+		4EFA5BF116BC7ED93C9006C1 /* WorldScenery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldScenery.swift; sourceTree = "<group>"; };
+		529D58144E75B1FAC2AD9DA4 /* ProfilePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePickerView.swift; sourceTree = "<group>"; };
+		5430A858BC0649F949299253 /* WorldLayoutTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldLayoutTests.swift; sourceTree = "<group>"; };
+		5BC894A202A32C216191DB2B /* FarmFestivalAlbumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FarmFestivalAlbumView.swift; sourceTree = "<group>"; };
+		63759C827AFDE13925955852 /* FarmPictograms.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = FarmPictograms.xcassets; sourceTree = "<group>"; };
+		68BEE022B2F91D7AEE5760D4 /* FarmGameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FarmGameTests.swift; sourceTree = "<group>"; };
 		6A412B3EEE5D0E43F8E855B1 /* FarmJourneyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FarmJourneyTests.swift; sourceTree = "<group>"; };
+		6E08A4AB4A0D3CDA087739CC /* FarmWorldBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FarmWorldBridge.swift; sourceTree = "<group>"; };
+		713CC3433EA008AE3DE35AF0 /* FamilyStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilyStorage.swift; sourceTree = "<group>"; };
+		73B7DAAA2459DCDBDBA7D297 /* StorageTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageTypes.swift; sourceTree = "<group>"; };
+		7505769EB05C2CC34DE6BFF6 /* FarmPictogramIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FarmPictogramIndex.swift; sourceTree = "<group>"; };
+		76239B36DD2DCB08175E17B1 /* FarmDecorationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FarmDecorationView.swift; sourceTree = "<group>"; };
+		76F36C7BBBF27861AAD5EDF0 /* FarmPlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FarmPlayView.swift; sourceTree = "<group>"; };
+		7A1EAF6EA9DB89FA1DF452DA /* FarmSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FarmSessionView.swift; sourceTree = "<group>"; };
+		7B0E3DA55F6D34C9CCEE0F31 /* WorldVignette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldVignette.swift; sourceTree = "<group>"; };
 		7CF87C24669F75791277B839 /* Models */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Models; path = App/Resources/Models; sourceTree = SOURCE_ROOT; };
+		7E01F2576E73BCB02A3465C8 /* FarmLife.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FarmLife.swift; sourceTree = "<group>"; };
 		7E101543F32B54901D3309C5 /* Content */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Content; path = App/Resources/Content; sourceTree = SOURCE_ROOT; };
+		82669CD6BB6A18E67EE38B44 /* FarmNightStoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FarmNightStoryView.swift; sourceTree = "<group>"; };
 		876ABCE85CD97D60BF0E586E /* MiniFarm.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = MiniFarm.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8DA7A0AB257EC87DE3E2E2D8 /* WorldDiscoveries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldDiscoveries.swift; sourceTree = "<group>"; };
+		941E87B9DD40D816DBDCF041 /* FamilyInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilyInfo.swift; sourceTree = "<group>"; };
+		94F2BD15543E5B386F997487 /* AdaptiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptiveTests.swift; sourceTree = "<group>"; };
+		97F80516CE9A71F98E47D699 /* FarmDriveWorkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FarmDriveWorkTests.swift; sourceTree = "<group>"; };
+		9CF81E6254028A50C9BEC9F6 /* MiniFarmAudioController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniFarmAudioController.swift; sourceTree = "<group>"; };
+		9E6361A10A138AE4801A878D /* FarmStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FarmStory.swift; sourceTree = "<group>"; };
+		A112472CDF6CE57017DAF6F3 /* ProductionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductionTests.swift; sourceTree = "<group>"; };
+		A11E41DD006C25205C09BE94 /* FamilyRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilyRootView.swift; sourceTree = "<group>"; };
+		AF4A1AE57CDD65DFDFFC375F /* ProfileSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettings.swift; sourceTree = "<group>"; };
+		B4DEEBA25D821E81DEAE2CFB /* FirstHarvestIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstHarvestIntegrationTests.swift; sourceTree = "<group>"; };
+		B8729B14B86F6E5EF3E680FA /* FarmLevelParcelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FarmLevelParcelView.swift; sourceTree = "<group>"; };
+		BCA5F84A2A210AC72E22ABB3 /* ProfileDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailView.swift; sourceTree = "<group>"; };
+		C005C36AE0821C93B34014C8 /* WorldProps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldProps.swift; sourceTree = "<group>"; };
+		C0F1E413E976BF09703A21DA /* FarmDriveWork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FarmDriveWork.swift; sourceTree = "<group>"; };
+		C21CE5C4683E7E6F6B3DEDA4 /* FarmCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FarmCatalog.swift; sourceTree = "<group>"; };
+		C955950EE17D680DD53E483D /* WorldStage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldStage.swift; sourceTree = "<group>"; };
+		DA12B66E9F448800AE0267DA /* FarmGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FarmGame.swift; sourceTree = "<group>"; };
 		DC59658E1192BCECDC439D73 /* MiniFarmTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = MiniFarmTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD6E84463C8F0B1CF221479B /* AvatarArtwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarArtwork.swift; sourceTree = "<group>"; };
 		E66B3554977D7CB6BE17C33E /* FarmRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FarmRootView.swift; sourceTree = "<group>"; };
+		E73529B04B7751057F9FAD35 /* ParentAreaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentAreaView.swift; sourceTree = "<group>"; };
+		F23CEA2E48BDEA2B49FDE251 /* WorldPaper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldPaper.swift; sourceTree = "<group>"; };
+		F33F3ADE1B15D6E7C6EB075E /* FarmPictogram.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FarmPictogram.swift; sourceTree = "<group>"; };
+		F721423EE8A9F71B7C4A83B6 /* WorldWorkshop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldWorkshop.swift; sourceTree = "<group>"; };
+		FAEC271EB38DEDBD5672320C /* ParentalGateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentalGateView.swift; sourceTree = "<group>"; };
 		FD2CB9E87041F42F64F721B2 /* Audio */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Audio; path = App/Resources/Audio; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -55,6 +171,11 @@
 			isa = PBXGroup;
 			children = (
 				4296CB5F27CF1959E87DC1AC /* AppResourcesTests.swift */,
+				B4DEEBA25D821E81DEAE2CFB /* FirstHarvestIntegrationTests.swift */,
+				AE07861F2A0AD01872F94D71 /* Art */,
+				536F92F65737282A8E48BE4F /* Family */,
+				E6442369A1EE82BC84862023 /* Gameplay */,
+				EE81628FF3F4FF3AE527DBBB /* World */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -71,6 +192,25 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		227E86BCB38AE5F1B886FCB4 /* Art */ = {
+			isa = PBXGroup;
+			children = (
+				F33F3ADE1B15D6E7C6EB075E /* FarmPictogram.swift */,
+				7505769EB05C2CC34DE6BFF6 /* FarmPictogramIndex.swift */,
+				63759C827AFDE13925955852 /* FarmPictograms.xcassets */,
+				67B7556E97D7FD4C66A88136 /* Rituals */,
+			);
+			path = Art;
+			sourceTree = "<group>";
+		};
+		3AB3156F07A72F06DCEDC8E8 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				9CF81E6254028A50C9BEC9F6 /* MiniFarmAudioController.swift */,
+			);
+			path = Audio;
+			sourceTree = "<group>";
+		};
 		3FEFC0979C66E04601D054F9 = {
 			isa = PBXGroup;
 			children = (
@@ -79,6 +219,27 @@
 				FCC7D81983F108C87C287C42 /* UITests */,
 				72AB5DF52E94F3F0EA1FC9BB /* Products */,
 			);
+			sourceTree = "<group>";
+		};
+		536F92F65737282A8E48BE4F /* Family */ = {
+			isa = PBXGroup;
+			children = (
+				1E7354734F4D0340E68AAD76 /* FamilyLogicTests.swift */,
+				3BC6AAF1B713D1A3033D24F0 /* FamilyStorageTests.swift */,
+				3AD7A603F18CC7AA342BE037 /* FamilyStoreTests.swift */,
+			);
+			path = Family;
+			sourceTree = "<group>";
+		};
+		67B7556E97D7FD4C66A88136 /* Rituals */ = {
+			isa = PBXGroup;
+			children = (
+				5BC894A202A32C216191DB2B /* FarmFestivalAlbumView.swift */,
+				B8729B14B86F6E5EF3E680FA /* FarmLevelParcelView.swift */,
+				82669CD6BB6A18E67EE38B44 /* FarmNightStoryView.swift */,
+				9E6361A10A138AE4801A878D /* FarmStory.swift */,
+			);
+			path = Rituals;
 			sourceTree = "<group>";
 		};
 		72AB5DF52E94F3F0EA1FC9BB /* Products */ = {
@@ -91,12 +252,145 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		79CE31E836CD59043623DBBB /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				713CC3433EA008AE3DE35AF0 /* FamilyStorage.swift */,
+				73B7DAAA2459DCDBDBA7D297 /* StorageTypes.swift */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+		8762A4AEEDC9AEA8B23F1B90 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DD6E84463C8F0B1CF221479B /* AvatarArtwork.swift */,
+				A11E41DD006C25205C09BE94 /* FamilyRootView.swift */,
+				FAEC271EB38DEDBD5672320C /* ParentalGateView.swift */,
+				E73529B04B7751057F9FAD35 /* ParentAreaView.swift */,
+				BCA5F84A2A210AC72E22ABB3 /* ProfileDetailView.swift */,
+				529D58144E75B1FAC2AD9DA4 /* ProfilePickerView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8F649EDF5AB399662247DDA8 /* Gameplay */ = {
+			isa = PBXGroup;
+			children = (
+				393E1531178460A9A19688F9 /* FarmActivity.swift */,
+				C21CE5C4683E7E6F6B3DEDA4 /* FarmCatalog.swift */,
+				4C84ADF4713C263A3B6F10BE /* FarmContent.swift */,
+				DA12B66E9F448800AE0267DA /* FarmGame.swift */,
+				7E01F2576E73BCB02A3465C8 /* FarmLife.swift */,
+				0C414F5D82F03347C3A04F20 /* FarmProduction.swift */,
+				11A07804EE575FCDB4C2D751 /* FarmSkills.swift */,
+				3CFE050635832E3826454DBD /* FarmState.swift */,
+			);
+			path = Gameplay;
+			sourceTree = "<group>";
+		};
+		AE07861F2A0AD01872F94D71 /* Art */ = {
+			isa = PBXGroup;
+			children = (
+				19DE9665D468800E61652C7F /* FarmStoryTests.swift */,
+			);
+			path = Art;
+			sourceTree = "<group>";
+		};
+		AE179146514A0AA397716144 /* Family */ = {
+			isa = PBXGroup;
+			children = (
+				D04E65B2B19C992E1DBE5A4A /* Model */,
+				79CE31E836CD59043623DBBB /* Storage */,
+				E97AA9B26EC12D2318CC4E5E /* Store */,
+				8762A4AEEDC9AEA8B23F1B90 /* Views */,
+			);
+			path = Family;
+			sourceTree = "<group>";
+		};
+		CEE9E369B1E0BB359ED902C5 /* World */ = {
+			isa = PBXGroup;
+			children = (
+				4DF41F9872560E7DA463A73D /* FarmDriveView.swift */,
+				C0F1E413E976BF09703A21DA /* FarmDriveWork.swift */,
+				76F36C7BBBF27861AAD5EDF0 /* FarmPlayView.swift */,
+				19822CA2D93958EEBE401258 /* FarmWorldState.swift */,
+				8DA7A0AB257EC87DE3E2E2D8 /* WorldDiscoveries.swift */,
+				4224EE447874D1F98C148C27 /* WorldLayout.swift */,
+				F23CEA2E48BDEA2B49FDE251 /* WorldPaper.swift */,
+				C005C36AE0821C93B34014C8 /* WorldProps.swift */,
+				4EFA5BF116BC7ED93C9006C1 /* WorldScenery.swift */,
+				C955950EE17D680DD53E483D /* WorldStage.swift */,
+				7B0E3DA55F6D34C9CCEE0F31 /* WorldVignette.swift */,
+				F721423EE8A9F71B7C4A83B6 /* WorldWorkshop.swift */,
+			);
+			path = World;
+			sourceTree = "<group>";
+		};
+		D04E65B2B19C992E1DBE5A4A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				941E87B9DD40D816DBDCF041 /* FamilyInfo.swift */,
+				2F59A81D3A9F9F4205793FE7 /* FamilyProfile.swift */,
+				2EFB04307F511D564697BC1F /* FamilyRuntimeSettings.swift */,
+				AF4A1AE57CDD65DFDFFC375F /* ProfileSettings.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E6442369A1EE82BC84862023 /* Gameplay */ = {
+			isa = PBXGroup;
+			children = (
+				94F2BD15543E5B386F997487 /* AdaptiveTests.swift */,
+				68BEE022B2F91D7AEE5760D4 /* FarmGameTests.swift */,
+				31FB672C519F02BEB8BFE71D /* FarmLifeTests.swift */,
+				A112472CDF6CE57017DAF6F3 /* ProductionTests.swift */,
+			);
+			path = Gameplay;
+			sourceTree = "<group>";
+		};
+		E97AA9B26EC12D2318CC4E5E /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				018CD1241096ED89D68521C6 /* FamilyStore.swift */,
+				0D94EF9E16F989FEAFF7A96A /* ParentalGate.swift */,
+				0C93F8404DF460B749E7A9AE /* SessionTimer.swift */,
+			);
+			path = Store;
+			sourceTree = "<group>";
+		};
+		EE81628FF3F4FF3AE527DBBB /* World */ = {
+			isa = PBXGroup;
+			children = (
+				97F80516CE9A71F98E47D699 /* FarmDriveWorkTests.swift */,
+				5430A858BC0649F949299253 /* WorldLayoutTests.swift */,
+			);
+			path = World;
+			sourceTree = "<group>";
+		};
+		F6878CA1487C17FE74F78237 /* Host */ = {
+			isa = PBXGroup;
+			children = (
+				76239B36DD2DCB08175E17B1 /* FarmDecorationView.swift */,
+				221CEC5E166FD7358C4D8128 /* FarmOverlays.swift */,
+				7A1EAF6EA9DB89FA1DF452DA /* FarmSessionView.swift */,
+				6E08A4AB4A0D3CDA087739CC /* FarmWorldBridge.swift */,
+			);
+			path = Host;
+			sourceTree = "<group>";
+		};
 		FAA155987130A2E12E6CB14A /* App */ = {
 			isa = PBXGroup;
 			children = (
 				E66B3554977D7CB6BE17C33E /* FarmRootView.swift */,
 				303B66F0E4758049BBCC6644 /* MiniFarmApp.swift */,
+				227E86BCB38AE5F1B886FCB4 /* Art */,
+				3AB3156F07A72F06DCEDC8E8 /* Audio */,
+				AE179146514A0AA397716144 /* Family */,
+				8F649EDF5AB399662247DDA8 /* Gameplay */,
+				F6878CA1487C17FE74F78237 /* Host */,
 				1CC9964FBA7AF9862273F8EB /* Resources */,
+				CEE9E369B1E0BB359ED902C5 /* World */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -219,6 +513,7 @@
 				FC90DF47D003FD118EEA9C81 /* Assets.xcassets in Resources */,
 				D1D3237B95DA33F3B7EC3E35 /* Audio in Resources */,
 				60F2C6D86293BDB43F1848BC /* Content in Resources */,
+				CB6CD68FE924EDDF3470431E /* FarmPictograms.xcassets in Resources */,
 				C584A88C1D6AF7D47AE0CF30 /* Models in Resources */,
 				9D7B56C69CC966F467EB11FF /* PrivacyInfo.xcprivacy in Resources */,
 			);
@@ -231,7 +526,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A60E35D9DEB3190C3D60A4CA /* AdaptiveTests.swift in Sources */,
 				D5FBA04469F0055639F14DFC /* AppResourcesTests.swift in Sources */,
+				2FA4A19989B4973E87294BC9 /* FamilyLogicTests.swift in Sources */,
+				D59854A1606FD7BFB0735BE7 /* FamilyStorageTests.swift in Sources */,
+				EC2231FF830245F9B2E7C25C /* FamilyStoreTests.swift in Sources */,
+				D70E20B0B6334B34CB1C8F8C /* FarmDriveWorkTests.swift in Sources */,
+				C86A46B0A7A9CCCBE74B2DCE /* FarmGameTests.swift in Sources */,
+				8E77C2CD95BABFF85E73EC86 /* FarmLifeTests.swift in Sources */,
+				143FC502D5663F615EDCCC43 /* FarmStoryTests.swift in Sources */,
+				9AA03AFD5E5697E15C33743E /* FirstHarvestIntegrationTests.swift in Sources */,
+				F174ADB1FB014BD0F358413C /* ProductionTests.swift in Sources */,
+				4E665C5D145BC71DD8F1A48F /* WorldLayoutTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,8 +553,54 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFCC49FCC24714420ED92FD9 /* AvatarArtwork.swift in Sources */,
+				49AA208461C17D256B1B640F /* FamilyInfo.swift in Sources */,
+				A7D4523BE21C6549BF824AAC /* FamilyProfile.swift in Sources */,
+				28FD42F0E161F137FAC892F2 /* FamilyRootView.swift in Sources */,
+				F9B1B2BB1EECB08C84F9FDFA /* FamilyRuntimeSettings.swift in Sources */,
+				0CA89F138335F590AF7121E9 /* FamilyStorage.swift in Sources */,
+				ED417E9178A831FD080DD154 /* FamilyStore.swift in Sources */,
+				2D83CD61111090B96E368E87 /* FarmActivity.swift in Sources */,
+				F85E9D16E8400E4A07186FB3 /* FarmCatalog.swift in Sources */,
+				166A0DFA748DD8018C19EF1D /* FarmContent.swift in Sources */,
+				8F8E62CA240C5D7EB8C387DB /* FarmDecorationView.swift in Sources */,
+				EE129B9C4D001385E962FEA0 /* FarmDriveView.swift in Sources */,
+				11EF8EBA609B7268AD0579F5 /* FarmDriveWork.swift in Sources */,
+				94B7A44317B33B9CCB718852 /* FarmFestivalAlbumView.swift in Sources */,
+				239C10ABBD43B0E94ACC72B8 /* FarmGame.swift in Sources */,
+				5A5C0560419E22EB83D719A5 /* FarmLevelParcelView.swift in Sources */,
+				CC57A03FD702F90A99921163 /* FarmLife.swift in Sources */,
+				AF02ACB03136472BC2ED0023 /* FarmNightStoryView.swift in Sources */,
+				F70CCB903815676860C2DE5A /* FarmOverlays.swift in Sources */,
+				5A1E0E689281C713377D542B /* FarmPictogram.swift in Sources */,
+				FF0692266EC4BADE03733DEB /* FarmPictogramIndex.swift in Sources */,
+				55DDC4BC67097B8C3E2D797C /* FarmPlayView.swift in Sources */,
+				F9E9ACE276B7E863212959A4 /* FarmProduction.swift in Sources */,
 				A68D730DAB11F4FD1566CEB0 /* FarmRootView.swift in Sources */,
+				949237E68812F560EFAFFEFD /* FarmSessionView.swift in Sources */,
+				EF53EF36F7048639D0D023BF /* FarmSkills.swift in Sources */,
+				2950FA2CCE3BE06A920CB229 /* FarmState.swift in Sources */,
+				8C30C554E1835974872A723F /* FarmStory.swift in Sources */,
+				206103952E0A206990568A11 /* FarmWorldBridge.swift in Sources */,
+				4E71D2FBC656B7B478361835 /* FarmWorldState.swift in Sources */,
 				F85DE6AC9AE8356865AC8C51 /* MiniFarmApp.swift in Sources */,
+				7CE06CA73B25F5DFC2F7A2D0 /* MiniFarmAudioController.swift in Sources */,
+				EA90E74251C721CEBAA39B29 /* ParentAreaView.swift in Sources */,
+				854773CDE25D5AE3A0C8B1C0 /* ParentalGate.swift in Sources */,
+				06F8FAE144515E174D639B16 /* ParentalGateView.swift in Sources */,
+				9F576F47AFB0C098F5F014EF /* ProfileDetailView.swift in Sources */,
+				421A34DB55DBAC67FC1057BE /* ProfilePickerView.swift in Sources */,
+				B7B1EEE3B4FB23F2A2680FC0 /* ProfileSettings.swift in Sources */,
+				A4020DAA9D753820A35CCE90 /* SessionTimer.swift in Sources */,
+				7DA1D7EE5DB76885B774A167 /* StorageTypes.swift in Sources */,
+				BB987F51185BA8A306B8BC87 /* WorldDiscoveries.swift in Sources */,
+				1DEB36A28A9D32461B80E4FC /* WorldLayout.swift in Sources */,
+				CF6A2B478598C3E4449D8CA0 /* WorldPaper.swift in Sources */,
+				7EDBF3A33F99C8BFC66C405A /* WorldProps.swift in Sources */,
+				02ADCFE778FBE5986AF0F55E /* WorldScenery.swift in Sources */,
+				770C2A745027AE537D4E9DF2 /* WorldStage.swift in Sources */,
+				916EF647084CD291F6C11272 /* WorldVignette.swift in Sources */,
+				4CDF71A4BF716D3ADB5D5216 /* WorldWorkshop.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -23,6 +23,7 @@ targets:
       - path: App
         excludes:
           - Resources
+          - "**/*.md"
       - path: App/Resources/Assets.xcassets
         optional: true
       - path: App/Resources/PrivacyInfo.xcprivacy
@@ -47,7 +48,9 @@ targets:
   MiniFarmTests:
     type: bundle.unit-test
     platform: iOS
-    sources: [Tests]
+    sources:
+      - path: Tests
+        excludes: ["**/*.py", "**/*.md"]
     dependencies:
       - target: MiniFarm
     settings:

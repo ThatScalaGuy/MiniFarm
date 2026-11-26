@@ -2,9 +2,19 @@
 
 ## App lokal öffnen
 
-`MiniFarm.xcodeproj` in Xcode öffnen, Scheme **MiniFarm** und einen iPhone- oder iPad-Simulator (iOS 18 oder neuer) wählen und starten. Für den Simulator ist kein Entwicklerkonto nötig. Geräte-Builds verwenden das persönliche Team Sven Herrmann und `de.thatscalaguy.minifarm`.
+Bei Lieferung als ZIP zuerst den gesamten Ordner **MiniFarm** entpacken. `MiniFarm.xcodeproj` in Xcode öffnen, Scheme **MiniFarm** und einen iPhone- oder iPad-Simulator (iOS 18 oder neuer) wählen, dann **⌘R** drücken. Für den Simulator ist kein Entwicklerkonto nötig. Geräte-Builds verwenden das persönliche Team Sven Herrmann und `de.thatscalaguy.minifarm`.
+
+Beim ersten Start richtet ein Erwachsener hinter der Zahlwort-Aufgabe ein Tierprofil ein. Zurück in der Profilwahl das Tier antippen. Pelle führt durch den ersten Wunsch: Radieschen säen, das Beet gießen, ein Huhn füttern, am Sonnenbogen schlafen gehen, ernten und im Hofladen verkaufen. Nach Schließen und erneutem Öffnen dasselbe Tier wählen, um am gespeicherten Schritt weiterzuspielen.
 
 Nach Änderungen an der Dateistruktur mit `xcodegen generate` aus `project.yml` neu erzeugen. `App/` enthält den App-Code, `App/Resources/` die Offline-Inhalte, `Tests/` und `UITests/` die beiden Testziele. Den tatsächlichen Funktionsumfang sowie offene Prüfungen dokumentiert [PROGRESS.md](PROGRESS.md), die Annahmen [DESSSICION.md](DESSSICION.md).
+
+Für den lokalen Prüflauf die UDIDs eines iPhone- und eines iPad-Simulators aus `xcrun simctl list devices available` einsetzen:
+
+```sh
+sh Tools/test_simulators.sh <iPhone-UDID> <iPad-UDID>
+```
+
+Der Lauf erzeugt das Projekt neu, baut einmal, prüft beide Geräte und schreibt Ergebnis-Bundles, Bildschirmfotos und Testberichte unter `build/qa.*`. Er löscht keine Simulatoren.
 
 ## Blender MCP
 

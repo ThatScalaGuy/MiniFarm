@@ -4,26 +4,30 @@ Die vollständig beschriebenen Sollfunktionen stehen in [docs](docs/README.md). 
 
 | Doc | Funktion | Nachweis im integrierten Stand | Offen |
 |---|---|---|---|
-| 01 | Ruhiger Offline-Hof, kein Verlieren | App-Host ohne externe Framework-Abhängigkeiten | Spielpfad |
-| 02 | Drei Entwicklungsstufen und weiche Übergänge | Noch nicht integriert | Anpassung und Elternsteuerung |
-| 03 | Einstieg, Tag, Schlafen, Hofbuch, Hofstufen | Noch nicht integriert | Durchlauf und Neustart |
-| 04 | 17 Orte, Diorama, Kamera | Noch nicht integriert | Szenenwechsel |
-| 05 | Kulturen und Maschinen | Noch nicht integriert | Feld-/Fahraktionen |
-| 06 | Tiere, Pflege, Erzeugnisse | Noch nicht integriert | Tierinteraktionen |
-| 07 | Laden, Taler, Küche, Deko | Noch nicht integriert | Wirtschaftskreislauf |
-| 08 | Vier Jahreszeiten und Feste | Noch nicht integriert | Übergänge |
-| 09 | Wünsche und Teilaufgaben | Noch nicht integriert | Erzeugung, Handlung, Abschluss |
-| 10 | Hilfe, Fähigkeitsbahnen, Müdigkeit | Noch nicht integriert | Hilfsleiter und Langzeitsimulation |
-| 11 | Tippbedienung und Orientierungen | `Configuration/Info.plist` erlaubt Hoch-/Querformat | Interaktive Prüfung |
-| 12 | Offline-Stimme und Mehrkanalmix | Ordnerreferenz `Audio` in `project.yml` | Hör-/Mischprüfung |
-| 13 | Offline-ElevenLabs-Pipeline | Kein Netzwerk-SDK im Host | Tondateien, Provenienz und Freigabe |
-| 14 | Spielzeug-Diorama aus Blender | Ordnerreferenz `Models` | Eingebundene Modelle und Renderprüfung |
-| 15 | Swift 6, iOS 18, SwiftUI/RealityKit, Tests | `project.yml`, `MiniFarmApp`, geteiltes Scheme | Integration und echte Geräteleistung |
-| 16 | Versionierte Schemas und Validator | Noch nicht integriert | Daten- und Spielstandverträge |
-| 17 | Familie, Schutz, kein Tracking | Privacy Manifest ohne Erhebung und Tracking | Gate, Profile, selektive Löschung, Store-Angaben |
-| 18 | Barrierefreiheit und ruhige Darstellung | Noch nicht integriert | Interaktive und menschliche Abnahme |
-| 19 | Spielbarer Schnitt bis Vollausbau | Host vorhanden | Spielfortschritt statt bloßer Build |
-| 20 | Tests und Playtests | XCTest- und XCUITest-Ziele | Simulationssuite, echte Familien und Geräte |
-| 21 | Normativer Inhaltskatalog | Bundle-Ordner `Content` | Vollständigkeit und Spielbarkeit getrennt prüfen |
+| 01 | Ruhiger Offline-Hof, kein Verlieren | Einfinger-Eingaben, positive Hilfen und unbegrenzte Wünsche in `FarmGame`, `FarmSkills`, `FarmPlayView`; keine Online-Abhängigkeit | Kindliche Verständlichkeit und Spielspaß nicht durch Tests belegbar |
+| 02 | Drei Entwicklungsstufen und weiche Übergänge | `FarmSkills` sowie sieben `AdaptiveTests`, getrennte Elternrevision statt Zurückstufen bei jedem Start | Pädagogische Kalibrierung und Langzeiterfolg mit Familien |
+| 03 | Einstieg, Tag, Schlafen, Hofbuch, Hofstufen | `FarmGameTests.freshFarmPlaysRadishCycleAndRestoresMidStep`, `consecutiveDaysReachAllFiveFarmLevelsWithoutBuyingAnything`; 151 Hofbucheinträge | Umfangreiche Stufenaufstiegszeremonien und mehrjährige Langzeitbeobachtung |
+| 04 | 17 Orte, Diorama, Kamera | `WorldLayout`, `WorldStage`, `WorldWorkshop` mit 17 Ortsmodellen, Nahsichten und Karte. Getrennte iPad-Szenenprobe zeigt Hof mit Gebäuden, Tieren und Beeten | Freie Kamera/physische Mindestgeräte und Kindererprobung |
+| 05 | Kulturen und Maschinen | 14 Kulturdefinitionen, 56 Wachstumsmodelle; `ProductionTests.tractorWorksRowsAndRainDoesNotWaterIndoorBeds`; je Arbeitsschritt Ziel/Gerät, fahrzeugbezogene Animation | Keine durchgängige freie Fahrzeugphysik, nicht für jede Maschine Spezial-Cockpit |
+| 06 | Tiere, Pflege, Erzeugnisse | 11 Tierarten, Instanzen, Tagesproduktion, Fütterung und Pflege; `eachAnimalSuppliesItsOwnDailyProductAndBlockedVisitsDoNothing`; 17 lokale Tierlaut-Dateien | Individuelle Bewegungsclips und Verhaltensvielfalt pro Tier |
+| 07 | Laden, Taler, Küche, Deko | Ernte/Lager/Regal/Verkauf, 12 Rezepte, Kosmetik-Wunschzettel mit 108 Dekodefinitionen. `ProductionTests` + `FarmLifeTests` prüfen Bestandsänderungen, Kauf, Platzierung | Nicht jede Tätigkeit hat individuell animierte Requisiten |
+| 08 | Vier Jahreszeiten und Feste | `seasons.json`, aktionsgebundener Tag und Saisonwechsel; optionale Feste und eingeklappte Wünsche in `festivalIsOptionalAndFoldedInvitationsSurvive` | Vollständig inszenierte Einzelfeste und aufwendige Wetter-Effekte |
+| 09 | Wünsche und Teilaufgaben | 39 Aktivitätsdefinitionen, mehrstufige Wünsche, freies Spiel und pausierbare Schritte in `FarmGame` | Haptische/motorische Differenzierung und E2E für alle 39 Varianten |
+| 10 | Hilfe, Fähigkeitsbahnen, Müdigkeit | `AdaptiveTests`: Gewichtung, Beobachtungsfenster, Stufenwechsel über zehn verschiedene Tage, Unterbrechung, begrenzter Verlauf. Stillstand zeigt Hinweise, schließt nicht von allein ab | Feinmotorische Beobachtung und Kalibrierung mit echten Kindern |
+| 11 | Tippbedienung und Orientierungen | `FarmPlayView` mit physischen Zielen, Bildkarten, alternativen Tasten und gemeinsamem Kamera-/Touchkoordinatensystem. iPad-Weltprobe spielt die erste Ernte mit Eingaben nach Drehung | Kontrollgrößen, Erreichbarkeit und Orientierungswechsel mit Kindern auf Geräten |
+| 12 | Offline-Stimme und Mehrkanalmix | `MiniFarmAudioController`, vier Saisonmusik-Loops, ein Ambiente, 20 Effekt-Dateien; deutsche lokale Sprachsynthese für dynamische Texte, getrennte Busse und Ducking | Keine vollständige Sprecherbesetzung; Hörtest, räumliche Mischung und Limiter offen |
+| 13 | Offline-ElevenLabs-Pipeline | `Tools/Audio` enthält getrennte Vorabgenerierung und Provenienzprüfungen. Die App erzeugt keine Netzwerkaufrufe an ElevenLabs | Keine neu bestätigten ElevenLabs-Spielaufnahmen. 18 manifestierte Sprach-Cues ohne Audiodatei sind **keine** 18 fertigen Takes. Rechtestatus, menschliche Abnahme, ca. 4.000 Planzeilen offen |
+| 14 | Spielzeug-Diorama aus Blender | `Models/manifest.json`: 113 echte USDZ, darunter Pflanzenphasen, Gebäude, Tiere, Werkzeuge und Maschinen. `WorldWorkshop` klont Modelle und startet native Idle-Clips; 159 eigens gezeichnete Piktogramme | Keine Sammlung benannter Skelettanimationen; Produktion weiterer Figuren, Spezialclips, LOD |
+| 15 | Swift 6, iOS 18, SwiftUI/RealityKit, Tests | Vollhost aus `MiniFarmApp`, `FamilyRootView`, `FarmSessionView`, `FarmGame` und `FarmPlayView`. `project.yml` und das eingecheckte Projekt beschreiben dieselben App-/Testquellen; eigenständiger Release-Paketcheck | Leistung, Wärme, Stromverbrauch und Gerätesignierung an echter Hardware |
+| 16 | Versionierte Schemas und Validator | 12 versionierte Gameplay-JSONs, `FarmCatalog.validate()`, `FarmState`- und Backup-Dekodierung; Welt + Skills atomar pro Profil | Inhaltsschlüssel sind funktionale Projektionen der Schema-Beispiele, keine 1:1-Kopie; vollständige modell-/audioübergreifende Freigabe offen |
+| 17 | Familie, Schutz, kein Tracking | `App/Family`: Zahlwort-/VoiceOver-Gate, vier getrennte Tierprofile, Ruhe-/Ton-/Lerneinstellungen, Eltern-Timer, Löschung und invalidierte alte Save-Handles. SHA-256-Prüfsummen, Backup-Wiederherstellung und Quarantäne; Privacy Manifest ohne Erhebung/Tracking | Anbieterangaben, rechtliche Prüfung und Store-Angaben vor Veröffentlichung |
+| 18 | Barrierefreiheit und ruhige Darstellung | Alle Kernhandlungen per Tipp; VoiceOver-Ziele und beschriftete Alternativen zur 3D-Treffgenauigkeit, spielbare Schritte ohne Lesezwang; Bewegungs-/Ton-/Kontrastparameter | Reale Prüfungen mit Switch Control, Assistive Access und den Zielgruppen |
+| 19 | Spielbarer Schnitt bis Vollausbau | iPad-Szenenprobe absolvierte den Onboardingpfad mit echten Gesten. `FarmGameTests` prüft alle 39 Aktivitäten auf allen drei Entwicklungsstufen sowie das Erreichen aller Hofstufen | Spezialinszenierungen und Performance-Ziele nicht durch Zustands-/Katalogtests bewiesen |
+| 20 | Tests und Playtests | `Tools/test_simulators.sh`, `Tools/Validation/check-build.sh`, `Tests/Gameplay/run-gameplay-tests.py`: getrennte Daten-, UI- und Offline-Bundleprüfungen. 10.000 Hoftage als gesondert aktivierbare Langsimulation | Keine Beobachtungsstudien, Verständlichkeits-, pädagogische oder Releasefreigabe |
+| 21 | Normativer Inhaltskatalog | `Content`: 17 Orte, 14 Kulturen, 11 Tiere, 39 Aktivitäten, 12 Maschinen inkl. Kutsche, 5 Handwerkzeuge, 48 Items, 12 Rezepte, 4 Jahreszeiten, 108 Dekos, 151 Hofbucheinträge | Inhalts-ID allein belegt weder eigene Animation noch gesprochene Aufnahme |
 | 22 | Einheitliche Begriffe | Konzeptvokabular übernommen | Sichtung in Spiel und Elternbereich |
 | 23 | Annahmen und offene Entscheidungen | [DESSSICION.md](DESSSICION.md) | Produkt-/Releaseentscheidungen bestätigt niemand automatisch |
+
+### Früher Prüfpunkt
+
+Der Host bei `4334ee9` besteht auf dem isolierten iPhone-17e-Simulator (iOS 27.2) zwei Tests: sichtbarer Appstart und Privacy Manifest im installierten Bundle. Das ist ausdrücklich **noch kein Spielnachweis**. Die tatsächlichen Build Settings lauten `IPHONEOS_DEPLOYMENT_TARGET=18.0`, `SWIFT_VERSION=6.0`, `TARGETED_DEVICE_FAMILY=1,2` und `DEVELOPMENT_TEAM=V75G3N885G`.

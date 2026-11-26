@@ -62,7 +62,7 @@ enum FamilyInfoTopic: String, CaseIterable, Hashable, Sendable, Identifiable {
             ]
         case .credits:
             [
-                "Musik, Umgebungsklänge und Tierlaute erzeugt MiniFarm selbst im Spiel. Dafür gibt es keine Aufnahmen.",
+                "Musik, Umgebungsklänge und Tierlaute wurden für MiniFarm mit einem Klangprogramm erzeugt. Die fertigen Tondateien sind in der App enthalten.",
                 "Wenn für einen Satz keine Sprachdatei vorliegt, spricht die Sprachausgabe dieses Geräts. Sie funktioniert ohne Internet.",
                 "Figuren, Tiere und Bildsymbole wurden eigens für MiniFarm gestaltet, die Figuren in Blender.",
                 "Bei der Entwicklung von MiniFarm wurden KI-Werkzeuge eingesetzt.",
