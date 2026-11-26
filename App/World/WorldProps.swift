@@ -2,11 +2,52 @@ import RealityKit
 
 @MainActor
 extension WorldWorkshop {
+    func decoration(_ id: String, in p: Entity, season: String) {
+        let code = id.utf8.reduce(0) { ($0 + Int($1)) % 251 }
+        let color = [0xe19e83, 0xe3bf76, 0x91aabe, 0xb391a8, 0x88a68c][code % 5]
+        let kind = id.split(separator: ".").dropFirst().first
+        switch kind {
+        case "fence": fence(p, from: [-0.53, 0, 0], to: [0.53, 0, 0], posts: 2 + code % 3)
+        case "path": prop(id.hasSuffix("planks") ? "sticks" : "path", in: p)
+        case "bench": prop("bench", in: p)
+        case "table":
+            for x: Float in [-0.34, 0.34] {
+                for z: Float in [-0.23, 0.23] { box(p, [x, 0.26, z], [0.1, 0.52, 0.1], Self.timber) }
+            }
+            box(p, [0, 0.57, 0], [0.94, 0.13, 0.7], Self.timber)
+            box(p, [0.09, 0.65, 0], [0.47, 0.04, 0.72], color)
+        case "tree": tree(p, season: season, fruit: id.hasSuffix("apple"))
+        case "flower":
+            for i in 0..<(2 + code % 3) { flower(p, at: [Float(i)*0.21, 0, 0.14*sin(Float(i)*3)], color: color) }
+        case "lantern", "light":
+            box(p, [0, 0.46, 0], [0.13, 0.92, 0.13], Self.timber)
+            box(p, [0, 0.92, 0], [0.43, 0.4, 0.36], Self.straw)
+            box(p, [0, 1.16, 0], [0.52, 0.09, 0.46], color)
+        case "windmill":
+            box(p, [0, 0.52, 0], [0.12, 1.04, 0.12], Self.timber)
+            for i in 0..<4 {
+                let a = Float(i) * .pi / 2
+                tilt(box(p, [0.22*cos(a), 0.96+0.22*sin(a), 0.09], [0.45, 0.18, 0.06], i.isMultiple(of: 2) ? color : Self.cream), a)
+            }
+        default:
+            box(p, [0, 0.36, 0], [0.12, 0.72, 0.14], Self.timber)
+            box(p, [0.11, 0.69, 0], [0.6, 0.42, 0.12], color)
+            oval(p, [0.11, 0.69, 0.09], [0.22, 0.22, 0.07], Self.cream)
+        }
+    }
+
     func prop(_ id: String, in p: Entity) {
         let wood = Self.timber, cream = Self.cream, straw = Self.straw, blue = Self.teal
         if id.hasPrefix("animal.") || id == "friend" { animal(id == "friend" ? "animal.dog" : id, p); return }
         if id.hasPrefix("veh.") || id.hasPrefix("imp.") { vehicle(id, p); return }
         if id.hasPrefix("npc.") { person(id, p); return }
+        if id.hasPrefix("count."), let count = Int(id.dropFirst(6)) {
+            for i in 0..<min(6, count) {
+                let x = Float(i % 2) * 0.45, z = Float(i / 2) * 0.43
+                oval(p, [x, 0.23, z], [0.34, 0.45, 0.34], Self.cream)
+            }
+            return
+        }
         if id.hasPrefix("crop.") || id.hasPrefix("item.seed.") {
             if id.hasPrefix("item.seed.") {
                 box(p, [0, 0.42, 0], [0.64, 0.82, 0.22], 0xe6c794)
@@ -75,6 +116,13 @@ extension WorldWorkshop {
             box(p, [0, 0.1, 0], [1.4, 0.2, 0.86], wood)
             box(p, [0, 0.21, 0], [1.3, 0.06, 0.77], 0x715138)
             for x: Float in [-0.4, 0, 0.4] { oval(p, [x, 0.24, 0], [0.18, 0.12, 0.57], 0x856341) }
+        case "tool.hand":
+            oval(p, [0, 0.33, 0], [0.49, 0.54, 0.19], cream)
+            for i in 0..<4 {
+                oval(p, [Float(i)*0.105 - 0.145, 0.56, 0], [0.12, 0.28 - 0.035*Float(abs(i-1)), 0.14], cream)
+            }
+            tilt(oval(p, [-0.24, 0.39, 0], [0.17, 0.28, 0.16], cream), 0.47)
+            box(p, [0, 0.1, 0], [0.37, 0.15, 0.2], blue)
         case "tool.brush", "tool.shears":
             box(p, [0, 0.16, 0], [0.55, 0.27, 0.48], id == "tool.brush" ? straw : 0x9baaaa)
             box(p, [0.27, 0.32, 0], [0.8, 0.14, 0.2], wood)
@@ -88,7 +136,35 @@ extension WorldWorkshop {
             box(p, [0, 0.97, 0.235], [0.33, 0.08, 0.04], Self.darkWood)
             if id == "birdhouse" || id == "scarecrow" { hat(p, y: 1.2) }
         case "hat": hat(p, y: 0.1)
-        case "flower": flower(p)
+        case "flower", "daisy", "dandelion", "bellflower":
+            flower(p, color: ["daisy":cream, "dandelion":straw, "bellflower":0x9c91bd][id] ?? 0xe89383)
+        case "grass", "leaf": leaves(p, at: .zero, count: id == "leaf" ? 1 : 6)
+        case "soil", "stones", "path":
+            for i in 0..<5 {
+                oval(p, [0.3 * cos(Float(i)*2), 0.07 + Float(i)*0.015, 0.22 * sin(Float(i)*2)],
+                     [0.45, 0.17, 0.32], id == "soil" ? 0x876544 : (i.isMultiple(of: 2) ? 0xa9aca0 : 0xc0b49d))
+            }
+        case "sticks":
+            for i in 0..<3 {
+                let x = Float(i) * 0.12
+                stick(p, from: [-0.3+x, 0.08+x, 0.15], to: [0.3+x, 0.08, -0.22], width: 0.09, color: wood)
+            }
+        case "tree": tree(p, season: "season.summer", fruit: false)
+        case "gate", "perch": fence(p, from: [-0.53, 0, 0], to: [0.53, 0, 0], posts: id == "gate" ? 3 : 2)
+        case "bench":
+            for s: Float in [-1, 1] { box(p, [s*0.37, 0.22, 0], [0.14, 0.42, 0.44], wood) }
+            box(p, [0, 0.46, 0], [1.1, 0.13, 0.54], straw)
+            box(p, [0, 0.69, -0.23], [1.05, 0.37, 0.09], wood)
+        case "watertrough":
+            prop("trough", in: p)
+            box(p, [0, 0.31, 0], [0.86, 0.045, 0.52], blue)
+        case "well":
+            drum(p, [0, 0.31, 0], [0.92, 0.61, 0.92], 0xbfaa8d)
+            drum(p, [0, 0.62, 0], [0.74, 0.04, 0.74], blue)
+        case "snow.large", "snow.middle", "snow.small":
+            box(p, [0, 0.02, 0], [1.1, 0.04, 0.74], 0xbccfcf)
+            let r: Float = id == "snow.large" ? 0.93 : (id == "snow.middle" ? 0.67 : 0.4)
+            oval(p, [0, r/2+0.03, 0], [r,r,r], cream)
         case "snowman", "snowball":
             oval(p, [0, 0.31, 0], [0.73, 0.67, 0.73], cream)
             if id == "snowman" {

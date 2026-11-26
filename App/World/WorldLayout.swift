@@ -74,8 +74,11 @@ struct WorldFraming: Equatable {
 
     init(size: CGSize, site: WorldSite?, level: Int) {
         self.size = size
-        let pitch: Float = (site == nil ? 39 : (site?.animal == nil ? 34 : 27)) * .pi / 180
-        let yaw: Float = (site == nil ? 21 : 9) * .pi / 180
+        let portrait = size.height > size.width * 1.15
+        let pitch: Float = (site == nil ? (portrait ? 48 : 39) : (site?.animal == nil ? 34 : 27)) * .pi / 180
+        // Look along the island's long side on tall phones. This preserves the
+        // whole scene without shrinking the animals to fit its diagonal width.
+        let yaw: Float = (site == nil ? (portrait ? 80 : 24) : 9) * .pi / 180
         let back = WPoint(sin(yaw) * cos(pitch), sin(pitch), cos(yaw) * cos(pitch))
         let right = WPoint(cos(yaw), 0, -sin(yaw))
         let up = simd_cross(back, right)

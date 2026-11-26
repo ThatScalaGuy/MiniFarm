@@ -24,6 +24,13 @@ struct FarmWorldState: Equatable {
     var stage: WorldStage = .seedling
     var cameraSpeedScale = 1.0
     var particleScale = 1.0
+    var decorations: [WorldDecoration] = []
+}
+
+struct WorldDecoration: Equatable {
+    let positionID: String
+    let decorationID: String
+    let quarterTurns: Int
 }
 
 enum WorldStage { case seedling, shoot, bloom }
@@ -74,5 +81,5 @@ struct WorldSticker: Identifiable, Equatable {
 
 enum FarmWorldIntent: Equatable {
     case visit(String), begin(String), perform(String?), help, idleHint, leaveActivity
-    case discover(String), readSticker(String), endDay, nextSeason, pause
+    case discover(String), readSticker(String), endDay, nextSeason, pause, decorationBox
 }

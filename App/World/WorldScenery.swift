@@ -46,6 +46,19 @@ extension WorldWorkshop {
             box(p, [s * 0.8, 0.74, 0], [0.15, 1.25, 1.28], color)
             box(p, [s * 0.8, 0.76, 0.61], [0.15, 1.34, 0.15], Self.cream)
         }
+        if open {
+            for s: Float in [-1, 1] {
+                tilt(box(p, [s*0.48, 1.57, -0.53], [1.16, 0.16, 0.51], roof), -s*0.45)
+                stick(p, from: [s*0.86, 1.37, 0.61], to: [0, 1.81, 0.61], width: 0.1, color: Self.timber)
+            }
+            for y: Float in [0.36, 0.66, 0.96] { box(p, [0, y, -0.52], [1.49, 0.045, 0.055], Self.timber) }
+            let nest = group(p, at: [-0.29, 0.24, -0.13])
+            prop("nest", in: nest)
+            nest.scale = .init(repeating: 0.7)
+            let egg = oval(p, [-0.27, 0.5, -0.13], [0.2, 0.27, 0.2], Self.cream)
+            tilt(egg, -0.16)
+            stick(p, from: [-0.68, 0.83, -0.22], to: [0.68, 0.83, -0.22], width: 0.09, color: Self.darkWood)
+        }
         if !open {
             box(p, [0, 0.75, 0.59], [1.64, 1.26, 0.14], color)
             box(p, [-0.29, 0.57, 0.69], [0.58, 0.96, 0.1], Self.darkWood)
@@ -79,6 +92,12 @@ extension WorldWorkshop {
     func place(_ site: WorldSite, in root: Entity, state: FarmWorldState, focus: Bool, active: Bool) {
         let p = group(root, at: site.center)
         p.name = site.id
+        if focus && !active && (site.id == "loc.shop" || site.id == "loc.plaza") {
+            let chest = group(p, at: [-0.08, 0.035, 1.19])
+            prop("crate", in: chest)
+            box(chest, [0, 0.49, 0], [1.09, 0.12, 0.72], Self.teal)
+            box(chest, [0, 0.39, 0.37], [0.14, 0.15, 0.055], Self.straw)
+        }
         switch site.id {
         case "loc.plaza":
             let treeRoot = group(p, at: [-0.57, 0, -0.47])
@@ -89,6 +108,17 @@ extension WorldWorkshop {
             drum(p, [1.16, 0.58, -0.75], [0.77, 0.045, 0.77], 0x7aafa9)
             for s: Float in [-1, 1] { box(p, [1.16 + 0.38*s, 0.86, -0.75], [0.1, 0.69, 0.1], Self.timber) }
             box(p, [1.16, 1.21, -0.75], [1.14, 0.17, 0.86], 0xb86f4e)
+            let slots: [String: WPoint] = [
+                "tree": [-1.54, 0.04, 0.5], "well": [1.85, 0.04, -0.43],
+                "gate": [-1.85, 0.04, 1.12], "mailbox": [1.57, 0.04, 0.99],
+                "path": [0.58, 0.04, 1.44], "fence": [-1.76, 0.04, -1.24],
+            ]
+            for piece in state.decorations {
+                guard let point = slots[piece.positionID] else { continue }
+                toy(piece.decorationID, in: p, at: point, span: 0.93, yaw: Float(piece.quarterTurns % 4) * .pi / 2) {
+                    self.decoration(piece.decorationID, in: $0, season: state.season)
+                }
+            }
         case "loc.garden", "loc.field", "loc.greenhouse":
             let beds = state.beds.filter { $0.locationID == site.id }
             let n = beds.isEmpty ? (site.id == "loc.field" ? 16 : 6) : beds.count

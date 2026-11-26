@@ -56,6 +56,10 @@ final class FarmDiorama {
     private var particles = 1.0
     private var activeObject: Entity?
     private var animating: [(entity: Entity, start: WPoint, end: WPoint, arc: Float)] = []
+    private var furrow: Entity?
+    private var routeStart = WPoint.zero
+    private var resident: Entity?
+    private var residentRest = Transform()
     private var light: DirectionalLight
     private var landKey = ""
 
@@ -68,12 +72,14 @@ final class FarmDiorama {
         var cared: Set<String>
         var focus: String?
         var playing: Bool
+        var decorations: [WorldDecoration]
     }
 
     init() {
         light = DirectionalLight()
         light.light.intensity = 1650
         light.light.color = UIColor(farmRGB: 0xffedce)
+        light.shadow = .init(shadowProjection: .automatic(maximumDistance: 110), depthBias: 1.1)
         light.look(at: .zero, from: [-6, 10, 6], relativeTo: nil)
         for entity in [land, furniture, objects, effects, camera, light] { root.addChild(entity) }
         camera.camera = .init(near: 0.05, far: 320, fieldOfViewInDegrees: WorldFraming.fov)
@@ -91,7 +97,8 @@ final class FarmDiorama {
         still = !motion
         particles = max(0, min(1, state.particleScale))
         let key = SceneryKey(places: state.locationIDs, season: state.season, level: state.farmLevel, beds: state.beds,
-                             shelf: state.shelf, cared: state.caredFor, focus: site?.id, playing: state.active != nil)
+                             shelf: state.shelf, cared: state.caredFor, focus: site?.id, playing: state.active != nil,
+                             decorations: state.decorations)
         let sites = WorldSite.all.filter { key.places.contains($0.id) }
         let newLand = "\(key.level)|\(key.season)|\(key.places.joined(separator: ","))"
         if landKey != newLand {
@@ -127,8 +134,8 @@ final class FarmDiorama {
                 if let site, place.id != site.id, place.center.z >= site.center.z - 1 { continue }
                 w.place(place, in: furniture, state: state, focus: place == site, active: place == site && state.active != nil)
             }
-            let pos = site.map { $0.center + [-1.77, 0.08, 0.34] } ?? [-0.63, 0.075, 0.31]
-            creature = w.toy("animal.dog", in: furniture, at: pos, span: site == nil ? 1.48 : 1.12, yaw: 0.48)
+            let pos = site.map { $0.center + [-2.05, 0.08, 0.48] } ?? [-0.63, 0.075, 0.31]
+            creature = w.toy("animal.dog", in: furniture, at: pos, span: site == nil ? 1.68 : 1.28, yaw: 0.43)
             creatureBase = pos
             activeObject = nil
             sceneryKey = key
@@ -141,7 +148,7 @@ final class FarmDiorama {
             if let site, let dest {
                 let resolved = dest == "friend" ? (site.animal ?? "animal.dog") : dest
                 if !resolved.hasPrefix("animal."), !(resolved == "bed" && state.beds.contains(where: { $0.locationID == site.id })) {
-                    w.toy(resolved, in: objects, at: dropPoint(site), span: dest == "bed" || dest == "lane" ? 1.54 : 0.88)
+                    w.toy(resolved, in: objects, at: dropPoint(site), span: dest == "bed" || dest == "lane" ? 1.54 : 0.85)
                 }
             }
             for obj in targets {
@@ -197,16 +204,37 @@ final class FarmDiorama {
         activeObject = nil
     }
 
-    func dropPoint(_ site: WorldSite) -> WPoint { site.center + [0.65, 0.14, 0.39] }
+    func dropPoint(_ site: WorldSite) -> WPoint { site.center + [1.48, 0.095, 0.8] }
 
     func respond(to obj: WorldObject, turn: WorldTurn, site: WorldSite, motion: Bool) {
         effects.children.removeAll()
         animating.removeAll()
+        furrow = nil
+        resident?.transform = residentRest
+        resident = nil
         effectTime = 0
         let dest = dropPoint(site) + [0, 0.32, 0]
         let tag = turn.vignette?.effect
         let particleColor = tag == "water" ? 0x6db9cb : (tag == "care" ? 0xe8a08e : 0xefd074)
-        let machine = obj.model.hasPrefix("veh.") || obj.model.hasPrefix("imp.")
+        let machine = WorldVignette.driving.contains(turn.offering.activityID)
+        if machine {
+            let id = turn.offering.activityID == "act.field.combine" ? "veh.combine" : "veh.tractor"
+            let rig = w.group(effects)
+            w.toy(id, in: rig, span: 1.36)
+            if id == "veh.tractor" {
+                w.toy(obj.model.hasPrefix("imp.") ? obj.model : "imp.plow", in: rig, at: [0.98, 0.02, 0], span: 0.79)
+            }
+            routeStart = site.center + [1.44, 0.3, 0.77]
+            let end = routeStart - [2.83, 0, 0]
+            rig.position = motion ? routeStart : end
+            animating.append((rig, rig.position, end, 0))
+            furrow = w.box(effects, routeStart, [1, 0.055, 0.19], 0x8c6849)
+            return
+        }
+        if let species = site.animal, let animal = furniture.findEntity(named: "resident." + species) {
+            resident = animal
+            residentRest = animal.transform
+        }
         let n = motion && !machine ? max(1, Int(5 * particles)) : 1
         for i in 0..<n {
             let end = dest + WPoint(0.21 * cos(Float(i)*2.1), Float(i)*0.065, 0.18 * sin(Float(i)*2.1))
@@ -232,6 +260,17 @@ final class FarmDiorama {
         for fx in animating {
             fx.entity.position = fx.start + (fx.end - fx.start) * t + [0, fx.arc * sin(t * .pi), 0]
         }
-        if effectTime > 1.3 { animating.removeAll(); effects.children.removeAll() }
+        if let furrow {
+            let width = max(0.06, (still ? 1 : t) * 2.83)
+            furrow.scale.x = width
+            furrow.position = routeStart - [width * 0.5, 0.025, 0]
+        }
+        if let resident, !still {
+            resident.orientation = residentRest.rotation * simd_quatf(angle: 0.165 * sin(t * .pi * 2), axis: [1,0,0])
+        }
+        if effectTime > 1.3 {
+            resident?.transform = residentRest; resident = nil
+            animating.removeAll(); effects.children.removeAll(); furrow = nil
+        }
     }
 }

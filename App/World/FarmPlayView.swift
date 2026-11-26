@@ -41,17 +41,23 @@ struct FarmPlayView: View {
             let targets = WorldObject.targets(turn: state.active, site: site, page: page, perPage: perPage, beds: state.beds)
             ZStack {
                 FarmSky(season: state.season, weather: state.weather, evening: state.sunProgress >= 0.72)
-                VStack(spacing: 0) {
-                    topBar(size: size, compact: compact)
-                    stage(targets: targets, size: size)
-                    if let caption = state.caption, !caption.isEmpty {
-                        Text(caption).font(.system(.callout, design: .rounded, weight: .semibold))
-                            .multilineTextAlignment(.center).foregroundStyle(FarmPaper.pine)
-                            .padding(.horizontal, 14).padding(.vertical, 4)
-                            .background(FarmPaper.cream, in: Capsule()).lineLimit(2)
-                            .accessibilityIdentifier("world.caption")
+                ZStack {
+                    if compact {
+                        stage(targets: targets, size: size)
+                            .padding(.horizontal, size * 0.8).padding(.top, 8).padding(.bottom, 27)
                     }
-                    bottomBar(size: size, perPage: perPage)
+                    VStack(spacing: 0) {
+                        topBar(size: size, compact: compact)
+                        if compact { Spacer(minLength: 0) } else { stage(targets: targets, size: size) }
+                        if let caption = state.caption, !caption.isEmpty {
+                            Text(caption).font(.system(.callout, design: .rounded, weight: .semibold))
+                                .multilineTextAlignment(.center).foregroundStyle(FarmPaper.pine)
+                                .padding(.horizontal, 14).padding(.vertical, 4)
+                                .background(FarmPaper.cream, in: Capsule()).lineLimit(2)
+                                .accessibilityIdentifier("world.caption")
+                        }
+                        bottomBar(size: size, perPage: perPage)
+                    }
                 }
                 .padding(.horizontal, compact ? 4 : 7).padding(.vertical, 2)
                 .accessibilityHidden(sheet != nil)
@@ -122,9 +128,10 @@ struct FarmPlayView: View {
                         }.buttonStyle(.plain).position(point)
                             .accessibilityLabel(place.name).accessibilityIdentifier("world.place." + place.id)
                     }
+                    wishBubbles(framing: f, size: size)
                 }
                 if let response {
-                    Text(response.picture).font(.system(size: 28))
+                    FarmPictogram(id: response.picture).frame(width: 33, height: 33)
                         .padding(7).background(FarmPaper.cream, in: Capsule())
                         .overlay(Capsule().strokeBorder(FarmPaper.edge.opacity(0.38), lineWidth: 1))
                         .frame(maxHeight: .infinity, alignment: .top).allowsHitTesting(false)
@@ -132,6 +139,40 @@ struct FarmPlayView: View {
                 }
             }
         }
+    }
+
+    private func wishBubbles(framing f: WorldFraming, size: CGFloat) -> some View {
+                    let limit = state.stage == .seedling ? 2 : 3
+                    var occupied: [CGPoint] = []
+                    var places: Set<String> = []
+                    let bubbles: [(WorldOffering, CGPoint)] = offers.filter { $0.isWish && places.insert($0.locationID).inserted }
+                        .prefix(limit).compactMap { offer in
+                            guard let s = WorldSite.at(offer.locationID) else { return nil }
+                            let base = f.project(s.center + [0, 1.1, 0])
+                            let d = min(size, 80)
+                            var p = CGPoint(x: min(max(d/2, base.x), f.size.width-d/2),
+                                            y: max(d/2, base.y-d*0.77))
+                            if occupied.contains(where: { abs($0.x-p.x) < d && abs($0.y-p.y) < d*0.62 }) {
+                                p.y = max(d/2, p.y-d*0.78)
+                            }
+                            occupied.append(p)
+                            return (offer, p)
+                        }
+                    return ForEach(Array(bubbles.enumerated()), id: \.element.0.id) { _, pair in
+                        let (offer, p) = pair
+                        Button { start(offer) } label: {
+                            VStack(spacing: -4) {
+                                HStack(spacing: 1) {
+                                    FarmPictogram(id: offer.subjectID ?? WorldSite.at(offer.locationID)?.animal ?? offer.locationID)
+                                        .frame(width: 26, height: 26)
+                                    FarmPictogram(id: offer.activityID).frame(width: 27, height: 27)
+                                }.padding(4).background(FarmPaper.cream, in: Capsule())
+                                    .overlay(Capsule().strokeBorder(FarmPaper.edge.opacity(0.5), lineWidth: 1))
+                                Image(systemName: "arrowtriangle.down.fill").font(.system(size: 9)).foregroundStyle(FarmPaper.edge)
+                            }.frame(width: size, height: 64).contentShape(Rectangle())
+                        }.buttonStyle(.plain).accessibilityLabel(WorldVignette.all[offer.activityID]?.label ?? "Wunsch")
+                            .accessibilityIdentifier("world.wish." + offer.id).position(p)
+                    }
     }
 
     private func objectButton(_ obj: WorldObject, framing f: WorldFraming, size: CGFloat) -> some View {
@@ -171,15 +212,19 @@ struct FarmPlayView: View {
     }
 
     @ViewBuilder private func details(site: WorldSite, framing f: WorldFraming, size: CGFloat) -> some View {
+        if site.id == "loc.shop" || site.id == "loc.plaza" {
+            sceneButton(at: f.project(site.center + [-0.08, 0.46, 1.19]), size: size, label: "Dekokiste öffnen",
+                        id: "world.decorationBox", picture: "shippingbox.fill") { send(.decorationBox) }
+        }
         if site.id == "loc.plaza" {
             sceneButton(at: f.project(site.center + [-0.55, 1.52, -0.51]), size: size, label: "Hofbaum und Hofbuch",
-                        id: "world.tree", picture: "📖") { sheet = .book }
+                        id: "world.tree", picture: "book.fill") { sheet = .book }
         }
         let discoveries = state.book.filter { $0.id.hasPrefix("hofbook.discovery.") && $0.locationID == site.id }
         if let find = discoveries.first(where: { !$0.discovered }) ?? discoveries.first {
             sceneButton(at: f.project(site.center + [1.51, 0.85, -0.04]), size: size,
-                        label: find.label, id: "world.discover." + find.id, picture: "🔎") {
-                send(.discover(find.id)); response = Reaction(picture: "🍃", label: find.label)
+                        label: find.label, id: "world.discover." + find.id, picture: "magnifyingglass") {
+                send(.discover(find.id)); response = Reaction(picture: find.modelID, label: find.label)
             }
         }
         let beds = state.beds.filter { $0.locationID == site.id }
@@ -213,7 +258,7 @@ struct FarmPlayView: View {
             ZStack {
                 Color.clear
                 if let picture {
-                    Text(picture).font(.title3).padding(5).background(FarmPaper.cream, in: Circle())
+                    Image(systemName: picture).font(.title3).foregroundStyle(FarmPaper.pine).padding(5).background(FarmPaper.cream, in: Circle())
                         .offset(x: size*0.2, y: -size*0.22)
                 }
             }.frame(width: size, height: size).contentShape(Rectangle())
@@ -269,13 +314,22 @@ struct FarmPlayView: View {
                         page = (page+1) % count
                     }
                 }
-                HStack(spacing: 5) {
-                    Text(turn.vignette?.picture ?? "🐾").font(.title2)
-                    ForEach(0..<min(8, max(1, turn.stepCount)), id: \.self) { i in
-                        Circle().fill(i <= turn.stepIndex ? FarmPaper.pine : FarmPaper.edge.opacity(0.24)).frame(width: 6, height: 6)
+                if WorldVignette.driving.contains(turn.offering.activityID) {
+                    WorldButton(icon: "steeringwheel", label: "Pelle fährt mit dir", id: "world.autopilot", size: size) {
+                        guard let idx = turn.choices.firstIndex(where: { $0.id == turn.targetID }) ?? turn.choices.indices.first,
+                              let obj = WorldObject.targets(turn: turn, site: site, page: idx/perPage, perPage: perPage, beds: state.beds)
+                                .first(where: { $0.choiceID == turn.choices[idx].id }) else { send(.help); return }
+                        perform(obj)
                     }
-                }.padding(8).background(FarmPaper.cream, in: Capsule())
-                    .accessibilityLabel("Bildfolge, Schritt \(turn.stepIndex+1) von \(turn.stepCount)")
+                } else {
+                    HStack(spacing: 5) {
+                        FarmPictogram(id: turn.offering.activityID).frame(width: 34, height: 34)
+                        ForEach(0..<min(8, max(1, turn.stepCount)), id: \.self) { i in
+                            Circle().fill(i <= turn.stepIndex ? FarmPaper.pine : FarmPaper.edge.opacity(0.24)).frame(width: 6, height: 6)
+                        }
+                    }.padding(8).background(FarmPaper.cream, in: Capsule())
+                        .accessibilityLabel("Bildfolge, Schritt \(turn.stepIndex+1) von \(turn.stepCount)")
+                }
                 Spacer(minLength: 0)
             } else {
                 ScrollView(.horizontal) {
@@ -290,7 +344,7 @@ struct FarmPlayView: View {
                                     HStack(spacing: -4) {
                                         FarmPictogram(id: offer.subjectID ?? WorldSite.at(offer.locationID)?.animal ?? offer.locationID)
                                             .frame(width: size*0.44, height: size*0.44)
-                                        Text(art?.picture ?? "🐾").font(.system(size: size*0.29))
+                                        FarmPictogram(id: offer.activityID).frame(width: size*0.43, height: size*0.43)
                                     }
                                 }.frame(width: size*1.09, height: size*0.72).padding(.vertical, size*0.14)
                                     .contentShape(Rectangle())
@@ -387,7 +441,7 @@ struct FarmPlayView: View {
         lastID = key; lastTouch = .now
         if turn.targetID == nil || obj.isTarget {
             diorama.respond(to: obj, turn: turn, site: site, motion: motion)
-            response = Reaction(picture: turn.vignette?.picture ?? "🍃", label: obj.label)
+            response = Reaction(picture: turn.offering.activityID, label: obj.label)
             if state.haptics { UIImpactFeedbackGenerator(style: .soft).impactOccurred(intensity: 0.55) }
         }
         send(.perform(obj.choiceID))

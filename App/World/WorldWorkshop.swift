@@ -188,7 +188,11 @@ final class WorldWorkshop {
         Task { [weak socket, weak proxy] in
             guard let template = await task.value, let socket, let proxy else { return }
             let holder = group()
-            holder.addChild(template.clone(recursive: true))
+            let model = template.clone(recursive: true)
+            if id.hasPrefix("animal.") || id.hasPrefix("npc.") {
+                model.orientation = simd_quatf(angle: .pi, axis: [0, 1, 0]) * model.orientation
+            }
+            holder.addChild(model)
             normalize(holder, span: span)
             socket.addChild(holder)
             proxy.removeFromParent()

@@ -19,6 +19,8 @@ struct WorldVignette {
 
     func prop(step: Int) -> String { props[min(max(0, step), props.count - 1)] }
 
+    static let driving: Set<String> = ["act.field.plow", "act.field.combine", "act.field.hay", "act.field.snowplow", "act.shop.market"]
+
     static let all: [String: Self] = [
         "act.field.plow": .init("🚜", "Furchen ziehen", ["veh.tractor", "imp.plow", "veh.tractor"], "bed", "soil"),
         "act.field.sow": .init("🌱", "Samen ins Beet legen", ["item.seed.radish", "bed"], "bed", "seed"),
@@ -32,7 +34,7 @@ struct WorldVignette {
         "act.animal.water": .init("🪣", "Die Tränke füllen", ["tool.bucket", "trough"], "trough", "water"),
         "act.animal.pet": .init("🖐️", "Das Tier streicheln", ["friend", "tool.brush"], "friend", "care"),
         "act.animal.milk": .init("🥛", "Milch in den Eimer melken", ["tool.bucket", "friend", "item.milk"], "tool.bucket", "milk"),
-        "act.animal.eggs": .init("🥚", "Das Ei ins Nest legen", ["item.egg", "tool.basket"], "tool.basket", "egg"),
+        "act.animal.eggs": .init("🥚", "Die Eier in den Korb legen", ["item.egg", "tool.basket"], "tool.basket", "egg"),
         "act.animal.shear": .init("✂️", "Weiche Wolle sammeln", ["tool.shears", "item.wool"], "tool.basket", "wool"),
         "act.animal.bed": .init("🌙", "Das Tier zudecken", ["friend", "item.hay", "quilt"], "nest", "care"),
         "act.animal.find": .init("🐾", "Das Tier finden", ["friend", "friend"], "friend", "care"),
@@ -69,6 +71,9 @@ extension WorldTurn {
         let fallback = vignette?.prop(step: stepIndex) ?? "tile"
         guard let id = choice?.modelID, !id.isEmpty else { return fallback }
         let key = id.hasPrefix("model.") ? String(id.dropFirst(6)) : id
+        if let crop = key.split(separator: ":").last, crop.hasPrefix("crop."), key.contains(":") {
+            return "item.seed." + crop.dropFirst(5)
+        }
         if key.hasPrefix("plot.") { return "bed" }
         if key.hasPrefix("animal."), let kind = key.split(separator: ".").dropFirst().first { return "animal." + kind }
         if key.hasPrefix("card.") || key.hasPrefix("page.") { return "tile" }
@@ -76,10 +81,34 @@ extension WorldTurn {
             return ["station.oven":"oven", "station.press":"press", "station.churn":"churn",
                     "station.kettle":"bowl", "station.mill":"item.flour"][key] ?? vignette?.destination ?? fallback
         }
-        if key == "shop.bell" { return "bell" }
+        if let prop = Self.handmade[key] { return prop }
         if key.hasPrefix("loc.") { return vignette?.destination ?? "sign" }
         if key.hasPrefix("tool.") || key.hasPrefix("item.") || key.hasPrefix("crop.") ||
             key.hasPrefix("veh.") || key.hasPrefix("imp.") || key.hasPrefix("npc.") { return key }
-        return fallback
+        // A direction, sound, pattern, or memory face belongs on a painted
+        // wooden token. Never show identical vegetables for unlike choices.
+        return "tile"
     }
+
+    private static let handmade: [String: String] = [
+        "one":"count.1", "two":"count.2", "three":"count.3", "four":"count.4",
+        "bed":"bed", "drybed":"bed", "soil":"soil", "soil.cover":"soil", "path":"path",
+        "seed":"item.seed.radish", "sprout":"crop.radish.sprout", "leaf":"leaf",
+        "flower":"flower", "dandelion":"dandelion", "daisy":"daisy", "bellflower":"bellflower",
+        "deco.flower.daisy":"daisy", "twig":"sticks", "stick":"sticks", "sticks":"sticks",
+        "stone":"stones", "stones":"stones", "pebbles":"stones", "pebble":"stones",
+        "bench":"bench", "tree":"tree", "gate":"gate", "well":"well", "puddle":"pond",
+        "nest":"nest", "perch":"perch", "trough":"trough", "feeder":"trough", "drinker":"watertrough",
+        "manger":"trough", "blanket":"quilt", "ball":"ball", "bottle":"item.milk", "feedbag":"item.feed",
+        "basket":"tool.basket", "hen":"animal.chicken", "egg":"item.egg", "eggslot":"nest",
+        "carrotslot":"crate", "leafslot":"crate", "seedshelf":"crate", "produce":"crate", "box":"crate",
+        "sign":"sign", "order":"mail", "bell":"bell", "shop.bell":"bell", "tray":"crate",
+        "bowl":"bowl", "churn":"churn", "press":"press", "oven":"oven", "jar":"item.jam", "jars":"item.jam",
+        "head":"snowball", "large":"snow.large", "middle":"snow.middle", "small":"snow.small",
+        "hat":"hat", "headtop":"hat", "grass":"grass", "stubble":"grass", "bale":"item.hay",
+        "tools":"tool.brush", "toys":"ball", "seeds":"item.seed.radish", "eggs":"item.egg",
+        "moss":"grass", "flakes":"item.feed", "robin":"animal.bird", "tit":"animal.bird",
+        "blackbird":"animal.bird", "worm":"worm", "kite":"kite", "earthworm":"worm",
+        "treeletter":"mail", "kiteletter":"mail", "breadletter":"mail", "flowerletter":"mail",
+    ]
 }
