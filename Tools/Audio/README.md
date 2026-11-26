@@ -75,15 +75,37 @@ deterministic synthesis; they use no downloaded samples or ElevenLabs output.
 They are quiet placeholders for integration and still need listening and
 accessibility QA before release.
 
-The app's German speech fallback uses `AVSpeechSynthesizer` with an already
-installed device voice. It is local runtime synthesis, not an ElevenLabs
-recording, and no system-voice WAV is exported or checked in. The macOS 27
-Software License Agreement, section 2 (“System Voices”), permits System Voice
-use while running Apple software and to create original content/projects for
-personal, non-commercial use; it does not grant a commercial distribution
-license for rendered voice files. Check the applicable OS license before any
-commercial use:
-[Apple macOS 27 SLA, §2](https://www.apple.com/legal/sla/docs/macOS27.pdf).
+## Pinned local German voice production
+
+The bundled German voice recordings are generated locally from the
+[Thorsten Piper CC0 model](https://huggingface.co/Thorsten-Voice/Piper-Thorsten-CC0),
+pinned to revision `9beb8542b91ec176ad58adbf9f6085f96b6caa17`. The renderer
+checks the ONNX model and configuration SHA-256 values before use, runs Piper
+with ONNX Runtime and no remote code, and encodes mono 22.05 kHz MP3 files at
+48 kbit/s. Exact transcript-to-ID mappings and per-file hashes, durations,
+peaks, model revision, and license provenance are kept in
+`voice-catalog.json` and `piper-provenance.json`; the model and tooling are not
+included in the app target.
+
+Install the pinned renderer dependencies in an isolated Python 3.12
+environment and provide `ffmpeg` with `libmp3lame`, then generate and verify
+assets:
+
+```sh
+python3.12 -m venv /tmp/minifarm-piper
+/tmp/minifarm-piper/bin/python -m pip install -r Tools/Audio/requirements-piper.txt
+/tmp/minifarm-piper/bin/python Tools/Audio/render_piper.py
+/tmp/minifarm-piper/bin/python Tools/Audio/render_piper.py --verify-only
+/tmp/minifarm-piper/bin/python Tools/Audio/generate_audio.py --verify-only
+```
+
+The renderer downloads only the model and config from the pinned Hugging Face
+revision when they are not already cached, verifies their hashes, and performs
+all speech synthesis locally. It does not send text or credentials to a
+service. Recorded voice rows include the CC0 license, exact model revision,
+and revision-specific model-card URL. At runtime, a recording plays only when
+both its cue ID and supplied text exactly match; other text uses an installed
+German device voice as a local fallback, resolved off the main thread.
 
 Treat ElevenLabs prototype output separately from release assets. ElevenLabs
 states that the Free plan has no commercial license, that content created
@@ -92,4 +114,4 @@ Services output cannot be used commercially or in production. Paid-plan
 commercial rights remain subject to the applicable terms and service-specific
 conditions:
 [Can I publish the content I generate?](https://help.elevenlabs.io/hc/en-us/articles/13313564601361-Can-I-publish-the-content-I-generate-on-the-platform).
-No ElevenLabs content was generated for these checked-in assets.
+No ElevenLabs content was generated for these offline voice assets.

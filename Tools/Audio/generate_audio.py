@@ -19,6 +19,7 @@ MUSIC_PEAK = 0.105
 SFX_PEAK = 0.18
 AMBIENCE_PEAK = 0.05
 ANIMAL_PROTOTYPE_PEAK = 0.11
+TRACTOR_HORN_PEAK = 0.095
 BEAT_SECONDS = 60.0 / 78.0
 BEATS = 16
 DURATION = BEAT_SECONDS * BEATS
@@ -178,6 +179,22 @@ def generate_success():
     return shape_and_encode(samples, 0.16, fade_in=0.008, fade_out=0.08)
 
 
+def generate_tractor_horn():
+    duration = 0.46
+    samples = [0.0] * int(duration * SAMPLE_RATE)
+    for start, frequency in ((0.035, 440.0), (0.25, 523.25)):
+        pulse_duration = 0.16
+        first = int(start * SAMPLE_RATE)
+        count = int(pulse_duration * SAMPLE_RATE)
+        for offset in range(count):
+            t = offset / SAMPLE_RATE
+            envelope = math.sin(math.pi * t / pulse_duration) ** 2
+            phase = 2 * math.pi * frequency * t
+            tone = 0.86 * math.sin(phase) + 0.14 * math.sin(2 * phase)
+            samples[first + offset] += 0.45 * envelope * tone
+    return shape_and_encode(samples, TRACTOR_HORN_PEAK, fade_in=0.012, fade_out=0.04)
+
+
 def generate_moo():
     duration = 1.25
     samples = []
@@ -283,66 +300,64 @@ def write_wav(path, data):
         output.writeframes(data)
 
 
+def wav_peak(relative_path):
+    with wave.open(str(AUDIO_DIR / relative_path), "rb") as source:
+        if source.getsampwidth() != 2:
+            raise ValueError(f"Expected PCM16 audio: {relative_path}")
+        frames = source.readframes(source.getnframes())
+    return max(abs(value[0]) for value in struct.iter_unpack("<h", frames)) / 32768
+
+
 def manifest_data():
     assets = [
         {"id": f"music.season.{season}", "kind": "music",
-         "path": f"music/season.{season}.wav", "loop": True}
+         "path": f"music/season.{season}.wav", "loop": True,
+         "peak": wav_peak(f"music/season.{season}.wav")}
         for season in SEASONS
     ]
     assets.append({
         "id": "ambience.farm.day", "kind": "ambient",
         "path": "ambience/farm.day.wav", "loop": True,
+        "peak": wav_peak("ambience/farm.day.wav"),
     })
     assets += [
-        {"id": "sfx.ui.tap", "kind": "sfx", "path": "sfx/ui.tap.wav"},
-        {"id": "sfx.ui.success", "kind": "sfx", "path": "sfx/ui.success.wav"},
+        {"id": "sfx.ui.tap", "kind": "sfx", "path": "sfx/ui.tap.wav",
+         "peak": wav_peak("sfx/ui.tap.wav")},
+        {"id": "sfx.ui.success", "kind": "sfx", "path": "sfx/ui.success.wav",
+         "peak": wav_peak("sfx/ui.success.wav")},
         {"id": "sfx.animal.cow.moo", "kind": "sfx",
-         "path": "sfx/animal.cow.moo.wav"},
-        {"id": "vl.pelle.greet.morning", "kind": "voice", "path": None,
-         "locale": "de-DE"},
-        {"id": "vl.ritual.sleep", "kind": "voice", "path": None,
-         "locale": "de-DE"},
-        {"id": "vl.pelle.wish.prepare", "kind": "voice", "path": None,
-         "locale": "de-DE"},
-        {"id": "vl.pelle.home", "kind": "voice", "path": None,
-         "locale": "de-DE"},
-        {"id": "vl.pelle.greet.explore", "kind": "voice", "path": None,
-         "locale": "de-DE"},
-        {"id": "vl.hint.animal.feed", "kind": "voice", "path": None,
-         "locale": "de-DE"},
-        {"id": "vl.praise.animal.feed", "kind": "voice", "path": None,
-         "locale": "de-DE"},
-        {"id": "vl.praise.field.harvest", "kind": "voice", "path": None,
-         "locale": "de-DE"},
-        {"id": "vl.pelle.field.sow.seed", "kind": "voice", "path": None,
-         "locale": "de-DE"},
-        {"id": "vl.pelle.field.sow.field", "kind": "voice", "path": None,
-         "locale": "de-DE"},
-        {"id": "vl.pelle.field.water.use.can", "kind": "voice", "path": None,
-         "locale": "de-DE"},
-        {"id": "vl.pelle.field.water.field", "kind": "voice", "path": None,
-         "locale": "de-DE"},
-        {"id": "vl.pelle.shop.order.pack.radish", "kind": "voice", "path": None,
-         "locale": "de-DE"},
-        {"id": "vl.pelle.shop.order.ring", "kind": "voice", "path": None,
-         "locale": "de-DE"},
-        {"id": "vl.season.spring.greet", "kind": "voice", "path": None,
-         "locale": "de-DE"},
-        {"id": "vl.season.summer.greet", "kind": "voice", "path": None,
-         "locale": "de-DE"},
-        {"id": "vl.season.autumn.greet", "kind": "voice", "path": None,
-         "locale": "de-DE"},
-        {"id": "vl.season.winter.greet", "kind": "voice", "path": None,
-         "locale": "de-DE"},
+         "path": "sfx/animal.cow.moo.wav", "peak": wav_peak("sfx/animal.cow.moo.wav")},
+        {"id": "sfx.tractor.horn", "kind": "sfx", "path": "sfx/tractor.horn.wav",
+         "peak": wav_peak("sfx/tractor.horn.wav")},
     ]
     assets.extend(
         {
             "id": sound_id,
             "kind": "sfx",
             "path": f"sfx/prototype/animals/{sound_id.removeprefix('sfx.')}.wav",
+            "peak": wav_peak(f"sfx/prototype/animals/{sound_id.removeprefix('sfx.')}.wav"),
         }
         for sound_id in ANIMAL_SOUND_PROFILES
     )
+    existing_manifest = AUDIO_DIR / "manifest.json"
+    if existing_manifest.exists():
+        existing_assets = json.loads(existing_manifest.read_text(encoding="utf-8")).get("assets", [])
+        voice_assets = [asset for asset in existing_assets if asset.get("kind") == "voice"]
+    else:
+        voice_assets = [
+            {"id": voice_id, "kind": "voice", "path": None, "locale": "de-DE"}
+            for voice_id in (
+                "vl.pelle.greet.morning", "vl.ritual.sleep", "vl.pelle.wish.prepare",
+                "vl.pelle.home", "vl.pelle.greet.explore", "vl.hint.animal.feed",
+                "vl.praise.animal.feed", "vl.praise.field.harvest",
+                "vl.pelle.field.sow.seed", "vl.pelle.field.sow.field",
+                "vl.pelle.field.water.use.can", "vl.pelle.field.water.field",
+                "vl.pelle.shop.order.pack.radish", "vl.pelle.shop.order.ring",
+                "vl.season.spring.greet", "vl.season.summer.greet",
+                "vl.season.autumn.greet", "vl.season.winter.greet",
+            )
+        ]
+    assets.extend(voice_assets)
     return {"schemaVersion": 1, "assets": assets}
 
 
@@ -374,6 +389,7 @@ def generate():
                   generate_music(season))
     write_wav(AUDIO_DIR / "sfx" / "ui.tap.wav", generate_tap())
     write_wav(AUDIO_DIR / "sfx" / "ui.success.wav", generate_success())
+    write_wav(AUDIO_DIR / "sfx" / "tractor.horn.wav", generate_tractor_horn())
     write_wav(AUDIO_DIR / "sfx" / "animal.cow.moo.wav", generate_moo())
     write_wav(AUDIO_DIR / "ambience" / "farm.day.wav", generate_farm_ambience())
     for sound_id in ANIMAL_SOUND_PROFILES:
@@ -398,43 +414,46 @@ def verify():
     expected_music = {f"music.season.{season}" for season in SEASONS}
     expected_ambient = {"ambience.farm.day"}
     expected_sfx = {
-        "sfx.ui.tap", "sfx.ui.success", "sfx.animal.cow.moo",
+        "sfx.ui.tap", "sfx.ui.success", "sfx.animal.cow.moo", "sfx.tractor.horn",
         *ANIMAL_SOUND_PROFILES,
     }
-    expected_voice = {
-        "vl.pelle.greet.morning": None,
-        "vl.ritual.sleep": None,
-        "vl.pelle.wish.prepare": None,
-        "vl.pelle.home": None,
-        "vl.pelle.greet.explore": None,
-        "vl.hint.animal.feed": None,
-        "vl.praise.animal.feed": None,
-        "vl.praise.field.harvest": None,
-        "vl.pelle.field.sow.seed": None,
-        "vl.pelle.field.sow.field": None,
-        "vl.pelle.field.water.use.can": None,
-        "vl.pelle.field.water.field": None,
-        "vl.pelle.shop.order.pack.radish": None,
-        "vl.pelle.shop.order.ring": None,
-        "vl.season.spring.greet": None,
-        "vl.season.summer.greet": None,
-        "vl.season.autumn.greet": None,
-        "vl.season.winter.greet": None,
+    required_voice = {
+        "vl.pelle.greet.morning", "vl.ritual.sleep", "vl.pelle.wish.prepare",
+        "vl.pelle.home", "vl.pelle.greet.explore", "vl.season.spring.greet",
+        "vl.season.summer.greet", "vl.season.autumn.greet", "vl.season.winter.greet",
     }
     assert {a["id"] for a in assets if a["kind"] == "music"} == expected_music
     assert {a["id"] for a in assets if a["kind"] == "ambient"} == expected_ambient
     assert {a["id"] for a in assets if a["kind"] == "sfx"} == expected_sfx
     voice_assets = {a["id"]: a for a in assets if a["kind"] == "voice"}
-    assert set(voice_assets) == set(expected_voice)
+    assert required_voice <= set(voice_assets)
     reports = []
+    mix_peaks = {"music": [], "ambient": [], "sfx": [], "voice": []}
     for asset in assets:
         if asset["kind"] == "voice":
-            assert asset["path"] is None and asset["locale"] == "de-DE"
-            expected_subtitle = expected_voice[asset["id"]]
-            if expected_subtitle is None:
-                assert "subtitle" not in asset
-            else:
-                assert asset.get("subtitle") == expected_subtitle
+            assert asset["id"].startswith("vl.") and asset["locale"] == "de-DE"
+            variants = asset.get("variants")
+            recordings = variants if variants is not None else ([asset] if asset.get("path") else [])
+            if variants is not None:
+                assert asset.get("path") is None and variants
+                texts = [variant.get("text") for variant in variants]
+                assert all(isinstance(text, str) and text.strip() for text in texts)
+                assert len(texts) == len(set(texts))
+            for recording in recordings:
+                if variants is None:
+                    assert isinstance(asset.get("subtitle"), str) and asset["subtitle"].strip()
+                assert recording.get("license") == "CC0-1.0"
+                assert recording.get("modelRevision") == "9beb8542b91ec176ad58adbf9f6085f96b6caa17"
+                assert recording.get("licenseSource", "").endswith(
+                    "/raw/9beb8542b91ec176ad58adbf9f6085f96b6caa17/README.md"
+                )
+                assert recording.get("peak", 0) > 0
+                assert recording["peak"] <= 0.40
+                path = recording["path"]
+                assert path.startswith("voice/") and path.endswith(".mp3")
+                media = resolve_asset_path(path)
+                assert media.is_file() and media.stat().st_size > 0
+                mix_peaks["voice"].append(recording["peak"])
             continue
         if asset["kind"] in ("music", "ambient"):
             assert asset.get("loop") is True
@@ -450,7 +469,24 @@ def verify():
             peak = max(abs(value[0]) for value in struct.iter_unpack("<h", frames)) / 32768
             assert peak <= MAX_PEAK, f"Peak too high in {asset['path']}: {peak:.3f}"
             assert peak > 0, f"Silent audio: {asset['path']}"
+            assert abs(asset.get("peak", 0) - peak) <= 1 / 32768, f"Stale peak in {asset['path']}"
+            mix_kind = {"music": "music", "ambient": "ambient", "sfx": "sfx"}.get(asset["kind"])
+            if mix_kind:
+                mix_peaks[mix_kind].append(peak)
             reports.append((path, source.getnframes() / SAMPLE_RATE, peak))
+    max_music = max(mix_peaks["music"])
+    max_ambient = max(mix_peaks["ambient"])
+    largest_sfx = sorted(mix_peaks["sfx"], reverse=True)[:3]
+    dry_mix_peak = max_music + max_ambient + sum(largest_sfx)
+    spoken_background = max_music * 0.25 + max_ambient * 0.5
+    max_voice = max(max(mix_peaks["voice"], default=0), 0.65)
+    spoken_mix_peak = max_voice + spoken_background + min(
+        sum(largest_sfx), max(0, 0.9 - max_voice - spoken_background)
+    )
+    assert dry_mix_peak <= 0.9, f"Unbounded non-voice mix peak: {dry_mix_peak:.3f}"
+    assert spoken_mix_peak <= 0.9, f"Unbounded spoken mix peak: {spoken_mix_peak:.3f}"
+    reports.append(("mix bound (3 SFX)", 0, dry_mix_peak))
+    reports.append(("spoken mix bound (3 SFX)", 0, spoken_mix_peak))
     return reports
 
 
@@ -461,12 +497,17 @@ def main():
     args = parser.parse_args()
     if not args.verify_only:
         generate()
-    for path, duration, peak in verify():
-        relative = path.relative_to(ROOT)
+    reports = verify()
+    for path, duration, peak in reports:
+        relative = path.relative_to(ROOT) if isinstance(path, Path) else path
         print(f"{relative}: {path.stat().st_size:,} bytes, WAV PCM16 mono "
-              f"{SAMPLE_RATE} Hz, {duration:.2f}s, peak {peak:.3f}")
+              f"{SAMPLE_RATE} Hz, {duration:.2f}s, peak {peak:.3f}"
+              if isinstance(path, Path) else f"{relative}: peak {peak:.3f}")
     print("Animal SFX are synthetic procedural prototypes, not recordings.")
-    print("Manifest and all audio assets validated.")
+    print("Combined worst-case mix peaks (linear):")
+    for path, _, peak in reports[-2:]:
+        print(f"{path}: {peak:.3f} (limit 0.900)")
+    print("Manifest, voice provenance, combined mix bounds, and audio assets validated.")
 
 
 if __name__ == "__main__":

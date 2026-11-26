@@ -1,0 +1,3217 @@
+{
+  "schemaVersion": 1,
+  "locale": "de-DE",
+  "sourceRevision": "13adab768d5b4857d8cdee48d6ec0bb2068a8754",
+  "entries": [
+    {
+      "id": "vl.book.animal.bee",
+      "text": "Eine Honigbiene sammelt Blütenstaub an ihren Hinterbeinen. Dort trägt sie ihn in kleinen Höschen zum Stock.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.animal.bird",
+      "text": "Ein Spatz knackt Körner mit seinem kurzen, kräftigen Schnabel. Darum ist der Schnabel an der Wurzel besonders dick.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.animal.butterfly",
+      "text": "Zum Trinken rollt der Schmetterling seinen langen Saugrüssel aus. Danach rollt er ihn wieder ein.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.animal.cat",
+      "text": "Mit ihren langen Tasthaaren spürt eine Katze feine Berührungen, sogar im Dunkeln.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.animal.chicken",
+      "text": "Hühner scharren mit den Füßen den Boden auf. So finden sie Körner und kleine Krabbeltiere.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.animal.chicken.baby",
+      "text": "Ein Küken hat beim Schlüpfen einen kleinen Höcker auf dem Schnabel. Mit diesem Eizahn öffnet es die Schale.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.animal.cow",
+      "text": "Kühe kauen ihr Gras zweimal: Beim Ruhen kommt ein Bissen wieder ins Maul. Das heißt Wiederkäuen.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.animal.cow.baby",
+      "text": "Nach der Geburt leckt die Kuh ihr Kalb trocken. Schon am ersten Tag übt es das Stehen.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.animal.dog",
+      "text": "Wenn ein Hund schnüffelt, nimmt er viele kurze Atemzüge durch die Nase und sammelt so Gerüche.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.animal.duck",
+      "text": "Beim Schwimmen spreizt die Ente ihre Zehen. Die Schwimmhäute dazwischen schieben das Wasser nach hinten.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.animal.duck.baby",
+      "text": "Entlein schlüpfen mit weichen Daunen. Schon kurz darauf können sie ihrer Mutter ins Wasser folgen.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.animal.fox",
+      "text": "Ein Fuchs kann seine spitzen Ohren einzeln drehen. So hört er auch leises Rascheln im Gras.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.animal.frog",
+      "text": "Ein Frosch beginnt sein Leben im Wasser als Kaulquappe. Die Hinterbeine wachsen vor den Vorderbeinen.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.animal.goat",
+      "text": "Die dunklen Pupillen der Ziege sind quer und länglich. So sieht sie beim Grasen viel von ihrer Umgebung.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.animal.goat.baby",
+      "text": "Junge Ziegen üben das Springen schon beim Spielen. Dabei landen sie geschickt auf ihren kleinen Klauen.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.animal.hedgehog",
+      "text": "Ein Igel trägt seine Stacheln nur auf dem Rücken. Bauch und Gesicht sind mit weichen Haaren bedeckt.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.animal.horse",
+      "text": "Pferde können ihre Ohren in verschiedene Richtungen drehen und so Geräuschen auf beiden Seiten lauschen.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.animal.horse.baby",
+      "text": "Ein Fohlen hat von Geburt an lange Beine. Es kann seiner Mutter meist schon nach wenigen Stunden folgen.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.animal.ladybug",
+      "text": "Die Punkte verraten nicht das Alter des Marienkäfers. Viele Arten haben ein ganz eigenes Punktemuster.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.animal.pig",
+      "text": "Vorn am Rüssel hat das Schwein eine feste, bewegliche Scheibe. Damit wühlt es im Boden.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.animal.pig.baby",
+      "text": "Geschwister im Ferkelnest liegen gern dicht beieinander. So geben sie einander Wärme.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.animal.rabbit",
+      "text": "Die Schneidezähne von Kaninchen wachsen immer weiter. Beim Kauen von Gras und Heu nutzen sie sich ab.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.animal.rabbit.baby",
+      "text": "Anders als ein junger Feldhase kommt ein Kaninchenjunges nackt und mit geschlossenen Augen im Nest zur Welt.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.animal.sheep",
+      "text": "Zwischen den gekräuselten Wollhaaren bleibt Luft. Diese Luftschicht hält das Schaf warm.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.animal.sheep.baby",
+      "text": "Ein Lamm und seine Mutter erkennen einander an ihren Rufen, sogar mitten in der Herde.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.animal.squirrel",
+      "text": "Beim Sprung von Ast zu Ast hilft der buschige Schwanz dem Eichhörnchen, das Gleichgewicht zu halten.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.anttrail",
+      "text": "Viele Ameisen hinterlassen eine Duftspur auf dem Boden. Ihre Schwestern finden den Weg mit den Fühlern.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.appleseed",
+      "text": "Beim Querschnitt durch die Apfelmitte siehst du fünf Fächer. In diesen Kammern sitzen die braunen Kerne.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.awning",
+      "text": "Das gespannte Tuch wirft Schatten auf die Auslage. Je tiefer die Sonne steht, desto länger wird sein Schatten.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.bristles",
+      "text": "Die Haare des Schweins heißen Borsten. Sie sind fester und steifer als die weiche Wolle eines Schafs.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.browse",
+      "text": "Mit ihren beweglichen Lippen zupfen Ziegen einzelne Blätter von Zweigen. Sie grasen nicht nur am Boden.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.burrow",
+      "text": "Wildkaninchen graben mit den Vorderpfoten Gänge. In ihrem Bau verbinden diese Röhren mehrere Kammern.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.canrose",
+      "text": "Aus den kleinen Löchern der Brause kommen viele feine Strahlen. Sie schwemmen die Samen nicht so leicht fort.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.clover",
+      "text": "Beim Weißklee sitzen meist drei kleine Blättchen an einem Blattstiel. Auf vielen liegt ein heller Bogen.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.cobble",
+      "text": "Ein Pflasterweg besteht aus einzelnen Steinen. Durch offene Fugen kann Regenwasser in den Boden sickern.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.coin",
+      "text": "Das Kleeblatt auf dem Hoftaler steht etwas hervor. Solch ein geprägtes Bild lässt sich auch mit dem Finger ertasten.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.crateslats",
+      "text": "Zwischen den Latten der Obstkiste bleibt Platz für Luft. Durch die Grifflöcher lässt sich die Kiste zu zweit tragen.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.currycomb",
+      "text": "Die Noppen am Striegel lösen Staub und lose Haare aus dem Pferdefell. Danach nimmt eine weiche Bürste sie auf.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.dandelion",
+      "text": "Unter jedem weißen Schirmchen hängt eine kleine Löwenzahnfrucht. Der Wind kann sie weit über die Wiese tragen.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.dewdrop",
+      "text": "Kühlt ein Blatt nachts ab, kann Wasserdampf aus der Luft darauf zu kleinen Tautropfen werden.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.dragonfly",
+      "text": "Die Libelle hat vier Flügel. Sie kann ihre beiden Flügelpaare unterschiedlich bewegen und sogar in der Luft stehen.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.drainhole",
+      "text": "Durch das Loch im Topfboden fließt überschüssiges Gießwasser ab. So bleibt auch Platz für Luft an den Wurzeln.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.dustbath",
+      "text": "Beim Staubbaden wühlt sich das Huhn in trockene Erde. Der feine Staub hilft ihm, sein Gefieder zu pflegen.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.earthworm",
+      "text": "Der Regenwurm gräbt Gänge. Durch sie gelangen Luft und Regenwasser tiefer in den Boden.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.extractor",
+      "text": "Wenn sich die Waben in der Schleuder schnell drehen, fliegt der Honig an die Innenwand und läuft nach unten.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.feedrack",
+      "text": "Die Stäbe der Raufe halten das Heu über dem Boden. Dazwischen kann die Kuh einzelne Büschel herausziehen.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.frogleap",
+      "text": "Beim Absprung streckt der Frosch seine langen Hinterbeine. Die kurzen Vorderbeine helfen ihm beim Landen.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.glasspane",
+      "text": "Durch die Scheiben fällt Sonnenlicht auf den Boden und wärmt ihn. Im geschlossenen Haus kann die warme Luft nicht einfach fortwehen.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.goatbeard",
+      "text": "Nicht nur Ziegenböcke können einen Bart tragen. Auch manchen weiblichen Ziegen wachsen lange Haare am Kinn.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.goatrock",
+      "text": "Ziegen spreizen ihre beiden Klauen leicht auseinander. Die weichen Sohlen geben ihnen Halt auf unebenem Stein.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.hitch",
+      "text": "Der Kupplungsbolzen steckt durch die Zugöse des Anhängers. So bleibt der Anhänger mit dem Traktor verbunden.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.hoofprint",
+      "text": "Jedes Pferdebein endet in einem einzigen großen Huf. Im Sand bleibt darum ein anderer Abdruck zurück als bei der Ziege.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.landingboard",
+      "text": "Das Brett vor dem Flugloch ist der Landeplatz der Honigbienen. Von dort krabbeln sie in ihren Stock.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.lichen",
+      "text": "Eine Flechte besteht aus Partnern: Ein Pilz lebt zum Beispiel mit winzigen Algen zusammen. Die Rinde ist ihr Platz zum Wachsen.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.lilypad",
+      "text": "Die Seerose atmet durch winzige Öffnungen oben auf ihrem Schwimmblatt. Die Unterseite liegt ja auf dem Wasser.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.mailbox",
+      "text": "Die schräge Klappe deckt den Einwurfschlitz ab. So rutscht der Brief hinein, während der Regen draußen abtropft.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.millstone",
+      "text": "Zwischen den Mühlsteinen werden Körner zerrieben. Die Rillen leiten das gemahlene Korn zum Rand.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.mushroomring",
+      "text": "Unter der Erde wächst das Pilzgeflecht nach außen. An seinem Rand können die sichtbaren Pilze einen Ring bilden.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.nestcup",
+      "text": "Die Henne schiebt Stroh zu einer flachen Mulde. Darin rollen die Eier zur Mitte.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.nesthole",
+      "text": "In der Höhle eines alten Obstbaums kann eine Meise nisten. Der schmale Eingang führt zu einem größeren Raum im Stamm.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.ovendoor",
+      "text": "Die geschlossene Ofentür hält heiße Luft im Backraum. Durch das Fenster kannst du dem Brot beim Aufgehen zusehen.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.pennant",
+      "text": "Der Wind hebt die losen Spitzen der Wimpel an. Die Spitzen flattern auf die Seite, zu der die Luft strömt.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.pigtrack",
+      "text": "Das Schwein läuft auf zwei großen Zehen. In weichem Matsch hinterlassen auch seine beiden kleineren Zehen manchmal einen Abdruck.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.poppy",
+      "text": "Oben an einer reifen Mohnkapsel sitzen kleine Öffnungen. Wenn Wind den Stängel schüttelt, rieseln Samen heraus.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.presscloth",
+      "text": "Das Presstuch lässt Apfelsaft hindurch, hält aber Schalen und Fruchtstücke im Inneren fest.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.reflector",
+      "text": "Ein Rückstrahler braucht keine Batterie. Er schickt einfallendes Licht ungefähr dorthin zurück, wo es herkam.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.roost",
+      "text": "Hühner schlafen gern etwas erhöht. Ihre Zehen umgreifen die Stange von vorn und hinten.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.saltlick",
+      "text": "Mit der rauen Zunge löst die Kuh Salz vom Leckstein. Salz gehört zu den Mineralstoffen, die ihr Körper braucht.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.scale",
+      "text": "Bei gleich langen Waagebalken sinkt die schwerere Seite. Sind beide gleich schwer, bleibt der Balken waagerecht.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.scarecrow",
+      "text": "An der Vogelscheuche bewegen sich lose Bänder schon bei wenig Wind. So ändert sich ihre Gestalt immer wieder.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.scratchingpost",
+      "text": "Eine Ziege reibt sich gern seitlich am rauen Pfahl. So erreicht sie sogar die Stellen, an die ihr Maul nicht kommt.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.shell",
+      "text": "Eine Eierschale hat winzige Poren. Durch diese Löchlein gelangt Luft für das wachsende Küken ins Ei.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.shopbell",
+      "text": "In der Klingel stößt ein kleiner Schlägel an Metall. Das Metall schwingt und der helle Ton ist zu hören.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.sieve",
+      "text": "Feines Mehl rieselt durch die Maschen. Gröbere Klümpchen bleiben oben im Sieb liegen.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.skater",
+      "text": "Die wasserabweisenden Beine des Wasserläufers verteilen sein Gewicht. Die gespannte Wasseroberfläche trägt ihn.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.snailtrail",
+      "text": "Auf einer dünnen Schleimschicht gleitet die Schnecke voran. Im Licht glänzt die Spur hinter ihr.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.socket",
+      "text": "Eine Sechskantmutter hat sechs flache Seiten. Ein passender Schraubenschlüssel greift zwei davon.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.spokes",
+      "text": "Die Speichen verbinden die Nabe in der Mitte mit dem Radkranz außen. Dazwischen bleibt das Rad schön leicht.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.straw",
+      "text": "Stroh besteht aus den trockenen Halmen von Getreide. Die hohlen Halme schließen Luft im weichen Stallbett ein.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.stubble",
+      "text": "Nach dem Mähen stehen die abgeschnittenen unteren Halmstücke noch auf dem Feld. Sie heißen Stoppeln.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.tailtuft",
+      "text": "Am Ende des Kuhschwanzes wachsen besonders lange Haare. Damit wedelt die Kuh Fliegen von ihrem Fell.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.tirevalve",
+      "text": "Durch das Ventil kommt Luft in den Reifen. Danach schließt es sich und hält die Luft im Inneren.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.tomatosupport",
+      "text": "Eine Tomatenpflanze kann schwere Fruchtstände tragen. Ein Stab hilft dem weichen Stängel, aufrecht zu bleiben.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.treebark",
+      "text": "Die äußere Rinde schützt den Baum. Wenn der Stamm dicker wird, kann seine Rinde tiefe Furchen bekommen.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.treeguard",
+      "text": "Das Gitter lässt Licht und Luft zum Stamm. Es schützt die zarte Rinde davor, angeknabbert zu werden.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.troughfloat",
+      "text": "Der Schwimmer steigt mit dem Trinkwasser nach oben. Ist die Tränke voll, schließt er den Zulauf.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.vent",
+      "text": "Warme Luft steigt nach oben. Durch das geöffnete Dachfenster entweicht sie aus dem Gewächshaus.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.waggledance",
+      "text": "Eine Honigbiene kann mit ihrem Schwänzeltanz zeigen, in welcher Richtung und wie weit entfernt viele Blüten stehen.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.wallow",
+      "text": "Schweine können kaum schwitzen. Beim Bad in der Suhle kühlen Wasser und feuchter Schlamm ihre Haut.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.waxcell",
+      "text": "Viele sechseckige Zellen passen ohne Lücke nebeneinander. Zwei Zellen teilen sich immer eine dünne Wachswand.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.wellpulley",
+      "text": "Das Seil läuft über eine Rolle. Ziehst du das eine Ende nach unten, kommt am anderen Ende der Eimer nach oben.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.wicker",
+      "text": "Ein Korb kann aus biegsamen Weidenruten bestehen. Sie laufen abwechselnd vor und hinter den senkrechten Stäben entlang.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.windwheel",
+      "text": "Die Flügel des Windrads stehen schräg. Streicht Wind daran vorbei, beginnen sie sich um die Achse zu drehen.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.discovery.wooltuft",
+      "text": "Schafwolle enthält Fett. Darum fühlt sich die frische Wollflocke am Zaun ein bisschen fettig an.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.machine.baler",
+      "text": "Die Presse nimmt trockenes Heu vom Boden auf, rollt es zusammen und bindet den Ballen fest.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.machine.carriage",
+      "text": "Das Pferd zieht die Kutsche mit seinem Geschirr. Die Zugstränge übertragen seine Kraft auf den Wagen.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.machine.combine",
+      "text": "Der Mähdrescher schneidet Getreide und löst die Körner aus den Ähren. Die Körner sammelt er im Korntank.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.machine.loader",
+      "text": "Ein Frontlader hat zwei starke Arme vorne am Traktor. Öldruck bewegt die Arme auf und ab.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.machine.mower",
+      "text": "Das Mähwerk schneidet Grashalme über dem Boden ab. Das Gras kann aus seinem unteren Teil wieder wachsen.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.machine.plow",
+      "text": "Die Pflugschar schneidet unten durch die Erde. Das gebogene Blech dahinter dreht den Erdbalken um.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.machine.potatodigger",
+      "text": "Beim Roden kommen Erde und Kartoffeln zusammen nach oben. Auf dem Siebband rieselt die Erde zwischen den Stäben zurück.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.machine.seeder",
+      "text": "Die Sämaschine öffnet schmale Rillen, legt Körner hinein und deckt sie wieder mit Erde zu.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.machine.snowplow",
+      "text": "Das Schneeschild steht schräg zur Fahrtrichtung. So gleitet der Schnee zur Seite statt vor dem Traktor her.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.machine.tractor",
+      "text": "Die tiefen Rillen in seinen Reifen geben dem Traktor Halt, wenn er schwere Geräte über weiche Erde zieht.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.machine.trailer",
+      "text": "Die Deichsel verbindet Anhänger und Traktor. An ihr zieht der Traktor die Erntekisten hinter sich her.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.machine.watertank",
+      "text": "Das Fass trägt Wasser auch bis an den Feldrand, wo es keinen Wasserhahn gibt.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.npc.hanno",
+      "text": "Hanno schnitzt kleine Tiere aus Holz. Für die Fellstreifen lässt er die Maserung des Holzes sichtbar.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.npc.lale",
+      "text": "Lale sortiert ihre Briefe nach den Adressen. So landet die Post für den Hof im richtigen Briefkasten.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.npc.minka",
+      "text": "Minka streift selbst durch den Hof. Wenn sie sich bei dir niederlässt, kannst du ihr Schnurren hören.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.npc.mo",
+      "text": "Mo bringt Zeichnungen auf den Hof. Auf Mos Bild vom Apfelbaum sind die Blüten rosa und die Äpfel rot.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.npc.pelle",
+      "text": "Pelle führt dich auf dem Hof zum nächsten Wunsch. Auf der Schafweide hilft er auch beim Hüten.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.npc.tilda",
+      "text": "Tilda kauft Eier und Mehl für ihre Backstube. Beim Kneten wird ihr Brotteig glatt und dehnbar.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.npc.yusuf",
+      "text": "Yusuf zeigt seine Waren in flachen Kisten. So lassen sich Maiskolben einzeln herausnehmen, ohne den ganzen Stapel zu bewegen.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.plant.apple",
+      "text": "Am unteren Ende des Apfels sitzt ein kleiner Stern. Das sind die Reste der Kelchblätter seiner Blüte.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.plant.carrot",
+      "text": "Der orange Teil der Karotte ist ihre Wurzel. Nur der grüne Blattschopf schaut aus der Erde.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.plant.chives",
+      "text": "Ein Schnittlauchblatt ist innen hohl. Schneidet man es quer, sieht es aus wie ein kleiner grüner Ring.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.plant.corn",
+      "text": "An einem Maiskolben hängen viele feine Fäden. Jeder führt zu einem Platz für ein Maiskorn.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.plant.kale",
+      "text": "Grünkohl bildet keinen festen Kohlkopf. Seine krausen Blätter wachsen einzeln rund um einen kräftigen Stängel.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.plant.lettuce",
+      "text": "Ein Kopfsalat hat keinen festen Deckel: Viele Blätter liegen dicht umeinander.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.plant.pea",
+      "text": "In einer Erbsenhülse liegen mehrere grüne Samen nebeneinander. Jeder davon ist eine Erbse.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.plant.potato",
+      "text": "Eine Kartoffelknolle hat kleine Vertiefungen, die Augen heißen. Aus ihnen wachsen neue Triebe.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.plant.pumpkin",
+      "text": "Der Kürbis wächst an einer langen Ranke über den Boden. Seine flachen Kerne liegen innen in der Frucht.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.plant.radish",
+      "text": "Beim Radieschen wird der Stängel direkt unter den Keimblättern dick und rund.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.plant.strawberry",
+      "text": "Die kleinen Punkte außen auf der Erdbeere sind winzige Nüsschen. In jedem steckt ein Samen.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.plant.sunflower",
+      "text": "Die dunkle Mitte der Sonnenblume besteht aus vielen winzigen Blüten. Aus ihnen werden die Kerne.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.plant.tomato",
+      "text": "Die Tomatenpflanze trägt gelbe Blüten. Aus der Mitte einer bestäubten Blüte wächst die Tomate.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.plant.wheat",
+      "text": "Die Körner des Weizens sitzen zusammen in einer Ähre ganz oben am Halm.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.season.autumn.fest",
+      "text": "Am vierten Herbsttag teilen wir beim Danke-Fest die Ernte. Auf dem Hof bekommt jedes Tier etwas, das es mag.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.season.autumn.gold",
+      "text": "Wenn im Herbst das Blattgrün abgebaut wird, sieht man die gelben Farbstoffe, die schon vorher im Blatt waren.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.season.autumn.hedgehog",
+      "text": "Unter trockenem Laub baut sich der Igel im Herbst ein Nest für den Winterschlaf.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.season.autumn.kite",
+      "text": "Die Schnur hält den Drachen schräg im Wind. Die vorbeiströmende Luft kann ihn so in die Höhe tragen.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.season.autumn.pumpkin",
+      "text": "Ein reifer Kürbis bekommt eine feste Schale. Der Stiel wird trocken und fühlt sich oft an wie Kork.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.season.autumn.vformation",
+      "text": "Ziehende Gänse fliegen oft schräg hintereinander. Dort hilft ihnen der Aufwind von den Flügeln der vorderen Gans.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.season.spring.blossom",
+      "text": "Apfelblüten haben meist fünf Blütenblätter. Ihr Nektar lockt im Frühling Insekten an.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.season.spring.bud",
+      "text": "Knospen haben außen feste Schuppen. Im Frühling schieben sich die zarten neuen Blätter dazwischen hervor.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.season.spring.chick",
+      "text": "Noch bevor das Küken schlüpft, kann man sein Piepsen manchmal schon durch die Eierschale hören.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.season.spring.fest",
+      "text": "Am vierten Frühlingstag feiern wir das Blütenfest. Für Pelles Kranz wechseln sich die Blüten in einem Muster ab.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.season.spring.rainbow",
+      "text": "Für einen Regenbogen brauchst du Sonnenlicht und Regentropfen. Die Sonne steht dabei hinter dir.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.season.spring.tulip",
+      "text": "Die Tulpe startet aus einer Zwiebel. Darin sind Blätter und Blüte schon winzig klein angelegt.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.season.summer.cricket",
+      "text": "Eine männliche Feldgrille streicht ihre Vorderflügel aneinander. Das ist das Zirpen auf der Sommerwiese.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.season.summer.fest",
+      "text": "Am vierten Sommertag öffnet beim Erntefreudentag der Eisstand. Auf dem Hof wird zusammen getanzt.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.season.summer.firefly",
+      "text": "Glühwürmchen sind Käfer, keine Würmer. Ihr Licht entsteht in einem kleinen Leuchtorgan am Hinterleib.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.season.summer.hay",
+      "text": "Aus gemähtem Gras wird Heu, wenn Sonne und Luft es trocknen. Beim Wenden kommt auch die Unterseite ans Licht.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.season.summer.icecream",
+      "text": "In der kalten Eismaschine bewegt die Kurbel die Mischung. So bleiben die Eiskristalle klein und das Eis wird cremig.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.season.summer.sunflower",
+      "text": "Junge Sonnenblumen drehen sich tagsüber mit der Sonne. Reife Blütenköpfe bleiben meist nach Osten gerichtet.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.season.winter.birdfeeder",
+      "text": "Meisen plustern in der Kälte ihr Gefieder auf. Zwischen den Federn entsteht eine wärmende Luftschicht.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.season.winter.fest",
+      "text": "Am vierten Wintertag stellen wir beim Lichterfest Laternen in einer Reihe auf. Zusammen leuchten sie den Hofweg aus.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.season.winter.foxtracks",
+      "text": "Ein trabender Fuchs setzt oft eine Pfote fast genau vor die andere. Seine Spur sieht dann wie eine Perlenschnur aus.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.season.winter.iceflower",
+      "text": "An einem sehr kalten Fenster kann Wasserdampf direkt zu Eis werden. Die Kristalle wachsen wie kleine Zweige.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.season.winter.shootingstar",
+      "text": "Eine Sternschnuppe ist kein fallender Stern. Ihre Leuchtspur entsteht, wenn ein kleines Stück Gestein aus dem All in die Luft der Erde saust.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.book.season.winter.snowman",
+      "text": "Leicht feuchter Schnee hält besser zusammen als lockerer Pulverschnee. Darum wächst die Kugel beim Rollen.",
+      "source": "hofbook"
+    },
+    {
+      "id": "vl.hint.animal.baby",
+      "text": "Schau mal: Bürste.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.animal.baby",
+      "text": "Schau mal: Heubüschel.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.animal.baby",
+      "text": "Schau mal: Karotte.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.animal.baby",
+      "text": "Schau mal: Korb.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.animal.baby",
+      "text": "Schau mal: Kuscheldecke.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.animal.baby",
+      "text": "Schau mal: Milchflasche.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.animal.baby",
+      "text": "Schau mal: Mond.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.animal.baby",
+      "text": "Schau mal: Sonne.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.animal.baby",
+      "text": "Schau mal: Sternchen.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.animal.bed",
+      "text": "Schau mal: Futtersack.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.animal.bed",
+      "text": "Schau mal: Gemüsegarten.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.animal.bed",
+      "text": "Schau mal: Hofladen.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.animal.bed",
+      "text": "Schau mal: Hühnerhaus.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.animal.bed",
+      "text": "Schau mal: Hühnerklappe.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.animal.bed",
+      "text": "Schau mal: Korbdeckel.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.animal.bed",
+      "text": "Schau mal: Sandbad.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.animal.bed",
+      "text": "Schau mal: Schlafstange.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.animal.bed",
+      "text": "Schau mal: Tränke.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.animal.eggs",
+      "text": "Schau mal: Blatt.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.animal.eggs",
+      "text": "Schau mal: Drei Punkte.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.animal.eggs",
+      "text": "Schau mal: Ei.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.animal.eggs",
+      "text": "Schau mal: Ein Punkt.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.animal.eggs",
+      "text": "Schau mal: Futtertrog.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.animal.eggs",
+      "text": "Schau mal: Sitzstange.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.animal.eggs",
+      "text": "Schau mal: Strohnest.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.animal.eggs",
+      "text": "Schau mal: Zwei Punkte.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.animal.eggs",
+      "text": "Schau mal: Zweig.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.animal.feed",
+      "text": "Schau mal: Futtertrog.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.animal.feed",
+      "text": "Schau mal: Heu.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.animal.feed",
+      "text": "Schau mal: Hilde.",
+      "source": "first-day-hint"
+    },
+    {
+      "id": "vl.hint.animal.feed",
+      "text": "Schau mal: Karotte.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.animal.feed",
+      "text": "Schau mal: Körnerfutter.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.animal.feed",
+      "text": "Schau mal: Legenest.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.animal.feed",
+      "text": "Schau mal: Salatkopf.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.animal.feed",
+      "text": "Schau mal: Schlafstange.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.animal.feed",
+      "text": "Schau mal: Tränke.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.animal.find",
+      "text": "Schau mal: Am Baum.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.animal.find",
+      "text": "Schau mal: Am Brunnen.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.animal.find",
+      "text": "Schau mal: Hühnerspur.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.animal.find",
+      "text": "Schau mal: In der Kiste.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.animal.find",
+      "text": "Schau mal: Kuhspur.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.animal.find",
+      "text": "Schau mal: Minkas Spur.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.animal.find",
+      "text": "Schau mal: Pelles Spur.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.animal.find",
+      "text": "Schau mal: Unter der Bank.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.animal.milk",
+      "text": "Schau mal: An die Heuraufe.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.animal.milk",
+      "text": "Schau mal: Das Fell bürsten.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.animal.milk",
+      "text": "Schau mal: Im Kreis streichen.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.animal.milk",
+      "text": "Schau mal: Links und rechts drücken.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.animal.milk",
+      "text": "Schau mal: Neben das Tor.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.animal.milk",
+      "text": "Schau mal: Unter das Euter.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.animal.pet",
+      "text": "Schau mal: Fellbürste.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.animal.pet",
+      "text": "Schau mal: Gackernde Henne.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.animal.pet",
+      "text": "Schau mal: Kuscheldecke.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.animal.pet",
+      "text": "Schau mal: Schnurrende Minka.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.animal.pet",
+      "text": "Schau mal: Spielball.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.animal.pet",
+      "text": "Schau mal: Wedelnder Pelle.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.animal.shear",
+      "text": "Schau mal: Fellbürste.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.animal.shear",
+      "text": "Schau mal: Grashalme.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.animal.shear",
+      "text": "Schau mal: Heubüschel.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.animal.shear",
+      "text": "Schau mal: Schafschere.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.animal.shear",
+      "text": "Schau mal: Wassereimer.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.animal.shear",
+      "text": "Schau mal: Wollflocken.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.animal.water",
+      "text": "Schau mal: Körnerschale.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.animal.water",
+      "text": "Schau mal: Sandbad.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.animal.water",
+      "text": "Schau mal: Sieb.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.animal.water",
+      "text": "Schau mal: Tränke.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.animal.water",
+      "text": "Schau mal: Wassereimer.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.animal.water",
+      "text": "Schau mal: Weidenkorb.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.farm.clean",
+      "text": "Schau mal: Eierkorb.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.farm.clean",
+      "text": "Schau mal: Saatgutkiste.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.farm.clean",
+      "text": "Schau mal: Spielzeugkiste.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.farm.clean",
+      "text": "Schau mal: Werkzeugkiste.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.farm.decorate",
+      "text": "Schau mal: An den Brunnen.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.farm.decorate",
+      "text": "Schau mal: An den Hofbaum.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.farm.decorate",
+      "text": "Schau mal: Ans Hoftor.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.farm.decorate",
+      "text": "Schau mal: Bunte Kiesel.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.farm.decorate",
+      "text": "Schau mal: Gänseblümchen.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.farm.decorate",
+      "text": "Schau mal: Stoffband.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.farm.memory",
+      "text": "Schau mal: Tafel am Fenster.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.farm.memory",
+      "text": "Schau mal: Tafel am Regal.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.farm.memory",
+      "text": "Schau mal: Tafel am Tor.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.farm.memory",
+      "text": "Schau mal: Tafel an der Werkbank.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.farm.memory",
+      "text": "Schau mal: Tafel bei der Lampe.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.farm.photo",
+      "text": "Schau mal: Bilderrahmen.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.farm.photo",
+      "text": "Schau mal: Die Henne.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.farm.photo",
+      "text": "Schau mal: Die Kuh.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.farm.photo",
+      "text": "Schau mal: Fotoalbum.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.farm.photo",
+      "text": "Schau mal: Fotoauslöser.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.farm.photo",
+      "text": "Schau mal: Minka.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.farm.photo",
+      "text": "Schau mal: Pelle.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.farm.sing",
+      "text": "Schau mal: Die Henne gackert.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.farm.sing",
+      "text": "Schau mal: Minka macht miau.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.farm.sing",
+      "text": "Schau mal: Pelle macht wau.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.field.combine",
+      "text": "Schau mal: Ballenpresse.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.field.combine",
+      "text": "Schau mal: Feldweg.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.field.combine",
+      "text": "Schau mal: Heuballen.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.field.combine",
+      "text": "Schau mal: Kurze Stoppeln.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.field.combine",
+      "text": "Schau mal: Mähdrescher.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.field.combine",
+      "text": "Schau mal: Offener Anhänger.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.field.combine",
+      "text": "Schau mal: Reifer Weizen.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.field.combine",
+      "text": "Schau mal: Sämaschine.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.field.combine",
+      "text": "Schau mal: Wasserfass.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.field.harvest",
+      "text": "Schau mal: Beet 1.",
+      "source": "first-day-hint"
+    },
+    {
+      "id": "vl.hint.field.harvest",
+      "text": "Schau mal: Blumentopf.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.field.harvest",
+      "text": "Schau mal: Erntekorb.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.field.harvest",
+      "text": "Schau mal: Gießkanne.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.field.harvest",
+      "text": "Schau mal: Kleiner Keimling.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.field.harvest",
+      "text": "Schau mal: Korb.",
+      "source": "first-day-hint"
+    },
+    {
+      "id": "vl.hint.field.harvest",
+      "text": "Schau mal: Radieschen.",
+      "source": "first-day-hint"
+    },
+    {
+      "id": "vl.hint.field.harvest",
+      "text": "Schau mal: Reife Karotte.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.field.harvest",
+      "text": "Schau mal: Samensäckchen.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.field.hay",
+      "text": "Schau mal: Ballenpresse.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.field.hay",
+      "text": "Schau mal: Feldweg.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.field.hay",
+      "text": "Schau mal: Frontlader.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.field.hay",
+      "text": "Schau mal: Gras gießen.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.field.hay",
+      "text": "Schau mal: Gras umdrehen.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.field.hay",
+      "text": "Schau mal: Gras zudecken.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.field.hay",
+      "text": "Schau mal: Grasstreifen.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.field.hay",
+      "text": "Schau mal: Ladefläche.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.field.hay",
+      "text": "Schau mal: Mähwerk.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.field.plow",
+      "text": "Schau mal: Anhänger.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.field.plow",
+      "text": "Schau mal: Geradeaus zur Fahne.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.field.plow",
+      "text": "Schau mal: Im Kreis fahren.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.field.plow",
+      "text": "Schau mal: Pflug heben.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.field.plow",
+      "text": "Schau mal: Pflug senken.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.field.plow",
+      "text": "Schau mal: Pflug.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.field.plow",
+      "text": "Schau mal: Sämaschine.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.field.plow",
+      "text": "Schau mal: Traktor wenden.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.field.plow",
+      "text": "Schau mal: Zurückfahren.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.field.scarecrow",
+      "text": "Schau mal: An den Kragen.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.field.scarecrow",
+      "text": "Schau mal: An den Ärmel.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.field.scarecrow",
+      "text": "Schau mal: Arm aus Holz.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.field.scarecrow",
+      "text": "Schau mal: Auf den Kopf.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.field.scarecrow",
+      "text": "Schau mal: Hemd mit Ärmeln.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.field.scarecrow",
+      "text": "Schau mal: Hemdenknopf.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.field.scarecrow",
+      "text": "Schau mal: Schal.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.field.scarecrow",
+      "text": "Schau mal: Sonnenhut.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.field.scarecrow",
+      "text": "Schau mal: Strohkopf.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.field.snowplow",
+      "text": "Schau mal: Auf die Treppe.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.field.snowplow",
+      "text": "Schau mal: Mitten auf den Weg.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.field.snowplow",
+      "text": "Schau mal: Mähwerk.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.field.snowplow",
+      "text": "Schau mal: Neben den Weg.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.field.snowplow",
+      "text": "Schau mal: Schneeschild.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.field.snowplow",
+      "text": "Schau mal: Sämaschine.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.field.snowplow",
+      "text": "Schau mal: Zum Brunnen.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.field.snowplow",
+      "text": "Schau mal: Zum Hofbaum.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.field.snowplow",
+      "text": "Schau mal: Zum Hoftor.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.field.sow",
+      "text": "Schau mal: Beet 1.",
+      "source": "first-day-hint"
+    },
+    {
+      "id": "vl.hint.field.sow",
+      "text": "Schau mal: Handschuh.",
+      "source": "first-day-hint"
+    },
+    {
+      "id": "vl.hint.field.sow",
+      "text": "Schau mal: Holzbank.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.field.sow",
+      "text": "Schau mal: Karottensamen.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.field.sow",
+      "text": "Schau mal: Kieselsteine.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.field.sow",
+      "text": "Schau mal: Krümelige Erde.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.field.sow",
+      "text": "Schau mal: Lockere Erde.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.field.sow",
+      "text": "Schau mal: Radieschen.",
+      "source": "first-day-hint"
+    },
+    {
+      "id": "vl.hint.field.sow",
+      "text": "Schau mal: Radieschensamen.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.field.sow",
+      "text": "Schau mal: Salatsamen.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.field.sow",
+      "text": "Schau mal: Steinweg.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.field.sow",
+      "text": "Schau mal: Zweige.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.field.water",
+      "text": "Schau mal: Beet 1.",
+      "source": "first-day-hint"
+    },
+    {
+      "id": "vl.hint.field.water",
+      "text": "Schau mal: Blumentopf.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.field.water",
+      "text": "Schau mal: Erntekorb.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.field.water",
+      "text": "Schau mal: Gartentor.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.field.water",
+      "text": "Schau mal: Gießkanne.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.field.water",
+      "text": "Schau mal: Pfütze.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.field.water",
+      "text": "Schau mal: Trockenes Beet.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.kitchen.bake",
+      "text": "Schau mal: Apfel.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.kitchen.bake",
+      "text": "Schau mal: Backofen.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.kitchen.bake",
+      "text": "Schau mal: Ei.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.kitchen.bake",
+      "text": "Schau mal: In Flaschen füllen.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.kitchen.bake",
+      "text": "Schau mal: In Scheiben schneiden.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.kitchen.bake",
+      "text": "Schau mal: Kühlschrank.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.kitchen.bake",
+      "text": "Schau mal: Mehl.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.kitchen.bake",
+      "text": "Schau mal: Mit den Händen kneten.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.kitchen.bake",
+      "text": "Schau mal: Saftpresse.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.kitchen.churn",
+      "text": "Schau mal: Auf und ab stampfen.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.kitchen.churn",
+      "text": "Schau mal: Backform.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.kitchen.churn",
+      "text": "Schau mal: Butterfass.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.kitchen.churn",
+      "text": "Schau mal: Butterform.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.kitchen.churn",
+      "text": "Schau mal: Im Kreis drehen.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.kitchen.churn",
+      "text": "Schau mal: Marmeladenglas.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.kitchen.churn",
+      "text": "Schau mal: Milchkrug.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.kitchen.churn",
+      "text": "Schau mal: Saftflasche.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.kitchen.churn",
+      "text": "Schau mal: Seitlich schieben.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.kitchen.jam",
+      "text": "Schau mal: Am Rand klopfen.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.kitchen.jam",
+      "text": "Schau mal: Brotkorb.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.kitchen.jam",
+      "text": "Schau mal: Erdbeeren.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.kitchen.jam",
+      "text": "Schau mal: Flache Teller.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.kitchen.jam",
+      "text": "Schau mal: Gläser mit Deckeln.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.kitchen.jam",
+      "text": "Schau mal: Im Kreis rühren.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.kitchen.jam",
+      "text": "Schau mal: Kartoffeln.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.kitchen.jam",
+      "text": "Schau mal: Löffel heben.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.kitchen.jam",
+      "text": "Schau mal: Weizenkörner.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.kitchen.press",
+      "text": "Schau mal: Backblech.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.kitchen.press",
+      "text": "Schau mal: Drei Äpfel.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.kitchen.press",
+      "text": "Schau mal: Ein Apfel.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.kitchen.press",
+      "text": "Schau mal: Hebel heben.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.kitchen.press",
+      "text": "Schau mal: Hebel senken.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.kitchen.press",
+      "text": "Schau mal: Kurbel drehen.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.kitchen.press",
+      "text": "Schau mal: Saftflasche.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.kitchen.press",
+      "text": "Schau mal: Sieb.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.kitchen.press",
+      "text": "Schau mal: Zwei Äpfel.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.nature.birdhouse",
+      "text": "Schau mal: Blaumeise mit blauer Kappe.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.nature.birdhouse",
+      "text": "Schau mal: Heu.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.nature.birdhouse",
+      "text": "Schau mal: Körner.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.nature.birdhouse",
+      "text": "Schau mal: Moos.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.nature.birdhouse",
+      "text": "Schau mal: Rotkehlchen.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.nature.birdhouse",
+      "text": "Schau mal: Schwarze Amsel.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.nature.compost",
+      "text": "Schau mal: Feuchtes Beet.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.nature.compost",
+      "text": "Schau mal: Feuchtes Blatt.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.nature.compost",
+      "text": "Schau mal: Gartenbank.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.nature.compost",
+      "text": "Schau mal: Gepflasterter Weg.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.nature.compost",
+      "text": "Schau mal: Leerer Topf.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.nature.compost",
+      "text": "Schau mal: Marienkäfer.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.nature.compost",
+      "text": "Schau mal: Regenwurm.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.nature.compost",
+      "text": "Schau mal: Schnecke.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.nature.compost",
+      "text": "Schau mal: Trockener Stein.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.nature.flowers",
+      "text": "Schau mal: Blaue Glockenblume.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.nature.flowers",
+      "text": "Schau mal: Drei Blumen.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.nature.flowers",
+      "text": "Schau mal: Eine Blume.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.nature.flowers",
+      "text": "Schau mal: Gelber Löwenzahn.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.nature.flowers",
+      "text": "Schau mal: Weißes Gänseblümchen.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.nature.flowers",
+      "text": "Schau mal: Zwei Blumen.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.nature.kite",
+      "text": "Schau mal: Drachen ablegen.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.nature.kite",
+      "text": "Schau mal: Gerade Linie.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.nature.kite",
+      "text": "Schau mal: Rolle festhalten.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.nature.kite",
+      "text": "Schau mal: Runder Kreis.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.nature.kite",
+      "text": "Schau mal: Schnur abrollen.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.nature.kite",
+      "text": "Schau mal: Schnur anziehen.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.nature.kite",
+      "text": "Schau mal: Schnur aufwickeln.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.nature.kite",
+      "text": "Schau mal: Schnur einholen.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.nature.kite",
+      "text": "Schau mal: Zickzack.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.nature.lantern",
+      "text": "Schau mal: Blauer Mond.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.nature.lantern",
+      "text": "Schau mal: Gelbe Sonne.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.nature.lantern",
+      "text": "Schau mal: Weißer Stern.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.nature.pond",
+      "text": "Schau mal: Drei Frösche.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.nature.pond",
+      "text": "Schau mal: Ein Frosch.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.nature.pond",
+      "text": "Schau mal: Fischfutter.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.nature.pond",
+      "text": "Schau mal: Schneckenhaus.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.nature.pond",
+      "text": "Schau mal: Seerosenblatt.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.nature.pond",
+      "text": "Schau mal: Uferkiesel.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.nature.pond",
+      "text": "Schau mal: Vier Frösche.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.nature.pond",
+      "text": "Schau mal: Zwei Frösche.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.nature.snowman",
+      "text": "Schau mal: Daneben.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.nature.snowman",
+      "text": "Schau mal: Darunter.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.nature.snowman",
+      "text": "Schau mal: Große Kugel.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.nature.snowman",
+      "text": "Schau mal: Holzknopf.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.nature.snowman",
+      "text": "Schau mal: Karotte.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.nature.snowman",
+      "text": "Schau mal: Mittlere Kugel.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.nature.snowman",
+      "text": "Schau mal: Obenauf.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.nature.snowman",
+      "text": "Schau mal: Runder Kiesel.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.nature.snowman",
+      "text": "Schau mal: Winzige Kugel.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.shop.market",
+      "text": "Schau mal: Fahrersitz.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.shop.market",
+      "text": "Schau mal: Gemüsekiste.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.shop.market",
+      "text": "Schau mal: Karotte.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.shop.market",
+      "text": "Schau mal: Kürbis.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.shop.market",
+      "text": "Schau mal: Markttisch.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.shop.market",
+      "text": "Schau mal: Postkiste.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.shop.market",
+      "text": "Schau mal: Salatkopf.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.shop.market",
+      "text": "Schau mal: Sonnendach.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.shop.market",
+      "text": "Schau mal: Werkzeugkiste.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.shop.market",
+      "text": "Schau mal: Zum Dorfmarkt.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.shop.market",
+      "text": "Schau mal: Zur Maschinenhalle.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.shop.market",
+      "text": "Schau mal: Zur Obstwiese.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.shop.order",
+      "text": "Schau mal: Ei.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.shop.order",
+      "text": "Schau mal: Karotte.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.shop.order",
+      "text": "Schau mal: Kassenlade.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.shop.order",
+      "text": "Schau mal: Klingel.",
+      "source": "first-day-hint"
+    },
+    {
+      "id": "vl.hint.shop.order",
+      "text": "Schau mal: Ladenglocke.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.shop.order",
+      "text": "Schau mal: Ladenschild.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.shop.order",
+      "text": "Schau mal: Preisschild.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.shop.order",
+      "text": "Schau mal: Radieschen.",
+      "source": "first-day-hint"
+    },
+    {
+      "id": "vl.hint.shop.order",
+      "text": "Schau mal: Salat.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.shop.order",
+      "text": "Schau mal: Tildas Bildzettel.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.shop.order",
+      "text": "Schau mal: Waage.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.shop.sign",
+      "text": "Schau mal: Ei.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.shop.sign",
+      "text": "Schau mal: Henne.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.shop.sign",
+      "text": "Schau mal: Korb.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.shop.stock",
+      "text": "Schau mal: Ei.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.shop.stock",
+      "text": "Schau mal: Fach mit Blatt.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.shop.stock",
+      "text": "Schau mal: Fach mit Ei.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.shop.stock",
+      "text": "Schau mal: Fach mit Karotte.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.shop.stock",
+      "text": "Schau mal: Fach mit Samentüte.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.shop.stock",
+      "text": "Schau mal: Karotte.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.shop.stock",
+      "text": "Schau mal: Körner.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.shop.stock",
+      "text": "Schau mal: Salat.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.village.helpmo",
+      "text": "Schau mal: Bauklotz.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.village.helpmo",
+      "text": "Schau mal: Eckige Linie.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.village.helpmo",
+      "text": "Schau mal: Gerade Linie.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.village.helpmo",
+      "text": "Schau mal: Papierdrachen.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.village.helpmo",
+      "text": "Schau mal: Runder Bogen.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.village.helpmo",
+      "text": "Schau mal: Spielball.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.village.mail",
+      "text": "Schau mal: Brief mit Baum.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.village.mail",
+      "text": "Schau mal: Brief mit Blume.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.village.mail",
+      "text": "Schau mal: Brief mit Brot.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.village.mail",
+      "text": "Schau mal: Brief mit Drachen.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.village.mail",
+      "text": "Schau mal: Bäckerin Tilda.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.village.mail",
+      "text": "Schau mal: Hanno am Hofbaum.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.village.mail",
+      "text": "Schau mal: Lale mit der Tasche.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.village.mail",
+      "text": "Schau mal: Mo mit dem Drachen.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.village.mail",
+      "text": "Schau mal: Nachbarskind Mo.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.village.mail",
+      "text": "Schau mal: Opa Hanno.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.village.mail",
+      "text": "Schau mal: Postbotin Lale.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.hint.village.mail",
+      "text": "Schau mal: Tilda mit dem Brot.",
+      "source": "activity-choice"
+    },
+    {
+      "id": "vl.pelle.animal.baby.bottle",
+      "text": "Halt dem Kalb seine Milchflasche hin.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.animal.baby.name",
+      "text": "Nennen wir es Sternchen? Häng den Stern an seinen Platz.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.animal.baby.warm",
+      "text": "Deck das kleine Kalb mit der weichen Decke zu.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.animal.bed.close",
+      "text": "Alle sitzen gemütlich. Schließ leise die Hühnerklappe.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.animal.bed.home",
+      "text": "Begleite die müden Hühner ins Hühnerhaus.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.animal.bed.roost",
+      "text": "Zeig den Hühnern ihre Schlafstange.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.animal.eggs.count",
+      "text": "Zähl mit: Ein Ei liegt im Korb. Zeig einen Punkt.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.animal.eggs.gather",
+      "text": "Ein glattes, ovales Ei! Leg es in den weichen Korb.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.animal.eggs.search",
+      "text": "Im Nest raschelt Stroh. Heb es vorsichtig an.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.animal.feed.animal",
+      "text": "Bring das Futter zu Hilde.",
+      "source": "first-day-prompt"
+    },
+    {
+      "id": "vl.pelle.animal.feed.deliver",
+      "text": "Streu die Körner in den Futtertrog.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.animal.feed.food",
+      "text": "Die Henne möchte Körner picken. Hol ihr Futter.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.animal.feed.prepare",
+      "text": "Was bekommt Hilde? Nimm Körnerfutter.",
+      "source": "first-day-prompt"
+    },
+    {
+      "id": "vl.pelle.animal.find.listen",
+      "text": "Horch, es miaut! Wessen Spur suchen wir?",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.animal.find.look",
+      "text": "Unter der Bank wippt ein Katzenschwanz. Schau dort nach!",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.animal.milk.bucket",
+      "text": "Stell den sauberen Eimer unter das Euter.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.animal.milk.milk",
+      "text": "Drück sanft im Wechsel: links, rechts, links.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.animal.pet.approach",
+      "text": "Minka schnurrt. Streichel ihr sanft den Rücken.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.animal.pet.brush",
+      "text": "Streich mit der weichen Bürste über ihr Fell.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.animal.shear.collect",
+      "text": "Sammle die weiche Wolle im Korb.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.animal.shear.shear",
+      "text": "Führ die Schafschere über das dicke Wollkleid.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.animal.water.carry",
+      "text": "Trag das frische Wasser zur Tränke und gieß es hinein.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.animal.water.fill",
+      "text": "Halt den Eimer unter die Pumpe.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.farm.clean.ball",
+      "text": "Pelles Ball ist rund. Leg ihn zu den Spielsachen.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.farm.clean.seeds",
+      "text": "Und die Samentüte? Leg sie zu den anderen Samen.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.farm.decorate.decoration",
+      "text": "Hanno wünscht sich Blumen am Brunnen. Hol die Gänseblümchen.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.farm.decorate.place",
+      "text": "Stell die Blumen neben den Brunnen.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.farm.memory.pair",
+      "text": "Eine Katze! Wo lag die zweite Katze? Schau beim Tor nach.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.farm.memory.reveal",
+      "text": "Hanno legt Holztafeln aus. Dreh die Tafel beim Fenster um.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.farm.photo.first",
+      "text": "Pelle wedelt schon. Ruf ihn zum Foto.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.farm.photo.second",
+      "text": "Miau! Hol Minka neben Pelle.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.farm.photo.shoot",
+      "text": "Alle sind da. Drück auf den Fotoauslöser!",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.farm.sing.cluck",
+      "text": "Wau, miau … Wer gackert zum Schluss?",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.farm.sing.meow",
+      "text": "Nach dem Wau kommt das Miau. Lass Minka singen.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.farm.sing.woof",
+      "text": "Pelles Lied geht: Wau, miau, gack! Wer beginnt?",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.field.combine.machine",
+      "text": "Hol den Mähdrescher zum reifen Weizen.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.field.combine.row",
+      "text": "Fahr die Bahn mit den goldenen Ähren entlang.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.field.combine.unload",
+      "text": "Lass das Korn aus dem Rohr in den Anhänger rieseln.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.field.harvest.field",
+      "text": "Die Ernte ist reif: Radieschen. Ernte hier: Beet 1.",
+      "source": "first-day-prompt"
+    },
+    {
+      "id": "vl.pelle.field.harvest.gather",
+      "text": "Leg deine Ernte in den Korb.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.field.harvest.pick",
+      "text": "Schau, die Karotte ist groß. Zieh sie heraus!",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.field.harvest.store",
+      "text": "Bringe die Ernte ins Lager: 3 × Radieschen.",
+      "source": "first-day-prompt"
+    },
+    {
+      "id": "vl.pelle.field.harvest.use.basket",
+      "text": "Radieschen · Beet 1: Nimm das Werkzeug „Korb“.",
+      "source": "first-day-prompt"
+    },
+    {
+      "id": "vl.pelle.field.hay.bale",
+      "text": "Das Heu ist trocken. Presse es zu Ballen.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.field.hay.load",
+      "text": "Heb den Ballen mit dem Frontlader auf den Anhänger.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.field.hay.mow",
+      "text": "Mäh das lange Gras. Welches Gerät schneidet es?",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.field.hay.turn",
+      "text": "Wende das Gras, damit die Sonne auch die Unterseite trocknet.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.field.plow.furrow",
+      "text": "Zieh eine gerade Furche bis zur Fahne.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.field.plow.hitch",
+      "text": "Häng den Pflug an den Traktor.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.field.plow.lower",
+      "text": "Fahr zum Acker. Lass den Pflug in die Erde.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.field.scarecrow.body",
+      "text": "Zieh das Hemd über die Holzarme.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.field.scarecrow.hat",
+      "text": "Setz der Vogelscheuche den Hut auf.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.field.scarecrow.head",
+      "text": "Setz den runden Strohkopf über den Kragen.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.field.snowplow.attach",
+      "text": "Bau das breite Schneeschild an den Traktor.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.field.snowplow.drive",
+      "text": "Fahr auf dem verschneiten Weg bis zum Hoftor.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.field.snowplow.pile",
+      "text": "Schieb den Schnee an den Wegrand.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.field.sow.cover",
+      "text": "Gib den Samen eine dünne Decke aus Erde.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.field.sow.field",
+      "text": "Lege die Samen für Radieschen hier in die Erde: Beet 1.",
+      "source": "first-day-prompt"
+    },
+    {
+      "id": "vl.pelle.field.sow.seed",
+      "text": "Finde die Samentüte: Radieschen.",
+      "source": "first-day-prompt"
+    },
+    {
+      "id": "vl.pelle.field.sow.seeds",
+      "text": "Hier sollen Karotten wachsen. Nimm ihre Samentüte.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.field.sow.sow",
+      "text": "Streu die Samen mit der Hand ins freie Beet.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.field.sow.use.hand",
+      "text": "Radieschen · Beet 1: Nimm das Werkzeug „Handschuh“.",
+      "source": "first-day-prompt"
+    },
+    {
+      "id": "vl.pelle.field.water.field",
+      "text": "Hier wächst Radieschen. Gib der Erde in Beet 1 Wasser.",
+      "source": "first-day-prompt"
+    },
+    {
+      "id": "vl.pelle.field.water.fill",
+      "text": "Stell die Gießkanne unter den Wasserhahn.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.field.water.pour",
+      "text": "Kipp die volle Kanne über dem trockenen Beet.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.field.water.use.can",
+      "text": "Radieschen · Beet 1: Fülle die Gießkanne am Brunnen.",
+      "source": "first-day-prompt"
+    },
+    {
+      "id": "vl.pelle.greet.explore",
+      "text": "Was möchtest du entdecken?",
+      "source": "game-feedback"
+    },
+    {
+      "id": "vl.pelle.greet.explore",
+      "text": "Wir schauen, was gerade bereitliegt.",
+      "source": "game-feedback"
+    },
+    {
+      "id": "vl.pelle.greet.morning",
+      "text": "Guten Morgen! Der Hof wacht auf.",
+      "source": "game-feedback"
+    },
+    {
+      "id": "vl.pelle.home",
+      "text": "Da ist unser Hofbaum.",
+      "source": "game-feedback"
+    },
+    {
+      "id": "vl.pelle.home",
+      "text": "Komm, wir schauen bei Pelle nach.",
+      "source": "game-feedback"
+    },
+    {
+      "id": "vl.pelle.kitchen.bake.bake",
+      "text": "Tilda hält das Blech. Zeig ihr den Backofen.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.kitchen.bake.knead",
+      "text": "Knete den Teig mit den Händen zu einem Laib.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.kitchen.bake.mix",
+      "text": "Auf der Brotkarte steht Mehl. Gib es zum Wasser.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.kitchen.churn.beat",
+      "text": "Auf und ab! Beweg den Stampfer im Takt.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.kitchen.churn.cream",
+      "text": "Schöpf den Rahm von der Milch ins Butterfass.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.kitchen.churn.shape",
+      "text": "Die Butter ist fest. Drück sie in die Butterform.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.kitchen.jam.fruit",
+      "text": "Tilda hat den Kessel bereit. Gib die Erdbeeren hinein.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.kitchen.jam.jars",
+      "text": "Tilda füllt die Marmelade ab. Stell ihr die Gläser hin.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.kitchen.jam.stir",
+      "text": "Führ den langen Löffel im Kreis durch die Beeren.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.kitchen.press.bottle",
+      "text": "Der Saft läuft! Halt die Flasche unter den Auslauf.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.kitchen.press.count",
+      "text": "Eins, zwei, drei: Gib drei Äpfel in die Presse.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.kitchen.press.press",
+      "text": "Drück den Hebel nach unten.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.nature.birdhouse.fill",
+      "text": "Füll das Futterhäuschen mit einer Handvoll Körner.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.nature.birdhouse.watch",
+      "text": "Psst, wer landet da? Ein Vogel mit roter Brust!",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.nature.compost.bed",
+      "text": "Setz den Wurm in die feuchte Beeterde.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.nature.compost.search",
+      "text": "Heb das feuchte Blatt auf dem Kompost hoch.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.nature.compost.worm",
+      "text": "Wer schlängelt sich dort? Nimm den Wurm mit seiner Erde auf.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.nature.flowers.count",
+      "text": "Eine weiße und eine gelbe Blume. Wie viele sind das?",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.nature.flowers.white",
+      "text": "Pflück ein weißes Gänseblümchen für Tilda.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.nature.flowers.yellow",
+      "text": "Jetzt noch einen gelben Löwenzahn dazu.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.nature.kite.launch",
+      "text": "Mo hält den Drachen. Zieh sanft an der Schnur!",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.nature.kite.loop",
+      "text": "Male mit dem Drachen einen Kreis in die Luft.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.nature.kite.rise",
+      "text": "Der Wind trägt ihn. Gib ein Stück Schnur frei.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.nature.lantern.continue",
+      "text": "Sonne, Mond, Sonne … Stell die Mondlaterne dazu.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.nature.lantern.finish",
+      "text": "Sonne, Mond. Sonne, Mond. Sonne … Was leuchtet als Nächstes?",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.nature.lantern.repeat",
+      "text": "Nach dem blauen Mond kommt wieder eine gelbe Sonne.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.nature.pond.count",
+      "text": "Am kleinen Gartenteich quakt es zweimal. Zähl die beiden Frösche!",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.nature.pond.feed",
+      "text": "Die Fische schauen hoch. Streu ein paar Futterflocken ins Wasser.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.nature.snowman.face",
+      "text": "Welche Nase ist lang und orange? Steck sie ins Gesicht.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.nature.snowman.roll",
+      "text": "Roll für den Bauch die größte Schneekugel.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.nature.snowman.stack",
+      "text": "Setz die kleine Kopfkugel oben auf den Bauch.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.shop.market.display",
+      "text": "Stell die Ware auf den Markttisch.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.shop.market.drive",
+      "text": "Folge dem Schild mit dem Marktstand.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.shop.market.load",
+      "text": "Lade die Kiste mit der Ernte auf den Anhänger.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.shop.market.sell",
+      "text": "Yusuf möchte eine Karotte. Reich sie ihm.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.shop.order.listen",
+      "text": "Tilda ist da! Schau auf ihren Bildzettel.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.shop.order.pack",
+      "text": "Tilda möchte ein Ei. Leg es in ihren Korb.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.shop.order.pack.radish",
+      "text": "Tildas Bestellung: Lege 1 × Radieschen in den Korb.",
+      "source": "first-day-prompt"
+    },
+    {
+      "id": "vl.pelle.shop.order.ring",
+      "text": "Der Korb ist fertig. Läute die Ladenglocke!",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.shop.order.ring",
+      "text": "Der Korb ist gefüllt. Klingele für Tilda!",
+      "source": "first-day-prompt"
+    },
+    {
+      "id": "vl.pelle.shop.sign.center",
+      "text": "Was legt die Henne? Kleb das Bild in die Mitte.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.shop.sign.left",
+      "text": "Mo hat drei Bilder gemalt. Setz links die Henne hin.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.shop.sign.right",
+      "text": "Womit tragen wir die Eier? Das Bild kommt nach rechts.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.shop.stock.pick",
+      "text": "Tilda zeigt ein Karottenbild. Hol die passende Ware.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.shop.stock.place",
+      "text": "Leg die Karotte zum Karottenbild im Regal.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.village.helpmo.draw",
+      "text": "Mos Bild zeigt den Ball. Male seine runde Linie fertig.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.village.helpmo.find",
+      "text": "Mo sucht den runden Ball. Schau unter die Bank.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.village.mail.deliver",
+      "text": "Brot backt Tilda. Bring ihr den Brief.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.village.mail.next",
+      "text": "Der Baumbrief ist für Hanno. Reich ihn Hanno am Hofbaum.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.village.mail.sort",
+      "text": "Lale sucht am Hofbriefkasten den Brief mit dem Brotbild.",
+      "source": "activity-step"
+    },
+    {
+      "id": "vl.pelle.wish.prepare",
+      "text": "Dein Wunsch wartet. Zuerst: Am Teich lauschen.",
+      "source": "wish-route"
+    },
+    {
+      "id": "vl.pelle.wish.prepare",
+      "text": "Dein Wunsch wartet. Zuerst: Apfelsaft pressen.",
+      "source": "wish-route"
+    },
+    {
+      "id": "vl.pelle.wish.prepare",
+      "text": "Dein Wunsch wartet. Zuerst: Besuch am Futterhäuschen.",
+      "source": "wish-route"
+    },
+    {
+      "id": "vl.pelle.wish.prepare",
+      "text": "Dein Wunsch wartet. Zuerst: Bildpaare auf Holz finden.",
+      "source": "wish-route"
+    },
+    {
+      "id": "vl.pelle.wish.prepare",
+      "text": "Dein Wunsch wartet. Zuerst: Butter stampfen.",
+      "source": "wish-route"
+    },
+    {
+      "id": "vl.pelle.wish.prepare",
+      "text": "Dein Wunsch wartet. Zuerst: Das Beet gießen.",
+      "source": "wish-route"
+    },
+    {
+      "id": "vl.pelle.wish.prepare",
+      "text": "Dein Wunsch wartet. Zuerst: Das Regal füllen.",
+      "source": "wish-route"
+    },
+    {
+      "id": "vl.pelle.wish.prepare",
+      "text": "Dein Wunsch wartet. Zuerst: Den Acker pflügen.",
+      "source": "wish-route"
+    },
+    {
+      "id": "vl.pelle.wish.prepare",
+      "text": "Dein Wunsch wartet. Zuerst: Den Drachen steigen lassen.",
+      "source": "wish-route"
+    },
+    {
+      "id": "vl.pelle.wish.prepare",
+      "text": "Dein Wunsch wartet. Zuerst: Den Hof schmücken.",
+      "source": "wish-route"
+    },
+    {
+      "id": "vl.pelle.wish.prepare",
+      "text": "Dein Wunsch wartet. Zuerst: Den Hofweg freiräumen.",
+      "source": "wish-route"
+    },
+    {
+      "id": "vl.pelle.wish.prepare",
+      "text": "Dein Wunsch wartet. Zuerst: Die Tränke füllen.",
+      "source": "wish-route"
+    },
+    {
+      "id": "vl.pelle.wish.prepare",
+      "text": "Dein Wunsch wartet. Zuerst: Eier im Nest suchen.",
+      "source": "wish-route"
+    },
+    {
+      "id": "vl.pelle.wish.prepare",
+      "text": "Dein Wunsch wartet. Zuerst: Ein Beet besäen.",
+      "source": "wish-route"
+    },
+    {
+      "id": "vl.pelle.wish.prepare",
+      "text": "Dein Wunsch wartet. Zuerst: Ein Foto mit den Hoftieren.",
+      "source": "wish-route"
+    },
+    {
+      "id": "vl.pelle.wish.prepare",
+      "text": "Dein Wunsch wartet. Zuerst: Ein Schild für den Laden.",
+      "source": "wish-route"
+    },
+    {
+      "id": "vl.pelle.wish.prepare",
+      "text": "Dein Wunsch wartet. Zuerst: Eine Kuh melken.",
+      "source": "wish-route"
+    },
+    {
+      "id": "vl.pelle.wish.prepare",
+      "text": "Dein Wunsch wartet. Zuerst: Eine Vogelscheuche anziehen.",
+      "source": "wish-route"
+    },
+    {
+      "id": "vl.pelle.wish.prepare",
+      "text": "Dein Wunsch wartet. Zuerst: Einen Einkaufskorb packen.",
+      "source": "wish-route"
+    },
+    {
+      "id": "vl.pelle.wish.prepare",
+      "text": "Dein Wunsch wartet. Zuerst: Einen Laternenweg legen.",
+      "source": "wish-route"
+    },
+    {
+      "id": "vl.pelle.wish.prepare",
+      "text": "Dein Wunsch wartet. Zuerst: Einen Schneemann bauen.",
+      "source": "wish-route"
+    },
+    {
+      "id": "vl.pelle.wish.prepare",
+      "text": "Dein Wunsch wartet. Zuerst: Einen Wiesenstrauß pflücken.",
+      "source": "wish-route"
+    },
+    {
+      "id": "vl.pelle.wish.prepare",
+      "text": "Dein Wunsch wartet. Zuerst: Erdbeermarmelade kochen.",
+      "source": "wish-route"
+    },
+    {
+      "id": "vl.pelle.wish.prepare",
+      "text": "Dein Wunsch wartet. Zuerst: Futter für die Tiere.",
+      "source": "wish-route"
+    },
+    {
+      "id": "vl.pelle.wish.prepare",
+      "text": "Dein Wunsch wartet. Zuerst: Für ein Tierbaby sorgen.",
+      "source": "wish-route"
+    },
+    {
+      "id": "vl.pelle.wish.prepare",
+      "text": "Dein Wunsch wartet. Zuerst: Heu für den Stall.",
+      "source": "wish-route"
+    },
+    {
+      "id": "vl.pelle.wish.prepare",
+      "text": "Dein Wunsch wartet. Zuerst: Jedem Ding seinen Platz.",
+      "source": "wish-route"
+    },
+    {
+      "id": "vl.pelle.wish.prepare",
+      "text": "Dein Wunsch wartet. Zuerst: Korn dreschen.",
+      "source": "wish-route"
+    },
+    {
+      "id": "vl.pelle.wish.prepare",
+      "text": "Dein Wunsch wartet. Zuerst: Mit Lale Post austragen.",
+      "source": "wish-route"
+    },
+    {
+      "id": "vl.pelle.wish.prepare",
+      "text": "Dein Wunsch wartet. Zuerst: Mit Tilda backen.",
+      "source": "wish-route"
+    },
+    {
+      "id": "vl.pelle.wish.prepare",
+      "text": "Dein Wunsch wartet. Zuerst: Mo beim Spielen helfen.",
+      "source": "wish-route"
+    },
+    {
+      "id": "vl.pelle.wish.prepare",
+      "text": "Dein Wunsch wartet. Zuerst: Pelles Lied nachspielen.",
+      "source": "wish-route"
+    },
+    {
+      "id": "vl.pelle.wish.prepare",
+      "text": "Dein Wunsch wartet. Zuerst: Streicheln und bürsten.",
+      "source": "wish-route"
+    },
+    {
+      "id": "vl.pelle.wish.prepare",
+      "text": "Dein Wunsch wartet. Zuerst: Von Hand ernten.",
+      "source": "wish-route"
+    },
+    {
+      "id": "vl.pelle.wish.prepare",
+      "text": "Dein Wunsch wartet. Zuerst: Wer versteckt sich da?.",
+      "source": "wish-route"
+    },
+    {
+      "id": "vl.pelle.wish.prepare",
+      "text": "Dein Wunsch wartet. Zuerst: Wolle vom Schaf holen.",
+      "source": "wish-route"
+    },
+    {
+      "id": "vl.pelle.wish.prepare",
+      "text": "Dein Wunsch wartet. Zuerst: Würmer im Kompost entdecken.",
+      "source": "wish-route"
+    },
+    {
+      "id": "vl.pelle.wish.prepare",
+      "text": "Dein Wunsch wartet. Zuerst: Zeit zum Einkuscheln.",
+      "source": "wish-route"
+    },
+    {
+      "id": "vl.pelle.wish.prepare",
+      "text": "Dein Wunsch wartet. Zuerst: Zum Markt fahren.",
+      "source": "wish-route"
+    },
+    {
+      "id": "vl.pelle.wish.season",
+      "text": "Dein Wunsch bleibt hier. Komm, wir drehen am Jahreskreis.",
+      "source": "game-feedback"
+    },
+    {
+      "id": "vl.praise.animal.feed",
+      "text": "Hilde knabbert zufrieden.",
+      "source": "first-day-result"
+    },
+    {
+      "id": "vl.praise.field.harvest",
+      "text": "Im Lager: 3 × Radieschen aus der Ernte.",
+      "source": "first-day-result"
+    },
+    {
+      "id": "vl.praise.field.sow",
+      "text": "Beet 1: Radieschen ist gesät.",
+      "source": "first-day-result"
+    },
+    {
+      "id": "vl.praise.field.water",
+      "text": "Radieschen · Beet 1: Die Erde hat getrunken.",
+      "source": "first-day-result"
+    },
+    {
+      "id": "vl.praise.shop.order",
+      "text": "1 × Radieschen verkauft. 1 Taler sind in der Kasse.",
+      "source": "first-day-result"
+    },
+    {
+      "id": "vl.season.autumn.greet",
+      "text": "Schau, jetzt ist Herbst!",
+      "source": "season"
+    },
+    {
+      "id": "vl.season.spring.greet",
+      "text": "Schau, jetzt ist Frühling!",
+      "source": "season"
+    },
+    {
+      "id": "vl.season.summer.greet",
+      "text": "Schau, jetzt ist Sommer!",
+      "source": "season"
+    },
+    {
+      "id": "vl.season.winter.greet",
+      "text": "Schau, jetzt ist Winter!",
+      "source": "season"
+    },
+    {
+      "id": "vl.vocab.loc.apiary",
+      "text": "Bienenstock",
+      "source": "location"
+    },
+    {
+      "id": "vl.vocab.loc.cowbarn",
+      "text": "Kuhstall",
+      "source": "location"
+    },
+    {
+      "id": "vl.vocab.loc.field",
+      "text": "Acker",
+      "source": "location"
+    },
+    {
+      "id": "vl.vocab.loc.garage",
+      "text": "Maschinenhalle",
+      "source": "location"
+    },
+    {
+      "id": "vl.vocab.loc.garden",
+      "text": "Gemüsegarten",
+      "source": "location"
+    },
+    {
+      "id": "vl.vocab.loc.goatpen",
+      "text": "Ziegengehege",
+      "source": "location"
+    },
+    {
+      "id": "vl.vocab.loc.greenhouse",
+      "text": "Gewächshaus",
+      "source": "location"
+    },
+    {
+      "id": "vl.vocab.loc.henhouse",
+      "text": "Hühnerhaus",
+      "source": "location"
+    },
+    {
+      "id": "vl.vocab.loc.kitchen",
+      "text": "Hofküche",
+      "source": "location"
+    },
+    {
+      "id": "vl.vocab.loc.orchard",
+      "text": "Obstwiese",
+      "source": "location"
+    },
+    {
+      "id": "vl.vocab.loc.paddock",
+      "text": "Pferdekoppel",
+      "source": "location"
+    },
+    {
+      "id": "vl.vocab.loc.pigsty",
+      "text": "Schweinekoben",
+      "source": "location"
+    },
+    {
+      "id": "vl.vocab.loc.plaza",
+      "text": "Hofplatz",
+      "source": "location"
+    },
+    {
+      "id": "vl.vocab.loc.pond",
+      "text": "Ententeich",
+      "source": "location"
+    },
+    {
+      "id": "vl.vocab.loc.sheepmeadow",
+      "text": "Schafweide",
+      "source": "location"
+    },
+    {
+      "id": "vl.vocab.loc.shop",
+      "text": "Hofladen",
+      "source": "location"
+    },
+    {
+      "id": "vl.vocab.loc.village",
+      "text": "Dorfmarkt",
+      "source": "location"
+    }
+  ]
+}
