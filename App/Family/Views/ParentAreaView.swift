@@ -90,7 +90,6 @@ struct ParentAreaView: View {
                 Text(errorMessage ?? "")
             }
         }
-        .simultaneousGesture(TapGesture().onEnded { store.noteParentActivity() })
         .onChange(of: path) { _, _ in store.noteParentActivity() }
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier("family.parent")

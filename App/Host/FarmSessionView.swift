@@ -20,7 +20,6 @@ struct FarmSessionView: View {
     @State private var audioInterrupted = false
     @State private var musicSeason: MiniFarmSeason?
     @State private var accountedSeconds = 0
-    @State private var voiceWarning: String?
 
     var body: some View {
         ZStack {
@@ -60,18 +59,6 @@ struct FarmSessionView: View {
                     onProfiles: { family.endSession() },
                     onParents: { family.requestParentArea(); setPaused(false) }
                 )
-            }
-        }
-        .overlay(alignment: .bottomLeading) {
-            if let voiceWarning, !pauseMenu {
-                Button(action: updateAudio) {
-                    Image(systemName: "speaker.slash.fill")
-                        .padding(16)
-                        .background(.regularMaterial, in: Circle())
-                }
-                .accessibilityLabel(voiceWarning)
-                .accessibilityHint("Tippe hier, um den Ton erneut zu starten.")
-                .padding()
             }
         }
         .persistentSystemOverlays(.hidden)
@@ -118,6 +105,10 @@ struct FarmSessionView: View {
 
     private var covered: Bool { pauseMenu || decorationBox || parcel != nil || album != nil }
 
+    private func notifyParents(_ message: String) {
+        if !family.notices.contains(where: { $0.message == message }) { family.addNotice(message) }
+    }
+
     private func readStory(_ text: String) {
         audio.clearVoiceCues()
         caption = text
@@ -128,12 +119,13 @@ struct FarmSessionView: View {
         do {
             let catalog = try FarmCatalog.load(from: Bundle.main.bundleURL.appendingPathComponent("Content", isDirectory: true))
             let outcome = session.saves.load(slot: "Farm", decode: FarmSavedGame.decode)
-            var opening: FarmGame
+            let opening: FarmGame
             var daysAway = 0
             switch outcome {
             case .empty:
                 opening = FarmGame(catalog: catalog, stage: stage(session.profile.stage))
             case .loaded(let saved), .recovered(let saved, _):
+                if case .recovered = outcome { notifyParents("Der Hof wurde aus seiner Sicherungskopie wiederhergestellt.") }
                 opening = FarmGame(catalog: catalog, state: saved.state)
                 let calendar = Calendar.current
                 daysAway = calendar.dateComponents([.day], from: calendar.startOfDay(for: saved.date),
@@ -153,14 +145,13 @@ struct FarmSessionView: View {
             audio.onSubtitleChange = { caption = $0 }
             audio.onVoiceCueEvent = { event in
                 if event.state == .unavailable {
-                    voiceWarning = "Keine deutsche Stimme installiert. Die Bildzeichen bleiben nutzbar."
+                    notifyParents("Für diesen Satz ist keine deutsche Stimme verfügbar. Die Bildzeichen bleiben nutzbar.")
                 }
             }
             audio.onAudioError = { error in
                 switch error {
-                case .manifestMissing, .manifestInvalid: voiceWarning = "Der Tonkatalog ist nicht verfügbar."
-                case let .assetUnavailable(id, _), let .playbackFailed(id, _):
-                    voiceWarning = "Ton kann nicht abgespielt werden: \(id)"
+                case .manifestMissing, .manifestInvalid: notifyParents("Der Tonkatalog ist nicht verfügbar.")
+                case .assetUnavailable, .playbackFailed: notifyParents("Ein lokaler Ton konnte nicht abgespielt werden.")
                 }
             }
             updateAudio()
@@ -200,7 +191,6 @@ struct FarmSessionView: View {
             return
         }
         do {
-            voiceWarning = nil
             if !audioStarted {
                 try audio.start()
                 audioStarted = true
@@ -215,7 +205,7 @@ struct FarmSessionView: View {
                 musicSeason = season
             }
         } catch {
-            voiceWarning = "Sprachausgabe momentan nicht verfügbar: \(error.localizedDescription)"
+            notifyParents("Sprachausgabe momentan nicht verfügbar: \(error.localizedDescription)")
         }
     }
 
