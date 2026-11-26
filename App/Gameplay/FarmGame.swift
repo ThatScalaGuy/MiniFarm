@@ -31,6 +31,19 @@ struct FarmGame: Sendable {
         state.fixedStage = locked
     }
 
+    mutating func recordPlay(seconds: Int) {
+        guard state.adaptive else { return }
+        state.skills.recordSession(seconds: seconds, day: state.day)
+    }
+
+    mutating func resume(afterDays days: Int) {
+        if state.adaptive { state.skills.resume(afterDays: days) }
+    }
+
+    var suggestsRest: Bool {
+        state.adaptive && state.skills.suggestsRest(stage: state.stage, rules: catalog.adaptive)
+    }
+
     var locations: [FarmLocation] { catalog.locations.filter { $0.level <= state.level } }
     var beds: [FarmBedView] {
         state.production.plots.map {
@@ -98,6 +111,8 @@ struct FarmGame: Sendable {
         default: break
         }
         if let variants = variants(activity.id, location) { return !variants.isEmpty }
+        if activity.id == "act.nature.pond", location == "loc.pond", state.level >= 4 { return true }
+        if activity.id == "act.village.mail", location == "loc.village", state.level >= 5 { return true }
         return activity.locationID == location
     }
 
@@ -238,6 +253,9 @@ struct FarmGame: Sendable {
         case let .requestDecoration(id):
             let result = state.life.purchase(decorationID: id, level: state.level, coins: &state.production.coins, catalog: catalog)
             return FarmFeedback(text: result.text, voiceID: "vl.pelle.deco.wish")
+        case let .placeDecoration(id, positionID):
+            guard state.level >= 2, catalog.decorations.contains(where: { $0.id == id && $0.level <= state.level }) else { return unavailable }
+            return FarmFeedback(text: state.life.place(decorationID: id, positionID: positionID).text, voiceID: "vl.pelle.deco.place")
         case let .rotateDecoration(id):
             return FarmFeedback(text: state.life.rotate(positionID: id).text, voiceID: "vl.pelle.deco.turn")
         case let .putAwayDecoration(id):
@@ -373,7 +391,7 @@ struct FarmGame: Sendable {
             result = state.life.celebrate(season: festival, day: state.day, catalog: catalog)
         } else if let variant = turn.variant {
             guard let applied = state.production.apply(variant, activityID: activity.id, day: state.day, level: state.level,
-                                                       stage: state.stage, season: season, catalog: catalog) else {
+                                                       stage: state.stage, season: season, catalog: catalog, selections: turn.picked) else {
                 // A different activity may have used the stock while this one was put aside.
                 state.active = nil
                 ensureWishes()
@@ -386,6 +404,10 @@ struct FarmGame: Sendable {
                                          day: state.day, season: season, catalog: catalog)
         }
         state.active = nil
+        guard result.accepted else {
+            ensureWishes()
+            return FarmFeedback(text: result.text, voiceID: "vl.pelle.wish.prepare")
+        }
         state.book.formUnion(result.book)
         recordEncounter(turn, book: result.book)
         if !state.life.wishlist.isEmpty {
@@ -556,7 +578,12 @@ extension FarmGame {
                     if !state.activityTypes.contains(a.id) { score += 80 }
                     if seasonal.contains(a.id) && !offered.contains(where: { seasonal.contains($0.activityID) }) { score += 50 }
                     if a.locationID != last { score += 32 }
-                    if state.adaptive { score += min(25, state.skills.priority(lanes: a.lanes, day: state.day)) }
+                    if state.adaptive {
+                        score += min(25, state.skills.priority(lanes: a.lanes, day: state.day))
+                        if state.skills.prefersQuiet(stage: state.stage, rules: catalog.adaptive) {
+                            score += a.lanes.contains(where: { $0 == "moSteer" || $0 == "mo.steer" }) ? -60 : 20
+                        }
+                    }
                     return score
                 }
                 guard let next = candidates.max(by: { score($0) < score($1) }) else { return }
@@ -566,6 +593,30 @@ extension FarmGame {
         }
 
         private mutating func prerequisite(for wish: FarmWish) -> FarmFeedback {
+            if let id = wish.itemID, let crop = catalog.crops.first(where: { $0.itemID == id }) {
+                let viablePlaces = crop.locations.filter { id in locations.contains { $0.id == id } }
+                for predecessor in ["act.field.combine", "act.field.harvest", "act.field.water", "act.field.sow"] {
+                    if predecessor == "act.field.sow", state.production.plots.contains(where: { $0.cropID == crop.id && viablePlaces.contains($0.locationID) }) {
+                        return FarmFeedback(text: "\(crop.title) wächst schon. Wenn du magst, tippe auf den Mond.", voiceID: "vl.pelle.wish.grow")
+                    }
+                    guard var activity = catalog.activities.first(where: { $0.id == predecessor }) else { continue }
+                    for place in viablePlaces {
+                        guard let focus = variants(predecessor, place)?.first(where: { $0.featuredItemID == id }) else { continue }
+                        activity.locationID = place
+                        let existing = state.outstanding.first { !$0.folded && $0.activityID == predecessor && $0.locationID == place && $0.itemID == id }
+                        if existing == nil {
+                            appendWish(activity: activity, title: "\(crop.title): \(activity.title)")
+                            let i = state.outstanding.count - 1
+                            state.outstanding[i].subjectID = focus.subjectID
+                            state.outstanding[i].itemID = id
+                        }
+                        let next = existing ?? state.outstanding[state.outstanding.count - 1]
+                        return begin(activity, location: place, wish: next)
+                    }
+                }
+                return FarmFeedback(text: "Dein Wunsch wartet. Die Pflanzen haben Zeit. Am Hofbaum kannst du schlafen oder die Jahreszeit wechseln.",
+                                    voiceID: "vl.pelle.wish.season")
+            }
             let routes: [String]
             switch wish.activityID {
             case "act.shop.stock", "act.shop.order", "act.shop.market":

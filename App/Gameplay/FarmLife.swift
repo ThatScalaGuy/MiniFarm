@@ -243,10 +243,12 @@ extension FarmLife {
         guard let activity = catalog.activities.first(where: { $0.id == activityID }),
               activity.locationID == locationID || (activityID == "act.village.mail" && locationID == "loc.village")
                 || (activityID == "act.nature.pond" && locationID == "loc.pond") else {
-            return say("Pelle zeigt dir den Weg zu diesem Wunsch.")
+            return FarmResult(text: "Pelle zeigt dir den Weg zu diesem Wunsch.", book: [], accepted: false)
         }
         if activityID == "act.farm.memory" {
-            guard boards[activeBoard]?.finished == true else { return say("Auf den Brettern warten noch Bildpaare.") }
+            guard boards[activeBoard]?.finished == true else {
+                return FarmResult(text: "Auf den Brettern warten noch Bildpaare.", book: [], accepted: false)
+            }
             boards.removeValue(forKey: activeBoard)
             completedBoards += 1
             sceneTextAt[locationID] = "Alle Bildpaare auf der Holztafel sind aufgedeckt."
@@ -256,7 +258,7 @@ extension FarmLife {
         // A paused turn keeps its original sequence even across a night or a stage change.
         guard let picks = acceptedChoices(choices, id: activityID, day: day, season: season, catalog: catalog),
               let first = picks.first, let last = picks.last else {
-            return say("Der Wunsch wartet hier auf dich.")
+            return FarmResult(text: "Der Wunsch wartet hier auf dich.", book: [], accepted: false)
         }
         let titles = picks.map(\.title)
         var entries: Set<String> = []
@@ -323,7 +325,7 @@ extension FarmLife {
         case "act.field.scarecrow":
             scarecrow = choices
             text = "Die Vogelscheuche breitet die Arme über dem Acker aus. Am Hut leuchtet dein Zeichen: \(last.title)."
-        default: return say(activity.result)
+        default: return FarmResult(text: "Wir schauen gemeinsam nach deinem Wunsch.", book: [], accepted: false)
         }
         sceneTextAt[locationID] = text
         let present = catalog.hofbook.filter { entries.contains($0.id) && $0.locationID == locationID }

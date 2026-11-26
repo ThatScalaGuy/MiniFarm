@@ -3,7 +3,7 @@ import Foundation
 enum FarmIntent: Sendable {
     case visit(String), discover(String), startWish(String), startActivity(String), startActivityAt(String, String)
     case choose(String), askPelle, idle(seconds: Int), goHome, sleep, nextSeason
-    case requestDecoration(String), rotateDecoration(String), putAwayDecoration(String)
+    case requestDecoration(String), placeDecoration(String, positionID: String), rotateDecoration(String), putAwayDecoration(String)
 }
 
 struct FarmFeedback: Sendable {

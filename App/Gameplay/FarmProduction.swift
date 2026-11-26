@@ -3,6 +3,7 @@ import Foundation
 struct FarmResult: Sendable {
     let text: String
     let book: Set<String>
+    var accepted = true
 }
 
 struct FarmPlot: Codable, Sendable, Identifiable {
@@ -37,6 +38,7 @@ struct FarmAnimalInstance: Codable, Sendable, Identifiable {
     fileprivate var actions: [String: Int] = [:]
     var lastFedDay: Int? { actions["feed"] }
     var isBaby: Bool { bornOn != nil }
+    var nickname: String?
 }
 
 private struct Parcels: Codable, Sendable, Equatable {
@@ -124,6 +126,7 @@ struct FarmProduction: Codable, Sendable {
     var animals: [FarmAnimalInstance] = []
     var plots: [FarmPlot] = []
     var coins = 0
+    private(set) var nurseryNames: [String: String]?
     private var lastNight: Int?
     private var preparedDay: Int?
     private var rainyDay: Int?
@@ -325,7 +328,8 @@ struct FarmProduction: Codable, Sendable {
             for animal in animals where animal.locationID == location {
                 guard let species = catalog.animals.first(where: { $0.id == animal.speciesID }), species.level <= level else { continue }
                 let bee = species.id == "animal.bee"
-                let name = animal.isBaby ? "\(animal.name) (\(species.babyTitle ?? species.title))" : animal.name
+                let display = animal.nickname ?? animal.name
+                let name = animal.isBaby ? "\(display) (\(species.babyTitle ?? species.title))" : display
                 func add(_ kind: String, _ itemID: String? = nil, fromInventory: Bool = false) {
                     let item = itemID.flatMap { items[$0] }
                     let dailyProduct = ["milk", "eggs", "shear", "compost", "collect"].contains(kind)
@@ -354,6 +358,15 @@ struct FarmProduction: Codable, Sendable {
                         add("collect", product)
                     } else { add("find") }
                 case "baby" where animal.isBaby: add("baby")
+                case "baby" where season == "season.spring":
+                    // A spring visitor keeps the nursery playable after all resident young have grown up.
+                    if let young = species.babyTitle, !animals.contains(where: { $0.speciesID == species.id && $0.isBaby }),
+                       animal.id == "\(species.id).1", animal.actions["nursery"] != day {
+                        let guestID = "\(species.id).guest.\(Self.year(day))"
+                        let label = nurseryNames?[guestID] ?? "\(young) zu Besuch"
+                        result.append(offer(guestID, label, place.symbol, nil, .visit(Visit(animal: animal.id,
+                            species: species.id, name: label, kind: "nursery", item: nil))))
+                    }
                 case "pet", "water", "bed": if !bee { add(action) }
                 default: continue
                 }
@@ -406,7 +419,7 @@ struct FarmProduction: Codable, Sendable {
     }
 
     mutating func apply(_ variant: FarmVariant, activityID: String, day: Int, level: Int, stage: FarmStage,
-                        season: String, catalog: FarmCatalog) -> FarmResult? {
+                        season: String, catalog: FarmCatalog, selections: [String] = []) -> FarmResult? {
         guard variant.activityID == activityID, let current = variants(activityID: activityID, locationID: variant.locationID,
               day: day, level: level, stage: stage, season: season, catalog: catalog) else { return nil }
         if !current.contains(variant) {
@@ -482,7 +495,17 @@ struct FarmProduction: Codable, Sendable {
             if visit.fromInventory, let id = visit.item { Self.take(1, id, from: &inventory) }
             book.insert("hofbook.animal.\(visit.species.shortID)")
             if animals[i].isBaby { book.insert("hofbook.animal.\(visit.species.shortID).baby") }
-            if let id = visit.item, ["milk", "eggs", "shear", "compost", "collect"].contains(visit.kind) {
+            if ["baby", "nursery"].contains(visit.kind) {
+                let nickname = selections.last.flatMap { Self.babyNames[$0] } ?? visit.name
+                if visit.kind == "nursery" {
+                    if nurseryNames == nil { nurseryNames = [:] }
+                    nurseryNames?[variant.subjectID] = nickname
+                } else {
+                    animals[i].nickname = nickname
+                }
+                book.insert("hofbook.animal.\(visit.species.shortID).baby")
+                text = "\(nickname) hat getrunken und kuschelt sich in die Decke."
+            } else if let id = visit.item, ["milk", "eggs", "shear", "compost", "collect"].contains(visit.kind) {
                 inventory[id, default: 0] += 1
                 let product = catalog.items.first { $0.id == id }?.title ?? id
                 text = "\(visit.name): 1 × \(product) liegt jetzt im Lager."
@@ -531,6 +554,8 @@ struct FarmProduction: Codable, Sendable {
     }
 
     private static func year(_ day: Int) -> Int { max(0, day - 1) / 16 }
+
+    fileprivate static let babyNames = ["name.star": "Sternchen", "name.cloud": "Wölkchen", "name.flower": "Blümchen"]
 
     private static func take(_ amount: Int, _ item: String, from stock: inout [String: Int]) {
         guard amount > 0, let old = stock[item] else { return }
@@ -705,9 +730,15 @@ private struct WorkGuide {
         case "bed":
             object = choice("stall.bed", "Schlafplatz", "moon.stars"); first = "Zeige den Schlafplatz für \(name)."
             end = visit.species == "animal.duck" ? "Der Entenmarsch beginnt! Begleite \(name) zum Schlafplatz." : "Begleite \(name) zum Schlafplatz."
-        case "baby":
-            object = choice("stall.blanket", "Kuscheldecke", "bed.double"); first = "Wähle eine warme Decke für \(name)."
-            end = "Kuschle \(name) in die Decke."
+        case "baby", "nursery":
+            let blanket = choice("stall.blanket", "Kuscheldecke", "bed.double")
+            let drink = choice("stall.drink", "Trinkschale", "drop")
+            return [step("warm", "Kuschle \(name) in die warme Decke.", blanket, [basket]),
+                    step("drink", "Was stellen wir \(name) zum Trinken hin?", drink, [blanket, basket]),
+                    FarmStep(id: "name", text: "Welchen Kosenamen bekommt das Kleine?", targetID: "*",
+                             choices: FarmProduction.babyNames.sorted { $0.key < $1.key }.map { id, title in
+                                 choice(id, title, id == "name.star" ? "star" : id == "name.cloud" ? "cloud" : "camera.macro")
+                             })]
         case "find":
             object = choice("animal.tracks", "Tierspuren", "pawprint"); first = "Welche Spuren führen zu \(name)?"
             end = "Da ist \(name)! Begrüße das Tier."
