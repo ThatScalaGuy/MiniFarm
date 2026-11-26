@@ -4,6 +4,7 @@ import Foundation
 struct FarmGame: Sendable {
     let catalog: FarmCatalog
     private(set) var state: FarmState
+    private var profileHintDelayScale: Double?
 
     init(catalog: FarmCatalog, stage: FarmStage = .sprout) {
         self.catalog = catalog
@@ -17,12 +18,13 @@ struct FarmGame: Sendable {
         self.state = state
     }
 
-    mutating func configure(stage: FarmStage?, adaptive: Bool, memory: Bool, earlyHints: Bool) {
+    mutating func configure(stage: FarmStage?, adaptive: Bool, memory: Bool, hintDelayScale: Double) {
         if let stage { state.stage = stage }
         state.fixedStage = stage != nil
         state.adaptive = adaptive
         state.memory = memory
-        state.earlyHints = earlyHints
+        profileHintDelayScale = hintDelayScale
+        state.earlyHints = hintDelayScale < 1
     }
 
     mutating func applyProfileStage(_ stage: FarmStage, revision: Int, locked: Bool) {
@@ -42,6 +44,14 @@ struct FarmGame: Sendable {
 
     var suggestsRest: Bool {
         state.adaptive && state.skills.suggestsRest(stage: state.stage, rules: catalog.adaptive)
+    }
+
+    var secondsUntilIdleHint: Int? {
+        guard let turn = state.active, turn.assist.rawValue < FarmAssist.ghost.rawValue,
+              let activity = catalog.activities.first(where: { $0.id == turn.activityID }) else { return nil }
+        let base = state.skills.hintSeconds(stage: state.stage, lanes: activity.lanes, rules: catalog.adaptive)
+        let scale = profileHintDelayScale ?? (state.earlyHints ? 0.5 : 1)
+        return max(1, Int((Double(base) * scale).rounded()) - turn.idleSeconds)
     }
 
     var locations: [FarmLocation] { catalog.locations.filter { $0.level <= state.level } }
@@ -215,14 +225,12 @@ struct FarmGame: Sendable {
         case let .choose(id): return choose(id)
         case .askPelle: return help()
         case let .idle(seconds):
-            guard seconds > 0, var turn = state.active,
-                  let activity = catalog.activities.first(where: { $0.id == turn.activityID }) else { return currentFeedback }
-            turn.idleSeconds += min(seconds, 120)
+            guard seconds > 0, var turn = state.active, let remaining = secondsUntilIdleHint else { return currentFeedback }
+            let counted = min(seconds, 120)
+            turn.idleSeconds += counted
             state.active = turn
-            let delay = state.earlyHints ? 4 : state.skills.hintSeconds(stage: state.stage, lanes: activity.lanes, rules: catalog.adaptive)
-            guard turn.idleSeconds >= delay else { return currentFeedback }
+            guard counted >= remaining else { return currentFeedback }
             // Stillness can show the way, but never decides on the child's behalf.
-            guard turn.assist.rawValue < FarmAssist.ghost.rawValue else { return currentFeedback }
             return help()
         case .goHome:
             pauseTurn()

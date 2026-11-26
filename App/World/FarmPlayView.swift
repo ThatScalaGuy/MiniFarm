@@ -113,12 +113,10 @@ struct FarmPlayView: View {
         .onChange(of: state.active?.offering.locationID) { _, id in if let id { place = id } }
         .onChange(of: state.active?.stepID) { _, _ in page = 0; diorama.resetDrag() }
         .task(id: hintKey) {
-            guard state.active != nil, !state.hasDrivingJob, !paused else { return }
-            while !Task.isCancelled {
-                do { try await Task.sleep(for: .seconds(8)) } catch { return }
-                guard !Task.isCancelled else { return }
-                send(.idleHint)
-            }
+            guard let seconds = state.secondsUntilIdleHint, !state.hasDrivingJob, !paused else { return }
+            do { try await Task.sleep(for: .seconds(seconds)) } catch { return }
+            guard !Task.isCancelled else { return }
+            send(.idleHint(seconds: seconds))
         }
         .task(id: response?.key) {
             guard response != nil else { return }
@@ -128,7 +126,7 @@ struct FarmPlayView: View {
     }
 
     private var hintKey: String {
-        "\(state.active?.offering.id ?? "")|\(state.active?.stepID ?? "")|\(lastTouch.timeIntervalSinceReferenceDate)|\(paused)|\(state.hasDrivingJob)"
+        "\(state.active?.offering.id ?? "")|\(state.active?.stepID ?? "")|\(state.active?.helpLevel ?? 0)|\(state.secondsUntilIdleHint ?? 0)|\(lastTouch.timeIntervalSinceReferenceDate)|\(paused)|\(state.hasDrivingJob)"
     }
 
     private func stage(targets: [WorldObject], size: CGFloat) -> some View {

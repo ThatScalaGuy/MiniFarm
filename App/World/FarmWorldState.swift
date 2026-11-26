@@ -21,6 +21,7 @@ struct FarmWorldState: Equatable {
     var largeControls = false
     var quiet = false
     var paused = false
+    var secondsUntilIdleHint: Int?
     var reduceMotion = false
     var haptics = true
     var stage: WorldStage = .seedling
@@ -92,7 +93,7 @@ struct WorldSticker: Identifiable, Equatable {
 }
 
 enum FarmWorldIntent: Equatable {
-    case visit(String), begin(String), perform(String?), help, idleHint, leaveActivity
+    case visit(String), begin(String), perform(String?), help, idleHint(seconds: Int), leaveActivity
     case discover(String), readSticker(String), endDay, nextSeason, pause, decorationBox
     case readStory(String), closeNightStory, horn
 }
