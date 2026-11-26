@@ -11,6 +11,7 @@ struct FarmWorldState: Equatable {
     var book: [WorldSticker] = []
     var inventory: [String: Int] = [:]
     var shelf: [String: Int] = [:]
+    var coins = 0
     var caredFor: Set<String> = []
     var farmLevel = 1
     var season = "season.spring"
@@ -27,6 +28,7 @@ struct FarmWorldState: Equatable {
     var decorations: [WorldDecoration] = []
     var invitesRest = false
     var eveningDue = false
+    var nightStory: FarmNightStory?
 }
 
 struct WorldDecoration: Equatable {
@@ -84,4 +86,5 @@ struct WorldSticker: Identifiable, Equatable {
 enum FarmWorldIntent: Equatable {
     case visit(String), begin(String), perform(String?), help, idleHint, leaveActivity
     case discover(String), readSticker(String), endDay, nextSeason, pause, decorationBox
+    case readStory(String), closeNightStory
 }

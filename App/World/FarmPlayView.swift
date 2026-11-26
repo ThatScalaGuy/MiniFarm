@@ -13,7 +13,7 @@ struct FarmPlayView: View {
     @State private var sheet: Sheet?
     @State private var lastTouch = Date.distantPast
     @State private var lastID = ""
-    @State private var goodNight = false
+    @State private var waitingForNightStory = false
     @State private var response: Reaction?
     @State private var nextFind: [String: String] = [:]
     @Environment(\.accessibilityReduceMotion) private var systemStill
@@ -59,6 +59,19 @@ struct FarmPlayView: View {
                         .padding(.bottom, (compact ? 27 : size) + (state.caption?.isEmpty == false ? 40 : 0))
                     VStack(spacing: 0) {
                         topBar(size: size, compact: compact)
+                        if site?.id == "loc.shop" {
+                            HStack(spacing: 5) {
+                                Image(systemName: "handbag.fill").foregroundStyle(FarmPaper.clay)
+                                Text("\(state.coins)").font(.system(.body, design: .rounded, weight: .bold)).monospacedDigit()
+                            }
+                            .foregroundStyle(FarmPaper.pine)
+                            .padding(.horizontal, 10).padding(.vertical, 4)
+                            .background(FarmPaper.cream, in: Capsule())
+                            .accessibilityElement(children: .ignore)
+                            .accessibilityLabel("Taler im Geldbeutel").accessibilityValue("\(state.coins)")
+                            .accessibilityIdentifier("world.wallet")
+                            .frame(maxWidth: .infinity, alignment: .trailing)
+                        }
                         Spacer(minLength: 0)
                         if let caption = state.caption, !caption.isEmpty {
                             Text(caption).font(.system(.callout, design: .rounded, weight: .semibold))
@@ -89,8 +102,11 @@ struct FarmPlayView: View {
             }
         }
         .onAppear { place = state.active?.offering.locationID ?? state.locationID }
+        .onChange(of: state.nightStory != nil, initial: true) { _, available in
+            if available { sheet = .night }
+        }
         .onChange(of: state.eveningDue && state.active == nil, initial: true) { _, due in
-            if due && sheet != .night { goodNight = false; sheet = .night }
+            if due && sheet != .night { waitingForNightStory = false; sheet = .night }
         }
         .onChange(of: state.locationID) { _, id in place = id }
         .onChange(of: state.active?.offering.locationID) { _, id in if let id { place = id } }
@@ -292,7 +308,7 @@ struct FarmPlayView: View {
                 send(.leaveActivity); place = nil; page = 0; sheet = nil
             }
             Spacer(minLength: 1)
-            Button { goodNight = false; sheet = .night } label: {
+            Button { waitingForNightStory = false; sheet = .night } label: {
                 HStack(spacing: 5) {
                     Image(systemName: skySymbol).font(.system(size: compact ? 23 : 28, weight: .semibold))
                     if !compact {
@@ -406,36 +422,38 @@ struct FarmPlayView: View {
         }.accessibilityAddTraits(.isModal)
     }
 
-    private func night(size: CGFloat) -> some View {
+    @ViewBuilder private func night(size: CGFloat) -> some View {
+        if let story = state.nightStory {
+            FarmNightStoryView(story: story, reduceMotion: systemStill || state.reduceMotion || state.quiet, speak: { send(.readStory($0)) }) {
+                send(.closeNightStory); sheet = nil; waitingForNightStory = false
+            }
+        } else { bedtime(size: size) }
+    }
+
+    private func bedtime(size: CGFloat) -> some View {
         ZStack {
             Color(red: 0.22, green: 0.32, blue: 0.39).ignoresSafeArea()
             VStack(spacing: 4) {
                 HStack {
-                    WorldButton(icon: "arrow.uturn.backward", label: "Zurück zum Hof", id: "world.night.close", size: size) { sheet = nil }
+                    WorldButton(icon: "arrow.uturn.backward", label: "Zurück zum Hof", id: "world.night.close", size: size) {
+                        sheet = nil; waitingForNightStory = false
+                    }
                     Spacer()
-                    if site?.id == "loc.plaza" && !goodNight {
+                    if site?.id == "loc.plaza" && !waitingForNightStory {
                         WorldButton(icon: "leaf.arrow.triangle.circlepath", label: "Nächste Jahreszeit", id: "world.season", size: size) {
                             send(.nextSeason); sheet = nil
                         }
                     }
                 }
                 Spacer(minLength: 0)
-                Image(systemName: goodNight ? "sunrise.fill" : "moon.stars.fill")
+                Image(systemName: "moon.stars.fill")
                     .font(.system(size: size*0.89)).foregroundStyle(.yellow, .white)
-                HStack {
-                    FarmPictogram(id: "animal.dog").frame(width: size, height: size)
-                    if goodNight {
-                        ForEach(Array(state.book.filter(\.discovered).suffix(2))) { sticker in
-                            FarmPictogram(id: sticker.modelID).frame(width: size*0.65, height: size*0.65)
-                        }
-                    }
-                }
-                WorldButton(icon: goodNight ? "sun.max.fill" : "bed.double.fill", label: goodNight ? "Zum neuen Hoftag" : "Schlafen gehen",
-                            id: goodNight ? "world.wake" : "world.sleep", size: size*1.08) {
-                    if goodNight { sheet = nil } else {
-                        send(.endDay); goodNight = true; place = nil
-                    }
-                }
+                FarmPictogram(id: "animal.dog").frame(width: size, height: size)
+                WorldButton(icon: waitingForNightStory ? "moon.zzz.fill" : "bed.double.fill", label: "Schlafen gehen",
+                            id: "world.sleep", size: size*1.08) {
+                    guard !waitingForNightStory else { return }
+                    waitingForNightStory = true; send(.endDay); place = nil
+                }.disabled(waitingForNightStory)
                 Spacer(minLength: 0)
             }.padding(.horizontal, 10)
         }.accessibilityAddTraits(.isModal)
