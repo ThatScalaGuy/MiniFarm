@@ -31,8 +31,8 @@ final class FamilyStorage: Sendable {
         try? FileManager.default.removeItem(at: trashURL)
     }
 
-    static func defaultRoot(folderName: String = "Family") -> URL {
-        URL.applicationSupportDirectory
+    static func defaultRoot(folderName: String = "Family", base: URL = .applicationSupportDirectory) -> URL {
+        base
             .appending(path: "MiniFarm", directoryHint: .isDirectory)
             .appending(path: folderName, directoryHint: .isDirectory)
     }

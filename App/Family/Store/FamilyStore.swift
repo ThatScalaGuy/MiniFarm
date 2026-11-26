@@ -95,17 +95,17 @@ final class FamilyStore {
         FamilyStore(storage: FamilyStorage(root: liveRoot(arguments: arguments)))
     }
 
-    static func liveRoot(arguments: [String]) -> URL {
+    static func liveRoot(arguments: [String], base: URL = .applicationSupportDirectory) -> URL {
         #if DEBUG
         if arguments.contains("-MiniFarmFamilyUITesting") {
-            let root = FamilyStorage.defaultRoot(folderName: "FamilyUITesting")
+            let root = FamilyStorage.defaultRoot(folderName: "FamilyUITesting", base: base)
             if arguments.contains("-MiniFarmFamilyReset") {
                 try? FileManager.default.removeItem(at: root)
             }
             return root
         }
         #endif
-        return FamilyStorage.defaultRoot()
+        return FamilyStorage.defaultRoot(base: base)
     }
 
     // MARK: Reading
