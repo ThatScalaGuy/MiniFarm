@@ -49,6 +49,7 @@ struct FarmDriveMotion: Equatable {
     private(set) var throttle = 0.0
     private var wheelTarget = 0.0
     private var dragStart: Double?
+    private var dragWheelSeconds = 0.0
     private(set) var reported = false
     private let strips: [ClosedRange<Double>]
     private let workLength: Double
@@ -60,7 +61,15 @@ struct FarmDriveMotion: Equatable {
 
     var needsTicks: Bool {
         pilot == .pelle || pilot == .rowTap ||
-        (pilot == .child && (throttle > 0 || abs(steering - wheelTarget) > 0.001))
+        (pilot == .child && (throttle > 0 || dragWheelSeconds > 0 || abs(steering - wheelTarget) > 0.001))
+    }
+
+    var wheelsTurning: Bool {
+        switch pilot {
+        case .rowTap, .pelle: true
+        case .child: throttle > 0 || dragWheelSeconds > 0
+        case .finished: false
+        }
     }
 
     mutating func tapRow(stage: WorldStage) {
@@ -78,10 +87,16 @@ struct FarmDriveMotion: Equatable {
         let offset = min(1, max(-1, across))
         let magnet = 0.20 + 0.70 * (1 - abs(offset))
         lateral = offset * (1 - magnet)
-        advance(to: max(travel, start + along))
+        let next = max(travel, start + along)
+        // Touch updates stop arriving when a finger rests on the glass.
+        dragWheelSeconds = next > travel ? 0.12 : 0
+        advance(to: next)
     }
 
-    mutating func releaseDrag() { dragStart = nil }
+    mutating func releaseDrag() {
+        dragStart = nil
+        dragWheelSeconds = 0
+    }
 
     mutating func turnWheel(stage: WorldStage, to value: Double) {
         guard stage == .bloom, pilot == .child else { return }
@@ -113,6 +128,7 @@ struct FarmDriveMotion: Equatable {
     mutating func tick(seconds: Double) {
         guard pilot != .finished else { return }
         let dt = min(0.10, max(0, seconds))
+        dragWheelSeconds = max(0, dragWheelSeconds - dt)
         steering += (wheelTarget - steering) * (1 - exp(-dt * 9))
         if abs(steering - wheelTarget) <= 0.001 { steering = wheelTarget }
         let speed: Double

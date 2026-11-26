@@ -40,6 +40,7 @@ private final class DriveRig {
     private let workshop = WorldWorkshop()
     private let container = Entity()
     private let hitch = Entity()
+    private var wheels: [Entity] = []
     private var surfaces: [(entity: Entity, bounds: ClosedRange<Float>)] = []
     private var guides: [(dot: Entity, x: Float)] = []
 
@@ -48,10 +49,11 @@ private final class DriveRig {
         root.addChild(container)
         container.position = site.center
         container.addChild(hitch)
-        workshop.toy(job.vehicle, in: hitch, span: job == .combine ? 1.16 : 0.97)
+        wheels = [workshop.toy(job.vehicle, in: hitch, span: job == .combine ? 1.16 : 0.97, facing: .negativeX)]
         if let implement = job.implement {
             let inFront = job == .lift || job == .clearSnow
-            workshop.toy(implement, in: hitch, at: [inFront ? -0.60 : 0.66, 0, 0], span: 0.67)
+            wheels.append(workshop.toy(implement, in: hitch, at: [inFront ? -0.60 : 0.66, 0, 0],
+                                       span: 0.67, facing: .negativeX))
         }
         let soil = job == .water ? 0x604c37 : job == .clearSnow ? 0xcba57c : 0x694b34
         for bounds in lane.strips {
@@ -93,7 +95,13 @@ private final class DriveRig {
         for (dot, markerX) in guides { dot.isEnabled = markerX < x }
     }
 
+    func setWheels(turning: Bool) {
+        for socket in wheels { workshop.setAction(turning ? "wheels" : nil, on: socket, looping: true) }
+    }
+
     func remove() {
+        setWheels(turning: false)
+        wheels.removeAll()
         container.removeFromParent()
         container.children.removeAll()
         hitch.children.removeAll()
@@ -127,6 +135,7 @@ struct FarmDriveView: View {
     private var control: CGFloat { state.largeControls ? (compact ? 66 : 86) : (compact ? 56 : 69) }
     private var percent: Int { Int((100 * motion.progress).rounded(.down)) }
     private var activeClock: Bool { !stopped && motion.needsTicks }
+    private var animateWheels: Bool { !stopped && !still && motion.wheelsTurning }
     private func project(_ x: Float, _ y: Float, _ z: Float) -> CGPoint {
         framing.project(site.center + [x, y, z])
     }
@@ -156,9 +165,11 @@ struct FarmDriveView: View {
             if motion.travel == 0 && motion.pilot == .child { motion = FarmDriveMotion(strips: row.workSpans) }
             rig.install(in: root, site: site, lane: row, job: job)
             rig.draw(motion, lane: row, still: still)
+            rig.setWheels(turning: animateWheels)
         }
         .onDisappear { rig.remove() }
         .onChange(of: motion) { _, new in rig.draw(new, lane: row, still: still) }
+        .onChange(of: animateWheels) { _, turning in rig.setWheels(turning: turning) }
         .onChange(of: stopped) { _, value in if value { motion.suspend() } }
         .task(id: activeClock) {
             guard activeClock else { return }

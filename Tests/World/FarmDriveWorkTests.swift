@@ -53,6 +53,32 @@ final class FarmDriveWorkTests: XCTestCase {
         checkFinish(&drive)
     }
 
+    func testWheelsStopDuringAHeldOrReleasedDragAndDoNotSpinForSteeringAlone() {
+        var drive = FarmDriveMotion()
+        drive.drag(stage: .shoot, along: 0, across: 0)
+        XCTAssertFalse(drive.wheelsTurning)
+        drive.drag(stage: .shoot, along: 0.2, across: 0)
+        XCTAssertTrue(drive.wheelsTurning)
+        for _ in 0..<3 { drive.tick(seconds: 0.05) }
+        XCTAssertFalse(drive.wheelsTurning)
+        XCTAssertEqual(drive.travel, 0.2)
+        drive.drag(stage: .shoot, along: 0.3, across: 0)
+        XCTAssertTrue(drive.wheelsTurning)
+        drive.releaseDrag()
+        XCTAssertFalse(drive.wheelsTurning)
+        drive.turnWheel(stage: .bloom, to: 1)
+        XCTAssertTrue(drive.needsTicks)
+        XCTAssertFalse(drive.wheelsTurning)
+        drive.setGas(stage: .bloom, to: 1)
+        XCTAssertTrue(drive.wheelsTurning)
+        drive.suspend()
+        XCTAssertFalse(drive.wheelsTurning)
+        drive.assist()
+        XCTAssertTrue(drive.wheelsTurning)
+        checkFinish(&drive)
+        XCTAssertFalse(drive.wheelsTurning)
+    }
+
     func testDraggedRowPausesOnReleaseAndPelleCompletesOnlyTheLastPart() {
         var drive = FarmDriveMotion()
         drive.drag(stage: .shoot, along: 0.30, across: 0.5)
