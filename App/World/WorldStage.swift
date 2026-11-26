@@ -11,6 +11,20 @@ struct WorldObject: Equatable, Identifiable {
     let isTarget: Bool
     let anchored: Bool
 
+    /// Longest visible dimension in diorama metres. The overlay and collision
+    /// box are sized independently, so an egg doesn't have to be hen-sized.
+    static func propSpan(_ model: String, otherwise: Float) -> Float {
+        if model.hasPrefix("item.seed.") { return 0.38 }
+        switch model {
+        case "item.egg", "item.strawberry": return 0.22
+        case "item.radish", "item.apple", "item.tomato", "item.potato", "item.pea": return 0.28
+        case "item.carrot", "crop.radish.ripe", "item.butter": return 0.39
+        case "item.milk", "item.goatmilk", "item.applejuice", "item.honey", "item.jam", "tool.brush", "tool.shears": return 0.46
+        case "tool.basket", "tool.can", "tool.bucket", "item.feed": return 0.76
+        default: return otherwise
+        }
+    }
+
     static func targets(turn: WorldTurn?, site: WorldSite?, page: Int, perPage: Int, beds: [WorldBed] = []) -> [Self] {
         guard let turn, let site else { return [] }
         let all: [WorldChoice?] = turn.choices.isEmpty ? [nil] : turn.choices.map(Optional.some)
@@ -186,9 +200,18 @@ final class FarmDiorama {
                     continue
                 }
                 let g = w.group(objects, at: obj.point - [0, 0.09, 0])
-                w.drum(g, .zero, [1.13, 0.09, 0.87], obj.isTarget ? 0xf0cc7c : 0xc3a87b)
-                w.drum(g, [0, 0.047, 0], [1.02, 0.05, 0.76], 0xf5e3b9)
-                let e = w.toy(obj.model, in: objects, at: obj.point, span: targets.count == 1 ? 1.16 : 0.96, yaw: -0.12)
+                let span = WorldObject.propSpan(obj.model, otherwise: targets.count == 1 ? 1.16 : 0.96)
+                let pad = min(1, max(0.49, span + 0.15))
+                w.drum(g, .zero, [1.13*pad, 0.09, 0.87*pad], obj.isTarget ? 0xf0cc7c : 0xc3a87b)
+                w.drum(g, [0, 0.047, 0], [1.02*pad, 0.05, 0.76*pad], 0xf5e3b9)
+                if obj.model == "item.egg", site?.id == "loc.henhouse" {
+                    for i in 0..<9 {
+                        let a = Float(i) * 2 * .pi / 9
+                        w.tilt(w.oval(g, [0.16*cos(a), 0.092, 0.13*sin(a)], [0.06, 0.048, 0.15],
+                                      i.isMultiple(of: 2) ? 0xc1934c : 0xe0b766), -a, [0,1,0])
+                    }
+                }
+                let e = w.toy(obj.model, in: objects, at: obj.point, span: span, yaw: -0.12)
                 e.name = "pick:" + obj.id
                 e.components.set(InputTargetComponent())
                 e.components.set(CollisionComponent(shapes: [.generateBox(size: [1.28, 1.25, 1.16]).offsetBy(translation: [0, 0.56, 0])]))
@@ -264,7 +287,8 @@ final class FarmDiorama {
             let e: Entity
             if machine { e = w.toy(obj.model, in: effects, span: 1.12) }
             else if ["egg", "crop", "gift", "mail", "wool", "flower"].contains(tag), i == 0 {
-                e = w.toy(tag == "egg" ? "item.egg" : obj.model, in: effects, span: 0.46)
+                let id = tag == "egg" ? "item.egg" : obj.model
+                e = w.toy(id, in: effects, span: min(0.46, WorldObject.propSpan(id, otherwise: 0.46)))
             } else { e = w.oval(effects, .zero, [0.13, tag == "water" ? 0.22 : 0.13, 0.13], particleColor) }
             let start = motion ? obj.point + [0, 0.52, 0] : end
             e.position = start

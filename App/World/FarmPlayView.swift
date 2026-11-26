@@ -211,7 +211,8 @@ struct FarmPlayView: View {
     }
 
     private func objectButton(_ obj: WorldObject, framing f: WorldFraming, size: CGFloat) -> some View {
-        let point = f.project(obj.point + [0, 0.41, 0])
+        let lift = min(0.41, WorldObject.propSpan(obj.model, otherwise: 0.82) / 2)
+        let point = f.project(obj.point + [0, lift, 0])
         let help = state.active?.helpLevel ?? 0
         return Button { perform(obj) } label: {
             ZStack(alignment: .bottom) {
