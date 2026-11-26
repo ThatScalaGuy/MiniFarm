@@ -2624,6 +2624,11 @@
       "source": "game-feedback"
     },
     {
+      "id": "vl.pelle.greet.morning",
+      "text": "Hallo! Schön, dass du da bist!",
+      "source": "game-feedback"
+    },
+    {
       "id": "vl.pelle.home",
       "text": "Da ist unser Hofbaum.",
       "source": "game-feedback"
@@ -3110,8 +3115,18 @@
     },
     {
       "id": "vl.season.autumn.greet",
+      "text": "Jetzt ist Herbst auf dem Hof.",
+      "source": "season-greeting"
+    },
+    {
+      "id": "vl.season.autumn.greet",
       "text": "Schau, jetzt ist Herbst!",
       "source": "season"
+    },
+    {
+      "id": "vl.season.spring.greet",
+      "text": "Jetzt ist Frühling auf dem Hof.",
+      "source": "season-greeting"
     },
     {
       "id": "vl.season.spring.greet",
@@ -3120,13 +3135,53 @@
     },
     {
       "id": "vl.season.summer.greet",
+      "text": "Jetzt ist Sommer auf dem Hof.",
+      "source": "season-greeting"
+    },
+    {
+      "id": "vl.season.summer.greet",
       "text": "Schau, jetzt ist Sommer!",
       "source": "season"
     },
     {
       "id": "vl.season.winter.greet",
+      "text": "Jetzt ist Winter auf dem Hof.",
+      "source": "season-greeting"
+    },
+    {
+      "id": "vl.season.winter.greet",
       "text": "Schau, jetzt ist Winter!",
       "source": "season"
+    },
+    {
+      "id": "vl.story.local",
+      "text": "Beete gießen",
+      "source": "host-night-story"
+    },
+    {
+      "id": "vl.story.local",
+      "text": "Heute war ein ruhiger Hoftag. Guten Morgen, kleiner Hof!",
+      "source": "host-night-story"
+    },
+    {
+      "id": "vl.story.local",
+      "text": "Pelle schläft. Ganz still liegt unser Hof im Mondlicht. Bald geht die Sonne auf.",
+      "source": "host-night-story"
+    },
+    {
+      "id": "vl.story.local",
+      "text": "Schau ins Beet. Radieschen! Über Nacht ist die Ernte reif geworden.",
+      "source": "host-night-story"
+    },
+    {
+      "id": "vl.story.local",
+      "text": "Säen",
+      "source": "host-night-story"
+    },
+    {
+      "id": "vl.story.local",
+      "text": "Tiere füttern",
+      "source": "host-night-story"
     },
     {
       "id": "vl.vocab.loc.apiary",

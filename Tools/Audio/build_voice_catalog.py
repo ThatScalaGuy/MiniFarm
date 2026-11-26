@@ -94,6 +94,21 @@ def build_catalog(source_root, content, source_revision):
 
     for season in load_rows(content, "seasons"):
         add(f"vl.{season['id']}.greet", f"Schau, jetzt ist {season['title']}!", "season")
+        add(
+            f"vl.{season['id']}.greet",
+            f"Jetzt ist {season['title']} auf dem Hof.",
+            "season-greeting",
+        )
+
+    for text in (
+        "Pelle schläft. Ganz still liegt unser Hof im Mondlicht. Bald geht die Sonne auf.",
+        "Schau ins Beet. Radieschen! Über Nacht ist die Ernte reif geworden.",
+        "Heute war ein ruhiger Hoftag. Guten Morgen, kleiner Hof!",
+        "Säen",
+        "Beete gießen",
+        "Tiere füttern",
+    ):
+        add("vl.story.local", text, "host-night-story")
 
     for activity in activities:
         add(
@@ -103,7 +118,10 @@ def build_catalog(source_root, content, source_revision):
         )
 
     for voice_id, texts in {
-        "vl.pelle.greet.morning": ["Guten Morgen! Der Hof wacht auf."],
+        "vl.pelle.greet.morning": [
+            "Hallo! Schön, dass du da bist!",
+            "Guten Morgen! Der Hof wacht auf.",
+        ],
         "vl.pelle.home": ["Da ist unser Hofbaum.", "Komm, wir schauen bei Pelle nach."],
         "vl.pelle.greet.explore": ["Was möchtest du entdecken?", "Wir schauen, was gerade bereitliegt."],
         "vl.pelle.wish.season": ["Dein Wunsch bleibt hier. Komm, wir drehen am Jahreskreis."],

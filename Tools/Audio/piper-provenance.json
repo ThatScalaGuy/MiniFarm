@@ -25,9 +25,9 @@
   },
   "catalog": {
     "path": "Tools/Audio/voice-catalog.json",
-    "sha256": "06f9fade6cbf2752ca65f5d47dc00e64254c1611d4afe98557101ff2e0a11ef7",
+    "sha256": "592e07ea2a1a9ba8bc7cf2426442c5c0f19d305724f7c4420d87842238fc0b15",
     "sourceRevision": "13adab768d5b4857d8cdee48d6ec0bb2068a8754",
-    "entryCount": 642
+    "entryCount": 653
   },
   "files": [
     {
@@ -4747,6 +4747,15 @@
       "peak": 0.340527
     },
     {
+      "id": "vl.pelle.greet.morning",
+      "textSha256": "73c0af3cdff43366a6d9e65f39107d5a34d7bdbb593d37f4a58c10b9702cc33d",
+      "path": "voice/bfb0c136f62fc7fc7aab45d7.mp3",
+      "sha256": "179f9207155011e3c4fd66134a377f1129cdf81ad765a4326c6383246ada8d9c",
+      "bytes": 12451,
+      "durationSeconds": 1.9737,
+      "peak": 0.334888
+    },
+    {
       "id": "vl.pelle.home",
       "textSha256": "7c438d45aea911a524afc4fc9754a2e8c857cc5da25cb6e390c287ce31a521d6",
       "path": "voice/1929719a94c26b253c238fc8.mp3",
@@ -5621,12 +5630,30 @@
     },
     {
       "id": "vl.season.autumn.greet",
+      "textSha256": "82ee5159137382d40ede486d22c17aefaf2b716b22ae2435ebe7e9e3622c4341",
+      "path": "voice/90ff7e65b4367792ad624aa1.mp3",
+      "sha256": "699d3f9d3ad11ce194aa0c97853cbc1fb61c51a1700a8c1feffccbaaa38aedb3",
+      "bytes": 8846,
+      "durationSeconds": 1.3816,
+      "peak": 0.328711
+    },
+    {
+      "id": "vl.season.autumn.greet",
       "textSha256": "d1ff53ac82cb71a3bc70c99cd118c2a79ec960c8396007f94c85b2749a746557",
       "path": "voice/1b82c2acf1ca5f5f7981923e.mp3",
       "sha256": "0178bd485de5950e6595b0c0d84b2562ac1c37ce045a9b4992d876ca60caa370",
       "bytes": 11197,
       "durationSeconds": 1.7763,
       "peak": 0.331329
+    },
+    {
+      "id": "vl.season.spring.greet",
+      "textSha256": "19736344c8ba1653dbd5820cf047d3ec79521acdf25febfb9922333894a4db39",
+      "path": "voice/bcc2355da4b367b0da6a952a.mp3",
+      "sha256": "8120fa2f105dbf5eddf441dc43d85b216b867ce617a5f51cd53a2cf11c65f5aa",
+      "bytes": 9943,
+      "durationSeconds": 1.5557,
+      "peak": 0.337036
     },
     {
       "id": "vl.season.spring.greet",
@@ -5639,6 +5666,15 @@
     },
     {
       "id": "vl.season.summer.greet",
+      "textSha256": "eaf063016b89683408cbdff6096db872c4295e785683722e2e2b8294f50d5968",
+      "path": "voice/4dbc848ff92e3be61995b5a8.mp3",
+      "sha256": "37fbec7bbfb20abc9e35a40fa38cc98912d77cea7536172e216a9abde30c1ff6",
+      "bytes": 9473,
+      "durationSeconds": 1.4861,
+      "peak": 0.337708
+    },
+    {
+      "id": "vl.season.summer.greet",
       "textSha256": "a771737dc5e4464b2e8675f33b3ef989c1f1fc577114382bd600cdbcaf0c701c",
       "path": "voice/05fadb4b0a2166a54e1ca881.mp3",
       "sha256": "345741670dc171eb442cbcb60db32c0f5aa3c32fbea92faa24315d39eb51eecc",
@@ -5648,12 +5684,75 @@
     },
     {
       "id": "vl.season.winter.greet",
+      "textSha256": "65aff3ca7d6f1a7a3e17c4510fc09e47e3cb5f62e420ce53fdc55017d4f82651",
+      "path": "voice/60a61a82a2010a2bb0b3d48c.mp3",
+      "sha256": "20be5e9ec6b78b34e1b575ae93341f21af4269451ac0841e78395dd6e027083e",
+      "bytes": 9316,
+      "durationSeconds": 1.4512,
+      "peak": 0.339185
+    },
+    {
+      "id": "vl.season.winter.greet",
       "textSha256": "296a7ac7ef6457c8a52e90082656eb9707e1fe8cd6f0d9add8a9c7a67d4a31c1",
       "path": "voice/f7e36dcc0e2c8c3e56d91d0f.mp3",
       "sha256": "ccfe24fd7074d088574a0d3c618d1f47ad9e3c9274c1e902a1314929a1cf99a8",
       "bytes": 11197,
       "durationSeconds": 1.7647,
       "peak": 0.347443
+    },
+    {
+      "id": "vl.story.local",
+      "textSha256": "7272206bb80100b8bc44e1d553f44afe7543b5d725186fa4388f13b490218656",
+      "path": "voice/b3b8959c7b10501a85696a12.mp3",
+      "sha256": "f501c88ef06645eeaeed98d6ba643f7bb8a0ece1232b796d96e1835158ce57ad",
+      "bytes": 6338,
+      "durationSeconds": 0.952,
+      "peak": 0.330322
+    },
+    {
+      "id": "vl.story.local",
+      "textSha256": "9c1aa5e5be88fa70525bf640c97f77277f8120557baca826b2ccd71f8cbf1bf2",
+      "path": "voice/3d1d0475d9e68ecc2088769e.mp3",
+      "sha256": "8448e6e710bd4cea3de550b857a690b1649966996a4547e48d90d359e7d55857",
+      "bytes": 18720,
+      "durationSeconds": 3.0302,
+      "peak": 0.339084
+    },
+    {
+      "id": "vl.story.local",
+      "textSha256": "d24da39f45eda2ce9c2f23d147a3cef45a84e0c198a3770785de2350cbb5fbb0",
+      "path": "voice/73b3cbbc97e70821d8c1a0c8.mp3",
+      "sha256": "fffc0ac473c355bda48452a3fa2f16ff22fd294cfa11d9b083cb989456e0591b",
+      "bytes": 26244,
+      "durationSeconds": 4.2725,
+      "peak": 0.349557
+    },
+    {
+      "id": "vl.story.local",
+      "textSha256": "1cd60b41eceeb7725b7a9da65a33061117520591828230944b521ddf2360f36f",
+      "path": "voice/b766b14fe76a5407326ea8af.mp3",
+      "sha256": "48890888a5dfdf9e6b5fbc4546b89f96cb2a4905785cdbddbf9e6b751b2a4a7c",
+      "bytes": 24833,
+      "durationSeconds": 4.0287,
+      "peak": 0.333713
+    },
+    {
+      "id": "vl.story.local",
+      "textSha256": "095775a18ec17e24b0162696f74eecfab2cbab63f39aa46b1a27999f35780a34",
+      "path": "voice/0d4b4bd62a568bf047b037de.mp3",
+      "sha256": "312163e6fb47f16439de801779f3dc2756e9057d8b54650eda30f24353c2c8e7",
+      "bytes": 4928,
+      "durationSeconds": 0.7314,
+      "peak": 0.333511
+    },
+    {
+      "id": "vl.story.local",
+      "textSha256": "dc78cd538d318c74093a3e9479faf2397ff39cf960e3e6d209d4ebb038f9b856",
+      "path": "voice/5340d680a58a6aedb93433b8.mp3",
+      "sha256": "c9c9d6028b128678ab97df1d0c0b916a9f3558bfb14307d7b0981dfe117b7caf",
+      "bytes": 6965,
+      "durationSeconds": 1.0681,
+      "peak": 0.333243
     },
     {
       "id": "vl.vocab.loc.apiary",

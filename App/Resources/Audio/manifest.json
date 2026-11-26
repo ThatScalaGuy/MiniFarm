@@ -5326,13 +5326,26 @@
     {
       "id": "vl.pelle.greet.morning",
       "kind": "voice",
-      "path": "voice/d7b8974dbfd9fc655cbb2f40.mp3",
-      "subtitle": "Guten Morgen! Der Hof wacht auf.",
+      "path": null,
       "locale": "de-DE",
-      "peak": 0.340527,
-      "license": "CC0-1.0",
-      "modelRevision": "9beb8542b91ec176ad58adbf9f6085f96b6caa17",
-      "licenseSource": "https://huggingface.co/Thorsten-Voice/Piper-Thorsten-CC0/raw/9beb8542b91ec176ad58adbf9f6085f96b6caa17/README.md"
+      "variants": [
+        {
+          "text": "Guten Morgen! Der Hof wacht auf.",
+          "path": "voice/d7b8974dbfd9fc655cbb2f40.mp3",
+          "peak": 0.340527,
+          "license": "CC0-1.0",
+          "modelRevision": "9beb8542b91ec176ad58adbf9f6085f96b6caa17",
+          "licenseSource": "https://huggingface.co/Thorsten-Voice/Piper-Thorsten-CC0/raw/9beb8542b91ec176ad58adbf9f6085f96b6caa17/README.md"
+        },
+        {
+          "text": "Hallo! Schön, dass du da bist!",
+          "path": "voice/bfb0c136f62fc7fc7aab45d7.mp3",
+          "peak": 0.334888,
+          "license": "CC0-1.0",
+          "modelRevision": "9beb8542b91ec176ad58adbf9f6085f96b6caa17",
+          "licenseSource": "https://huggingface.co/Thorsten-Voice/Piper-Thorsten-CC0/raw/9beb8542b91ec176ad58adbf9f6085f96b6caa17/README.md"
+        }
+      ]
     },
     {
       "id": "vl.pelle.home",
@@ -6299,46 +6312,154 @@
     {
       "id": "vl.season.autumn.greet",
       "kind": "voice",
-      "path": "voice/1b82c2acf1ca5f5f7981923e.mp3",
-      "subtitle": "Schau, jetzt ist Herbst!",
+      "path": null,
       "locale": "de-DE",
-      "peak": 0.331329,
-      "license": "CC0-1.0",
-      "modelRevision": "9beb8542b91ec176ad58adbf9f6085f96b6caa17",
-      "licenseSource": "https://huggingface.co/Thorsten-Voice/Piper-Thorsten-CC0/raw/9beb8542b91ec176ad58adbf9f6085f96b6caa17/README.md"
+      "variants": [
+        {
+          "text": "Jetzt ist Herbst auf dem Hof.",
+          "path": "voice/90ff7e65b4367792ad624aa1.mp3",
+          "peak": 0.328711,
+          "license": "CC0-1.0",
+          "modelRevision": "9beb8542b91ec176ad58adbf9f6085f96b6caa17",
+          "licenseSource": "https://huggingface.co/Thorsten-Voice/Piper-Thorsten-CC0/raw/9beb8542b91ec176ad58adbf9f6085f96b6caa17/README.md"
+        },
+        {
+          "text": "Schau, jetzt ist Herbst!",
+          "path": "voice/1b82c2acf1ca5f5f7981923e.mp3",
+          "peak": 0.331329,
+          "license": "CC0-1.0",
+          "modelRevision": "9beb8542b91ec176ad58adbf9f6085f96b6caa17",
+          "licenseSource": "https://huggingface.co/Thorsten-Voice/Piper-Thorsten-CC0/raw/9beb8542b91ec176ad58adbf9f6085f96b6caa17/README.md"
+        }
+      ]
     },
     {
       "id": "vl.season.spring.greet",
       "kind": "voice",
-      "path": "voice/c39f118e81d8014aeeb5e70a.mp3",
-      "subtitle": "Schau, jetzt ist Frühling!",
+      "path": null,
       "locale": "de-DE",
-      "peak": 0.337103,
-      "license": "CC0-1.0",
-      "modelRevision": "9beb8542b91ec176ad58adbf9f6085f96b6caa17",
-      "licenseSource": "https://huggingface.co/Thorsten-Voice/Piper-Thorsten-CC0/raw/9beb8542b91ec176ad58adbf9f6085f96b6caa17/README.md"
+      "variants": [
+        {
+          "text": "Jetzt ist Frühling auf dem Hof.",
+          "path": "voice/bcc2355da4b367b0da6a952a.mp3",
+          "peak": 0.337036,
+          "license": "CC0-1.0",
+          "modelRevision": "9beb8542b91ec176ad58adbf9f6085f96b6caa17",
+          "licenseSource": "https://huggingface.co/Thorsten-Voice/Piper-Thorsten-CC0/raw/9beb8542b91ec176ad58adbf9f6085f96b6caa17/README.md"
+        },
+        {
+          "text": "Schau, jetzt ist Frühling!",
+          "path": "voice/c39f118e81d8014aeeb5e70a.mp3",
+          "peak": 0.337103,
+          "license": "CC0-1.0",
+          "modelRevision": "9beb8542b91ec176ad58adbf9f6085f96b6caa17",
+          "licenseSource": "https://huggingface.co/Thorsten-Voice/Piper-Thorsten-CC0/raw/9beb8542b91ec176ad58adbf9f6085f96b6caa17/README.md"
+        }
+      ]
     },
     {
       "id": "vl.season.summer.greet",
       "kind": "voice",
-      "path": "voice/05fadb4b0a2166a54e1ca881.mp3",
-      "subtitle": "Schau, jetzt ist Sommer!",
+      "path": null,
       "locale": "de-DE",
-      "peak": 0.334988,
-      "license": "CC0-1.0",
-      "modelRevision": "9beb8542b91ec176ad58adbf9f6085f96b6caa17",
-      "licenseSource": "https://huggingface.co/Thorsten-Voice/Piper-Thorsten-CC0/raw/9beb8542b91ec176ad58adbf9f6085f96b6caa17/README.md"
+      "variants": [
+        {
+          "text": "Jetzt ist Sommer auf dem Hof.",
+          "path": "voice/4dbc848ff92e3be61995b5a8.mp3",
+          "peak": 0.337708,
+          "license": "CC0-1.0",
+          "modelRevision": "9beb8542b91ec176ad58adbf9f6085f96b6caa17",
+          "licenseSource": "https://huggingface.co/Thorsten-Voice/Piper-Thorsten-CC0/raw/9beb8542b91ec176ad58adbf9f6085f96b6caa17/README.md"
+        },
+        {
+          "text": "Schau, jetzt ist Sommer!",
+          "path": "voice/05fadb4b0a2166a54e1ca881.mp3",
+          "peak": 0.334988,
+          "license": "CC0-1.0",
+          "modelRevision": "9beb8542b91ec176ad58adbf9f6085f96b6caa17",
+          "licenseSource": "https://huggingface.co/Thorsten-Voice/Piper-Thorsten-CC0/raw/9beb8542b91ec176ad58adbf9f6085f96b6caa17/README.md"
+        }
+      ]
     },
     {
       "id": "vl.season.winter.greet",
       "kind": "voice",
-      "path": "voice/f7e36dcc0e2c8c3e56d91d0f.mp3",
-      "subtitle": "Schau, jetzt ist Winter!",
+      "path": null,
       "locale": "de-DE",
-      "peak": 0.347443,
-      "license": "CC0-1.0",
-      "modelRevision": "9beb8542b91ec176ad58adbf9f6085f96b6caa17",
-      "licenseSource": "https://huggingface.co/Thorsten-Voice/Piper-Thorsten-CC0/raw/9beb8542b91ec176ad58adbf9f6085f96b6caa17/README.md"
+      "variants": [
+        {
+          "text": "Jetzt ist Winter auf dem Hof.",
+          "path": "voice/60a61a82a2010a2bb0b3d48c.mp3",
+          "peak": 0.339185,
+          "license": "CC0-1.0",
+          "modelRevision": "9beb8542b91ec176ad58adbf9f6085f96b6caa17",
+          "licenseSource": "https://huggingface.co/Thorsten-Voice/Piper-Thorsten-CC0/raw/9beb8542b91ec176ad58adbf9f6085f96b6caa17/README.md"
+        },
+        {
+          "text": "Schau, jetzt ist Winter!",
+          "path": "voice/f7e36dcc0e2c8c3e56d91d0f.mp3",
+          "peak": 0.347443,
+          "license": "CC0-1.0",
+          "modelRevision": "9beb8542b91ec176ad58adbf9f6085f96b6caa17",
+          "licenseSource": "https://huggingface.co/Thorsten-Voice/Piper-Thorsten-CC0/raw/9beb8542b91ec176ad58adbf9f6085f96b6caa17/README.md"
+        }
+      ]
+    },
+    {
+      "id": "vl.story.local",
+      "kind": "voice",
+      "path": null,
+      "locale": "de-DE",
+      "variants": [
+        {
+          "text": "Beete gießen",
+          "path": "voice/b3b8959c7b10501a85696a12.mp3",
+          "peak": 0.330322,
+          "license": "CC0-1.0",
+          "modelRevision": "9beb8542b91ec176ad58adbf9f6085f96b6caa17",
+          "licenseSource": "https://huggingface.co/Thorsten-Voice/Piper-Thorsten-CC0/raw/9beb8542b91ec176ad58adbf9f6085f96b6caa17/README.md"
+        },
+        {
+          "text": "Heute war ein ruhiger Hoftag. Guten Morgen, kleiner Hof!",
+          "path": "voice/3d1d0475d9e68ecc2088769e.mp3",
+          "peak": 0.339084,
+          "license": "CC0-1.0",
+          "modelRevision": "9beb8542b91ec176ad58adbf9f6085f96b6caa17",
+          "licenseSource": "https://huggingface.co/Thorsten-Voice/Piper-Thorsten-CC0/raw/9beb8542b91ec176ad58adbf9f6085f96b6caa17/README.md"
+        },
+        {
+          "text": "Pelle schläft. Ganz still liegt unser Hof im Mondlicht. Bald geht die Sonne auf.",
+          "path": "voice/73b3cbbc97e70821d8c1a0c8.mp3",
+          "peak": 0.349557,
+          "license": "CC0-1.0",
+          "modelRevision": "9beb8542b91ec176ad58adbf9f6085f96b6caa17",
+          "licenseSource": "https://huggingface.co/Thorsten-Voice/Piper-Thorsten-CC0/raw/9beb8542b91ec176ad58adbf9f6085f96b6caa17/README.md"
+        },
+        {
+          "text": "Schau ins Beet. Radieschen! Über Nacht ist die Ernte reif geworden.",
+          "path": "voice/b766b14fe76a5407326ea8af.mp3",
+          "peak": 0.333713,
+          "license": "CC0-1.0",
+          "modelRevision": "9beb8542b91ec176ad58adbf9f6085f96b6caa17",
+          "licenseSource": "https://huggingface.co/Thorsten-Voice/Piper-Thorsten-CC0/raw/9beb8542b91ec176ad58adbf9f6085f96b6caa17/README.md"
+        },
+        {
+          "text": "Säen",
+          "path": "voice/0d4b4bd62a568bf047b037de.mp3",
+          "peak": 0.333511,
+          "license": "CC0-1.0",
+          "modelRevision": "9beb8542b91ec176ad58adbf9f6085f96b6caa17",
+          "licenseSource": "https://huggingface.co/Thorsten-Voice/Piper-Thorsten-CC0/raw/9beb8542b91ec176ad58adbf9f6085f96b6caa17/README.md"
+        },
+        {
+          "text": "Tiere füttern",
+          "path": "voice/5340d680a58a6aedb93433b8.mp3",
+          "peak": 0.333243,
+          "license": "CC0-1.0",
+          "modelRevision": "9beb8542b91ec176ad58adbf9f6085f96b6caa17",
+          "licenseSource": "https://huggingface.co/Thorsten-Voice/Piper-Thorsten-CC0/raw/9beb8542b91ec176ad58adbf9f6085f96b6caa17/README.md"
+        }
+      ]
     },
     {
       "id": "vl.vocab.loc.apiary",
