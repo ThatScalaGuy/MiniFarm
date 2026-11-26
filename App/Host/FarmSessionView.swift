@@ -62,6 +62,7 @@ struct FarmSessionView: View {
             }
         }
         .persistentSystemOverlays(.hidden)
+        .statusBarHidden(true)
         .onAppear(perform: open)
         .onDisappear {
             audio.stop()

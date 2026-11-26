@@ -22,8 +22,9 @@ run_tests() {
     xcrun xcresulttool get test-results summary --path "$output/$2.xcresult" >"$output/$2.json"
     python3 Tools/verify_first_harvest.py "$1" >"$output/$2-harvest.json"
     xcrun xcresulttool export attachments --path "$output/$2.xcresult" \
-        --test-id 'FarmJourneyTests/testFirstHarvestAndRestoredStep()' \
+        --test-id 'FarmJourneyTests/testFirstHarvestAndRestoredStep()' --filter '*.png' \
         --output-path "$output/$2-images"
+    xcrun swift Tools/verify_journey_images.swift "$output/$2-images" >"$output/$2-bildpruefung.txt"
 }
 
 run_tests "$1" iPhone test

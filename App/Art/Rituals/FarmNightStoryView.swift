@@ -73,6 +73,8 @@ struct FarmNightStoryView: View {
                                     Color(red: 0.26, green: 0.36, blue: 0.39)],
                            startPoint: .topLeading, endPoint: .bottomTrailing).ignoresSafeArea()
         }
+        .accessibilityElement(children: .contain)
+        .accessibilityLabel("Tagesrückblick")
         .accessibilityAddTraits(.isModal)
         .onAppear { speak(words) }
         .onChange(of: page) { _, _ in speak(words) }

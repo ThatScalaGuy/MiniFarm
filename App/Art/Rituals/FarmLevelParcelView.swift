@@ -59,6 +59,8 @@ struct FarmLevelParcelView: View {
             }.frame(maxWidth: .infinity, maxHeight: .infinity)
         }
         .background(FarmPaper.pine.ignoresSafeArea())
+        .accessibilityElement(children: .contain)
+        .accessibilityLabel("Hofpaket")
         .accessibilityAddTraits(.isModal)
         .onAppear { speak(words) }
     }

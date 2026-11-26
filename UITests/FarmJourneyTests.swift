@@ -1,4 +1,5 @@
 import XCTest
+import UIKit
 
 @MainActor
 final class FarmJourneyTests: XCTestCase {
@@ -49,7 +50,16 @@ final class FarmJourneyTests: XCTestCase {
     }
 
     private func photo(_ name: String) {
-        let evidence = XCTAttachment(data: app.screenshot().pngRepresentation, uniformTypeIdentifier: "public.png")
+        // The AX app rectangle is expressed in rotated coordinates. Cropping the
+        // screen to it a second time can truncate landscape screenshots.
+        let screen = XCUIScreen.main.screenshot().image
+        let format = UIGraphicsImageRendererFormat()
+        format.scale = screen.scale
+        format.opaque = true
+        let pixels = UIGraphicsImageRenderer(size: screen.size, format: format).pngData { _ in
+            screen.draw(in: CGRect(origin: .zero, size: screen.size))
+        }
+        let evidence = XCTAttachment(data: pixels, uniformTypeIdentifier: "public.png")
         evidence.name = name + ".png"
         evidence.lifetime = .keepAlways
         add(evidence)
@@ -93,6 +103,8 @@ final class FarmJourneyTests: XCTestCase {
         XCTAssertEqual(node("world.resident").value as? String, "Heute versorgt")
         tap("world.day")
         tap("world.sleep")
+        tap("ritual.night.read")
+        photo("Tagesbild-nach-dem-Schlafen")
         tap("world.wake")
         tap("world.map")
         tap("world.map.loc.garden")

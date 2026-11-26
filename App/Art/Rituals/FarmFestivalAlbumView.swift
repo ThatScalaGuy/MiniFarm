@@ -34,6 +34,8 @@ struct FarmFestivalAlbumView: View {
             }.frame(maxWidth: .infinity,maxHeight: .infinity)
         }
         .background(Color(red: 0.26,green: 0.33,blue: 0.29).ignoresSafeArea())
+        .accessibilityElement(children: .contain)
+        .accessibilityLabel("Festalbum")
         .accessibilityAddTraits(.isModal)
         .onAppear { speak(words) }
         .onChange(of: page) { _, _ in speak(words) }
