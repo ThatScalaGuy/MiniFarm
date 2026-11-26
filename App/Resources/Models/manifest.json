@@ -1,0 +1,5043 @@
+{
+  "assets": [
+    {
+      "id": "animal.bee",
+      "file": "model.animal.bee.usdz",
+      "bytes": 16536,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.3902,
+        -0.0,
+        -0.375
+      ],
+      "boundsMax": [
+        0.3902,
+        0.51,
+        0.34
+      ],
+      "meshCount": 19,
+      "triangleCount": 4256,
+      "materialCount": 5,
+      "diffuseColors": [
+        [
+          0.095,
+          0.06,
+          0.045
+        ],
+        [
+          0.39,
+          0.2,
+          0.11
+        ],
+        [
+          0.44,
+          0.72,
+          0.78
+        ],
+        [
+          0.95,
+          0.91,
+          0.81
+        ],
+        [
+          0.98,
+          0.69,
+          0.2
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [
+        "/root/Idle"
+      ],
+      "timeRange": {
+        "start": 1.0,
+        "end": 49.0,
+        "codesPerSecond": 24.0
+      }
+    },
+    {
+      "id": "animal.cat",
+      "file": "model.animal.cat.usdz",
+      "bytes": 23937,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.3894,
+        -0.0,
+        -0.5234
+      ],
+      "boundsMax": [
+        0.306,
+        0.9351,
+        0.5755
+      ],
+      "meshCount": 23,
+      "triangleCount": 5152,
+      "materialCount": 6,
+      "diffuseColors": [
+        [
+          0.095,
+          0.06,
+          0.045
+        ],
+        [
+          0.39,
+          0.2,
+          0.11
+        ],
+        [
+          0.68,
+          0.41,
+          0.23
+        ],
+        [
+          0.91,
+          0.84,
+          0.69
+        ],
+        [
+          0.92,
+          0.53,
+          0.52
+        ],
+        [
+          0.95,
+          0.91,
+          0.81
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [
+        "/root/Idle"
+      ],
+      "timeRange": {
+        "start": 1.0,
+        "end": 49.0,
+        "codesPerSecond": 24.0
+      }
+    },
+    {
+      "id": "animal.chicken.baby",
+      "file": "model.animal.chicken.baby.usdz",
+      "bytes": 15079,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.1891,
+        -0.0,
+        -0.3408
+      ],
+      "boundsMax": [
+        0.1891,
+        0.4576,
+        0.2662
+      ],
+      "meshCount": 12,
+      "triangleCount": 1440,
+      "materialCount": 4,
+      "diffuseColors": [
+        [
+          0.095,
+          0.06,
+          0.045
+        ],
+        [
+          0.91,
+          0.84,
+          0.69
+        ],
+        [
+          0.92,
+          0.43,
+          0.12
+        ],
+        [
+          0.98,
+          0.69,
+          0.2
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [
+        "/root/Idle"
+      ],
+      "timeRange": {
+        "start": 1.0,
+        "end": 49.0,
+        "codesPerSecond": 24.0
+      }
+    },
+    {
+      "id": "animal.chicken",
+      "file": "model.animal.chicken.usdz",
+      "bytes": 22580,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.305,
+        -0.0,
+        -0.48
+      ],
+      "boundsMax": [
+        0.305,
+        0.765,
+        0.4294
+      ],
+      "meshCount": 16,
+      "triangleCount": 3584,
+      "materialCount": 5,
+      "diffuseColors": [
+        [
+          0.095,
+          0.06,
+          0.045
+        ],
+        [
+          0.82,
+          0.25,
+          0.17
+        ],
+        [
+          0.91,
+          0.84,
+          0.69
+        ],
+        [
+          0.92,
+          0.43,
+          0.12
+        ],
+        [
+          0.95,
+          0.91,
+          0.81
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [
+        "/root/Idle"
+      ],
+      "timeRange": {
+        "start": 1.0,
+        "end": 49.0,
+        "codesPerSecond": 24.0
+      }
+    },
+    {
+      "id": "animal.cow.baby",
+      "file": "model.animal.cow.baby.usdz",
+      "bytes": 13840,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.3651,
+        -0.0,
+        -0.5587
+      ],
+      "boundsMax": [
+        0.3651,
+        0.6952,
+        0.4592
+      ],
+      "meshCount": 28,
+      "triangleCount": 3360,
+      "materialCount": 5,
+      "diffuseColors": [
+        [
+          0.095,
+          0.06,
+          0.045
+        ],
+        [
+          0.39,
+          0.2,
+          0.11
+        ],
+        [
+          0.91,
+          0.84,
+          0.69
+        ],
+        [
+          0.92,
+          0.53,
+          0.52
+        ],
+        [
+          0.95,
+          0.91,
+          0.81
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [
+        "/root/Idle"
+      ],
+      "timeRange": {
+        "start": 1.0,
+        "end": 49.0,
+        "codesPerSecond": 24.0
+      }
+    },
+    {
+      "id": "animal.cow",
+      "file": "model.animal.cow.usdz",
+      "bytes": 24606,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.4749,
+        -0.0,
+        -0.81
+      ],
+      "boundsMax": [
+        0.4749,
+        1.0301,
+        0.7406
+      ],
+      "meshCount": 29,
+      "triangleCount": 6496,
+      "materialCount": 5,
+      "diffuseColors": [
+        [
+          0.095,
+          0.06,
+          0.045
+        ],
+        [
+          0.39,
+          0.2,
+          0.11
+        ],
+        [
+          0.91,
+          0.84,
+          0.69
+        ],
+        [
+          0.92,
+          0.53,
+          0.52
+        ],
+        [
+          0.95,
+          0.91,
+          0.81
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [
+        "/root/Idle"
+      ],
+      "timeRange": {
+        "start": 1.0,
+        "end": 49.0,
+        "codesPerSecond": 24.0
+      }
+    },
+    {
+      "id": "animal.dog",
+      "file": "model.animal.dog.usdz",
+      "bytes": 23450,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.4655,
+        -0.0,
+        -0.5784
+      ],
+      "boundsMax": [
+        0.3885,
+        1.1407,
+        0.7026
+      ],
+      "meshCount": 21,
+      "triangleCount": 4704,
+      "materialCount": 5,
+      "diffuseColors": [
+        [
+          0.095,
+          0.06,
+          0.045
+        ],
+        [
+          0.33,
+          0.6,
+          0.62
+        ],
+        [
+          0.39,
+          0.2,
+          0.11
+        ],
+        [
+          0.91,
+          0.84,
+          0.69
+        ],
+        [
+          0.95,
+          0.91,
+          0.81
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [
+        "/root/Idle"
+      ],
+      "timeRange": {
+        "start": 1.0,
+        "end": 49.0,
+        "codesPerSecond": 24.0
+      }
+    },
+    {
+      "id": "animal.duck.baby",
+      "file": "model.animal.duck.baby.usdz",
+      "bytes": 11045,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.1798,
+        -0.0,
+        -0.3747
+      ],
+      "boundsMax": [
+        0.1798,
+        0.4437,
+        0.2852
+      ],
+      "meshCount": 10,
+      "triangleCount": 1200,
+      "materialCount": 4,
+      "diffuseColors": [
+        [
+          0.095,
+          0.06,
+          0.045
+        ],
+        [
+          0.91,
+          0.84,
+          0.69
+        ],
+        [
+          0.92,
+          0.43,
+          0.12
+        ],
+        [
+          0.95,
+          0.91,
+          0.81
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [
+        "/root/Idle"
+      ],
+      "timeRange": {
+        "start": 1.0,
+        "end": 49.0,
+        "codesPerSecond": 24.0
+      }
+    },
+    {
+      "id": "animal.duck",
+      "file": "model.animal.duck.usdz",
+      "bytes": 15027,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.29,
+        -0.0,
+        -0.53
+      ],
+      "boundsMax": [
+        0.29,
+        0.67,
+        0.46
+      ],
+      "meshCount": 10,
+      "triangleCount": 2240,
+      "materialCount": 4,
+      "diffuseColors": [
+        [
+          0.095,
+          0.06,
+          0.045
+        ],
+        [
+          0.91,
+          0.84,
+          0.69
+        ],
+        [
+          0.92,
+          0.43,
+          0.12
+        ],
+        [
+          0.95,
+          0.91,
+          0.81
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [
+        "/root/Idle"
+      ],
+      "timeRange": {
+        "start": 1.0,
+        "end": 49.0,
+        "codesPerSecond": 24.0
+      }
+    },
+    {
+      "id": "animal.goat.baby",
+      "file": "model.animal.goat.baby.usdz",
+      "bytes": 12826,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.2947,
+        -0.0,
+        -0.3937
+      ],
+      "boundsMax": [
+        0.2947,
+        0.6793,
+        0.3889
+      ],
+      "meshCount": 20,
+      "triangleCount": 2400,
+      "materialCount": 6,
+      "diffuseColors": [
+        [
+          0.095,
+          0.06,
+          0.045
+        ],
+        [
+          0.39,
+          0.2,
+          0.11
+        ],
+        [
+          0.68,
+          0.41,
+          0.23
+        ],
+        [
+          0.91,
+          0.84,
+          0.69
+        ],
+        [
+          0.92,
+          0.53,
+          0.52
+        ],
+        [
+          0.95,
+          0.91,
+          0.81
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [
+        "/root/Idle"
+      ],
+      "timeRange": {
+        "start": 1.0,
+        "end": 49.0,
+        "codesPerSecond": 24.0
+      }
+    },
+    {
+      "id": "animal.goat",
+      "file": "model.animal.goat.usdz",
+      "bytes": 30161,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.3833,
+        -0.0,
+        -0.5741
+      ],
+      "boundsMax": [
+        0.3833,
+        0.9978,
+        0.6272
+      ],
+      "meshCount": 21,
+      "triangleCount": 4704,
+      "materialCount": 6,
+      "diffuseColors": [
+        [
+          0.095,
+          0.06,
+          0.045
+        ],
+        [
+          0.39,
+          0.2,
+          0.11
+        ],
+        [
+          0.68,
+          0.41,
+          0.23
+        ],
+        [
+          0.91,
+          0.84,
+          0.69
+        ],
+        [
+          0.92,
+          0.53,
+          0.52
+        ],
+        [
+          0.95,
+          0.91,
+          0.81
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [
+        "/root/Idle"
+      ],
+      "timeRange": {
+        "start": 1.0,
+        "end": 49.0,
+        "codesPerSecond": 24.0
+      }
+    },
+    {
+      "id": "animal.horse.baby",
+      "file": "model.animal.horse.baby.usdz",
+      "bytes": 13529,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.1984,
+        -0.0,
+        -0.447
+      ],
+      "boundsMax": [
+        0.1984,
+        0.8262,
+        0.4599
+      ],
+      "meshCount": 25,
+      "triangleCount": 3000,
+      "materialCount": 6,
+      "diffuseColors": [
+        [
+          0.095,
+          0.06,
+          0.045
+        ],
+        [
+          0.39,
+          0.2,
+          0.11
+        ],
+        [
+          0.68,
+          0.41,
+          0.23
+        ],
+        [
+          0.91,
+          0.84,
+          0.69
+        ],
+        [
+          0.92,
+          0.53,
+          0.52
+        ],
+        [
+          0.95,
+          0.91,
+          0.81
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [
+        "/root/Idle"
+      ],
+      "timeRange": {
+        "start": 1.0,
+        "end": 49.0,
+        "codesPerSecond": 24.0
+      }
+    },
+    {
+      "id": "animal.horse",
+      "file": "model.animal.horse.usdz",
+      "bytes": 24111,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.32,
+        -0.0,
+        -0.6568
+      ],
+      "boundsMax": [
+        0.32,
+        1.2411,
+        0.7418
+      ],
+      "meshCount": 25,
+      "triangleCount": 5600,
+      "materialCount": 6,
+      "diffuseColors": [
+        [
+          0.095,
+          0.06,
+          0.045
+        ],
+        [
+          0.39,
+          0.2,
+          0.11
+        ],
+        [
+          0.68,
+          0.41,
+          0.23
+        ],
+        [
+          0.91,
+          0.84,
+          0.69
+        ],
+        [
+          0.92,
+          0.53,
+          0.52
+        ],
+        [
+          0.95,
+          0.91,
+          0.81
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [
+        "/root/Idle"
+      ],
+      "timeRange": {
+        "start": 1.0,
+        "end": 49.0,
+        "codesPerSecond": 24.0
+      }
+    },
+    {
+      "id": "animal.pig.baby",
+      "file": "model.animal.pig.baby.usdz",
+      "bytes": 12573,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.245,
+        -0.0,
+        -0.4737
+      ],
+      "boundsMax": [
+        0.245,
+        0.5792,
+        0.4017
+      ],
+      "meshCount": 19,
+      "triangleCount": 2280,
+      "materialCount": 5,
+      "diffuseColors": [
+        [
+          0.095,
+          0.06,
+          0.045
+        ],
+        [
+          0.68,
+          0.41,
+          0.23
+        ],
+        [
+          0.92,
+          0.53,
+          0.52
+        ],
+        [
+          0.95,
+          0.91,
+          0.81
+        ],
+        [
+          1.0,
+          0.72,
+          0.65
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [
+        "/root/Idle"
+      ],
+      "timeRange": {
+        "start": 1.0,
+        "end": 49.0,
+        "codesPerSecond": 24.0
+      }
+    },
+    {
+      "id": "animal.pig",
+      "file": "model.animal.pig.usdz",
+      "bytes": 29737,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.32,
+        -0.0,
+        -0.682
+      ],
+      "boundsMax": [
+        0.32,
+        0.8483,
+        0.6479
+      ],
+      "meshCount": 19,
+      "triangleCount": 4256,
+      "materialCount": 5,
+      "diffuseColors": [
+        [
+          0.095,
+          0.06,
+          0.045
+        ],
+        [
+          0.68,
+          0.41,
+          0.23
+        ],
+        [
+          0.92,
+          0.53,
+          0.52
+        ],
+        [
+          0.95,
+          0.91,
+          0.81
+        ],
+        [
+          1.0,
+          0.72,
+          0.65
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [
+        "/root/Idle"
+      ],
+      "timeRange": {
+        "start": 1.0,
+        "end": 49.0,
+        "codesPerSecond": 24.0
+      }
+    },
+    {
+      "id": "animal.rabbit.baby",
+      "file": "model.animal.rabbit.baby.usdz",
+      "bytes": 16150,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.1946,
+        -0.0,
+        -0.3247
+      ],
+      "boundsMax": [
+        0.1946,
+        0.708,
+        0.279
+      ],
+      "meshCount": 18,
+      "triangleCount": 2160,
+      "materialCount": 5,
+      "diffuseColors": [
+        [
+          0.095,
+          0.06,
+          0.045
+        ],
+        [
+          0.39,
+          0.2,
+          0.11
+        ],
+        [
+          0.52,
+          0.48,
+          0.45
+        ],
+        [
+          0.92,
+          0.53,
+          0.52
+        ],
+        [
+          0.95,
+          0.91,
+          0.81
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [
+        "/root/Idle"
+      ],
+      "timeRange": {
+        "start": 1.0,
+        "end": 49.0,
+        "codesPerSecond": 24.0
+      }
+    },
+    {
+      "id": "animal.rabbit",
+      "file": "model.animal.rabbit.usdz",
+      "bytes": 23010,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.2532,
+        -0.0,
+        -0.465
+      ],
+      "boundsMax": [
+        0.2532,
+        1.0099,
+        0.45
+      ],
+      "meshCount": 18,
+      "triangleCount": 4032,
+      "materialCount": 5,
+      "diffuseColors": [
+        [
+          0.095,
+          0.06,
+          0.045
+        ],
+        [
+          0.39,
+          0.2,
+          0.11
+        ],
+        [
+          0.52,
+          0.48,
+          0.45
+        ],
+        [
+          0.92,
+          0.53,
+          0.52
+        ],
+        [
+          0.95,
+          0.91,
+          0.81
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [
+        "/root/Idle"
+      ],
+      "timeRange": {
+        "start": 1.0,
+        "end": 49.0,
+        "codesPerSecond": 24.0
+      }
+    },
+    {
+      "id": "animal.sheep.baby",
+      "file": "model.animal.sheep.baby.usdz",
+      "bytes": 17159,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.2933,
+        -0.0,
+        -0.4233
+      ],
+      "boundsMax": [
+        0.2933,
+        0.5669,
+        0.3286
+      ],
+      "meshCount": 25,
+      "triangleCount": 3000,
+      "materialCount": 6,
+      "diffuseColors": [
+        [
+          0.095,
+          0.06,
+          0.045
+        ],
+        [
+          0.39,
+          0.2,
+          0.11
+        ],
+        [
+          0.52,
+          0.48,
+          0.45
+        ],
+        [
+          0.91,
+          0.84,
+          0.69
+        ],
+        [
+          0.92,
+          0.53,
+          0.52
+        ],
+        [
+          0.95,
+          0.91,
+          0.81
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [
+        "/root/Idle"
+      ],
+      "timeRange": {
+        "start": 1.0,
+        "end": 49.0,
+        "codesPerSecond": 24.0
+      }
+    },
+    {
+      "id": "animal.sheep",
+      "file": "model.animal.sheep.usdz",
+      "bytes": 24011,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.43,
+        -0.0,
+        -0.6222
+      ],
+      "boundsMax": [
+        0.43,
+        0.84,
+        0.53
+      ],
+      "meshCount": 25,
+      "triangleCount": 5600,
+      "materialCount": 6,
+      "diffuseColors": [
+        [
+          0.095,
+          0.06,
+          0.045
+        ],
+        [
+          0.39,
+          0.2,
+          0.11
+        ],
+        [
+          0.52,
+          0.48,
+          0.45
+        ],
+        [
+          0.91,
+          0.84,
+          0.69
+        ],
+        [
+          0.92,
+          0.53,
+          0.52
+        ],
+        [
+          0.95,
+          0.91,
+          0.81
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [
+        "/root/Idle"
+      ],
+      "timeRange": {
+        "start": 1.0,
+        "end": 49.0,
+        "codesPerSecond": 24.0
+      }
+    },
+    {
+      "id": "crop.apple.growing",
+      "file": "model.crop.apple.growing.usdz",
+      "bytes": 10049,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.0899,
+        0.0,
+        -0.055
+      ],
+      "boundsMax": [
+        0.0899,
+        0.3575,
+        0.055
+      ],
+      "meshCount": 14,
+      "triangleCount": 304,
+      "materialCount": 6,
+      "diffuseColors": [
+        [
+          0.0612,
+          0.1651,
+          0.0561
+        ],
+        [
+          0.1384,
+          0.3663,
+          0.0742
+        ],
+        [
+          0.3419,
+          0.1441,
+          0.0497
+        ],
+        [
+          0.8469,
+          0.5583,
+          0.0823
+        ],
+        [
+          1.0,
+          0.8714,
+          0.6795
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "crop.apple.ripe",
+      "file": "model.crop.apple.ripe.usdz",
+      "bytes": 12499,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.1684,
+        0.0,
+        -0.0681
+      ],
+      "boundsMax": [
+        0.1684,
+        1.02,
+        0.0681
+      ],
+      "meshCount": 16,
+      "triangleCount": 344,
+      "materialCount": 6,
+      "diffuseColors": [
+        [
+          0.0612,
+          0.1651,
+          0.0561
+        ],
+        [
+          0.1384,
+          0.3663,
+          0.0742
+        ],
+        [
+          0.1714,
+          0.0802,
+          0.0319
+        ],
+        [
+          0.3419,
+          0.1441,
+          0.0497
+        ],
+        [
+          0.6939,
+          0.0685,
+          0.0561
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "crop.apple.seed",
+      "file": "model.crop.apple.seed.usdz",
+      "bytes": 3591,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.0313,
+        -0.0,
+        -0.0187
+      ],
+      "boundsMax": [
+        0.0313,
+        0.036,
+        0.0187
+      ],
+      "meshCount": 1,
+      "triangleCount": 20,
+      "materialCount": 1,
+      "diffuseColors": [
+        [
+          0.2918,
+          0.1529,
+          0.0595
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "crop.apple.sprout",
+      "file": "model.crop.apple.sprout.usdz",
+      "bytes": 8714,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.055,
+        -0.0,
+        -0.055
+      ],
+      "boundsMax": [
+        0.055,
+        0.156,
+        0.055
+      ],
+      "meshCount": 6,
+      "triangleCount": 144,
+      "materialCount": 4,
+      "diffuseColors": [
+        [
+          0.0612,
+          0.1651,
+          0.0561
+        ],
+        [
+          0.1384,
+          0.3663,
+          0.0742
+        ],
+        [
+          0.3419,
+          0.1441,
+          0.0497
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "crop.carrot.growing",
+      "file": "model.crop.carrot.growing.usdz",
+      "bytes": 7675,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.0671,
+        0.0,
+        -0.0612
+      ],
+      "boundsMax": [
+        0.0671,
+        0.4132,
+        0.0612
+      ],
+      "meshCount": 7,
+      "triangleCount": 152,
+      "materialCount": 4,
+      "diffuseColors": [
+        [
+          0.0343,
+          0.1651,
+          0.0578
+        ],
+        [
+          0.1384,
+          0.3916,
+          0.0612
+        ],
+        [
+          0.8469,
+          0.2423,
+          0.0467
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "crop.carrot.ripe",
+      "file": "model.crop.carrot.ripe.usdz",
+      "bytes": 7853,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.0901,
+        -0.0,
+        -0.0907
+      ],
+      "boundsMax": [
+        0.0901,
+        0.68,
+        0.0907
+      ],
+      "meshCount": 8,
+      "triangleCount": 172,
+      "materialCount": 4,
+      "diffuseColors": [
+        [
+          0.0343,
+          0.1651,
+          0.0578
+        ],
+        [
+          0.1384,
+          0.3916,
+          0.0612
+        ],
+        [
+          0.8469,
+          0.2423,
+          0.0467
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "crop.carrot.seed",
+      "file": "model.crop.carrot.seed.usdz",
+      "bytes": 3589,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.0429,
+        -0.0,
+        -0.017
+      ],
+      "boundsMax": [
+        0.0429,
+        0.044,
+        0.017
+      ],
+      "meshCount": 1,
+      "triangleCount": 20,
+      "materialCount": 1,
+      "diffuseColors": [
+        [
+          0.3231,
+          0.1779,
+          0.0612
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "crop.carrot.sprout",
+      "file": "model.crop.carrot.sprout.usdz",
+      "bytes": 5498,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.0463,
+        0.0,
+        -0.0544
+      ],
+      "boundsMax": [
+        0.0463,
+        0.151,
+        0.0544
+      ],
+      "meshCount": 3,
+      "triangleCount": 64,
+      "materialCount": 3,
+      "diffuseColors": [
+        [
+          0.0343,
+          0.1651,
+          0.0578
+        ],
+        [
+          0.1384,
+          0.3916,
+          0.0612
+        ],
+        [
+          0.7913,
+          0.5583,
+          0.2542
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "crop.chives.growing",
+      "file": "model.crop.chives.growing.usdz",
+      "bytes": 5310,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.0265,
+        -0.0,
+        -0.0136
+      ],
+      "boundsMax": [
+        0.0251,
+        0.3591,
+        0.0136
+      ],
+      "meshCount": 4,
+      "triangleCount": 96,
+      "materialCount": 1,
+      "diffuseColors": [
+        [
+          0.162,
+          0.3813,
+          0.0742
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "crop.chives.ripe",
+      "file": "model.crop.chives.ripe.usdz",
+      "bytes": 7870,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.0492,
+        0.0,
+        -0.0425
+      ],
+      "boundsMax": [
+        0.0492,
+        0.5964,
+        0.0425
+      ],
+      "meshCount": 15,
+      "triangleCount": 312,
+      "materialCount": 3,
+      "diffuseColors": [
+        [
+          0.162,
+          0.3813,
+          0.0742
+        ],
+        [
+          0.4621,
+          0.3278,
+          0.5972
+        ],
+        [
+          0.6867,
+          0.5647,
+          0.807
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "crop.chives.seed",
+      "file": "model.crop.chives.seed.usdz",
+      "bytes": 3589,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.0376,
+        -0.0,
+        -0.0136
+      ],
+      "boundsMax": [
+        0.0376,
+        0.032,
+        0.0136
+      ],
+      "meshCount": 1,
+      "triangleCount": 20,
+      "materialCount": 1,
+      "diffuseColors": [
+        [
+          0.2542,
+          0.1779,
+          0.063
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "crop.chives.sprout",
+      "file": "model.crop.chives.sprout.usdz",
+      "bytes": 5104,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.0263,
+        0.0,
+        -0.0136
+      ],
+      "boundsMax": [
+        0.0249,
+        0.1457,
+        0.0136
+      ],
+      "meshCount": 2,
+      "triangleCount": 48,
+      "materialCount": 1,
+      "diffuseColors": [
+        [
+          0.162,
+          0.3813,
+          0.0742
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "crop.corn.growing",
+      "file": "model.crop.corn.growing.usdz",
+      "bytes": 8162,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.0671,
+        -0.0,
+        -0.0638
+      ],
+      "boundsMax": [
+        0.0671,
+        0.4437,
+        0.0638
+      ],
+      "meshCount": 12,
+      "triangleCount": 252,
+      "materialCount": 5,
+      "diffuseColors": [
+        [
+          0.0382,
+          0.1779,
+          0.0648
+        ],
+        [
+          0.1329,
+          0.3916,
+          0.0742
+        ],
+        [
+          0.2831,
+          0.4678,
+          0.0865
+        ],
+        [
+          0.7835,
+          0.5271,
+          0.0578
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "crop.corn.ripe",
+      "file": "model.crop.corn.ripe.usdz",
+      "bytes": 8728,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.0671,
+        0.0,
+        -0.0773
+      ],
+      "boundsMax": [
+        0.0671,
+        0.678,
+        0.0773
+      ],
+      "meshCount": 16,
+      "triangleCount": 332,
+      "materialCount": 6,
+      "diffuseColors": [
+        [
+          0.0382,
+          0.1779,
+          0.0648
+        ],
+        [
+          0.1329,
+          0.3916,
+          0.0742
+        ],
+        [
+          0.2831,
+          0.4678,
+          0.0865
+        ],
+        [
+          0.9131,
+          0.6038,
+          0.0704
+        ],
+        [
+          1.0,
+          0.7454,
+          0.1845
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "crop.corn.seed",
+      "file": "model.crop.corn.seed.usdz",
+      "bytes": 3886,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.0447,
+        -0.0,
+        -0.0221
+      ],
+      "boundsMax": [
+        0.0447,
+        0.0556,
+        0.0221
+      ],
+      "meshCount": 2,
+      "triangleCount": 40,
+      "materialCount": 2,
+      "diffuseColors": [
+        [
+          0.8148,
+          0.552,
+          0.107
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "crop.corn.sprout",
+      "file": "model.crop.corn.sprout.usdz",
+      "bytes": 6946,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.0332,
+        -0.0,
+        -0.0234
+      ],
+      "boundsMax": [
+        0.0333,
+        0.1926,
+        0.0234
+      ],
+      "meshCount": 6,
+      "triangleCount": 128,
+      "materialCount": 3,
+      "diffuseColors": [
+        [
+          0.0382,
+          0.1779,
+          0.0648
+        ],
+        [
+          0.1329,
+          0.3916,
+          0.0742
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "crop.kale.growing",
+      "file": "model.crop.kale.growing.usdz",
+      "bytes": 7107,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.1342,
+        0.0,
+        -0.125
+      ],
+      "boundsMax": [
+        0.1342,
+        0.2947,
+        0.125
+      ],
+      "meshCount": 12,
+      "triangleCount": 248,
+      "materialCount": 4,
+      "diffuseColors": [
+        [
+          0.0262,
+          0.1384,
+          0.0467
+        ],
+        [
+          0.0742,
+          0.2831,
+          0.0685
+        ],
+        [
+          0.1221,
+          0.3813,
+          0.0865
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "crop.kale.ripe",
+      "file": "model.crop.kale.ripe.usdz",
+      "bytes": 7721,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.1342,
+        0.0,
+        -0.1314
+      ],
+      "boundsMax": [
+        0.1342,
+        0.3374,
+        0.1314
+      ],
+      "meshCount": 16,
+      "triangleCount": 328,
+      "materialCount": 4,
+      "diffuseColors": [
+        [
+          0.0262,
+          0.1384,
+          0.0467
+        ],
+        [
+          0.0742,
+          0.2831,
+          0.0685
+        ],
+        [
+          0.1221,
+          0.3813,
+          0.0865
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "crop.kale.seed",
+      "file": "model.crop.kale.seed.usdz",
+      "bytes": 3590,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.025,
+        -0.0,
+        -0.0179
+      ],
+      "boundsMax": [
+        0.025,
+        0.032,
+        0.0179
+      ],
+      "meshCount": 1,
+      "triangleCount": 20,
+      "materialCount": 1,
+      "diffuseColors": [
+        [
+          0.2346,
+          0.1981,
+          0.0823
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "crop.kale.sprout",
+      "file": "model.crop.kale.sprout.usdz",
+      "bytes": 5521,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.018,
+        -0.0,
+        -0.0186
+      ],
+      "boundsMax": [
+        0.018,
+        0.0936,
+        0.0186
+      ],
+      "meshCount": 3,
+      "triangleCount": 68,
+      "materialCount": 2,
+      "diffuseColors": [
+        [
+          0.0262,
+          0.1384,
+          0.0467
+        ],
+        [
+          0.0742,
+          0.2831,
+          0.0685
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "crop.lettuce.growing",
+      "file": "model.crop.lettuce.growing.usdz",
+      "bytes": 7154,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.0515,
+        0.0,
+        -0.0535
+      ],
+      "boundsMax": [
+        0.0515,
+        0.2688,
+        0.0535
+      ],
+      "meshCount": 11,
+      "triangleCount": 228,
+      "materialCount": 4,
+      "diffuseColors": [
+        [
+          0.0467,
+          0.2016,
+          0.0648
+        ],
+        [
+          0.1779,
+          0.4233,
+          0.0802
+        ],
+        [
+          0.3968,
+          0.624,
+          0.162
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "crop.lettuce.ripe",
+      "file": "model.crop.lettuce.ripe.usdz",
+      "bytes": 7428,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.0771,
+        0.0,
+        -0.0802
+      ],
+      "boundsMax": [
+        0.0771,
+        0.403,
+        0.0802
+      ],
+      "meshCount": 14,
+      "triangleCount": 288,
+      "materialCount": 4,
+      "diffuseColors": [
+        [
+          0.0467,
+          0.2016,
+          0.0648
+        ],
+        [
+          0.1779,
+          0.4233,
+          0.0802
+        ],
+        [
+          0.3968,
+          0.624,
+          0.162
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "crop.lettuce.seed",
+      "file": "model.crop.lettuce.seed.usdz",
+      "bytes": 3593,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.0313,
+        -0.0,
+        -0.0255
+      ],
+      "boundsMax": [
+        0.0313,
+        0.036,
+        0.0255
+      ],
+      "meshCount": 1,
+      "triangleCount": 20,
+      "materialCount": 1,
+      "diffuseColors": [
+        [
+          0.3278,
+          0.2307,
+          0.1195
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "crop.lettuce.sprout",
+      "file": "model.crop.lettuce.sprout.usdz",
+      "bytes": 5506,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.029,
+        0.0,
+        -0.034
+      ],
+      "boundsMax": [
+        0.029,
+        0.0944,
+        0.034
+      ],
+      "meshCount": 3,
+      "triangleCount": 64,
+      "materialCount": 3,
+      "diffuseColors": [
+        [
+          0.0467,
+          0.2016,
+          0.0648
+        ],
+        [
+          0.1779,
+          0.4233,
+          0.0802
+        ],
+        [
+          0.3968,
+          0.624,
+          0.162
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "crop.pea.growing",
+      "file": "model.crop.pea.growing.usdz",
+      "bytes": 6566,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.0728,
+        0.0,
+        -0.0581
+      ],
+      "boundsMax": [
+        0.0728,
+        0.4317,
+        0.0581
+      ],
+      "meshCount": 10,
+      "triangleCount": 204,
+      "materialCount": 3,
+      "diffuseColors": [
+        [
+          0.0561,
+          0.2542,
+          0.063
+        ],
+        [
+          0.1413,
+          0.3916,
+          0.0742
+        ],
+        [
+          0.147,
+          0.4621,
+          0.0782
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "crop.pea.ripe",
+      "file": "model.crop.pea.ripe.usdz",
+      "bytes": 7425,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.0728,
+        -0.0,
+        -0.0581
+      ],
+      "boundsMax": [
+        0.0728,
+        0.5225,
+        0.0581
+      ],
+      "meshCount": 16,
+      "triangleCount": 324,
+      "materialCount": 4,
+      "diffuseColors": [
+        [
+          0.0561,
+          0.2542,
+          0.063
+        ],
+        [
+          0.1413,
+          0.3916,
+          0.0742
+        ],
+        [
+          0.147,
+          0.4621,
+          0.0782
+        ],
+        [
+          0.5089,
+          0.7529,
+          0.2016
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "crop.pea.seed",
+      "file": "model.crop.pea.seed.usdz",
+      "bytes": 3888,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.0349,
+        -0.0,
+        -0.0238
+      ],
+      "boundsMax": [
+        0.0349,
+        0.052,
+        0.0238
+      ],
+      "meshCount": 2,
+      "triangleCount": 40,
+      "materialCount": 2,
+      "diffuseColors": [
+        [
+          0.1559,
+          0.3231,
+          0.0648
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "crop.pea.sprout",
+      "file": "model.crop.pea.sprout.usdz",
+      "bytes": 5646,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.0728,
+        -0.0,
+        -0.0581
+      ],
+      "boundsMax": [
+        0.0728,
+        0.2454,
+        0.0581
+      ],
+      "meshCount": 5,
+      "triangleCount": 104,
+      "materialCount": 2,
+      "diffuseColors": [
+        [
+          0.0561,
+          0.2542,
+          0.063
+        ],
+        [
+          0.147,
+          0.4621,
+          0.0782
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "crop.potato.growing",
+      "file": "model.crop.potato.growing.usdz",
+      "bytes": 7168,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.0939,
+        0.0,
+        -0.0638
+      ],
+      "boundsMax": [
+        0.0939,
+        0.392,
+        0.0638
+      ],
+      "meshCount": 14,
+      "triangleCount": 288,
+      "materialCount": 4,
+      "diffuseColors": [
+        [
+          0.0545,
+          0.1746,
+          0.0578
+        ],
+        [
+          0.162,
+          0.3864,
+          0.0762
+        ],
+        [
+          0.3813,
+          0.1946,
+          0.0782
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "crop.potato.ripe",
+      "file": "model.crop.potato.ripe.usdz",
+      "bytes": 7362,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.0939,
+        0.0,
+        -0.0871
+      ],
+      "boundsMax": [
+        0.0939,
+        0.624,
+        0.0871
+      ],
+      "meshCount": 15,
+      "triangleCount": 308,
+      "materialCount": 4,
+      "diffuseColors": [
+        [
+          0.0545,
+          0.1746,
+          0.0578
+        ],
+        [
+          0.162,
+          0.3864,
+          0.0762
+        ],
+        [
+          0.3813,
+          0.1946,
+          0.0782
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "crop.potato.seed",
+      "file": "model.crop.potato.seed.usdz",
+      "bytes": 3591,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.0447,
+        -0.0,
+        -0.0298
+      ],
+      "boundsMax": [
+        0.0447,
+        0.054,
+        0.0298
+      ],
+      "meshCount": 1,
+      "triangleCount": 20,
+      "materialCount": 1,
+      "diffuseColors": [
+        [
+          0.3278,
+          0.1812,
+          0.0823
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "crop.potato.sprout",
+      "file": "model.crop.potato.sprout.usdz",
+      "bytes": 5495,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.0492,
+        0.0,
+        -0.0578
+      ],
+      "boundsMax": [
+        0.0492,
+        0.1604,
+        0.0578
+      ],
+      "meshCount": 3,
+      "triangleCount": 64,
+      "materialCount": 3,
+      "diffuseColors": [
+        [
+          0.0545,
+          0.1746,
+          0.0578
+        ],
+        [
+          0.162,
+          0.3864,
+          0.0762
+        ],
+        [
+          0.552,
+          0.3231,
+          0.1301
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "crop.pumpkin.growing",
+      "file": "model.crop.pumpkin.growing.usdz",
+      "bytes": 11608,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.1236,
+        0.0,
+        -0.1196
+      ],
+      "boundsMax": [
+        0.1236,
+        0.2145,
+        0.1196
+      ],
+      "meshCount": 7,
+      "triangleCount": 212,
+      "materialCount": 4,
+      "diffuseColors": [
+        [
+          0.0437,
+          0.1779,
+          0.0578
+        ],
+        [
+          0.0844,
+          0.2016,
+          0.0482
+        ],
+        [
+          0.1384,
+          0.3663,
+          0.0723
+        ],
+        [
+          0.3763,
+          0.4564,
+          0.0953
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "crop.pumpkin.ripe",
+      "file": "model.crop.pumpkin.ripe.usdz",
+      "bytes": 12381,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.2473,
+        0.0,
+        -0.2392
+      ],
+      "boundsMax": [
+        0.2473,
+        0.45,
+        0.2392
+      ],
+      "meshCount": 13,
+      "triangleCount": 332,
+      "materialCount": 5,
+      "diffuseColors": [
+        [
+          0.0437,
+          0.1779,
+          0.0578
+        ],
+        [
+          0.0844,
+          0.2016,
+          0.0482
+        ],
+        [
+          0.1384,
+          0.3663,
+          0.0723
+        ],
+        [
+          0.8148,
+          0.227,
+          0.0369
+        ],
+        [
+          0.8632,
+          0.3231,
+          0.0612
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "crop.pumpkin.seed",
+      "file": "model.crop.pumpkin.seed.usdz",
+      "bytes": 3593,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.0322,
+        -0.0,
+        -0.0221
+      ],
+      "boundsMax": [
+        0.0322,
+        0.036,
+        0.0221
+      ],
+      "meshCount": 1,
+      "triangleCount": 20,
+      "materialCount": 1,
+      "diffuseColors": [
+        [
+          0.4678,
+          0.3005,
+          0.1046
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "crop.pumpkin.sprout",
+      "file": "model.crop.pumpkin.sprout.usdz",
+      "bytes": 5523,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.018,
+        -0.0,
+        -0.018
+      ],
+      "boundsMax": [
+        0.018,
+        0.0845,
+        0.018
+      ],
+      "meshCount": 3,
+      "triangleCount": 68,
+      "materialCount": 2,
+      "diffuseColors": [
+        [
+          0.0437,
+          0.1779,
+          0.0578
+        ],
+        [
+          0.1384,
+          0.3663,
+          0.0723
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "crop.radish.growing",
+      "file": "model.crop.radish.growing.usdz",
+      "bytes": 7708,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.0778,
+        -0.0,
+        -0.0641
+      ],
+      "boundsMax": [
+        0.0778,
+        0.3683,
+        0.0641
+      ],
+      "meshCount": 7,
+      "triangleCount": 152,
+      "materialCount": 4,
+      "diffuseColors": [
+        [
+          0.0212,
+          0.1384,
+          0.0467
+        ],
+        [
+          0.0723,
+          0.3278,
+          0.0908
+        ],
+        [
+          0.5841,
+          0.0369,
+          0.0887
+        ],
+        [
+          0.9131,
+          0.8714,
+          0.7157
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "crop.radish.ripe",
+      "file": "model.crop.radish.ripe.usdz",
+      "bytes": 13231,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.1617,
+        -0.0,
+        -0.15
+      ],
+      "boundsMax": [
+        0.1617,
+        0.504,
+        0.15
+      ],
+      "meshCount": 9,
+      "triangleCount": 260,
+      "materialCount": 5,
+      "diffuseColors": [
+        [
+          0.0212,
+          0.1384,
+          0.0467
+        ],
+        [
+          0.0723,
+          0.3278,
+          0.0908
+        ],
+        [
+          0.5841,
+          0.0369,
+          0.0887
+        ],
+        [
+          0.9131,
+          0.8714,
+          0.7157
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "crop.radish.seed",
+      "file": "model.crop.radish.seed.usdz",
+      "bytes": 3592,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.0358,
+        -0.0,
+        -0.0221
+      ],
+      "boundsMax": [
+        0.0358,
+        0.046,
+        0.0221
+      ],
+      "meshCount": 1,
+      "triangleCount": 20,
+      "materialCount": 1,
+      "diffuseColors": [
+        [
+          0.2159,
+          0.1248,
+          0.0704
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "crop.radish.sprout",
+      "file": "model.crop.radish.sprout.usdz",
+      "bytes": 5501,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.0377,
+        0.0,
+        -0.0442
+      ],
+      "boundsMax": [
+        0.0377,
+        0.1227,
+        0.0442
+      ],
+      "meshCount": 3,
+      "triangleCount": 64,
+      "materialCount": 3,
+      "diffuseColors": [
+        [
+          0.0212,
+          0.1384,
+          0.0467
+        ],
+        [
+          0.0723,
+          0.3278,
+          0.0908
+        ],
+        [
+          0.9131,
+          0.8714,
+          0.7157
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "crop.strawberry.growing",
+      "file": "model.crop.strawberry.growing.usdz",
+      "bytes": 7623,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.076,
+        0.0,
+        -0.0681
+      ],
+      "boundsMax": [
+        0.076,
+        0.235,
+        0.0681
+      ],
+      "meshCount": 15,
+      "triangleCount": 308,
+      "materialCount": 6,
+      "diffuseColors": [
+        [
+          0.0296,
+          0.1746,
+          0.0561
+        ],
+        [
+          0.0976,
+          0.3968,
+          0.0723
+        ],
+        [
+          0.7913,
+          0.0685,
+          0.0976
+        ],
+        [
+          0.8714,
+          0.5583,
+          0.0762
+        ],
+        [
+          1.0,
+          0.7991,
+          0.3813
+        ],
+        [
+          1.0,
+          0.9047,
+          0.7231
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "crop.strawberry.ripe",
+      "file": "model.crop.strawberry.ripe.usdz",
+      "bytes": 7741,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.076,
+        0.0,
+        -0.0681
+      ],
+      "boundsMax": [
+        0.076,
+        0.2356,
+        0.0681
+      ],
+      "meshCount": 18,
+      "triangleCount": 368,
+      "materialCount": 4,
+      "diffuseColors": [
+        [
+          0.0296,
+          0.1746,
+          0.0561
+        ],
+        [
+          0.0976,
+          0.3968,
+          0.0723
+        ],
+        [
+          0.7913,
+          0.0685,
+          0.0976
+        ],
+        [
+          1.0,
+          0.7991,
+          0.3813
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "crop.strawberry.seed",
+      "file": "model.crop.strawberry.seed.usdz",
+      "bytes": 3726,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.0286,
+        -0.0,
+        -0.0221
+      ],
+      "boundsMax": [
+        0.0286,
+        0.04,
+        0.0221
+      ],
+      "meshCount": 1,
+      "triangleCount": 20,
+      "materialCount": 1,
+      "diffuseColors": [
+        [
+          0.3419,
+          0.2542,
+          0.117
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "crop.strawberry.sprout",
+      "file": "model.crop.strawberry.sprout.usdz",
+      "bytes": 5656,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.018,
+        -0.0,
+        -0.018
+      ],
+      "boundsMax": [
+        0.018,
+        0.0912,
+        0.018
+      ],
+      "meshCount": 3,
+      "triangleCount": 68,
+      "materialCount": 2,
+      "diffuseColors": [
+        [
+          0.0296,
+          0.1746,
+          0.0561
+        ],
+        [
+          0.0976,
+          0.3968,
+          0.0723
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "crop.sunflower.growing",
+      "file": "model.crop.sunflower.growing.usdz",
+      "bytes": 6099,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.0894,
+        0.0,
+        -0.0851
+      ],
+      "boundsMax": [
+        0.0894,
+        0.525,
+        0.0851
+      ],
+      "meshCount": 5,
+      "triangleCount": 108,
+      "materialCount": 3,
+      "diffuseColors": [
+        [
+          0.0409,
+          0.162,
+          0.0578
+        ],
+        [
+          0.0887,
+          0.2747,
+          0.0595
+        ],
+        [
+          0.0953,
+          0.2831,
+          0.0612
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "crop.sunflower.ripe",
+      "file": "model.crop.sunflower.ripe.usdz",
+      "bytes": 7848,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.0883,
+        0.0,
+        -0.0889
+      ],
+      "boundsMax": [
+        0.0883,
+        0.6858,
+        0.0889
+      ],
+      "meshCount": 19,
+      "triangleCount": 388,
+      "materialCount": 5,
+      "diffuseColors": [
+        [
+          0.0409,
+          0.162,
+          0.0578
+        ],
+        [
+          0.0887,
+          0.2747,
+          0.0595
+        ],
+        [
+          0.1714,
+          0.0802,
+          0.0262
+        ],
+        [
+          0.6795,
+          0.4233,
+          0.0908
+        ],
+        [
+          0.9216,
+          0.5776,
+          0.0482
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "crop.sunflower.seed",
+      "file": "model.crop.sunflower.seed.usdz",
+      "bytes": 3893,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.0268,
+        -0.0,
+        -0.0213
+      ],
+      "boundsMax": [
+        0.0268,
+        0.0394,
+        0.0213
+      ],
+      "meshCount": 2,
+      "triangleCount": 40,
+      "materialCount": 2,
+      "diffuseColors": [
+        [
+          0.1812,
+          0.117,
+          0.0545
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "crop.sunflower.sprout",
+      "file": "model.crop.sunflower.sprout.usdz",
+      "bytes": 5653,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.0227,
+        0.0,
+        -0.0229
+      ],
+      "boundsMax": [
+        0.0227,
+        0.1638,
+        0.0229
+      ],
+      "meshCount": 3,
+      "triangleCount": 68,
+      "materialCount": 2,
+      "diffuseColors": [
+        [
+          0.0409,
+          0.162,
+          0.0578
+        ],
+        [
+          0.0887,
+          0.2747,
+          0.0595
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "crop.tomato.growing",
+      "file": "model.crop.tomato.growing.usdz",
+      "bytes": 7428,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.0805,
+        0.0,
+        -0.0766
+      ],
+      "boundsMax": [
+        0.0805,
+        0.342,
+        0.0766
+      ],
+      "meshCount": 7,
+      "triangleCount": 148,
+      "materialCount": 4,
+      "diffuseColors": [
+        [
+          0.0343,
+          0.1746,
+          0.0648
+        ],
+        [
+          0.1384,
+          0.3916,
+          0.0742
+        ],
+        [
+          0.8879,
+          0.3663,
+          0.0762
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "crop.tomato.ripe",
+      "file": "model.crop.tomato.ripe.usdz",
+      "bytes": 8494,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.0805,
+        0.0,
+        -0.0766
+      ],
+      "boundsMax": [
+        0.0805,
+        0.486,
+        0.0766
+      ],
+      "meshCount": 15,
+      "triangleCount": 308,
+      "materialCount": 4,
+      "diffuseColors": [
+        [
+          0.0343,
+          0.1746,
+          0.0648
+        ],
+        [
+          0.1384,
+          0.3916,
+          0.0742
+        ],
+        [
+          0.807,
+          0.0782,
+          0.0545
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "crop.tomato.seed",
+      "file": "model.crop.tomato.seed.usdz",
+      "bytes": 3589,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.0304,
+        -0.0,
+        -0.023
+      ],
+      "boundsMax": [
+        0.0304,
+        0.046,
+        0.023
+      ],
+      "meshCount": 1,
+      "triangleCount": 20,
+      "materialCount": 1,
+      "diffuseColors": [
+        [
+          0.4452,
+          0.2582,
+          0.0782
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "crop.tomato.sprout",
+      "file": "model.crop.tomato.sprout.usdz",
+      "bytes": 5522,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.02,
+        0.0,
+        -0.0201
+      ],
+      "boundsMax": [
+        0.02,
+        0.144,
+        0.0201
+      ],
+      "meshCount": 3,
+      "triangleCount": 68,
+      "materialCount": 2,
+      "diffuseColors": [
+        [
+          0.0343,
+          0.1746,
+          0.0648
+        ],
+        [
+          0.1384,
+          0.3916,
+          0.0742
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "crop.wheat.growing",
+      "file": "model.crop.wheat.growing.usdz",
+      "bytes": 8280,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.0381,
+        0.0,
+        -0.0302
+      ],
+      "boundsMax": [
+        0.0381,
+        0.424,
+        0.0302
+      ],
+      "meshCount": 15,
+      "triangleCount": 312,
+      "materialCount": 4,
+      "diffuseColors": [
+        [
+          0.1248,
+          0.1981,
+          0.0437
+        ],
+        [
+          0.2664,
+          0.3763,
+          0.0723
+        ],
+        [
+          0.7835,
+          0.5583,
+          0.159
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "crop.wheat.ripe",
+      "file": "model.crop.wheat.ripe.usdz",
+      "bytes": 8564,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.0541,
+        0.0,
+        -0.0429
+      ],
+      "boundsMax": [
+        0.0541,
+        0.6285,
+        0.0429
+      ],
+      "meshCount": 18,
+      "triangleCount": 372,
+      "materialCount": 4,
+      "diffuseColors": [
+        [
+          0.1248,
+          0.1981,
+          0.0437
+        ],
+        [
+          0.2664,
+          0.3763,
+          0.0723
+        ],
+        [
+          0.7835,
+          0.5583,
+          0.159
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "crop.wheat.seed",
+      "file": "model.crop.wheat.seed.usdz",
+      "bytes": 3888,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.0394,
+        -0.0,
+        -0.0153
+      ],
+      "boundsMax": [
+        0.0394,
+        0.0448,
+        0.0153
+      ],
+      "meshCount": 2,
+      "triangleCount": 40,
+      "materialCount": 2,
+      "diffuseColors": [
+        [
+          0.5776,
+          0.3763,
+          0.0762
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "crop.wheat.sprout",
+      "file": "model.crop.wheat.sprout.usdz",
+      "bytes": 6948,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.0213,
+        0.0,
+        -0.0134
+      ],
+      "boundsMax": [
+        0.0213,
+        0.1903,
+        0.0134
+      ],
+      "meshCount": 6,
+      "triangleCount": 128,
+      "materialCount": 3,
+      "diffuseColors": [
+        [
+          0.1248,
+          0.1981,
+          0.0437
+        ],
+        [
+          0.2664,
+          0.3763,
+          0.0723
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "imp.baler",
+      "file": "model.imp.baler.usdz",
+      "bytes": 65721,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -1.285,
+        -0.0,
+        -0.6425
+      ],
+      "boundsMax": [
+        0.8,
+        1.15,
+        0.6425
+      ],
+      "meshCount": 10,
+      "triangleCount": 2188,
+      "materialCount": 6,
+      "diffuseColors": [
+        [
+          0.19,
+          0.2,
+          0.17
+        ],
+        [
+          0.52,
+          0.59,
+          0.56
+        ],
+        [
+          0.55,
+          0.3,
+          0.15
+        ],
+        [
+          0.7,
+          0.25,
+          0.17
+        ],
+        [
+          0.93,
+          0.85,
+          0.67
+        ],
+        [
+          0.94,
+          0.68,
+          0.24
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "imp.loader",
+      "file": "model.imp.loader.usdz",
+      "bytes": 30942,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.9,
+        -0.0,
+        -0.48
+      ],
+      "boundsMax": [
+        0.575,
+        0.97,
+        0.48
+      ],
+      "meshCount": 7,
+      "triangleCount": 1012,
+      "materialCount": 3,
+      "diffuseColors": [
+        [
+          0.19,
+          0.2,
+          0.17
+        ],
+        [
+          0.52,
+          0.59,
+          0.56
+        ],
+        [
+          0.94,
+          0.68,
+          0.24
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "imp.mower",
+      "file": "model.imp.mower.usdz",
+      "bytes": 41146,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -1.285,
+        -0.0,
+        -0.675
+      ],
+      "boundsMax": [
+        0.5,
+        0.46,
+        0.675
+      ],
+      "meshCount": 7,
+      "triangleCount": 1368,
+      "materialCount": 3,
+      "diffuseColors": [
+        [
+          0.52,
+          0.59,
+          0.56
+        ],
+        [
+          0.7,
+          0.25,
+          0.17
+        ],
+        [
+          0.93,
+          0.85,
+          0.67
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "imp.plow",
+      "file": "model.imp.plow.usdz",
+      "bytes": 44623,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -1.285,
+        -0.0,
+        -0.325
+      ],
+      "boundsMax": [
+        0.7602,
+        0.495,
+        0.325
+      ],
+      "meshCount": 9,
+      "triangleCount": 1440,
+      "materialCount": 2,
+      "diffuseColors": [
+        [
+          0.52,
+          0.59,
+          0.56
+        ],
+        [
+          0.7,
+          0.25,
+          0.17
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "imp.potatodigger",
+      "file": "model.imp.potatodigger.usdz",
+      "bytes": 61030,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -1.285,
+        -0.0,
+        -0.6925
+      ],
+      "boundsMax": [
+        0.65,
+        0.5,
+        0.6925
+      ],
+      "meshCount": 13,
+      "triangleCount": 2864,
+      "materialCount": 4,
+      "diffuseColors": [
+        [
+          0.19,
+          0.2,
+          0.17
+        ],
+        [
+          0.52,
+          0.59,
+          0.56
+        ],
+        [
+          0.7,
+          0.25,
+          0.17
+        ],
+        [
+          0.93,
+          0.85,
+          0.67
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "imp.seeder",
+      "file": "model.imp.seeder.usdz",
+      "bytes": 63083,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -1.285,
+        -0.0,
+        -0.7825
+      ],
+      "boundsMax": [
+        0.6,
+        1.07,
+        0.7825
+      ],
+      "meshCount": 13,
+      "triangleCount": 2512,
+      "materialCount": 5,
+      "diffuseColors": [
+        [
+          0.19,
+          0.2,
+          0.17
+        ],
+        [
+          0.52,
+          0.59,
+          0.56
+        ],
+        [
+          0.7,
+          0.25,
+          0.17
+        ],
+        [
+          0.93,
+          0.85,
+          0.67
+        ],
+        [
+          0.94,
+          0.68,
+          0.24
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "imp.snowplow",
+      "file": "model.imp.snowplow.usdz",
+      "bytes": 24300,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.3558,
+        -0.0,
+        -0.725
+      ],
+      "boundsMax": [
+        0.67,
+        0.7161,
+        0.725
+      ],
+      "meshCount": 5,
+      "triangleCount": 732,
+      "materialCount": 3,
+      "diffuseColors": [
+        [
+          0.19,
+          0.2,
+          0.17
+        ],
+        [
+          0.52,
+          0.59,
+          0.56
+        ],
+        [
+          0.94,
+          0.68,
+          0.24
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "imp.trailer",
+      "file": "model.imp.trailer.usdz",
+      "bytes": 61598,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -1.285,
+        -0.0,
+        -0.6125
+      ],
+      "boundsMax": [
+        0.725,
+        1.045,
+        0.6125
+      ],
+      "meshCount": 12,
+      "triangleCount": 2276,
+      "materialCount": 5,
+      "diffuseColors": [
+        [
+          0.19,
+          0.2,
+          0.17
+        ],
+        [
+          0.52,
+          0.59,
+          0.56
+        ],
+        [
+          0.7,
+          0.25,
+          0.17
+        ],
+        [
+          0.73,
+          0.48,
+          0.27
+        ],
+        [
+          0.93,
+          0.85,
+          0.67
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "imp.watertank",
+      "file": "model.imp.watertank.usdz",
+      "bytes": 77749,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -1.285,
+        -0.0,
+        -0.5625
+      ],
+      "boundsMax": [
+        0.67,
+        1.2,
+        0.5625
+      ],
+      "meshCount": 11,
+      "triangleCount": 2976,
+      "materialCount": 4,
+      "diffuseColors": [
+        [
+          0.19,
+          0.2,
+          0.17
+        ],
+        [
+          0.27,
+          0.59,
+          0.67
+        ],
+        [
+          0.52,
+          0.59,
+          0.56
+        ],
+        [
+          0.93,
+          0.85,
+          0.67
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "item.egg",
+      "file": "model.item.egg.usdz",
+      "bytes": 24044,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.1168,
+        -0.0,
+        -0.1168
+      ],
+      "boundsMax": [
+        0.1168,
+        0.32,
+        0.1168
+      ],
+      "meshCount": 1,
+      "triangleCount": 528,
+      "materialCount": 1,
+      "diffuseColors": [
+        [
+          0.97,
+          0.92,
+          0.79
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "item.feed",
+      "file": "model.item.feed.usdz",
+      "bytes": 25962,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.275,
+        -0.0,
+        -0.21
+      ],
+      "boundsMax": [
+        0.275,
+        0.615,
+        0.265
+      ],
+      "meshCount": 6,
+      "triangleCount": 996,
+      "materialCount": 4,
+      "diffuseColors": [
+        [
+          0.55,
+          0.3,
+          0.15
+        ],
+        [
+          0.73,
+          0.48,
+          0.27
+        ],
+        [
+          0.93,
+          0.85,
+          0.67
+        ],
+        [
+          0.94,
+          0.68,
+          0.24
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "item.hay",
+      "file": "model.item.hay.usdz",
+      "bytes": 16535,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.42,
+        -0.0,
+        -0.2825
+      ],
+      "boundsMax": [
+        0.42,
+        0.4825,
+        0.2825
+      ],
+      "meshCount": 7,
+      "triangleCount": 756,
+      "materialCount": 2,
+      "diffuseColors": [
+        [
+          0.55,
+          0.3,
+          0.15
+        ],
+        [
+          0.94,
+          0.68,
+          0.24
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "loc.apiary",
+      "file": "model.loc.apiary.usdz",
+      "bytes": 46958,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -1.0,
+        -0.0,
+        -0.85
+      ],
+      "boundsMax": [
+        1.0,
+        0.985,
+        0.85
+      ],
+      "meshCount": 21,
+      "triangleCount": 2856,
+      "materialCount": 7,
+      "diffuseColors": [
+        [
+          0.19,
+          0.2,
+          0.17
+        ],
+        [
+          0.25,
+          0.45,
+          0.18
+        ],
+        [
+          0.34,
+          0.57,
+          0.21
+        ],
+        [
+          0.55,
+          0.3,
+          0.15
+        ],
+        [
+          0.63,
+          0.24,
+          0.15
+        ],
+        [
+          0.91,
+          0.58,
+          0.53
+        ],
+        [
+          0.94,
+          0.68,
+          0.24
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "loc.cowbarn",
+      "file": "model.loc.cowbarn.usdz",
+      "bytes": 60912,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -1.1394,
+        -0.0,
+        -0.96
+      ],
+      "boundsMax": [
+        1.1394,
+        2.1194,
+        0.965
+      ],
+      "meshCount": 18,
+      "triangleCount": 2092,
+      "materialCount": 8,
+      "diffuseColors": [
+        [
+          0.27,
+          0.59,
+          0.67
+        ],
+        [
+          0.55,
+          0.3,
+          0.15
+        ],
+        [
+          0.63,
+          0.24,
+          0.15
+        ],
+        [
+          0.69,
+          0.66,
+          0.56
+        ],
+        [
+          0.7,
+          0.25,
+          0.17
+        ],
+        [
+          0.73,
+          0.48,
+          0.27
+        ],
+        [
+          0.94,
+          0.68,
+          0.24
+        ],
+        [
+          0.97,
+          0.92,
+          0.79
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "loc.field",
+      "file": "model.loc.field.usdz",
+      "bytes": 13047,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -2.0,
+        -0.0,
+        -2.0
+      ],
+      "boundsMax": [
+        2.0,
+        0.21,
+        2.0
+      ],
+      "meshCount": 10,
+      "triangleCount": 1080,
+      "materialCount": 2,
+      "diffuseColors": [
+        [
+          0.28,
+          0.15,
+          0.08
+        ],
+        [
+          0.55,
+          0.3,
+          0.15
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "loc.garage",
+      "file": "model.loc.garage.usdz",
+      "bytes": 69195,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -1.2384,
+        -0.0,
+        -1.01
+      ],
+      "boundsMax": [
+        1.2384,
+        2.2184,
+        1.015
+      ],
+      "meshCount": 22,
+      "triangleCount": 2524,
+      "materialCount": 8,
+      "diffuseColors": [
+        [
+          0.27,
+          0.59,
+          0.67
+        ],
+        [
+          0.55,
+          0.3,
+          0.15
+        ],
+        [
+          0.63,
+          0.24,
+          0.15
+        ],
+        [
+          0.69,
+          0.66,
+          0.56
+        ],
+        [
+          0.73,
+          0.48,
+          0.27
+        ],
+        [
+          0.93,
+          0.85,
+          0.67
+        ],
+        [
+          0.94,
+          0.68,
+          0.24
+        ],
+        [
+          0.97,
+          0.92,
+          0.79
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "loc.garden",
+      "file": "model.loc.garden.usdz",
+      "bytes": 20674,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.505,
+        -0.0,
+        -0.505
+      ],
+      "boundsMax": [
+        0.505,
+        0.32,
+        0.505
+      ],
+      "meshCount": 8,
+      "triangleCount": 864,
+      "materialCount": 3,
+      "diffuseColors": [
+        [
+          0.28,
+          0.15,
+          0.08
+        ],
+        [
+          0.55,
+          0.3,
+          0.15
+        ],
+        [
+          0.73,
+          0.48,
+          0.27
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "loc.goatpen",
+      "file": "model.loc.goatpen.usdz",
+      "bytes": 53878,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -1.2,
+        -0.0,
+        -1.0
+      ],
+      "boundsMax": [
+        1.2,
+        1.1,
+        1.0
+      ],
+      "meshCount": 18,
+      "triangleCount": 2292,
+      "materialCount": 5,
+      "diffuseColors": [
+        [
+          0.34,
+          0.57,
+          0.21
+        ],
+        [
+          0.55,
+          0.3,
+          0.15
+        ],
+        [
+          0.63,
+          0.24,
+          0.15
+        ],
+        [
+          0.69,
+          0.66,
+          0.56
+        ],
+        [
+          0.73,
+          0.48,
+          0.27
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "loc.greenhouse",
+      "file": "model.loc.greenhouse.usdz",
+      "bytes": 30451,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.9713,
+        -0.0,
+        -0.76
+      ],
+      "boundsMax": [
+        0.9713,
+        1.8113,
+        0.76
+      ],
+      "meshCount": 9,
+      "triangleCount": 1004,
+      "materialCount": 5,
+      "diffuseColors": [
+        [
+          0.27,
+          0.59,
+          0.67
+        ],
+        [
+          0.34,
+          0.57,
+          0.21
+        ],
+        [
+          0.69,
+          0.66,
+          0.56
+        ],
+        [
+          0.73,
+          0.48,
+          0.27
+        ],
+        [
+          0.93,
+          0.85,
+          0.67
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "loc.henhouse",
+      "file": "model.loc.henhouse.usdz",
+      "bytes": 81425,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -1.175,
+        -0.0,
+        -0.835
+      ],
+      "boundsMax": [
+        0.9911,
+        1.923,
+        1.2951
+      ],
+      "meshCount": 24,
+      "triangleCount": 2740,
+      "materialCount": 9,
+      "diffuseColors": [
+        [
+          0.19,
+          0.2,
+          0.17
+        ],
+        [
+          0.27,
+          0.59,
+          0.67
+        ],
+        [
+          0.55,
+          0.3,
+          0.15
+        ],
+        [
+          0.63,
+          0.24,
+          0.15
+        ],
+        [
+          0.69,
+          0.66,
+          0.56
+        ],
+        [
+          0.73,
+          0.48,
+          0.27
+        ],
+        [
+          0.93,
+          0.85,
+          0.67
+        ],
+        [
+          0.94,
+          0.68,
+          0.24
+        ],
+        [
+          0.97,
+          0.92,
+          0.79
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "loc.kitchen",
+      "file": "model.loc.kitchen.usdz",
+      "bytes": 77075,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -1.1394,
+        -0.0,
+        -0.985
+      ],
+      "boundsMax": [
+        1.1394,
+        2.42,
+        0.995
+      ],
+      "meshCount": 21,
+      "triangleCount": 2416,
+      "materialCount": 9,
+      "diffuseColors": [
+        [
+          0.19,
+          0.2,
+          0.17
+        ],
+        [
+          0.27,
+          0.59,
+          0.67
+        ],
+        [
+          0.55,
+          0.3,
+          0.15
+        ],
+        [
+          0.63,
+          0.24,
+          0.15
+        ],
+        [
+          0.69,
+          0.66,
+          0.56
+        ],
+        [
+          0.73,
+          0.48,
+          0.27
+        ],
+        [
+          0.93,
+          0.85,
+          0.67
+        ],
+        [
+          0.94,
+          0.68,
+          0.24
+        ],
+        [
+          0.97,
+          0.92,
+          0.79
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "loc.orchard",
+      "file": "model.loc.orchard.usdz",
+      "bytes": 60942,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -1.6,
+        -0.0,
+        -1.6
+      ],
+      "boundsMax": [
+        1.6,
+        1.4368,
+        1.6
+      ],
+      "meshCount": 33,
+      "triangleCount": 7132,
+      "materialCount": 4,
+      "diffuseColors": [
+        [
+          0.34,
+          0.57,
+          0.21
+        ],
+        [
+          0.42,
+          0.66,
+          0.28
+        ],
+        [
+          0.55,
+          0.3,
+          0.15
+        ],
+        [
+          0.7,
+          0.25,
+          0.17
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "loc.paddock",
+      "file": "model.loc.paddock.usdz",
+      "bytes": 42102,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -1.4,
+        -0.0,
+        -1.2
+      ],
+      "boundsMax": [
+        1.4,
+        1.14,
+        1.2
+      ],
+      "meshCount": 18,
+      "triangleCount": 1944,
+      "materialCount": 5,
+      "diffuseColors": [
+        [
+          0.34,
+          0.57,
+          0.21
+        ],
+        [
+          0.55,
+          0.3,
+          0.15
+        ],
+        [
+          0.63,
+          0.24,
+          0.15
+        ],
+        [
+          0.73,
+          0.48,
+          0.27
+        ],
+        [
+          0.93,
+          0.85,
+          0.67
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "loc.pigsty",
+      "file": "model.loc.pigsty.usdz",
+      "bytes": 48148,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -1.2,
+        -0.0,
+        -1.0
+      ],
+      "boundsMax": [
+        1.2,
+        0.87,
+        1.0
+      ],
+      "meshCount": 18,
+      "triangleCount": 2120,
+      "materialCount": 5,
+      "diffuseColors": [
+        [
+          0.28,
+          0.15,
+          0.08
+        ],
+        [
+          0.34,
+          0.57,
+          0.21
+        ],
+        [
+          0.55,
+          0.3,
+          0.15
+        ],
+        [
+          0.63,
+          0.24,
+          0.15
+        ],
+        [
+          0.73,
+          0.48,
+          0.27
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "loc.plaza",
+      "file": "model.loc.plaza.usdz",
+      "bytes": 96194,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -1.404,
+        -0.0,
+        -0.95
+      ],
+      "boundsMax": [
+        1.4,
+        1.796,
+        0.95
+      ],
+      "meshCount": 17,
+      "triangleCount": 3024,
+      "materialCount": 9,
+      "diffuseColors": [
+        [
+          0.3,
+          0.65,
+          0.72
+        ],
+        [
+          0.34,
+          0.57,
+          0.21
+        ],
+        [
+          0.42,
+          0.66,
+          0.28
+        ],
+        [
+          0.55,
+          0.3,
+          0.15
+        ],
+        [
+          0.63,
+          0.24,
+          0.15
+        ],
+        [
+          0.69,
+          0.66,
+          0.56
+        ],
+        [
+          0.7,
+          0.25,
+          0.17
+        ],
+        [
+          0.73,
+          0.48,
+          0.27
+        ],
+        [
+          0.93,
+          0.85,
+          0.67
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "loc.pond",
+      "file": "model.loc.pond.usdz",
+      "bytes": 46949,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.95,
+        -0.0,
+        -0.95
+      ],
+      "boundsMax": [
+        0.95,
+        0.23,
+        0.95
+      ],
+      "meshCount": 8,
+      "triangleCount": 1996,
+      "materialCount": 4,
+      "diffuseColors": [
+        [
+          0.3,
+          0.65,
+          0.72
+        ],
+        [
+          0.34,
+          0.57,
+          0.21
+        ],
+        [
+          0.42,
+          0.66,
+          0.28
+        ],
+        [
+          0.91,
+          0.58,
+          0.53
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "loc.sheepmeadow",
+      "file": "model.loc.sheepmeadow.usdz",
+      "bytes": 37978,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -1.25,
+        -0.0,
+        -1.0
+      ],
+      "boundsMax": [
+        1.25,
+        0.81,
+        1.0
+      ],
+      "meshCount": 17,
+      "triangleCount": 1836,
+      "materialCount": 5,
+      "diffuseColors": [
+        [
+          0.34,
+          0.57,
+          0.21
+        ],
+        [
+          0.55,
+          0.3,
+          0.15
+        ],
+        [
+          0.63,
+          0.24,
+          0.15
+        ],
+        [
+          0.73,
+          0.48,
+          0.27
+        ],
+        [
+          0.93,
+          0.85,
+          0.67
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "loc.shop",
+      "file": "model.loc.shop.usdz",
+      "bytes": 50655,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.865,
+        -0.0,
+        -0.6011
+      ],
+      "boundsMax": [
+        0.865,
+        1.8265,
+        0.6011
+      ],
+      "meshCount": 22,
+      "triangleCount": 2724,
+      "materialCount": 6,
+      "diffuseColors": [
+        [
+          0.34,
+          0.57,
+          0.21
+        ],
+        [
+          0.55,
+          0.3,
+          0.15
+        ],
+        [
+          0.7,
+          0.25,
+          0.17
+        ],
+        [
+          0.73,
+          0.48,
+          0.27
+        ],
+        [
+          0.93,
+          0.85,
+          0.67
+        ],
+        [
+          0.97,
+          0.92,
+          0.79
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "loc.village",
+      "file": "model.loc.village.usdz",
+      "bytes": 46257,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -2.5,
+        -0.0,
+        -2.0
+      ],
+      "boundsMax": [
+        2.5,
+        1.9465,
+        2.0
+      ],
+      "meshCount": 77,
+      "triangleCount": 8316,
+      "materialCount": 6,
+      "diffuseColors": [
+        [
+          0.55,
+          0.3,
+          0.15
+        ],
+        [
+          0.69,
+          0.66,
+          0.56
+        ],
+        [
+          0.7,
+          0.25,
+          0.17
+        ],
+        [
+          0.73,
+          0.48,
+          0.27
+        ],
+        [
+          0.93,
+          0.85,
+          0.67
+        ],
+        [
+          0.97,
+          0.92,
+          0.79
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "terrain.island",
+      "file": "model.terrain.island.usdz",
+      "bytes": 24844,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -8.0,
+        -0.62,
+        -6.0
+      ],
+      "boundsMax": [
+        8.0,
+        0.0,
+        6.0
+      ],
+      "meshCount": 3,
+      "triangleCount": 564,
+      "materialCount": 3,
+      "diffuseColors": [
+        [
+          0.32,
+          0.18,
+          0.09
+        ],
+        [
+          0.39,
+          0.68,
+          0.23
+        ],
+        [
+          0.47,
+          0.28,
+          0.13
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "tool.basket",
+      "file": "model.tool.basket.usdz",
+      "bytes": 51462,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.298,
+        -0.0,
+        -0.295
+      ],
+      "boundsMax": [
+        0.298,
+        0.673,
+        0.295
+      ],
+      "meshCount": 7,
+      "triangleCount": 2200,
+      "materialCount": 3,
+      "diffuseColors": [
+        [
+          0.28,
+          0.15,
+          0.08
+        ],
+        [
+          0.55,
+          0.3,
+          0.15
+        ],
+        [
+          0.73,
+          0.48,
+          0.27
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "tool.brush",
+      "file": "model.tool.brush.usdz",
+      "bytes": 16168,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.26,
+        -0.0,
+        -0.145
+      ],
+      "boundsMax": [
+        0.26,
+        0.33,
+        0.145
+      ],
+      "meshCount": 3,
+      "triangleCount": 324,
+      "materialCount": 3,
+      "diffuseColors": [
+        [
+          0.55,
+          0.3,
+          0.15
+        ],
+        [
+          0.73,
+          0.48,
+          0.27
+        ],
+        [
+          0.93,
+          0.85,
+          0.67
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "tool.bucket",
+      "file": "model.tool.bucket.usdz",
+      "bytes": 42752,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.275,
+        -0.0,
+        -0.26
+      ],
+      "boundsMax": [
+        0.275,
+        0.755,
+        0.26
+      ],
+      "meshCount": 4,
+      "triangleCount": 1144,
+      "materialCount": 3,
+      "diffuseColors": [
+        [
+          0.19,
+          0.2,
+          0.17
+        ],
+        [
+          0.52,
+          0.59,
+          0.56
+        ],
+        [
+          0.93,
+          0.85,
+          0.67
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "tool.can",
+      "file": "model.tool.can.usdz",
+      "bytes": 47996,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.305,
+        -0.0,
+        -0.235
+      ],
+      "boundsMax": [
+        0.6207,
+        0.795,
+        0.235
+      ],
+      "meshCount": 5,
+      "triangleCount": 1284,
+      "materialCount": 2,
+      "diffuseColors": [
+        [
+          0.27,
+          0.59,
+          0.67
+        ],
+        [
+          0.52,
+          0.59,
+          0.56
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "tool.shears",
+      "file": "model.tool.shears.usdz",
+      "bytes": 29068,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.34,
+        -0.0,
+        -0.24
+      ],
+      "boundsMax": [
+        0.3727,
+        0.105,
+        0.24
+      ],
+      "meshCount": 5,
+      "triangleCount": 1172,
+      "materialCount": 3,
+      "diffuseColors": [
+        [
+          0.52,
+          0.59,
+          0.56
+        ],
+        [
+          0.7,
+          0.25,
+          0.17
+        ],
+        [
+          0.94,
+          0.68,
+          0.24
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "veh.carriage",
+      "file": "model.veh.carriage.usdz",
+      "bytes": 52517,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -1.5505,
+        -0.0,
+        -0.6025
+      ],
+      "boundsMax": [
+        0.85,
+        1.43,
+        0.6025
+      ],
+      "meshCount": 18,
+      "triangleCount": 3352,
+      "materialCount": 4,
+      "diffuseColors": [
+        [
+          0.19,
+          0.2,
+          0.17
+        ],
+        [
+          0.55,
+          0.3,
+          0.15
+        ],
+        [
+          0.7,
+          0.25,
+          0.17
+        ],
+        [
+          0.93,
+          0.85,
+          0.67
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "veh.combine",
+      "file": "model.veh.combine.usdz",
+      "bytes": 82908,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -1.38,
+        -0.0,
+        -0.98
+      ],
+      "boundsMax": [
+        1.02,
+        1.7,
+        0.825
+      ],
+      "meshCount": 20,
+      "triangleCount": 3600,
+      "materialCount": 6,
+      "diffuseColors": [
+        [
+          0.19,
+          0.2,
+          0.17
+        ],
+        [
+          0.27,
+          0.59,
+          0.67
+        ],
+        [
+          0.55,
+          0.3,
+          0.15
+        ],
+        [
+          0.7,
+          0.25,
+          0.17
+        ],
+        [
+          0.93,
+          0.85,
+          0.67
+        ],
+        [
+          0.94,
+          0.68,
+          0.24
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    },
+    {
+      "id": "veh.tractor",
+      "file": "model.veh.tractor.usdz",
+      "bytes": 74410,
+      "upAxis": "Y",
+      "metersPerUnit": 1.0,
+      "boundsMin": [
+        -0.78,
+        -0.0,
+        -0.5625
+      ],
+      "boundsMax": [
+        0.76,
+        1.4,
+        0.5625
+      ],
+      "meshCount": 15,
+      "triangleCount": 3148,
+      "materialCount": 5,
+      "diffuseColors": [
+        [
+          0.19,
+          0.2,
+          0.17
+        ],
+        [
+          0.27,
+          0.59,
+          0.67
+        ],
+        [
+          0.7,
+          0.25,
+          0.17
+        ],
+        [
+          0.93,
+          0.85,
+          0.67
+        ],
+        [
+          0.94,
+          0.68,
+          0.24
+        ]
+      ],
+      "animations": [],
+      "timeSampledPrims": [],
+      "timeRange": null
+    }
+  ]
+}
