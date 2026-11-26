@@ -40,7 +40,7 @@ struct BasketTogetherView: View {
                         Label("Der Korb ist da!", systemImage: "checkmark.seal.fill")
                             .font(.title.bold()).accessibilityIdentifier("coop.delivered")
                         Button(action: close) {
-                            Label("Zurück zum Hof", systemImage: "house.fill").padding(12)
+                            Label("Zurück zum Hof", systemImage: "house.fill").foregroundStyle(.white).padding(12)
                         }
                         .buttonStyle(.borderedProminent).accessibilityIdentifier("coop.finish")
                         Spacer()
