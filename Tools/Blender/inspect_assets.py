@@ -11,13 +11,39 @@ from pxr import Usd, UsdGeom, UsdSkel, UsdShade
 ROOT = Path(__file__).resolve().parents[2]
 MODELS = ROOT / "App" / "Resources" / "Models"
 
+DIRECTIONAL_LOCATIONS = {
+    "loc.henhouse", "loc.shop", "loc.garage", "loc.cowbarn",
+    "loc.greenhouse", "loc.sheepmeadow", "loc.pigsty", "loc.kitchen",
+    "loc.goatpen", "loc.paddock", "loc.apiary", "loc.village",
+}
+
+DIRECTIONAL_ITEMS = {
+    "item.feed", "item.milk", "item.wool", "item.compost", "item.feather",
+    "item.goatmilk", "item.flour", "item.applejuice", "item.cheese",
+    "item.goatcheese", "item.jam", "item.icecream", "item.honey",
+    "item.carrot", "item.pea", "item.potato", "item.strawberry", "item.corn",
+    "item.sunflower", "item.wheat", "item.chives",
+}
+
+
+def front_axis(asset_id, kind):
+    if asset_id.startswith("animal."):
+        return "-Z"
+    if asset_id.startswith("npc.") or asset_id in DIRECTIONAL_LOCATIONS:
+        return "+Z"
+    if asset_id.startswith(("veh.", "imp.")):
+        return "+Z" if kind == "animationVariant" else "-X"
+    if asset_id in {"tool.can", "tool.shears"}:
+        return "+X"
+    if asset_id.startswith("item.seed.") or asset_id in DIRECTIONAL_ITEMS:
+        return "+Z"
+    return None
+
 
 def inspect(path):
     stage = Usd.Stage.Open(str(path))
     if not stage:
         raise ValueError(f"Cannot open USD stage: {path.name}")
-    bbox = UsdGeom.BBoxCache(Usd.TimeCode.Default(), [UsdGeom.Tokens.default_])
-    bounds = bbox.ComputeWorldBound(stage.GetPseudoRoot()).ComputeAlignedRange()
     meshes = []
     materials = set()
     colors = set()
@@ -47,14 +73,26 @@ def inspect(path):
         raise ValueError(f"No meshes in {path.name}")
     if not materials:
         raise ValueError(f"No bound materials in {path.name}")
+    bounds_time = stage.GetStartTimeCode() if sampled else None
+    time_code = Usd.TimeCode(bounds_time) if bounds_time is not None else Usd.TimeCode.Default()
+    bbox = UsdGeom.BBoxCache(time_code, [UsdGeom.Tokens.default_])
+    bounds = bbox.ComputeWorldBound(stage.GetPseudoRoot()).ComputeAlignedRange()
+    kind = "animationVariant" if path.name.startswith("anim.") else "model"
+    asset_id = path.name.removeprefix("model.").removesuffix(".usdz")
+    base_id = asset_id.removeprefix("anim.")
     return {
-        "id": path.name.removeprefix("model.").removesuffix(".usdz"),
+        "id": asset_id,
         "file": path.name,
+        "kind": kind,
+        "variantOf": base_id.rsplit(".", 1)[0] if kind == "animationVariant" else None,
+        "motion": base_id.rsplit(".", 1)[1] if kind == "animationVariant" else None,
+        "frontAxis": front_axis(base_id, kind),
         "bytes": path.stat().st_size,
         "upAxis": str(UsdGeom.GetStageUpAxis(stage)),
         "metersPerUnit": UsdGeom.GetStageMetersPerUnit(stage),
         "boundsMin": [round(float(value), 4) for value in bounds.GetMin()],
         "boundsMax": [round(float(value), 4) for value in bounds.GetMax()],
+        "boundsTimeCode": bounds_time,
         "meshCount": len(meshes),
         "triangleCount": triangles,
         "materialCount": len(materials),
@@ -77,7 +115,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--output", required=True)
     args = parser.parse_args(sys.argv[sys.argv.index("--") + 1 :])
-    paths = sorted(MODELS.glob("model.*.usdz"))
+    paths = sorted((*MODELS.glob("model.*.usdz"), *MODELS.glob("anim.*.usdz")))
     if not paths:
         raise FileNotFoundError(f"No USDZ files in {MODELS}")
     assets = [inspect(path) for path in paths]
