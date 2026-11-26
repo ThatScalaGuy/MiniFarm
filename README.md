@@ -16,7 +16,7 @@ Für den lokalen Prüflauf die UDIDs eines iPhone- und eines iPad-Simulators aus
 sh Tools/test_simulators.sh <iPhone-UDID> <iPad-UDID>
 ```
 
-Der Lauf erzeugt das Projekt neu, baut einmal, prüft beide Geräte und schreibt Ergebnis-Bundles, Bildschirmfotos und Testberichte unter `build/qa.*`. `Tools/verify_first_harvest.py` liest das gespeicherte Ergebnis der UI-Reise, `Tools/verify_journey_images.swift` erkennt unter anderem abgeschnittene Bildschirmfotos. Nur die gesonderten DEBUG-Testprofile werden neu angelegt; der Lauf löscht keine Simulatoren.
+Der Lauf erzeugt das Projekt neu, baut einmal, prüft beide Geräte und schreibt Ergebnis-Bundles, Bildschirmfotos und Testberichte unter `build/qa.*`. `Tools/verify_first_harvest.py` prüft die gespeicherten Bestände beider Testprofile: Nur der verkaufende Kuh-Hof erhält einen Taler. `Tools/verify_journey_images.swift` erkennt unter anderem abgeschnittene Bildschirmfotos. Nur die gesonderten DEBUG-Testprofile werden neu angelegt; der Lauf löscht keine Simulatoren.
 
 `python3 Tools/export_project.py MiniFarm.zip` exportiert den zuletzt lokal eingecheckten Projektstand. Die Kopie enthält Quellcode, Medien, Generatoren, Scheme, Protokolle, die Arbeitsrichtlinie `AGEND.md`, `.gitignore` und die Blender-MCP-Projektkonfiguration `.mcp.json`, nicht jedoch `.env`, lokale Konten, Zertifikate, Benutzereinstellungen oder Caches. Zum Spielen werden Blender, ElevenLabs, ein API-Schlüssel und XcodeGen **nicht** benötigt.
 

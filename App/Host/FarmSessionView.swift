@@ -144,8 +144,12 @@ struct FarmSessionView: View {
                 let calendar = Calendar.current
                 daysAway = calendar.dateComponents([.day], from: calendar.startOfDay(for: saved.date),
                                                     to: calendar.startOfDay(for: .now)).day ?? 0
-            case .unavailable:
-                failure = "Der Spielstand ist gerade nicht lesbar oder braucht eine neuere App. Er wurde nicht ersetzt."
+            case .unavailable(let reason):
+                failure = switch reason {
+                case .unsupportedPayload, .newerContainer: "Dieser Hof braucht eine neuere App. Er wurde nicht verändert."
+                case .notReadable: "Der Spielstand ist gerade nicht lesbar. Bitte versuche es später noch einmal."
+                case .restoreFailed: "Die Sicherungskopie ist erhalten. Der Hof konnte noch nicht wiederhergestellt werden."
+                }
                 return
             case .unrecoverable:
                 failure = "Beide Kopien des Spielstands sind beschädigt. Sie wurden gesichert. Erneutes Öffnen startet einen neuen Hof."

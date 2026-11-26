@@ -29,6 +29,7 @@
 		4E665C5D145BC71DD8F1A48F /* WorldLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5430A858BC0649F949299253 /* WorldLayoutTests.swift */; };
 		4E71D2FBC656B7B478361835 /* FarmWorldState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19822CA2D93958EEBE401258 /* FarmWorldState.swift */; };
 		55DDC4BC67097B8C3E2D797C /* FarmPlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F36C7BBBF27861AAD5EDF0 /* FarmPlayView.swift */; };
+		5766D624905417A8A90F2863 /* HostSaveAcceptanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C9BCC030A772C689E1021F /* HostSaveAcceptanceTests.swift */; };
 		5A1E0E689281C713377D542B /* FarmPictogram.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33F3ADE1B15D6E7C6EB075E /* FarmPictogram.swift */; };
 		5A5C0560419E22EB83D719A5 /* FarmLevelParcelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8729B14B86F6E5EF3E680FA /* FarmLevelParcelView.swift */; };
 		60F2C6D86293BDB43F1848BC /* Content in Resources */ = {isa = PBXBuildFile; fileRef = 7E101543F32B54901D3309C5 /* Content */; };
@@ -169,6 +170,7 @@
 		C21CE5C4683E7E6F6B3DEDA4 /* FarmCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FarmCatalog.swift; sourceTree = "<group>"; };
 		C955950EE17D680DD53E483D /* WorldStage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldStage.swift; sourceTree = "<group>"; };
 		D66BBE7DFE094508C352E768 /* BasketPractice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketPractice.swift; sourceTree = "<group>"; };
+		D7C9BCC030A772C689E1021F /* HostSaveAcceptanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostSaveAcceptanceTests.swift; sourceTree = "<group>"; };
 		DA12B66E9F448800AE0267DA /* FarmGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FarmGame.swift; sourceTree = "<group>"; };
 		DC59658E1192BCECDC439D73 /* MiniFarmTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = MiniFarmTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD6E84463C8F0B1CF221479B /* AvatarArtwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarArtwork.swift; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 			children = (
 				4296CB5F27CF1959E87DC1AC /* AppResourcesTests.swift */,
 				B4DEEBA25D821E81DEAE2CFB /* FirstHarvestIntegrationTests.swift */,
+				D7C9BCC030A772C689E1021F /* HostSaveAcceptanceTests.swift */,
 				AE07861F2A0AD01872F94D71 /* Art */,
 				990FF1444AA7C81796C21FF5 /* CoPlay */,
 				536F92F65737282A8E48BE4F /* Family */,
@@ -585,6 +588,7 @@
 				8E77C2CD95BABFF85E73EC86 /* FarmLifeTests.swift in Sources */,
 				143FC502D5663F615EDCCC43 /* FarmStoryTests.swift in Sources */,
 				9AA03AFD5E5697E15C33743E /* FirstHarvestIntegrationTests.swift in Sources */,
+				5766D624905417A8A90F2863 /* HostSaveAcceptanceTests.swift in Sources */,
 				F174ADB1FB014BD0F358413C /* ProductionTests.swift in Sources */,
 				4E665C5D145BC71DD8F1A48F /* WorldLayoutTests.swift in Sources */,
 				11AFA534502FDF3731FFD0ED /* WorldModelTests.swift in Sources */,

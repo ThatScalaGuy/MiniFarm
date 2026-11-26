@@ -70,17 +70,33 @@ struct FarmRootView: View {
 }
 
 struct FarmSavedGame {
-    private struct Header: Decodable { let schemaVersion: Int }
+    private struct CheckedState: Decodable {
+        private enum Key: String, CodingKey { case schemaVersion, skills }
+        let state: FarmState
+
+        init(from decoder: any Decoder) throws {
+            let farm = try decoder.container(keyedBy: Key.self)
+            // A newer format need not contain any of the other fields this build knows about.
+            try Self.requireVersionOne(farm)
+            try Self.requireVersionOne(farm.nestedContainer(keyedBy: Key.self, forKey: .skills))
+            state = try FarmState(from: decoder)
+        }
+
+        private static func requireVersionOne(_ fields: KeyedDecodingContainer<Key>) throws {
+            let version = try fields.decode(Int.self, forKey: .schemaVersion)
+            if version > 1 { throw SaveDataUnsupported(schemaVersion: version) }
+            guard version == 1 else {
+                throw DecodingError.dataCorruptedError(forKey: .schemaVersion, in: fields, debugDescription: "Ungültige Spielstandversion")
+            }
+        }
+    }
 
     let state: FarmState
     let date: Date
 
     static func decode(_ payload: StoredPayload) throws -> Self {
         guard payload.schemaVersion == 1 else { throw SaveDataUnsupported() }
-        let decoder = JSONDecoder()
-        let header = try decoder.decode(Header.self, from: payload.data)
-        guard header.schemaVersion <= 1 else { throw SaveDataUnsupported() }
-        return try Self(state: decoder.decode(FarmState.self, from: payload.data), date: payload.savedAt)
+        return try Self(state: JSONDecoder().decode(CheckedState.self, from: payload.data).state, date: payload.savedAt)
     }
 }
 

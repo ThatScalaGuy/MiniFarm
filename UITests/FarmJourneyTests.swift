@@ -19,7 +19,7 @@ final class FarmJourneyTests: XCTestCase {
         element.tap()
     }
 
-    private func createFarm() throws {
+    private func createFarms() throws {
         app.launchArguments = ["-MiniFarmFamilyUITesting", "-MiniFarmFamilyReset"]
         app.launch()
         tap("family.picker.setupButton")
@@ -36,17 +36,22 @@ final class FarmJourneyTests: XCTestCase {
         }, "Zahlwort fehlt: \(question)")
         for digit in String(answer) { tap("family.gate.key.\(digit)") }
         tap("family.gate.submit")
-        tap("family.parent.addProfile")
-        tap("family.newProfile.avatar.animal.cow")
-        tap("family.newProfile.stage.sprout")
-        tap("family.newProfile.create")
-        if !node("family.parent.done").exists {
-            let back = app.navigationBars.buttons.element(boundBy: 0)
-            XCTAssertTrue(back.waitForExistence(timeout: 8))
-            back.tap()
+        for animal in ["sheep", "cow"] {
+            tap("family.parent.addProfile")
+            tap("family.newProfile.avatar.animal." + animal)
+            tap("family.newProfile.stage.sprout")
+            tap("family.newProfile.create")
+            XCTAssertTrue(node("family.profile.stage").waitForExistence(timeout: 12))
+            app.navigationBars.buttons.element(boundBy: 0).tap()
         }
         tap("family.parent.done")
-        tap("family.picker.profile.animal.cow")
+    }
+
+    private func reopen(_ animal: String) {
+        app.terminate()
+        app.launchArguments = ["-MiniFarmFamilyUITesting"]
+        app.launch()
+        tap("family.picker.profile.animal." + animal)
     }
 
     private func photo(_ name: String) {
@@ -67,7 +72,14 @@ final class FarmJourneyTests: XCTestCase {
 
     func testFirstHarvestAndRestoredStep() throws {
         XCUIDevice.shared.orientation = .portrait
-        try createFarm()
+        try createFarms()
+        tap("family.picker.profile.animal.sheep")
+        tap("world.map")
+        tap("world.map.loc.shop")
+        let wallet = node("world.wallet")
+        XCTAssertTrue(wallet.waitForExistence(timeout: 12))
+        XCTAssertEqual(wallet.value as? String, "0")
+        reopen("cow")
         let garden = node("world.place.loc.garden")
         XCTAssertTrue(garden.waitForExistence(timeout: 20))
         photo("Hofplatz-Hochformat")
@@ -80,10 +92,7 @@ final class FarmJourneyTests: XCTestCase {
         tap("world.target.item.seed.radish")
         let nextID = "world.target.tool.hand"
         XCTAssertTrue(node(nextID).waitForExistence(timeout: 10))
-        app.terminate()
-        app.launchArguments = ["-MiniFarmFamilyUITesting"]
-        app.launch()
-        tap("family.picker.profile.animal.cow")
+        reopen("cow")
         XCTAssertTrue(node(nextID).waitForExistence(timeout: 20), "Nach Neustart fehlt der nächste Schritt")
         photo("Saat-nach-Neustart")
         node(nextID).tap()
@@ -120,17 +129,17 @@ final class FarmJourneyTests: XCTestCase {
         tap("world.home")
         tap("world.help")
         tap("world.target.item.radish")
-        let wallet = node("world.wallet")
         XCTAssertTrue(wallet.waitForExistence(timeout: 8))
         XCTAssertEqual(wallet.value as? String, "0")
         tap("world.target.shop.bell")
         XCTAssertTrue(node("world.shelf").waitForExistence(timeout: 10))
         XCTAssertEqual(wallet.value as? String, "1")
         photo("Nach-Verkauf-an-Tilda")
-        app.terminate()
-        app.launch()
-        tap("family.picker.profile.animal.cow")
+        reopen("cow")
         XCTAssertTrue(wallet.waitForExistence(timeout: 12))
         XCTAssertEqual(wallet.value as? String, "1", "Der Verkauf muss nach einem Neustart erhalten bleiben")
+        reopen("sheep")
+        XCTAssertTrue(node("world.shelf").waitForExistence(timeout: 12))
+        XCTAssertEqual(wallet.value as? String, "0", "Der Verkauf gehört nur dem anderen Hof")
     }
 }

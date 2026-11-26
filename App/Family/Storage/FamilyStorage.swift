@@ -97,18 +97,22 @@ final class FamilyStorage: Sendable {
                 return .empty
             case .valid(let value):
                 if !repair { return .loaded(value) }
-                let report = lock.withLock { _ -> RecoveryReport? in
-                    guard Self.readPair(slot: slot, in: folder) == snapshot else { return nil }
-                    var moved: [String] = []
-                    if currentIsCorrupt, let name = quarantine(folder.appending(path: slot.fileName), slot: slot, role: "current") {
-                        moved.append(name)
+                do {
+                    let report = try lock.withLock { _ -> RecoveryReport? in
+                        guard Self.readPair(slot: slot, in: folder) == snapshot,
+                              case .data(let bytes) = snapshot.backup else { return nil }
+                        var moved: [String] = []
+                        let file = folder.appending(path: slot.fileName)
+                        if currentIsCorrupt, let name = quarantine(file, slot: slot, role: "current") {
+                            moved.append(name)
+                        }
+                        try Self.writeAtomically(bytes, to: file)
+                        return RecoveryReport(slot: slot, restoredFromBackup: true, quarantinedFiles: moved)
                     }
-                    if case .data(let bytes) = snapshot.backup {
-                        try? Self.writeAtomically(bytes, to: folder.appending(path: slot.fileName))
-                    }
-                    return RecoveryReport(slot: slot, restoredFromBackup: true, quarantinedFiles: moved)
+                    if let report { return .recovered(value, report) }
+                } catch {
+                    return .unavailable(.restoreFailed(code: (error as NSError).code))
                 }
-                if let report { return .recovered(value, report) }
             case .absent, .corrupt:
                 if !repair {
                     return .unrecoverable(RecoveryReport(slot: slot, restoredFromBackup: false, quarantinedFiles: []))
@@ -410,8 +414,8 @@ final class FamilyStorage: Sendable {
                 let payload = StoredPayload(data: envelope.payload, schemaVersion: envelope.schemaVersion, savedAt: envelope.savedAt)
                 do {
                     return .valid(try decode(payload))
-                } catch is SaveDataUnsupported {
-                    return .unavailable(.unsupportedPayload(schemaVersion: envelope.schemaVersion))
+                } catch let error as SaveDataUnsupported {
+                    return .unavailable(.unsupportedPayload(schemaVersion: error.schemaVersion ?? envelope.schemaVersion))
                 } catch {
                     return .corrupt
                 }

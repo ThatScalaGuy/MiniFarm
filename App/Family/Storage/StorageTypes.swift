@@ -45,13 +45,16 @@ struct StoredPayload: Sendable {
 /// Throw this from a decode closure when the data comes from a newer app version.
 /// The file is kept untouched and `load` returns `.unavailable(.unsupportedPayload)`.
 struct SaveDataUnsupported: Error, Sendable {
-    init() {}
+    /// When a nested document is newer than its enclosing payload.
+    var schemaVersion: Int? = nil
 }
 
-/// Why existing data could not be read right now. Never quarantined, the file stays as it is.
+/// Why loading must stop without starting or saving a fresh game.
 enum FamilyStorageReadFailure: Error, Equatable, Sendable {
     /// File exists but reading failed, for example data protection before first unlock or an I/O error.
     case notReadable(code: Int)
+    /// The backup is readable and untouched, but writing the current file failed.
+    case restoreFailed(code: Int)
     /// Written by a newer storage container format.
     case newerContainer(Int)
     /// The decode closure threw `SaveDataUnsupported`.
