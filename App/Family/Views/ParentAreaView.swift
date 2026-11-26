@@ -61,6 +61,7 @@ struct ParentAreaView: View {
                 }
             }
             .navigationTitle("Elternbereich")
+            .keepsParentAreaAwake(store)
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Fertig") { store.closeParentArea() }
@@ -129,6 +130,12 @@ struct ParentAreaView: View {
 
     @ViewBuilder
     private func destination(_ route: ParentRoute) -> some View {
+        destinationContent(route)
+            .keepsParentAreaAwake(store)
+    }
+
+    @ViewBuilder
+    private func destinationContent(_ route: ParentRoute) -> some View {
         switch route {
         case .profile(let id):
             ProfileDetailView(store: store, profileID: id) { path = [] }
@@ -153,6 +160,16 @@ struct ParentAreaView: View {
             try action()
         } catch {
             errorMessage = FamilyErrorText.message(for: error)
+        }
+    }
+}
+
+extension View {
+    /// Scrolling counts as parent activity, so reading long texts does not lock the area.
+    /// It only observes the scroll view. Never add a tap gesture here: it blocks `NavigationLink` taps.
+    func keepsParentAreaAwake(_ store: FamilyStore) -> some View {
+        onScrollPhaseChange { _, phase in
+            if phase == .interacting { store.noteParentActivity() }
         }
     }
 }
