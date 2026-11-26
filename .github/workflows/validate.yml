@@ -1,0 +1,66 @@
+name: Validate MiniFarm
+
+on: [push, pull_request]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: macos-15
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+
+      - name: Select Xcode and pinned XcodeGen
+        run: |
+          echo 'DEVELOPER_DIR=/Applications/Xcode_16.4.app/Contents/Developer' >> "$GITHUB_ENV"
+          cd "$RUNNER_TEMP"
+          curl --fail --silent --show-error --location --output xcodegen.zip \
+            https://github.com/yonaskolb/XcodeGen/releases/download/2.46.0/xcodegen.zip
+          echo '4d9e34b62172d645eed6457cac13fc222569974098ef4ee9c3368bedf0196806  xcodegen.zip' | shasum -a 256 -c -
+          unzip -q xcodegen.zip
+          echo "$RUNNER_TEMP/xcodegen/bin" >> "$GITHUB_PATH"
+
+      - name: Run Python tests, build Release and validate the app bundle
+        run: Tools/Validation/check-build.sh
+
+      - name: Verify offline audio assets and run audio tests
+        run: |
+          python3 Tools/Audio/generate_audio.py --verify-only
+          python3 -B -m unittest discover -s Tools/Audio -p 'test_*.py'
+
+      - name: Run MiniFarmTests on an available iPhone
+        shell: python3 {0}
+        run: |
+          import json
+          import re
+          import subprocess
+          import tempfile
+
+          devices = json.loads(subprocess.check_output(
+              ["xcrun", "simctl", "list", "devices", "available", "--json"]
+          ))["devices"]
+          for runtime, candidates in devices.items():
+              version = re.fullmatch(r"com\.apple\.CoreSimulator\.SimRuntime\.iOS-(\d+)(?:-\d+)*", runtime)
+              if not version or int(version[1]) < 18:
+                  continue
+              iphone = next((d for d in candidates if d["deviceTypeIdentifier"].startswith(
+                  "com.apple.CoreSimulator.SimDeviceType.iPhone-"
+              )), None)
+              if iphone:
+                  break
+          else:
+              raise SystemExit("No available iPhone simulator with iOS 18 or newer")
+
+          print(f"Testing on {iphone['name']} ({runtime}, {iphone['udid']})", flush=True)
+          with tempfile.TemporaryDirectory(prefix="MiniFarm-tests-") as derived_data:
+              subprocess.run([
+                  "xcodebuild", "test", "-project", "MiniFarm.xcodeproj", "-scheme", "MiniFarm",
+                  "-configuration", "Debug", "-destination", f"platform=iOS Simulator,id={iphone['udid']}",
+                  "-derivedDataPath", derived_data, "-parallel-testing-enabled", "NO",
+                  "-only-testing:MiniFarmTests", "CODE_SIGNING_ALLOWED=NO",
+                  "CODE_SIGNING_REQUIRED=NO", "DEVELOPMENT_TEAM=",
+              ], check=True)
