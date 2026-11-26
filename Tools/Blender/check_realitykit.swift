@@ -8,6 +8,80 @@ app.setActivationPolicy(.accessory)
 let view = ARView(frame: CGRect(x: 0, y: 0, width: 64, height: 64))
 
 let arguments = Array(CommandLine.arguments.dropFirst())
+if arguments.first == "--aggregate" {
+    guard arguments.count >= 4 else {
+        fatalError("Pass a USDZ path and at least two animated entity names")
+    }
+    let path = arguments[1]
+    let entity = try Entity.load(contentsOf: URL(fileURLWithPath: path))
+    guard let animation = entity.availableAnimations.first else {
+        fatalError("\(path): no playable root animation")
+    }
+    let targets = arguments.dropFirst(2).map { name in
+        guard let child = entity.findEntity(named: name) else {
+            fatalError("\(path): missing \(name)")
+        }
+        return child
+    }
+    let anchor = AnchorEntity(world: .zero)
+    view.scene.anchors.append(anchor)
+    anchor.addChild(entity)
+    let initial = targets.map(\.transform)
+    let playback = entity.playAnimation(animation.repeat())
+    RunLoop.current.run(until: Date(timeIntervalSinceNow: 0.6))
+    for (target, before) in zip(targets, initial) {
+        let after = target.transform
+        let delta = simd_length(after.scale - before.scale)
+            + simd_length(after.translation - before.translation)
+            + (1 - abs(simd_dot(after.rotation.vector, before.rotation.vector)))
+        guard playback.isPlaying && delta > 0.0001 else {
+            fatalError("\(path): root animation did not advance \(target.name)")
+        }
+        print("\(path): root animation advanced \(target.name)")
+    }
+    playback.stop()
+    exit(0)
+}
+if arguments.first == "--clips" {
+    let pairs = Array(arguments.dropFirst())
+    guard !pairs.isEmpty, pairs.count.isMultiple(of: 2) else {
+        fatalError("Pass pairs of USDZ path and animated entity name")
+    }
+    for index in stride(from: 0, to: pairs.count, by: 2) {
+        let path = pairs[index]
+        let entityName = pairs[index + 1]
+        let entity = try Entity.load(contentsOf: URL(fileURLWithPath: path))
+        guard let target = entity.findEntity(named: entityName), !target.availableAnimations.isEmpty else {
+            fatalError("\(path): no playable animation on \(entityName)")
+        }
+        let anchor = AnchorEntity(world: .zero)
+        view.scene.anchors.append(anchor)
+        anchor.addChild(entity)
+        let original = target.transform
+        var changed = false
+        for animation in target.availableAnimations {
+            target.transform = original
+            let playback = target.playAnimation(animation.repeat())
+            RunLoop.current.run(until: Date(timeIntervalSinceNow: 0.45))
+            let after = target.transform
+            let delta = simd_length(after.scale - original.scale)
+                + simd_length(after.translation - original.translation)
+                + (1 - abs(simd_dot(after.rotation.vector, original.rotation.vector)))
+            if playback.isPlaying && delta > 0.0001 {
+                changed = true
+                playback.stop()
+                break
+            }
+            playback.stop()
+        }
+        guard changed else {
+            fatalError("\(path): RealityKit did not advance \(entityName)")
+        }
+        print("\(path): RealityKit advanced \(entityName)")
+        view.scene.anchors.remove(anchor)
+    }
+    exit(0)
+}
 if arguments.first == "--parts" {
     let models = [
         ("dog", "App/Resources/Models/model.animal.dog.usdz", ["Head", "Tail"]),
