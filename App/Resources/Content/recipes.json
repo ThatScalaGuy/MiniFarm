@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "recipes": [
+    {"id":"recipe.flour","title":"Weizen mahlen","locationID":"loc.kitchen","station":"Mühle","activityID":"act.kitchen.bake","output":"item.flour","ingredients":{"item.wheat":3},"level":4},
+    {"id":"recipe.bread","title":"Brot backen","locationID":"loc.kitchen","station":"Backofen","activityID":"act.kitchen.bake","output":"item.bread","ingredients":{"item.flour":1},"supplies":["Wasser"],"level":4},
+    {"id":"recipe.cake","title":"Hofkuchen backen","locationID":"loc.kitchen","station":"Backofen","activityID":"act.kitchen.bake","output":"item.cake","ingredients":{"item.flour":1,"item.egg":1,"item.milk":1},"level":4},
+    {"id":"recipe.strawberrycake","title":"Erdbeerkuchen backen","locationID":"loc.kitchen","station":"Backofen","activityID":"act.kitchen.bake","output":"item.cake","ingredients":{"item.flour":1,"item.egg":1,"item.milk":1,"item.strawberry":1},"level":4},
+    {"id":"recipe.applejuice","title":"Apfelsaft pressen","locationID":"loc.kitchen","station":"Saftpresse","activityID":"act.kitchen.press","output":"item.applejuice","ingredients":{"item.apple":3},"level":4},
+    {"id":"recipe.butter","title":"Butter stampfen","locationID":"loc.kitchen","station":"Butterfass","activityID":"act.kitchen.churn","output":"item.butter","ingredients":{"item.milk":1},"level":4},
+    {"id":"recipe.cheese","title":"Käse in die Form pressen","locationID":"loc.kitchen","station":"Käserei","activityID":"act.kitchen.press","output":"item.cheese","ingredients":{"item.milk":1},"level":4},
+    {"id":"recipe.goatcheese","title":"Ziegenkäse formen","locationID":"loc.kitchen","station":"Käserei","activityID":"act.kitchen.press","output":"item.goatcheese","ingredients":{"item.goatmilk":1},"level":4},
+    {"id":"recipe.jam","title":"Erdbeermarmelade rühren","locationID":"loc.kitchen","station":"Marmeladenkessel","activityID":"act.kitchen.jam","output":"item.jam","ingredients":{"item.strawberry":4},"level":4},
+    {"id":"recipe.icecream","title":"Erdbeereis kurbeln","locationID":"loc.kitchen","station":"Eismaschine","activityID":"act.kitchen.churn","output":"item.icecream","ingredients":{"item.milk":1,"item.strawberry":1},"seasonID":"season.summer","level":4},
+    {"id":"recipe.honey","title":"Honig schleudern","locationID":"loc.apiary","station":"Honigschleuder","activityID":"act.kitchen.churn","output":"item.honey","ingredients":{"item.honeycomb":1},"level":5},
+    {"id":"recipe.beanie","title":"Wollmütze stricken","locationID":"loc.kitchen","station":"Strickstube","activityID":"act.farm.decorate","output":"item.beanie","ingredients":{"item.wool":1},"level":5}
+  ]
+}

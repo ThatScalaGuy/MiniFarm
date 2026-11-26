@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "machines": [
+    {"id":"veh.tractor","title":"Traktor","level":2,"purpose":"Zieht die Anbaugeräte über den Acker."},
+    {"id":"imp.plow","title":"Pflug","level":2,"purpose":"Wendet die Erde und zieht Furchen."},
+    {"id":"imp.seeder","title":"Sämaschine","level":2,"purpose":"Legt Samen in Reihen in die Erde."},
+    {"id":"imp.trailer","title":"Anhänger","level":2,"upgradeLevel":4,"purpose":"Bringt die Ernte ins Lager; ab Hofstufe vier kippt die Ladefläche."},
+    {"id":"imp.watertank","title":"Wasserfass","level":3,"purpose":"Bringt Wasser zu den Pflanzreihen."},
+    {"id":"imp.mower","title":"Mähwerk","level":3,"purpose":"Schneidet Gras für das Heu."},
+    {"id":"imp.baler","title":"Ballenpresse","level":4,"purpose":"Rollt trockenes Heu zu festen Ballen."},
+    {"id":"imp.loader","title":"Frontlader","level":4,"purpose":"Hebt Ballen und große Kürbisse auf den Anhänger."},
+    {"id":"imp.potatodigger","title":"Kartoffelroder","level":4,"purpose":"Hebt Kartoffeln aus der Erde."},
+    {"id":"veh.combine","title":"Mähdrescher","level":4,"purpose":"Erntet die Körner von Weizen und Mais."},
+    {"id":"imp.snowplow","title":"Schneeschild","level":5,"purpose":"Schiebt den Schnee vom Hofweg."},
+    {"id":"veh.carriage","title":"Pferdekutsche","level":5,"purpose":"Das Pferd zieht die Kutsche zum Dorfmarkt."}
+  ],
+  "tools": [
+    {"id":"tool.can","title":"Gießkanne","level":1,"purpose":"Verteilt Wasser auf dem Beet."},
+    {"id":"tool.bucket","title":"Eimer","level":1,"purpose":"Bringt frisches Wasser zur Tränke."},
+    {"id":"tool.brush","title":"Bürste","level":1,"purpose":"Streicht loses Haar aus dem Fell."},
+    {"id":"tool.shears","title":"Schere","level":3,"purpose":"Kürzt die Wolle der Schafe."},
+    {"id":"tool.basket","title":"Korb","level":1,"purpose":"Sammelt Eier und trägt die Ernte."}
+  ]
+}

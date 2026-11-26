@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "locations": [
+    {"id":"loc.plaza","title":"Hofplatz","symbol":"house.fill","level":1},
+    {"id":"loc.garden","title":"Gemüsegarten","symbol":"carrot.fill","level":1},
+    {"id":"loc.henhouse","title":"Hühnerhaus","symbol":"bird.fill","level":1},
+    {"id":"loc.shop","title":"Hofladen","symbol":"basket.fill","level":1},
+    {"id":"loc.garage","title":"Maschinenhalle","symbol":"wrench.and.screwdriver.fill","level":2},
+    {"id":"loc.field","title":"Acker","symbol":"square.grid.3x3.fill","level":2},
+    {"id":"loc.cowbarn","title":"Kuhstall","symbol":"house.lodge.fill","level":2},
+    {"id":"loc.sheepmeadow","title":"Schafweide","symbol":"cloud.fill","level":3},
+    {"id":"loc.pigsty","title":"Schweinekoben","symbol":"pawprint.fill","level":3},
+    {"id":"loc.orchard","title":"Obstwiese","symbol":"tree.fill","level":3},
+    {"id":"loc.kitchen","title":"Hofküche","symbol":"fork.knife","level":4},
+    {"id":"loc.greenhouse","title":"Gewächshaus","symbol":"leaf.fill","level":4},
+    {"id":"loc.pond","title":"Ententeich","symbol":"water.waves","level":4},
+    {"id":"loc.goatpen","title":"Ziegengehege","symbol":"mountain.2.fill","level":4},
+    {"id":"loc.paddock","title":"Pferdekoppel","symbol":"figure.equestrian.sports","level":5},
+    {"id":"loc.apiary","title":"Bienenstock","symbol":"hexagon.fill","level":5},
+    {"id":"loc.village","title":"Dorfmarkt","symbol":"storefront.fill","level":5}
+  ]
+}

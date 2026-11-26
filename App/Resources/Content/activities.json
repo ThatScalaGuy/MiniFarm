@@ -1,0 +1,748 @@
+{
+  "schemaVersion": 1,
+  "activities": [
+    {
+      "id": "act.field.plow", "title": "Den Acker pflügen", "symbol": "steeringwheel", "locationID": "loc.field", "level": 2,
+      "lanes": ["moSteer", "moDrag"], "participants": ["veh.tractor", "imp.plow"],
+      "steps": [
+        {"id": "hitch", "text": "Häng den Pflug an den Traktor.", "targetID": "imp.plow", "choices": [
+          {"id": "imp.trailer", "title": "Anhänger", "symbol": "shippingbox"},
+          {"id": "imp.plow", "title": "Pflug", "symbol": "line.diagonal"},
+          {"id": "imp.seeder", "title": "Sämaschine", "symbol": "circle.grid.3x3.fill"}]},
+        {"id": "lower", "text": "Fahr zum Acker. Lass den Pflug in die Erde.", "targetID": "lower", "choices": [
+          {"id": "lower", "title": "Pflug senken", "symbol": "arrow.down"},
+          {"id": "raise", "title": "Pflug heben", "symbol": "arrow.up"},
+          {"id": "turn", "title": "Traktor wenden", "symbol": "arrow.uturn.left"}]},
+        {"id": "furrow", "text": "Zieh eine gerade Furche bis zur Fahne.", "targetID": "straight", "choices": [
+          {"id": "loop", "title": "Im Kreis fahren", "symbol": "arrow.clockwise"},
+          {"id": "back", "title": "Zurückfahren", "symbol": "arrow.uturn.backward"},
+          {"id": "straight", "title": "Geradeaus zur Fahne", "symbol": "flag"}]}
+      ],
+      "result": "Eine lange Furche! Die lockere Erde ist bereit für die Saat.",
+      "params": {"sprout":{"choiceCount":1,"targetSize":88},"shoot":{"choiceCount":2,"targetSize":72},"bloom":{"choiceCount":3,"targetSize":60}}
+    },
+    {
+      "id": "act.field.sow", "title": "Ein Beet besäen", "symbol": "leaf", "locationID": "loc.garden", "level": 1,
+      "lanes": ["cogMatching", "moDrag"], "participants": ["item.seed.carrot"],
+      "steps": [
+        {"id": "seeds", "text": "Hier sollen Karotten wachsen. Nimm ihre Samentüte.", "targetID": "item.seed.carrot", "choices": [
+          {"id": "item.seed.lettuce", "title": "Salatsamen", "symbol": "leaf.fill"},
+          {"id": "item.seed.carrot", "title": "Karottensamen", "symbol": "carrot"},
+          {"id": "item.seed.radish", "title": "Radieschensamen", "symbol": "smallcircle.filled.circle"}]},
+        {"id": "sow", "text": "Streu die Samen mit der Hand ins freie Beet.", "targetID": "bed", "choices": [
+          {"id": "bed", "title": "Lockere Erde", "symbol": "rectangle.split.3x1"},
+          {"id": "path", "title": "Steinweg", "symbol": "square.grid.3x3"},
+          {"id": "bench", "title": "Holzbank", "symbol": "chair"}]},
+        {"id": "cover", "text": "Gib den Samen eine dünne Decke aus Erde.", "targetID": "soil", "choices": [
+          {"id": "stones", "title": "Kieselsteine", "symbol": "circle.hexagongrid"},
+          {"id": "sticks", "title": "Zweige", "symbol": "tree"},
+          {"id": "soil", "title": "Krümelige Erde", "symbol": "circle.grid.2x2.fill"}]}
+      ],
+      "result": "Die Samen liegen weich in ihrem Beet. Hier kann etwas wachsen!",
+      "params": {"sprout":{"choiceCount":1,"targetSize":88},"shoot":{"choiceCount":2,"targetSize":72},"bloom":{"choiceCount":3,"targetSize":60}}
+    },
+    {
+      "id": "act.field.water", "title": "Das Beet gießen", "symbol": "drop.fill", "locationID": "loc.garden", "level": 1,
+      "lanes": ["moDrag", "moTap"], "participants": ["tool.can"],
+      "steps": [
+        {"id": "fill", "text": "Stell die Gießkanne unter den Wasserhahn.", "targetID": "tool.can", "choices": [
+          {"id": "tool.basket", "title": "Erntekorb", "symbol": "basket"},
+          {"id": "pot", "title": "Blumentopf", "symbol": "camera.macro"},
+          {"id": "tool.can", "title": "Gießkanne", "symbol": "drop"}]},
+        {"id": "pour", "text": "Kipp die volle Kanne über dem trockenen Beet.", "targetID": "drybed", "choices": [
+          {"id": "puddle", "title": "Pfütze", "symbol": "water.waves"},
+          {"id": "drybed", "title": "Trockenes Beet", "symbol": "sun.max"},
+          {"id": "gate", "title": "Gartentor", "symbol": "door.left.hand.open"}]}
+      ],
+      "result": "Die Erde ist feucht. Die Wurzeln können trinken!",
+      "params": {"sprout":{"choiceCount":1,"targetSize":88},"shoot":{"choiceCount":2,"targetSize":72},"bloom":{"choiceCount":3,"targetSize":60}}
+    },
+    {
+      "id": "act.field.harvest", "title": "Von Hand ernten", "symbol": "basket", "locationID": "loc.garden", "level": 1,
+      "lanes": ["moTap", "mathCount"], "participants": ["tool.basket"],
+      "steps": [
+        {"id": "pick", "text": "Schau, die Karotte ist groß. Zieh sie heraus!", "targetID": "crop.carrot", "choices": [
+          {"id": "sprout", "title": "Kleiner Keimling", "symbol": "leaf"},
+          {"id": "crop.carrot", "title": "Reife Karotte", "symbol": "carrot.fill"},
+          {"id": "seed", "title": "Samensäckchen", "symbol": "bag"}]},
+        {"id": "gather", "text": "Leg deine Ernte in den Korb.", "targetID": "tool.basket", "choices": [
+          {"id": "tool.basket", "title": "Erntekorb", "symbol": "basket.fill"},
+          {"id": "tool.can", "title": "Gießkanne", "symbol": "drop"},
+          {"id": "pot", "title": "Blumentopf", "symbol": "camera.macro"}]}
+      ],
+      "result": "Frisch aus dem Beet! Deine Ernte liegt im Korb.",
+      "params": {"sprout":{"choiceCount":1,"targetSize":88},"shoot":{"choiceCount":2,"targetSize":72},"bloom":{"choiceCount":3,"targetSize":60}}
+    },
+    {
+      "id": "act.field.combine", "title": "Korn dreschen", "symbol": "steeringwheel", "locationID": "loc.field", "level": 4,
+      "lanes": ["moSteer"], "participants": ["veh.combine", "imp.trailer", "crop.wheat"],
+      "steps": [
+        {"id": "machine", "text": "Hol den Mähdrescher zum reifen Weizen.", "targetID": "veh.combine", "choices": [
+          {"id": "imp.baler", "title": "Ballenpresse", "symbol": "shippingbox"},
+          {"id": "imp.seeder", "title": "Sämaschine", "symbol": "circle.grid.3x3.fill"},
+          {"id": "veh.combine", "title": "Mähdrescher", "symbol": "gearshape.2"}]},
+        {"id": "row", "text": "Fahr die Bahn mit den goldenen Ähren entlang.", "targetID": "crop.wheat", "choices": [
+          {"id": "crop.wheat", "title": "Reifer Weizen", "symbol": "leaf.fill"},
+          {"id": "stubble", "title": "Kurze Stoppeln", "symbol": "line.3.horizontal"},
+          {"id": "track", "title": "Feldweg", "symbol": "road.lanes"}]},
+        {"id": "unload", "text": "Lass das Korn aus dem Rohr in den Anhänger rieseln.", "targetID": "imp.trailer", "choices": [
+          {"id": "tank", "title": "Wasserfass", "symbol": "drop.circle"},
+          {"id": "imp.trailer", "title": "Offener Anhänger", "symbol": "shippingbox"},
+          {"id": "bale", "title": "Heuballen", "symbol": "cylinder"}]}
+      ],
+      "result": "Das Korn ist im Anhänger. Auf dem Acker stehen nur noch Stoppeln.",
+      "params": {"sprout":{"choiceCount":1,"targetSize":88},"shoot":{"choiceCount":2,"targetSize":72},"bloom":{"choiceCount":3,"targetSize":60}}
+    },
+    {
+      "id": "act.field.hay", "title": "Heu für den Stall", "symbol": "sun.max", "locationID": "loc.sheepmeadow", "level": 4,
+      "lanes": ["cogSequence"], "participants": ["veh.tractor", "imp.mower", "imp.baler", "imp.loader", "imp.trailer", "item.hay"],
+      "steps": [
+        {"id": "mow", "text": "Mäh das lange Gras. Welches Gerät schneidet es?", "targetID": "imp.mower", "choices": [
+          {"id": "imp.mower", "title": "Mähwerk", "symbol": "scissors"},
+          {"id": "imp.baler", "title": "Ballenpresse", "symbol": "cylinder"},
+          {"id": "imp.loader", "title": "Frontlader", "symbol": "arrow.up.bin"}]},
+        {"id": "turn", "text": "Wende das Gras, damit die Sonne auch die Unterseite trocknet.", "targetID": "turn", "choices": [
+          {"id": "water", "title": "Gras gießen", "symbol": "drop"},
+          {"id": "turn", "title": "Gras umdrehen", "symbol": "arrow.uturn.up"},
+          {"id": "cover", "title": "Gras zudecken", "symbol": "square.on.square"}]},
+        {"id": "bale", "text": "Das Heu ist trocken. Presse es zu Ballen.", "targetID": "imp.baler", "choices": [
+          {"id": "imp.loader", "title": "Frontlader", "symbol": "arrow.up.bin"},
+          {"id": "imp.mower", "title": "Mähwerk", "symbol": "scissors"},
+          {"id": "imp.baler", "title": "Ballenpresse", "symbol": "cylinder"}]},
+        {"id": "load", "text": "Heb den Ballen mit dem Frontlader auf den Anhänger.", "targetID": "imp.trailer", "choices": [
+          {"id": "imp.trailer", "title": "Ladefläche", "symbol": "shippingbox"},
+          {"id": "grass", "title": "Grasstreifen", "symbol": "leaf"},
+          {"id": "track", "title": "Feldweg", "symbol": "road.lanes"}]}
+      ],
+      "result": "Ein Wagen voller duftender Heuballen für die Tiere!",
+      "params": {"sprout":{"choiceCount":1,"targetSize":88},"shoot":{"choiceCount":2,"targetSize":72},"bloom":{"choiceCount":3,"targetSize":60}}
+    },
+    {
+      "id": "act.field.scarecrow", "title": "Eine Vogelscheuche anziehen", "symbol": "tshirt", "locationID": "loc.field", "level": 2,
+      "lanes": ["percShape", "cogMatching"], "participants": ["npc.hanno"],
+      "steps": [
+        {"id": "body", "text": "Zieh das Hemd über die Holzarme.", "targetID": "shirt", "choices": [
+          {"id": "scarf", "title": "Schal", "symbol": "wind"},
+          {"id": "shirt", "title": "Hemd mit Ärmeln", "symbol": "tshirt"},
+          {"id": "hat", "title": "Sonnenhut", "symbol": "sun.max"}]},
+        {"id": "head", "text": "Setz den runden Strohkopf über den Kragen.", "targetID": "head", "choices": [
+          {"id": "head", "title": "Strohkopf", "symbol": "face.smiling"},
+          {"id": "stick", "title": "Arm aus Holz", "symbol": "line.diagonal"},
+          {"id": "button", "title": "Hemdenknopf", "symbol": "circle.grid.2x2"}]},
+        {"id": "hat", "text": "Setz der Vogelscheuche den Hut auf.", "targetID": "headtop", "choices": [
+          {"id": "sleeve", "title": "An den Ärmel", "symbol": "hand.raised"},
+          {"id": "collar", "title": "An den Kragen", "symbol": "tshirt"},
+          {"id": "headtop", "title": "Auf den Kopf", "symbol": "face.smiling"}]}
+      ],
+      "result": "Da steht deine Vogelscheuche und winkt mit ihren Hemdsärmeln!",
+      "params": {"sprout":{"choiceCount":1,"targetSize":88},"shoot":{"choiceCount":2,"targetSize":72},"bloom":{"choiceCount":3,"targetSize":60}}
+    },
+    {
+      "id": "act.field.snowplow", "title": "Den Hofweg freiräumen", "symbol": "snowflake", "locationID": "loc.plaza", "level": 5,
+      "lanes": ["moSteer"], "participants": ["veh.tractor", "imp.snowplow"],
+      "steps": [
+        {"id": "attach", "text": "Bau das breite Schneeschild an den Traktor.", "targetID": "imp.snowplow", "choices": [
+          {"id": "imp.mower", "title": "Mähwerk", "symbol": "scissors"},
+          {"id": "imp.snowplow", "title": "Schneeschild", "symbol": "snowflake"},
+          {"id": "imp.seeder", "title": "Sämaschine", "symbol": "circle.grid.3x3.fill"}]},
+        {"id": "drive", "text": "Fahr auf dem verschneiten Weg bis zum Hoftor.", "targetID": "gate", "choices": [
+          {"id": "tree", "title": "Zum Hofbaum", "symbol": "tree"},
+          {"id": "well", "title": "Zum Brunnen", "symbol": "drop"},
+          {"id": "gate", "title": "Zum Hoftor", "symbol": "door.left.hand.open"}]},
+        {"id": "pile", "text": "Schieb den Schnee an den Wegrand.", "targetID": "edge", "choices": [
+          {"id": "edge", "title": "Neben den Weg", "symbol": "arrow.right.to.line"},
+          {"id": "center", "title": "Mitten auf den Weg", "symbol": "road.lanes"},
+          {"id": "steps", "title": "Auf die Treppe", "symbol": "stairs"}]}
+      ],
+      "result": "Der Weg ist frei. Pelle tapselt bis zum Tor!",
+      "params": {"sprout":{"choiceCount":1,"targetSize":88},"shoot":{"choiceCount":2,"targetSize":72},"bloom":{"choiceCount":3,"targetSize":60}}
+    },
+    {
+      "id": "act.animal.feed", "title": "Futter für die Tiere", "symbol": "leaf.fill", "locationID": "loc.henhouse", "level": 1,
+      "lanes": ["cogMatching", "langVocab"], "participants": ["animal.chicken", "item.feed"],
+      "steps": [
+        {"id": "food", "text": "Die Henne möchte Körner picken. Hol ihr Futter.", "targetID": "item.feed", "choices": [
+          {"id": "item.hay", "title": "Heu", "symbol": "line.3.horizontal"},
+          {"id": "item.carrot", "title": "Karotte", "symbol": "carrot"},
+          {"id": "item.feed", "title": "Körnerfutter", "symbol": "circle.grid.3x3.fill"},
+          {"id": "item.lettuce", "title": "Salatkopf", "symbol": "leaf"}]},
+        {"id": "deliver", "text": "Streu die Körner in den Futtertrog.", "targetID": "trough", "choices": [
+          {"id": "nest", "title": "Legenest", "symbol": "oval"},
+          {"id": "trough", "title": "Futtertrog", "symbol": "tray.fill"},
+          {"id": "perch", "title": "Schlafstange", "symbol": "line.diagonal"},
+          {"id": "drinker", "title": "Tränke", "symbol": "drop"}]}
+      ],
+      "result": "Pick, pick, pick! Die Henne hat ihr Lieblingsfutter gefunden.",
+      "params": {"sprout":{"choiceCount":1,"targetSize":88},"shoot":{"choiceCount":3,"targetSize":72},"bloom":{"choiceCount":4,"targetSize":60}}
+    },
+    {
+      "id": "act.animal.water", "title": "Die Tränke füllen", "symbol": "spigot", "locationID": "loc.henhouse", "level": 1,
+      "lanes": ["moDrag"], "participants": ["animal.chicken", "tool.bucket"],
+      "steps": [
+        {"id": "fill", "text": "Halt den Eimer unter die Pumpe.", "targetID": "tool.bucket", "choices": [
+          {"id": "tool.basket", "title": "Weidenkorb", "symbol": "basket"},
+          {"id": "tool.bucket", "title": "Wassereimer", "symbol": "drop.circle"},
+          {"id": "sieve", "title": "Sieb", "symbol": "circle.grid.3x3"}]},
+        {"id": "carry", "text": "Trag das frische Wasser zur Tränke und gieß es hinein.", "targetID": "drinker", "choices": [
+          {"id": "drinker", "title": "Tränke", "symbol": "drop.fill"},
+          {"id": "feeder", "title": "Körnerschale", "symbol": "circle.grid.2x2"},
+          {"id": "sand", "title": "Sandbad", "symbol": "sun.max"}]}
+      ],
+      "result": "Frisches Wasser! Die Tiere können einen Schluck trinken.",
+      "params": {"sprout":{"choiceCount":1,"targetSize":88},"shoot":{"choiceCount":2,"targetSize":72},"bloom":{"choiceCount":3,"targetSize":60}}
+    },
+    {
+      "id": "act.animal.pet", "title": "Streicheln und bürsten", "symbol": "hand.raised", "locationID": "loc.plaza", "level": 1,
+      "lanes": ["moDrag", "socCare"], "participants": ["animal.cat", "tool.brush"],
+      "steps": [
+        {"id": "approach", "text": "Minka schnurrt. Streichel ihr sanft den Rücken.", "targetID": "animal.cat", "choices": [
+          {"id": "animal.chicken", "title": "Gackernde Henne", "symbol": "bird"},
+          {"id": "animal.dog", "title": "Wedelnder Pelle", "symbol": "dog"},
+          {"id": "animal.cat", "title": "Schnurrende Minka", "symbol": "cat"}]},
+        {"id": "brush", "text": "Streich mit der weichen Bürste über ihr Fell.", "targetID": "tool.brush", "choices": [
+          {"id": "ball", "title": "Spielball", "symbol": "soccerball"},
+          {"id": "tool.brush", "title": "Fellbürste", "symbol": "comb"},
+          {"id": "blanket", "title": "Kuscheldecke", "symbol": "square.grid.3x3"}]}
+      ],
+      "result": "So weich! Minka schmiegt sich an deine Hand.",
+      "params": {"sprout":{"choiceCount":1,"targetSize":88},"shoot":{"choiceCount":2,"targetSize":72},"bloom":{"choiceCount":3,"targetSize":60}}
+    },
+    {
+      "id": "act.animal.milk", "title": "Eine Kuh melken", "symbol": "drop", "locationID": "loc.cowbarn", "level": 2,
+      "lanes": ["moTap"], "participants": ["animal.cow", "tool.bucket", "item.milk"],
+      "steps": [
+        {"id": "bucket", "text": "Stell den sauberen Eimer unter das Euter.", "targetID": "under", "choices": [
+          {"id": "under", "title": "Unter das Euter", "symbol": "arrow.down"},
+          {"id": "door", "title": "Neben das Tor", "symbol": "door.left.hand.open"},
+          {"id": "manger", "title": "An die Heuraufe", "symbol": "tray"}]},
+        {"id": "milk", "text": "Drück sanft im Wechsel: links, rechts, links.", "targetID": "alternate", "choices": [
+          {"id": "circle", "title": "Im Kreis streichen", "symbol": "arrow.clockwise"},
+          {"id": "alternate", "title": "Links und rechts drücken", "symbol": "arrow.left.and.right"},
+          {"id": "brush", "title": "Das Fell bürsten", "symbol": "comb"}]}
+      ],
+      "result": "Die Milch plätschert im Eimer. Die Kuh kaut gemütlich weiter.",
+      "params": {"sprout":{"choiceCount":1,"targetSize":88},"shoot":{"choiceCount":2,"targetSize":72},"bloom":{"choiceCount":3,"targetSize":60}}
+    },
+    {
+      "id": "act.animal.eggs", "title": "Eier im Nest suchen", "symbol": "oval.fill", "locationID": "loc.henhouse", "level": 1,
+      "lanes": ["mathCount", "percShape"], "participants": ["animal.chicken", "item.egg", "tool.basket"],
+      "steps": [
+        {"id": "search", "text": "Im Nest raschelt Stroh. Heb es vorsichtig an.", "targetID": "nest", "choices": [
+          {"id": "trough", "title": "Futtertrog", "symbol": "tray"},
+          {"id": "nest", "title": "Strohnest", "symbol": "oval"},
+          {"id": "perch", "title": "Sitzstange", "symbol": "line.diagonal"}]},
+        {"id": "gather", "text": "Ein glattes, ovales Ei! Leg es in den weichen Korb.", "targetID": "item.egg", "choices": [
+          {"id": "leaf", "title": "Blatt", "symbol": "leaf"},
+          {"id": "twig", "title": "Zweig", "symbol": "tree"},
+          {"id": "item.egg", "title": "Ei", "symbol": "oval.fill"}]},
+        {"id": "count", "text": "Zähl mit: Ein Ei liegt im Korb. Zeig einen Punkt.", "targetID": "one", "choices": [
+          {"id": "one", "title": "Ein Punkt", "symbol": "die.face.1"},
+          {"id": "two", "title": "Zwei Punkte", "symbol": "die.face.2"},
+          {"id": "three", "title": "Drei Punkte", "symbol": "die.face.3"}]}
+      ],
+      "result": "Da liegt das Ei, sicher im weichen Korb!",
+      "params": {"sprout":{"choiceCount":1,"targetSize":88},"shoot":{"choiceCount":2,"targetSize":72},"bloom":{"choiceCount":3,"targetSize":60}}
+    },
+    {
+      "id": "act.animal.shear", "title": "Wolle vom Schaf holen", "symbol": "scissors", "locationID": "loc.sheepmeadow", "level": 3,
+      "lanes": ["moDrag"], "participants": ["animal.sheep", "tool.shears", "item.wool"],
+      "steps": [
+        {"id": "shear", "text": "Führ die Schafschere über das dicke Wollkleid.", "targetID": "tool.shears", "choices": [
+          {"id": "tool.brush", "title": "Fellbürste", "symbol": "comb"},
+          {"id": "tool.bucket", "title": "Wassereimer", "symbol": "drop.circle"},
+          {"id": "tool.shears", "title": "Schafschere", "symbol": "scissors"}]},
+        {"id": "collect", "text": "Sammle die weiche Wolle im Korb.", "targetID": "item.wool", "choices": [
+          {"id": "item.wool", "title": "Wollflocken", "symbol": "cloud.fill"},
+          {"id": "grass", "title": "Grashalme", "symbol": "leaf"},
+          {"id": "item.hay", "title": "Heubüschel", "symbol": "line.3.horizontal"}]}
+      ],
+      "result": "Der Korb ist voller weicher Wolle. Das Schaf hüpft über die Wiese!",
+      "params": {"sprout":{"choiceCount":1,"targetSize":88},"shoot":{"choiceCount":2,"targetSize":72},"bloom":{"choiceCount":3,"targetSize":60}}
+    },
+    {
+      "id": "act.animal.bed", "title": "Zeit zum Einkuscheln", "symbol": "moon.stars", "locationID": "loc.henhouse", "level": 1,
+      "lanes": ["cogMatching", "socCare"], "participants": ["animal.chicken"],
+      "steps": [
+        {"id": "home", "text": "Begleite die müden Hühner ins Hühnerhaus.", "targetID": "loc.henhouse", "choices": [
+          {"id": "loc.garden", "title": "Gemüsegarten", "symbol": "carrot"},
+          {"id": "loc.henhouse", "title": "Hühnerhaus", "symbol": "bird"},
+          {"id": "loc.shop", "title": "Hofladen", "symbol": "storefront"}]},
+        {"id": "roost", "text": "Zeig den Hühnern ihre Schlafstange.", "targetID": "perch", "choices": [
+          {"id": "sand", "title": "Sandbad", "symbol": "sun.max"},
+          {"id": "drinker", "title": "Tränke", "symbol": "drop"},
+          {"id": "perch", "title": "Schlafstange", "symbol": "moon"}]},
+        {"id": "close", "text": "Alle sitzen gemütlich. Schließ leise die Hühnerklappe.", "targetID": "hatch", "choices": [
+          {"id": "hatch", "title": "Hühnerklappe", "symbol": "door.left.hand.closed"},
+          {"id": "basketlid", "title": "Korbdeckel", "symbol": "basket"},
+          {"id": "feedbag", "title": "Futtersack", "symbol": "bag"}]}
+      ],
+      "result": "Feder an Feder kuscheln die Hühner zusammen. Schlaf schön, kleiner Hof!",
+      "params": {"sprout":{"choiceCount":1,"targetSize":88},"shoot":{"choiceCount":2,"targetSize":72},"bloom":{"choiceCount":3,"targetSize":60}}
+    },
+    {
+      "id": "act.animal.find", "title": "Wer versteckt sich da?", "symbol": "magnifyingglass", "locationID": "loc.plaza", "level": 2,
+      "lanes": ["percShape", "cogMemory"], "participants": ["animal.cat", "animal.dog"],
+      "steps": [
+        {"id": "listen", "text": "Horch, es miaut! Wessen Spur suchen wir?", "targetID": "animal.cat", "choices": [
+          {"id": "animal.dog", "title": "Pelles Spur", "symbol": "dog"},
+          {"id": "animal.chicken", "title": "Hühnerspur", "symbol": "bird"},
+          {"id": "animal.cat", "title": "Minkas Spur", "symbol": "cat"},
+          {"id": "animal.cow", "title": "Kuhspur", "symbol": "bell"}]},
+        {"id": "look", "text": "Unter der Bank wippt ein Katzenschwanz. Schau dort nach!", "targetID": "bench", "choices": [
+          {"id": "well", "title": "Am Brunnen", "symbol": "drop"},
+          {"id": "bench", "title": "Unter der Bank", "symbol": "chair"},
+          {"id": "box", "title": "In der Kiste", "symbol": "shippingbox"},
+          {"id": "tree", "title": "Am Baum", "symbol": "tree"}]}
+      ],
+      "result": "Miau! Minka kommt aus ihrem Versteck und streicht um deine Beine.",
+      "params": {"sprout":{"choiceCount":2,"targetSize":88},"shoot":{"choiceCount":3,"targetSize":72},"bloom":{"choiceCount":4,"targetSize":60}}
+    },
+    {
+      "id": "act.animal.baby", "title": "Für ein Tierbaby sorgen", "symbol": "heart", "locationID": "loc.cowbarn", "level": 3,
+      "lanes": ["socCare"], "participants": ["animal.cow", "item.milk"],
+      "steps": [
+        {"id": "warm", "text": "Deck das kleine Kalb mit der weichen Decke zu.", "targetID": "blanket", "choices": [
+          {"id": "blanket", "title": "Kuscheldecke", "symbol": "square.grid.3x3.fill"},
+          {"id": "tool.brush", "title": "Bürste", "symbol": "comb"},
+          {"id": "tool.basket", "title": "Korb", "symbol": "basket"}]},
+        {"id": "bottle", "text": "Halt dem Kalb seine Milchflasche hin.", "targetID": "bottle", "choices": [
+          {"id": "item.hay", "title": "Heubüschel", "symbol": "line.3.horizontal"},
+          {"id": "bottle", "title": "Milchflasche", "symbol": "waterbottle"},
+          {"id": "item.carrot", "title": "Karotte", "symbol": "carrot"}]},
+        {"id": "name", "text": "Nennen wir es Sternchen? Häng den Stern an seinen Platz.", "targetID": "star", "choices": [
+          {"id": "sun", "title": "Sonne", "symbol": "sun.max"},
+          {"id": "moon", "title": "Mond", "symbol": "moon"},
+          {"id": "star", "title": "Sternchen", "symbol": "star.fill"}]}
+      ],
+      "result": "Das Kalb kuschelt sich ins Stroh. Über ihm leuchtet sein Namensbild.",
+      "params": {"sprout":{"choiceCount":1,"targetSize":88},"shoot":{"choiceCount":2,"targetSize":72},"bloom":{"choiceCount":3,"targetSize":60}}
+    },
+    {
+      "id": "act.shop.stock", "title": "Das Regal füllen", "symbol": "square.grid.2x2", "locationID": "loc.shop", "level": 1,
+      "lanes": ["cogMatching", "mathCount"], "participants": ["tool.basket"],
+      "steps": [
+        {"id": "pick", "text": "Tilda zeigt ein Karottenbild. Hol die passende Ware.", "targetID": "item.carrot", "choices": [
+          {"id": "item.carrot", "title": "Karotte", "symbol": "carrot"},
+          {"id": "item.egg", "title": "Ei", "symbol": "oval"},
+          {"id": "item.lettuce", "title": "Salat", "symbol": "leaf"},
+          {"id": "item.feed", "title": "Körner", "symbol": "circle.grid.3x3.fill"}]},
+        {"id": "place", "text": "Leg die Karotte zum Karottenbild im Regal.", "targetID": "carrotslot", "choices": [
+          {"id": "eggslot", "title": "Fach mit Ei", "symbol": "oval"},
+          {"id": "leafslot", "title": "Fach mit Blatt", "symbol": "leaf"},
+          {"id": "carrotslot", "title": "Fach mit Karotte", "symbol": "carrot"},
+          {"id": "seedshelf", "title": "Fach mit Samentüte", "symbol": "bag"}]}
+      ],
+      "result": "Jetzt liegt die Ernte im richtigen Fach. Wer einkauft, kann sie gut finden!",
+      "params": {"sprout":{"choiceCount":2,"targetSize":88},"shoot":{"choiceCount":3,"targetSize":72},"bloom":{"choiceCount":4,"targetSize":60}}
+    },
+    {
+      "id": "act.shop.order", "title": "Einen Einkaufskorb packen", "symbol": "basket.fill", "locationID": "loc.shop", "level": 1,
+      "lanes": ["cogMemory", "mathCount"], "participants": ["npc.tilda", "tool.basket"],
+      "steps": [
+        {"id": "listen", "text": "Tilda ist da! Schau auf ihren Bildzettel.", "targetID": "order", "choices": [
+          {"id": "price", "title": "Preisschild", "symbol": "tag"},
+          {"id": "order", "title": "Tildas Bildzettel", "symbol": "list.bullet.rectangle"},
+          {"id": "sign", "title": "Ladenschild", "symbol": "storefront"}]},
+        {"id": "pack", "text": "Tilda möchte ein Ei. Leg es in ihren Korb.", "targetID": "item.egg", "choices": [
+          {"id": "item.lettuce", "title": "Salat", "symbol": "leaf"},
+          {"id": "item.carrot", "title": "Karotte", "symbol": "carrot"},
+          {"id": "item.egg", "title": "Ei", "symbol": "oval.fill"}]},
+        {"id": "ring", "text": "Der Korb ist fertig. Läute die Ladenglocke!", "targetID": "bell", "choices": [
+          {"id": "bell", "title": "Ladenglocke", "symbol": "bell.fill"},
+          {"id": "scale", "title": "Waage", "symbol": "scalemass"},
+          {"id": "drawer", "title": "Kassenlade", "symbol": "tray"}]}
+      ],
+      "result": "Die Glocke klingt. Tilda bedankt sich und nimmt ihren Einkauf mit!",
+      "params": {"sprout":{"choiceCount":1,"targetSize":88},"shoot":{"choiceCount":2,"targetSize":72},"bloom":{"choiceCount":3,"targetSize":60}}
+    },
+    {
+      "id": "act.shop.sign", "title": "Ein Schild für den Laden", "symbol": "paintpalette", "locationID": "loc.shop", "level": 3,
+      "lanes": ["cogSequence", "percShape"], "participants": ["npc.mo"],
+      "steps": [
+        {"id": "left", "text": "Mo hat drei Bilder gemalt. Setz links die Henne hin.", "targetID": "hen", "choices": [
+          {"id": "egg", "title": "Ei", "symbol": "oval.fill"},
+          {"id": "basket", "title": "Korb", "symbol": "basket.fill"},
+          {"id": "hen", "title": "Henne", "symbol": "bird.fill"}]},
+        {"id": "center", "text": "Was legt die Henne? Kleb das Bild in die Mitte.", "targetID": "egg", "choices": [
+          {"id": "basket", "title": "Korb", "symbol": "basket.fill"},
+          {"id": "egg", "title": "Ei", "symbol": "oval.fill"},
+          {"id": "hen", "title": "Henne", "symbol": "bird.fill"}]},
+        {"id": "right", "text": "Womit tragen wir die Eier? Das Bild kommt nach rechts.", "targetID": "basket", "choices": [
+          {"id": "basket", "title": "Korb", "symbol": "basket.fill"},
+          {"id": "hen", "title": "Henne", "symbol": "bird.fill"},
+          {"id": "egg", "title": "Ei", "symbol": "oval.fill"}]}
+      ],
+      "result": "Henne, Ei und Korb! Euer Schild erzählt vom Hofladen.",
+      "params": {"sprout":{"choiceCount":1,"targetSize":88},"shoot":{"choiceCount":2,"targetSize":72},"bloom":{"choiceCount":3,"targetSize":60}}
+    },
+    {
+      "id": "act.shop.market", "title": "Zum Markt fahren", "symbol": "storefront", "locationID": "loc.village", "level": 5,
+      "lanes": ["cogMemory", "moSteer"], "participants": ["veh.tractor", "imp.trailer", "npc.yusuf"],
+      "steps": [
+        {"id": "load", "text": "Lade die Kiste mit der Ernte auf den Anhänger.", "targetID": "produce", "choices": [
+          {"id": "produce", "title": "Gemüsekiste", "symbol": "carrot"},
+          {"id": "tools", "title": "Werkzeugkiste", "symbol": "wrench.and.screwdriver"},
+          {"id": "mail", "title": "Postkiste", "symbol": "envelope"}]},
+        {"id": "drive", "text": "Folge dem Schild mit dem Marktstand.", "targetID": "loc.village", "choices": [
+          {"id": "loc.garage", "title": "Zur Maschinenhalle", "symbol": "gearshape"},
+          {"id": "loc.village", "title": "Zum Dorfmarkt", "symbol": "storefront"},
+          {"id": "loc.orchard", "title": "Zur Obstwiese", "symbol": "tree"}]},
+        {"id": "display", "text": "Stell die Ware auf den Markttisch.", "targetID": "table", "choices": [
+          {"id": "seat", "title": "Fahrersitz", "symbol": "steeringwheel"},
+          {"id": "awning", "title": "Sonnendach", "symbol": "beach.umbrella"},
+          {"id": "table", "title": "Markttisch", "symbol": "table.furniture"}]},
+        {"id": "sell", "text": "Yusuf möchte eine Karotte. Reich sie ihm.", "targetID": "item.carrot", "choices": [
+          {"id": "item.carrot", "title": "Karotte", "symbol": "carrot"},
+          {"id": "item.lettuce", "title": "Salatkopf", "symbol": "leaf"},
+          {"id": "item.pumpkin", "title": "Kürbis", "symbol": "circle.fill"}]}
+      ],
+      "result": "Yusuf strahlt. Dein Gemüse hat den Weg vom Hof bis auf den Markt geschafft!",
+      "params": {"sprout":{"choiceCount":1,"targetSize":88},"shoot":{"choiceCount":2,"targetSize":72},"bloom":{"choiceCount":3,"targetSize":60}}
+    },
+    {
+      "id": "act.kitchen.bake", "title": "Mit Tilda backen", "symbol": "oven", "locationID": "loc.kitchen", "level": 4,
+      "lanes": ["cogSequence"], "participants": ["npc.tilda", "item.flour"],
+      "steps": [
+        {"id": "mix", "text": "Auf der Brotkarte steht Mehl. Gib es zum Wasser.", "targetID": "item.flour", "choices": [
+          {"id": "item.apple", "title": "Apfel", "symbol": "tree.fill"},
+          {"id": "item.flour", "title": "Mehl", "symbol": "bag.fill"},
+          {"id": "item.egg", "title": "Ei", "symbol": "oval.fill"}]},
+        {"id": "knead", "text": "Knete den Teig mit den Händen zu einem Laib.", "targetID": "knead", "choices": [
+          {"id": "pour", "title": "In Flaschen füllen", "symbol": "waterbottle"},
+          {"id": "cut", "title": "In Scheiben schneiden", "symbol": "line.3.horizontal"},
+          {"id": "knead", "title": "Mit den Händen kneten", "symbol": "hand.raised.fill"}]},
+        {"id": "bake", "text": "Tilda hält das Blech. Zeig ihr den Backofen.", "targetID": "oven", "choices": [
+          {"id": "oven", "title": "Backofen", "symbol": "oven.fill"},
+          {"id": "press", "title": "Saftpresse", "symbol": "arrow.down.to.line"},
+          {"id": "fridge", "title": "Kühlschrank", "symbol": "refrigerator"}]}
+      ],
+      "result": "Es duftet nach frischem Brot. Tilda legt den Laib zum Abkühlen hin.",
+      "params": {"sprout":{"choiceCount":1,"targetSize":88},"shoot":{"choiceCount":2,"targetSize":72},"bloom":{"choiceCount":3,"targetSize":60}}
+    },
+    {
+      "id": "act.kitchen.press", "title": "Apfelsaft pressen", "symbol": "waterbottle", "locationID": "loc.kitchen", "level": 4,
+      "lanes": ["mathCount", "moDrag"], "participants": ["item.apple", "item.applejuice"],
+      "steps": [
+        {"id": "count", "text": "Eins, zwei, drei: Gib drei Äpfel in die Presse.", "targetID": "three", "choices": [
+          {"id": "one", "title": "Ein Apfel", "symbol": "die.face.1"},
+          {"id": "two", "title": "Zwei Äpfel", "symbol": "die.face.2"},
+          {"id": "three", "title": "Drei Äpfel", "symbol": "die.face.3"}]},
+        {"id": "press", "text": "Drück den Hebel nach unten.", "targetID": "push", "choices": [
+          {"id": "push", "title": "Hebel senken", "symbol": "arrow.down"},
+          {"id": "lift", "title": "Hebel heben", "symbol": "arrow.up"},
+          {"id": "turn", "title": "Kurbel drehen", "symbol": "arrow.clockwise"}]},
+        {"id": "bottle", "text": "Der Saft läuft! Halt die Flasche unter den Auslauf.", "targetID": "bottle", "choices": [
+          {"id": "tray", "title": "Backblech", "symbol": "rectangle"},
+          {"id": "bottle", "title": "Saftflasche", "symbol": "waterbottle"},
+          {"id": "sieve", "title": "Sieb", "symbol": "circle.grid.3x3"}]}
+      ],
+      "result": "Aus den Äpfeln ist goldener Saft geworden. Die Flasche ist voll!",
+      "params": {"sprout":{"choiceCount":1,"targetSize":88},"shoot":{"choiceCount":2,"targetSize":72},"bloom":{"choiceCount":3,"targetSize":60}}
+    },
+    {
+      "id": "act.kitchen.churn", "title": "Butter stampfen", "symbol": "metronome", "locationID": "loc.kitchen", "level": 4,
+      "lanes": ["moTap"], "participants": ["item.milk", "item.butter"],
+      "steps": [
+        {"id": "cream", "text": "Schöpf den Rahm von der Milch ins Butterfass.", "targetID": "churn", "choices": [
+          {"id": "pan", "title": "Backform", "symbol": "rectangle.roundedtop"},
+          {"id": "churn", "title": "Butterfass", "symbol": "cylinder"},
+          {"id": "bottle", "title": "Saftflasche", "symbol": "waterbottle"}]},
+        {"id": "beat", "text": "Auf und ab! Beweg den Stampfer im Takt.", "targetID": "beat", "choices": [
+          {"id": "turn", "title": "Im Kreis drehen", "symbol": "arrow.clockwise"},
+          {"id": "slide", "title": "Seitlich schieben", "symbol": "arrow.left.and.right"},
+          {"id": "beat", "title": "Auf und ab stampfen", "symbol": "arrow.up.and.down"}]},
+        {"id": "shape", "text": "Die Butter ist fest. Drück sie in die Butterform.", "targetID": "mold", "choices": [
+          {"id": "mold", "title": "Butterform", "symbol": "rectangle.fill"},
+          {"id": "jug", "title": "Milchkrug", "symbol": "mug"},
+          {"id": "jar", "title": "Marmeladenglas", "symbol": "cylinder.split.1x2"}]}
+      ],
+      "result": "Die Butter rutscht aus der Form. Ein goldgelbes Stück fürs Frühstück!",
+      "params": {"sprout":{"choiceCount":1,"targetSize":88},"shoot":{"choiceCount":2,"targetSize":72},"bloom":{"choiceCount":3,"targetSize":60}}
+    },
+    {
+      "id": "act.kitchen.jam", "title": "Erdbeermarmelade kochen", "symbol": "cooktop", "locationID": "loc.kitchen", "level": 4,
+      "lanes": ["moDrag"], "participants": ["npc.tilda", "item.strawberry", "item.jam"],
+      "steps": [
+        {"id": "fruit", "text": "Tilda hat den Kessel bereit. Gib die Erdbeeren hinein.", "targetID": "item.strawberry", "choices": [
+          {"id": "item.strawberry", "title": "Erdbeeren", "symbol": "heart.fill"},
+          {"id": "item.wheat", "title": "Weizenkörner", "symbol": "circle.grid.3x3.fill"},
+          {"id": "item.potato", "title": "Kartoffeln", "symbol": "oval.fill"}]},
+        {"id": "stir", "text": "Führ den langen Löffel im Kreis durch die Beeren.", "targetID": "stir", "choices": [
+          {"id": "lift", "title": "Löffel heben", "symbol": "arrow.up"},
+          {"id": "stir", "title": "Im Kreis rühren", "symbol": "arrow.clockwise"},
+          {"id": "tap", "title": "Am Rand klopfen", "symbol": "hand.tap"}]},
+        {"id": "jars", "text": "Tilda füllt die Marmelade ab. Stell ihr die Gläser hin.", "targetID": "jars", "choices": [
+          {"id": "plates", "title": "Flache Teller", "symbol": "circle"},
+          {"id": "basket", "title": "Brotkorb", "symbol": "basket"},
+          {"id": "jars", "title": "Gläser mit Deckeln", "symbol": "cylinder"}]}
+      ],
+      "result": "Die Gläser leuchten erdbeerrot. So bleibt der Sommer noch ein Weilchen hier!",
+      "params": {"sprout":{"choiceCount":1,"targetSize":88},"shoot":{"choiceCount":2,"targetSize":72},"bloom":{"choiceCount":3,"targetSize":60}}
+    },
+    {
+      "id": "act.nature.flowers", "title": "Einen Wiesenstrauß pflücken", "symbol": "camera.macro", "locationID": "loc.garden", "level": 1,
+      "lanes": ["mathCount", "percShape"], "participants": ["npc.tilda"],
+      "steps": [
+        {"id": "white", "text": "Pflück ein weißes Gänseblümchen für Tilda.", "targetID": "daisy", "choices": [
+          {"id": "dandelion", "title": "Gelber Löwenzahn", "symbol": "sun.max.fill"},
+          {"id": "daisy", "title": "Weißes Gänseblümchen", "symbol": "camera.macro"},
+          {"id": "bellflower", "title": "Blaue Glockenblume", "symbol": "bell.fill"}]},
+        {"id": "yellow", "text": "Jetzt noch einen gelben Löwenzahn dazu.", "targetID": "dandelion", "choices": [
+          {"id": "dandelion", "title": "Gelber Löwenzahn", "symbol": "sun.max.fill"},
+          {"id": "bellflower", "title": "Blaue Glockenblume", "symbol": "bell.fill"},
+          {"id": "daisy", "title": "Weißes Gänseblümchen", "symbol": "camera.macro"}]},
+        {"id": "count", "text": "Eine weiße und eine gelbe Blume. Wie viele sind das?", "targetID": "two", "choices": [
+          {"id": "three", "title": "Drei Blumen", "symbol": "die.face.3"},
+          {"id": "one", "title": "Eine Blume", "symbol": "die.face.1"},
+          {"id": "two", "title": "Zwei Blumen", "symbol": "die.face.2"}]}
+      ],
+      "result": "Zwei Blumen für Tildas Vase! Auf der Wiese summt es weiter.",
+      "params": {"sprout":{"choiceCount":1,"targetSize":88},"shoot":{"choiceCount":2,"targetSize":72},"bloom":{"choiceCount":3,"targetSize":60}}
+    },
+    {
+      "id": "act.nature.pond", "title": "Am Teich lauschen", "symbol": "water.waves", "locationID": "loc.garden", "level": 2,
+      "lanes": ["mathCount"], "participants": ["npc.hanno"],
+      "steps": [
+        {"id": "count", "text": "Am kleinen Gartenteich quakt es zweimal. Zähl die beiden Frösche!", "targetID": "two", "choices": [
+          {"id": "one", "title": "Ein Frosch", "symbol": "die.face.1"},
+          {"id": "two", "title": "Zwei Frösche", "symbol": "die.face.2"},
+          {"id": "three", "title": "Drei Frösche", "symbol": "die.face.3"},
+          {"id": "four", "title": "Vier Frösche", "symbol": "die.face.4"}]},
+        {"id": "feed", "text": "Die Fische schauen hoch. Streu ein paar Futterflocken ins Wasser.", "targetID": "flakes", "choices": [
+          {"id": "leaf", "title": "Seerosenblatt", "symbol": "leaf"},
+          {"id": "shell", "title": "Schneckenhaus", "symbol": "fossil.shell"},
+          {"id": "stone", "title": "Uferkiesel", "symbol": "oval"},
+          {"id": "flakes", "title": "Fischfutter", "symbol": "fish.fill"}]}
+      ],
+      "result": "Die Fische schnappen nach den Flocken. Vom Ufer klingt ein leises Quak.",
+      "params": {"sprout":{"choiceCount":2,"targetSize":88},"shoot":{"choiceCount":3,"targetSize":72},"bloom":{"choiceCount":4,"targetSize":60}}
+    },
+    {
+      "id": "act.nature.birdhouse", "title": "Besuch am Futterhäuschen", "symbol": "bird", "locationID": "loc.garden", "level": 2,
+      "lanes": ["langVocab"], "participants": ["item.feed"],
+      "steps": [
+        {"id": "fill", "text": "Füll das Futterhäuschen mit einer Handvoll Körner.", "targetID": "item.feed", "choices": [
+          {"id": "item.hay", "title": "Heu", "symbol": "line.3.horizontal"},
+          {"id": "moss", "title": "Moos", "symbol": "cloud.fill"},
+          {"id": "item.feed", "title": "Körner", "symbol": "circle.grid.3x3.fill"}]},
+        {"id": "watch", "text": "Psst, wer landet da? Ein Vogel mit roter Brust!", "targetID": "robin", "choices": [
+          {"id": "robin", "title": "Rotkehlchen", "symbol": "heart.fill"},
+          {"id": "blackbird", "title": "Schwarze Amsel", "symbol": "bird.fill"},
+          {"id": "tit", "title": "Blaumeise mit blauer Kappe", "symbol": "drop.fill"}]}
+      ],
+      "result": "Das Rotkehlchen pickt ein Körnchen. Jetzt kennst du seinen Namen!",
+      "params": {"sprout":{"choiceCount":1,"targetSize":88},"shoot":{"choiceCount":2,"targetSize":72},"bloom":{"choiceCount":3,"targetSize":60}}
+    },
+    {
+      "id": "act.nature.compost", "title": "Würmer im Kompost entdecken", "symbol": "leaf.arrow.circlepath", "locationID": "loc.garden", "level": 3,
+      "lanes": ["worldTime"], "participants": ["item.compost"],
+      "steps": [
+        {"id": "search", "text": "Heb das feuchte Blatt auf dem Kompost hoch.", "targetID": "leaf", "choices": [
+          {"id": "leaf", "title": "Feuchtes Blatt", "symbol": "leaf.fill"},
+          {"id": "pot", "title": "Leerer Topf", "symbol": "camera.macro"},
+          {"id": "stone", "title": "Trockener Stein", "symbol": "oval"}]},
+        {"id": "worm", "text": "Wer schlängelt sich dort? Nimm den Wurm mit seiner Erde auf.", "targetID": "worm", "choices": [
+          {"id": "beetle", "title": "Marienkäfer", "symbol": "ladybug"},
+          {"id": "snail", "title": "Schnecke", "symbol": "fossil.shell"},
+          {"id": "worm", "title": "Regenwurm", "symbol": "waveform.path"}]},
+        {"id": "bed", "text": "Setz den Wurm in die feuchte Beeterde.", "targetID": "bed", "choices": [
+          {"id": "path", "title": "Gepflasterter Weg", "symbol": "square.grid.3x3"},
+          {"id": "bed", "title": "Feuchtes Beet", "symbol": "leaf"},
+          {"id": "bench", "title": "Gartenbank", "symbol": "chair"}]}
+      ],
+      "result": "Der Wurm gräbt einen Gang. So kommt Luft zu den Wurzeln!",
+      "params": {"sprout":{"choiceCount":1,"targetSize":88},"shoot":{"choiceCount":2,"targetSize":72},"bloom":{"choiceCount":3,"targetSize":60}}
+    },
+    {
+      "id": "act.nature.kite", "title": "Den Drachen steigen lassen", "symbol": "wind", "locationID": "loc.sheepmeadow", "level": 3,
+      "lanes": ["moDrag"], "participants": ["npc.mo"],
+      "steps": [
+        {"id": "launch", "text": "Mo hält den Drachen. Zieh sanft an der Schnur!", "targetID": "pull", "choices": [
+          {"id": "windup", "title": "Schnur aufwickeln", "symbol": "arrow.clockwise"},
+          {"id": "pull", "title": "Schnur anziehen", "symbol": "arrow.left.to.line"},
+          {"id": "land", "title": "Drachen ablegen", "symbol": "arrow.down"}]},
+        {"id": "rise", "text": "Der Wind trägt ihn. Gib ein Stück Schnur frei.", "targetID": "release", "choices": [
+          {"id": "release", "title": "Schnur abrollen", "symbol": "arrow.forward"},
+          {"id": "hold", "title": "Rolle festhalten", "symbol": "hand.raised"},
+          {"id": "shorten", "title": "Schnur einholen", "symbol": "arrow.backward"}]},
+        {"id": "loop", "text": "Male mit dem Drachen einen Kreis in die Luft.", "targetID": "loop", "choices": [
+          {"id": "line", "title": "Gerade Linie", "symbol": "line.diagonal"},
+          {"id": "zigzag", "title": "Zickzack", "symbol": "bolt"},
+          {"id": "loop", "title": "Runder Kreis", "symbol": "circle"}]}
+      ],
+      "result": "Eine große Schleife am Himmel! Mos Drachen tanzt im Wind.",
+      "params": {"sprout":{"choiceCount":1,"targetSize":88},"shoot":{"choiceCount":2,"targetSize":72},"bloom":{"choiceCount":3,"targetSize":60}}
+    },
+    {
+      "id": "act.nature.snowman", "title": "Einen Schneemann bauen", "symbol": "snowflake", "locationID": "loc.plaza", "level": 3,
+      "lanes": ["percShape", "cogSequence"], "participants": ["npc.mo", "item.carrot"],
+      "steps": [
+        {"id": "roll", "text": "Roll für den Bauch die größte Schneekugel.", "targetID": "large", "choices": [
+          {"id": "small", "title": "Winzige Kugel", "symbol": "circle.dotted"},
+          {"id": "large", "title": "Große Kugel", "symbol": "circle.fill"},
+          {"id": "middle", "title": "Mittlere Kugel", "symbol": "circle"}]},
+        {"id": "stack", "text": "Setz die kleine Kopfkugel oben auf den Bauch.", "targetID": "top", "choices": [
+          {"id": "side", "title": "Daneben", "symbol": "arrow.right"},
+          {"id": "under", "title": "Darunter", "symbol": "arrow.down"},
+          {"id": "top", "title": "Obenauf", "symbol": "arrow.up"}]},
+        {"id": "face", "text": "Welche Nase ist lang und orange? Steck sie ins Gesicht.", "targetID": "item.carrot", "choices": [
+          {"id": "item.carrot", "title": "Karotte", "symbol": "carrot"},
+          {"id": "pebble", "title": "Runder Kiesel", "symbol": "oval"},
+          {"id": "button", "title": "Holzknopf", "symbol": "circle.grid.2x2"}]}
+      ],
+      "result": "Dein Schneemann schaut mit seiner Karottennase über den Hof!",
+      "params": {"sprout":{"choiceCount":1,"targetSize":88},"shoot":{"choiceCount":2,"targetSize":72},"bloom":{"choiceCount":3,"targetSize":60}}
+    },
+    {
+      "id": "act.nature.lantern", "title": "Einen Laternenweg legen", "symbol": "lamp.table", "locationID": "loc.plaza", "level": 3,
+      "lanes": ["cogSequence"], "participants": ["npc.hanno"],
+      "steps": [
+        {"id": "continue", "text": "Sonne, Mond, Sonne … Stell die Mondlaterne dazu.", "targetID": "moon", "choices": [
+          {"id": "moon", "title": "Blauer Mond", "symbol": "moon.fill"},
+          {"id": "star", "title": "Weißer Stern", "symbol": "star.fill"},
+          {"id": "sun", "title": "Gelbe Sonne", "symbol": "sun.max.fill"}]},
+        {"id": "repeat", "text": "Nach dem blauen Mond kommt wieder eine gelbe Sonne.", "targetID": "sun", "choices": [
+          {"id": "star", "title": "Weißer Stern", "symbol": "star.fill"},
+          {"id": "sun", "title": "Gelbe Sonne", "symbol": "sun.max.fill"},
+          {"id": "moon", "title": "Blauer Mond", "symbol": "moon.fill"}]},
+        {"id": "finish", "text": "Sonne, Mond. Sonne, Mond. Sonne … Was leuchtet als Nächstes?", "targetID": "moon", "choices": [
+          {"id": "sun", "title": "Gelbe Sonne", "symbol": "sun.max.fill"},
+          {"id": "star", "title": "Weißer Stern", "symbol": "star.fill"},
+          {"id": "moon", "title": "Blauer Mond", "symbol": "moon.fill"}]}
+      ],
+      "result": "Gelb und Blau wechseln sich ab. Dein Laternenweg leuchtet bis zum Tor!",
+      "params": {"sprout":{"choiceCount":1,"targetSize":88},"shoot":{"choiceCount":2,"targetSize":72},"bloom":{"choiceCount":3,"targetSize":60}}
+    },
+    {
+      "id": "act.village.mail", "title": "Mit Lale Post austragen", "symbol": "envelope", "locationID": "loc.plaza", "level": 4,
+      "lanes": ["cogMatching", "cogMemory"], "participants": ["npc.lale", "npc.tilda", "npc.hanno"],
+      "steps": [
+        {"id": "sort", "text": "Lale sucht am Hofbriefkasten den Brief mit dem Brotbild.", "targetID": "breadletter", "choices": [
+          {"id": "treeletter", "title": "Brief mit Baum", "symbol": "tree"},
+          {"id": "kiteletter", "title": "Brief mit Drachen", "symbol": "diamond"},
+          {"id": "breadletter", "title": "Brief mit Brot", "symbol": "oven"},
+          {"id": "flowerletter", "title": "Brief mit Blume", "symbol": "camera.macro"}]},
+        {"id": "deliver", "text": "Brot backt Tilda. Bring ihr den Brief.", "targetID": "npc.tilda", "choices": [
+          {"id": "npc.tilda", "title": "Bäckerin Tilda", "symbol": "oven"},
+          {"id": "npc.hanno", "title": "Opa Hanno", "symbol": "tree"},
+          {"id": "npc.mo", "title": "Nachbarskind Mo", "symbol": "diamond"},
+          {"id": "npc.lale", "title": "Postbotin Lale", "symbol": "envelope"}]},
+        {"id": "next", "text": "Der Baumbrief ist für Hanno. Reich ihn Hanno am Hofbaum.", "targetID": "npc.hanno", "choices": [
+          {"id": "npc.mo", "title": "Mo mit dem Drachen", "symbol": "diamond"},
+          {"id": "npc.hanno", "title": "Hanno am Hofbaum", "symbol": "tree"},
+          {"id": "npc.tilda", "title": "Tilda mit dem Brot", "symbol": "oven"},
+          {"id": "npc.lale", "title": "Lale mit der Tasche", "symbol": "envelope"}]}
+      ],
+      "result": "Beide Briefe sind angekommen. Tilda und Hanno winken Lale zu!",
+      "params": {"sprout":{"choiceCount":2,"targetSize":88},"shoot":{"choiceCount":3,"targetSize":72},"bloom":{"choiceCount":4,"targetSize":60}}
+    },
+    {
+      "id": "act.village.helpmo", "title": "Mo beim Spielen helfen", "symbol": "pencil.and.outline", "locationID": "loc.plaza", "level": 3,
+      "lanes": ["socCare", "percShape"], "participants": ["npc.mo"],
+      "steps": [
+        {"id": "find", "text": "Mo sucht den runden Ball. Schau unter die Bank.", "targetID": "ball", "choices": [
+          {"id": "block", "title": "Bauklotz", "symbol": "cube"},
+          {"id": "ball", "title": "Spielball", "symbol": "soccerball"},
+          {"id": "kite", "title": "Papierdrachen", "symbol": "diamond"}]},
+        {"id": "draw", "text": "Mos Bild zeigt den Ball. Male seine runde Linie fertig.", "targetID": "round", "choices": [
+          {"id": "corner", "title": "Eckige Linie", "symbol": "angle"},
+          {"id": "straight", "title": "Gerade Linie", "symbol": "line.diagonal"},
+          {"id": "round", "title": "Runder Bogen", "symbol": "circle"}]}
+      ],
+      "result": "Jetzt hat Mo den Ball und ein fertiges Bild. Zusammen geht’s gut!",
+      "params": {"sprout":{"choiceCount":1,"targetSize":88},"shoot":{"choiceCount":2,"targetSize":72},"bloom":{"choiceCount":3,"targetSize":60}}
+    },
+    {
+      "id": "act.farm.decorate", "title": "Den Hof schmücken", "symbol": "camera.macro", "locationID": "loc.plaza", "level": 2,
+      "lanes": [], "participants": ["npc.hanno"],
+      "steps": [
+        {"id": "decoration", "text": "Hanno wünscht sich Blumen am Brunnen. Hol die Gänseblümchen.", "targetID": "deco.flower.daisy", "choices": [
+          {"id": "deco.flower.daisy", "title": "Gänseblümchen", "symbol": "camera.macro"},
+          {"id": "pebbles", "title": "Bunte Kiesel", "symbol": "oval"},
+          {"id": "ribbon", "title": "Stoffband", "symbol": "gift"}]},
+        {"id": "place", "text": "Stell die Blumen neben den Brunnen.", "targetID": "well", "choices": [
+          {"id": "tree", "title": "An den Hofbaum", "symbol": "tree"},
+          {"id": "well", "title": "An den Brunnen", "symbol": "drop"},
+          {"id": "gate", "title": "Ans Hoftor", "symbol": "door.left.hand.open"}]}
+      ],
+      "result": "Jetzt blüht es am Brunnen. Das ist dein Stückchen Hof!",
+      "params": {"sprout":{"choiceCount":1,"targetSize":88},"shoot":{"choiceCount":2,"targetSize":72},"bloom":{"choiceCount":3,"targetSize":60}}
+    },
+    {
+      "id": "act.farm.photo", "title": "Ein Foto mit den Hoftieren", "symbol": "camera", "locationID": "loc.plaza", "level": 2,
+      "lanes": ["socCare"], "participants": ["animal.dog", "animal.cat"],
+      "steps": [
+        {"id": "first", "text": "Pelle wedelt schon. Ruf ihn zum Foto.", "targetID": "animal.dog", "choices": [
+          {"id": "animal.chicken", "title": "Die Henne", "symbol": "bird"},
+          {"id": "animal.cat", "title": "Minka", "symbol": "cat"},
+          {"id": "animal.dog", "title": "Pelle", "symbol": "dog"}]},
+        {"id": "second", "text": "Miau! Hol Minka neben Pelle.", "targetID": "animal.cat", "choices": [
+          {"id": "animal.cat", "title": "Minka", "symbol": "cat"},
+          {"id": "animal.chicken", "title": "Die Henne", "symbol": "bird"},
+          {"id": "animal.cow", "title": "Die Kuh", "symbol": "bell"}]},
+        {"id": "shoot", "text": "Alle sind da. Drück auf den Fotoauslöser!", "targetID": "shutter", "choices": [
+          {"id": "frame", "title": "Bilderrahmen", "symbol": "rectangle"},
+          {"id": "shutter", "title": "Fotoauslöser", "symbol": "camera.fill"},
+          {"id": "album", "title": "Fotoalbum", "symbol": "photo.on.rectangle"}]}
+      ],
+      "result": "Klick! Pelle und Minka sind zusammen auf eurem Hoffoto.",
+      "params": {"sprout":{"choiceCount":1,"targetSize":88},"shoot":{"choiceCount":2,"targetSize":72},"bloom":{"choiceCount":3,"targetSize":60}}
+    },
+    {
+      "id": "act.farm.clean", "title": "Jedem Ding seinen Platz", "symbol": "shippingbox", "locationID": "loc.plaza", "level": 1,
+      "lanes": ["cogMatching"], "participants": ["animal.dog"],
+      "steps": [
+        {"id": "ball", "text": "Pelles Ball ist rund. Leg ihn zu den Spielsachen.", "targetID": "toys", "choices": [
+          {"id": "tools", "title": "Werkzeugkiste", "symbol": "wrench.and.screwdriver"},
+          {"id": "toys", "title": "Spielzeugkiste", "symbol": "soccerball"},
+          {"id": "seeds", "title": "Saatgutkiste", "symbol": "leaf"},
+          {"id": "eggs", "title": "Eierkorb", "symbol": "oval"}]},
+        {"id": "seeds", "text": "Und die Samentüte? Leg sie zu den anderen Samen.", "targetID": "seeds", "choices": [
+          {"id": "eggs", "title": "Eierkorb", "symbol": "oval"},
+          {"id": "tools", "title": "Werkzeugkiste", "symbol": "wrench.and.screwdriver"},
+          {"id": "seeds", "title": "Saatgutkiste", "symbol": "leaf"},
+          {"id": "toys", "title": "Spielzeugkiste", "symbol": "soccerball"}]}
+      ],
+      "result": "Ball und Samentüte haben ihren Platz. Auf dem Hofweg ist wieder Platz zum Spielen!",
+      "params": {"sprout":{"choiceCount":2,"targetSize":88},"shoot":{"choiceCount":3,"targetSize":72},"bloom":{"choiceCount":4,"targetSize":60}}
+    },
+    {
+      "id": "act.farm.memory", "title": "Bildpaare auf Holz finden", "symbol": "square.grid.2x2.fill", "locationID": "loc.garage", "level": 3,
+      "lanes": ["cogMemory"], "participants": ["npc.hanno"],
+      "steps": [
+        {"id": "reveal", "text": "Hanno legt Holztafeln aus. Dreh die Tafel beim Fenster um.", "targetID": "window", "choices": [
+          {"id": "door", "title": "Tafel am Tor", "symbol": "door.left.hand.closed"},
+          {"id": "bench", "title": "Tafel an der Werkbank", "symbol": "hammer"},
+          {"id": "window", "title": "Tafel am Fenster", "symbol": "window.vertical.open"},
+          {"id": "lamp", "title": "Tafel bei der Lampe", "symbol": "lamp.desk"}]},
+        {"id": "pair", "text": "Eine Katze! Wo lag die zweite Katze? Schau beim Tor nach.", "targetID": "door", "choices": [
+          {"id": "door", "title": "Tafel am Tor", "symbol": "door.left.hand.closed"},
+          {"id": "bench", "title": "Tafel an der Werkbank", "symbol": "hammer"},
+          {"id": "lamp", "title": "Tafel bei der Lampe", "symbol": "lamp.desk"},
+          {"id": "shelf", "title": "Tafel am Regal", "symbol": "square.grid.2x2"}]}
+      ],
+      "result": "Zwei gleiche Katzenbilder! Dein Bildpaar bleibt aufgedeckt.",
+      "params": {"sprout":{"choiceCount":2,"targetSize":88},"shoot":{"choiceCount":3,"targetSize":72},"bloom":{"choiceCount":4,"targetSize":60}}
+    },
+    {
+      "id": "act.farm.sing", "title": "Pelles Lied nachspielen", "symbol": "music.note.list", "locationID": "loc.plaza", "level": 2,
+      "lanes": ["cogSequence", "langVocab"], "participants": ["animal.dog", "animal.cat", "animal.chicken"],
+      "steps": [
+        {"id": "woof", "text": "Pelles Lied geht: Wau, miau, gack! Wer beginnt?", "targetID": "animal.dog", "choices": [
+          {"id": "animal.cat", "title": "Minka macht miau", "symbol": "cat"},
+          {"id": "animal.dog", "title": "Pelle macht wau", "symbol": "dog"},
+          {"id": "animal.chicken", "title": "Die Henne gackert", "symbol": "bird"}]},
+        {"id": "meow", "text": "Nach dem Wau kommt das Miau. Lass Minka singen.", "targetID": "animal.cat", "choices": [
+          {"id": "animal.cat", "title": "Minka macht miau", "symbol": "cat"},
+          {"id": "animal.chicken", "title": "Die Henne gackert", "symbol": "bird"},
+          {"id": "animal.dog", "title": "Pelle macht wau", "symbol": "dog"}]},
+        {"id": "cluck", "text": "Wau, miau … Wer gackert zum Schluss?", "targetID": "animal.chicken", "choices": [
+          {"id": "animal.dog", "title": "Pelle macht wau", "symbol": "dog"},
+          {"id": "animal.cat", "title": "Minka macht miau", "symbol": "cat"},
+          {"id": "animal.chicken", "title": "Die Henne gackert", "symbol": "bird"}]}
+      ],
+      "result": "Wau, miau, gack! Ihr habt zusammen Pelles Hoflied gespielt.",
+      "params": {"sprout":{"choiceCount":1,"targetSize":88},"shoot":{"choiceCount":2,"targetSize":72},"bloom":{"choiceCount":3,"targetSize":60}}
+    }
+  ]
+}

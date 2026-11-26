@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "seasons": [
+    {"id":"season.spring","title":"Frühling","festivalID":"season.spring.fest","festivalTitle":"Blütenfest","festivalDay":4,"weather":["sun","cloud","rain","rainbow"]},
+    {"id":"season.summer","title":"Sommer","festivalID":"season.summer.fest","festivalTitle":"Erntefreudentag","festivalDay":4,"weather":["sun","cloud","rain","rainbow"]},
+    {"id":"season.autumn","title":"Herbst","festivalID":"season.autumn.fest","festivalTitle":"Danke-Fest","festivalDay":4,"weather":["sun","cloud","rain","rainbow","fog","wind"]},
+    {"id":"season.winter","title":"Winter","festivalID":"season.winter.fest","festivalTitle":"Lichterfest","festivalDay":4,"weather":["sun","cloud","snow","fog"]}
+  ]
+}

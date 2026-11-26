@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "orderPayout": {"sprout": 3, "shoot": 6, "bloom": 10},
+  "ordersPerDay": {"sprout": 2, "shoot": 3, "bloom": 4},
+  "decoPrice": {"small": [3, 10], "large": [15, 30]},
+  "shelfSlots": [6, 12],
+  "shelfStack": 5,
+  "maxOrderValue": 15
+}

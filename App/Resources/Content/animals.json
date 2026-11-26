@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "animals": [
+    {"id":"animal.chicken","title":"Huhn","level":1,"locationID":"loc.henhouse","foods":["item.feed"],"products":["item.egg"],"initialCount":3,"maxCount":6,"names":["Frieda","Hilde","Pippa","Klara","Emma","Gisela"],"babyTitle":"Küken","sounds":["sfx.chicken.cluck","sfx.chicken.peep"]},
+    {"id":"animal.cat","title":"Hofkatze Minka","level":1,"locationID":"loc.plaza","foods":[],"products":[],"initialCount":1,"maxCount":1,"names":["Minka"],"sounds":["sfx.cat.meow","sfx.cat.purr"]},
+    {"id":"animal.dog","title":"Hofhund Pelle","level":1,"locationID":"loc.plaza","foods":[],"products":[],"initialCount":1,"maxCount":1,"names":["Pelle"],"sounds":["sfx.dog.woof","sfx.dog.sniff"]},
+    {"id":"animal.cow","title":"Kuh","level":2,"locationID":"loc.cowbarn","foods":["item.hay","item.carrot"],"products":["item.milk"],"initialCount":2,"maxCount":4,"names":["Berta","Lotte","Flora","Wilma"],"babyTitle":"Kalb","sounds":["sfx.cow.moo.1","sfx.cow.moo.2","sfx.cow.hum"]},
+    {"id":"animal.sheep","title":"Schaf","level":3,"locationID":"loc.sheepmeadow","foods":["item.hay"],"products":["item.wool"],"initialCount":3,"maxCount":6,"names":["Wolli","Flocke","Wölkchen","Lena","Luna","Locke"],"babyTitle":"Lamm","sounds":["sfx.sheep.bleat"]},
+    {"id":"animal.pig","title":"Schwein","level":3,"locationID":"loc.pigsty","foods":["item.apple","item.lettuce"],"products":["item.compost"],"initialCount":2,"maxCount":3,"names":["Rosi","Paula","Emil"],"babyTitle":"Ferkel","sounds":["sfx.pig.grunt"]},
+    {"id":"animal.duck","title":"Ente","level":4,"locationID":"loc.pond","foods":["item.feed","item.pea"],"products":["item.duckegg","item.feather"],"initialCount":3,"maxCount":5,"names":["Quaki","Paddel","Pflaume","Platsch","Fina"],"babyTitle":"Entlein","sounds":["sfx.duck.quack"]},
+    {"id":"animal.goat","title":"Ziege","level":4,"locationID":"loc.goatpen","foods":["item.hay","item.carrot"],"products":["item.goatmilk"],"initialCount":2,"maxCount":3,"names":["Hannes","Mia","Loki"],"babyTitle":"Zicklein","sounds":["sfx.goat.bleat"]},
+    {"id":"animal.horse","title":"Pferd","level":5,"locationID":"loc.paddock","foods":["item.hay","item.apple"],"products":[],"initialCount":1,"maxCount":2,"names":["Sternchen","Fünkchen"],"babyTitle":"Fohlen","sounds":["sfx.horse.neigh","sfx.horse.snort"]},
+    {"id":"animal.rabbit","title":"Kaninchen","level":5,"locationID":"loc.paddock","foods":["item.hay","item.carrot"],"products":[],"initialCount":2,"maxCount":4,"names":["Hoppel","Fluse","Fips","Momo"],"babyTitle":"Kaninchenjunges","sounds":["sfx.rabbit.hop"]},
+    {"id":"animal.bee","title":"Bienen","level":5,"locationID":"loc.apiary","foods":[],"products":["item.honeycomb"],"initialCount":1,"maxCount":1,"names":["Blütenvolk"],"sounds":["sfx.bee.buzz"]}
+  ]
+}

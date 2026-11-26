@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "mastery": {
+    "initial": 0.5,
+    "alphaStart": 0.12,
+    "alphaNormal": 0.08,
+    "alphaMin": 0.03,
+    "bootstrapObservations": 5,
+    "stableObservations": 25,
+    "difficultyStep": 0.10,
+    "weights": { "independent": 1.0, "hinted": 0.5, "assisted": 0.1 }
+  },
+  "scaffold": {
+    "stillnessHintSec": [6, 8],
+    "ghostFails": 2,
+    "reduceFails": 3,
+    "togetherFails": 4,
+    "firstHintSec": { "sprout": 4, "shoot": 8, "bloom": 15 },
+    "earlyHintFactor": 0.65
+  },
+  "thresholds": {
+    "levelUp": { "window": 8, "minIndependent": 7 },
+    "levelDown": { "window": 3, "minAssisted": 2 },
+    "stageUp": { "medianMastery": 0.7, "days": 10 },
+    "longBreak": { "afterDays": 14, "retention": 0.9, "warmupTasks": 3 }
+  },
+  "fatigue": { "sproutMin": [10, 15], "shootMin": [15, 25], "bloomMin": [20, 35] }
+}
