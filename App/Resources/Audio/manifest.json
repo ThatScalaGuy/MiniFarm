@@ -1,0 +1,243 @@
+{
+  "schemaVersion": 1,
+  "assets": [
+    {
+      "id": "music.season.spring",
+      "kind": "music",
+      "path": "music/season.spring.wav",
+      "loop": true
+    },
+    {
+      "id": "music.season.summer",
+      "kind": "music",
+      "path": "music/season.summer.wav",
+      "loop": true
+    },
+    {
+      "id": "music.season.autumn",
+      "kind": "music",
+      "path": "music/season.autumn.wav",
+      "loop": true
+    },
+    {
+      "id": "music.season.winter",
+      "kind": "music",
+      "path": "music/season.winter.wav",
+      "loop": true
+    },
+    {
+      "id": "ambience.farm.day",
+      "kind": "ambient",
+      "path": "ambience/farm.day.wav",
+      "loop": true
+    },
+    {
+      "id": "sfx.ui.tap",
+      "kind": "sfx",
+      "path": "sfx/ui.tap.wav"
+    },
+    {
+      "id": "sfx.ui.success",
+      "kind": "sfx",
+      "path": "sfx/ui.success.wav"
+    },
+    {
+      "id": "sfx.animal.cow.moo",
+      "kind": "sfx",
+      "path": "sfx/animal.cow.moo.wav"
+    },
+    {
+      "id": "vl.pelle.greet.morning",
+      "kind": "voice",
+      "path": null,
+      "locale": "de-DE"
+    },
+    {
+      "id": "vl.ritual.sleep",
+      "kind": "voice",
+      "path": null,
+      "locale": "de-DE"
+    },
+    {
+      "id": "vl.pelle.wish.prepare",
+      "kind": "voice",
+      "path": null,
+      "locale": "de-DE"
+    },
+    {
+      "id": "vl.pelle.home",
+      "kind": "voice",
+      "path": null,
+      "locale": "de-DE"
+    },
+    {
+      "id": "vl.pelle.greet.explore",
+      "kind": "voice",
+      "path": null,
+      "locale": "de-DE"
+    },
+    {
+      "id": "vl.hint.animal.feed",
+      "kind": "voice",
+      "path": null,
+      "locale": "de-DE"
+    },
+    {
+      "id": "vl.praise.animal.feed",
+      "kind": "voice",
+      "path": null,
+      "locale": "de-DE"
+    },
+    {
+      "id": "vl.praise.field.harvest",
+      "kind": "voice",
+      "path": null,
+      "locale": "de-DE"
+    },
+    {
+      "id": "vl.pelle.field.sow.seed",
+      "kind": "voice",
+      "path": null,
+      "locale": "de-DE"
+    },
+    {
+      "id": "vl.pelle.field.sow.field",
+      "kind": "voice",
+      "path": null,
+      "locale": "de-DE"
+    },
+    {
+      "id": "vl.pelle.field.water.use.can",
+      "kind": "voice",
+      "path": null,
+      "locale": "de-DE"
+    },
+    {
+      "id": "vl.pelle.field.water.field",
+      "kind": "voice",
+      "path": null,
+      "locale": "de-DE"
+    },
+    {
+      "id": "vl.pelle.shop.order.pack.radish",
+      "kind": "voice",
+      "path": null,
+      "locale": "de-DE"
+    },
+    {
+      "id": "vl.pelle.shop.order.ring",
+      "kind": "voice",
+      "path": null,
+      "locale": "de-DE"
+    },
+    {
+      "id": "vl.season.spring.greet",
+      "kind": "voice",
+      "path": null,
+      "locale": "de-DE"
+    },
+    {
+      "id": "vl.season.summer.greet",
+      "kind": "voice",
+      "path": null,
+      "locale": "de-DE"
+    },
+    {
+      "id": "vl.season.autumn.greet",
+      "kind": "voice",
+      "path": null,
+      "locale": "de-DE"
+    },
+    {
+      "id": "vl.season.winter.greet",
+      "kind": "voice",
+      "path": null,
+      "locale": "de-DE"
+    },
+    {
+      "id": "sfx.chicken.cluck",
+      "kind": "sfx",
+      "path": "sfx/prototype/animals/chicken.cluck.wav"
+    },
+    {
+      "id": "sfx.chicken.peep",
+      "kind": "sfx",
+      "path": "sfx/prototype/animals/chicken.peep.wav"
+    },
+    {
+      "id": "sfx.cat.meow",
+      "kind": "sfx",
+      "path": "sfx/prototype/animals/cat.meow.wav"
+    },
+    {
+      "id": "sfx.cat.purr",
+      "kind": "sfx",
+      "path": "sfx/prototype/animals/cat.purr.wav"
+    },
+    {
+      "id": "sfx.dog.woof",
+      "kind": "sfx",
+      "path": "sfx/prototype/animals/dog.woof.wav"
+    },
+    {
+      "id": "sfx.dog.sniff",
+      "kind": "sfx",
+      "path": "sfx/prototype/animals/dog.sniff.wav"
+    },
+    {
+      "id": "sfx.cow.moo.1",
+      "kind": "sfx",
+      "path": "sfx/prototype/animals/cow.moo.1.wav"
+    },
+    {
+      "id": "sfx.cow.moo.2",
+      "kind": "sfx",
+      "path": "sfx/prototype/animals/cow.moo.2.wav"
+    },
+    {
+      "id": "sfx.cow.hum",
+      "kind": "sfx",
+      "path": "sfx/prototype/animals/cow.hum.wav"
+    },
+    {
+      "id": "sfx.sheep.bleat",
+      "kind": "sfx",
+      "path": "sfx/prototype/animals/sheep.bleat.wav"
+    },
+    {
+      "id": "sfx.pig.grunt",
+      "kind": "sfx",
+      "path": "sfx/prototype/animals/pig.grunt.wav"
+    },
+    {
+      "id": "sfx.duck.quack",
+      "kind": "sfx",
+      "path": "sfx/prototype/animals/duck.quack.wav"
+    },
+    {
+      "id": "sfx.goat.bleat",
+      "kind": "sfx",
+      "path": "sfx/prototype/animals/goat.bleat.wav"
+    },
+    {
+      "id": "sfx.horse.neigh",
+      "kind": "sfx",
+      "path": "sfx/prototype/animals/horse.neigh.wav"
+    },
+    {
+      "id": "sfx.horse.snort",
+      "kind": "sfx",
+      "path": "sfx/prototype/animals/horse.snort.wav"
+    },
+    {
+      "id": "sfx.rabbit.hop",
+      "kind": "sfx",
+      "path": "sfx/prototype/animals/rabbit.hop.wav"
+    },
+    {
+      "id": "sfx.bee.buzz",
+      "kind": "sfx",
+      "path": "sfx/prototype/animals/bee.buzz.wav"
+    }
+  ]
+}
