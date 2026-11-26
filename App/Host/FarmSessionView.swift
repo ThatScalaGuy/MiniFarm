@@ -74,6 +74,7 @@ struct FarmSessionView: View {
         }
         .onChange(of: scenePhase) { _, _ in updateAudio() }
         .onChange(of: family.isParentFlowActive) { _, _ in updateAudio() }
+        .onChange(of: family.sessionTimer.phase.blocksFarmPlay) { _, _ in updateAudio() }
         .onChange(of: pauseMenu) { _, _ in updateAudio() }
         .onChange(of: failure) { _, _ in updateAudio() }
         .onChange(of: game?.season) { _, _ in updateAudio() }
@@ -186,7 +187,8 @@ struct FarmSessionView: View {
     }
 
     private func updateAudio() {
-        guard scenePhase == .active, !audioInterrupted, !family.isParentFlowActive, !pauseMenu, failure == nil,
+        guard scenePhase == .active, !audioInterrupted, !family.isParentFlowActive,
+              !family.sessionTimer.phase.blocksFarmPlay, !pauseMenu, failure == nil,
               let game, let settings = family.runtimeSettings else {
             if audioStarted { audio.pause() }
             return
@@ -211,7 +213,8 @@ struct FarmSessionView: View {
     }
 
     private func receive(_ input: FarmWorldIntent) {
-        guard scenePhase == .active, !family.isParentFlowActive, !covered, let before = game else { return }
+        guard scenePhase == .active, !family.isParentFlowActive, !family.sessionTimer.phase.blocksFarmPlay,
+              !covered, let before = game else { return }
         var updated = before
         let seconds = Int(family.sessionTimer.elapsed)
         updated.recordPlay(seconds: max(0, seconds - accountedSeconds))
@@ -272,7 +275,8 @@ struct FarmSessionView: View {
     }
 
     private func decorate(_ intent: FarmIntent) {
-        guard scenePhase == .active, !family.isParentFlowActive, !pauseMenu, decorationBox, var updated = game else { return }
+        guard scenePhase == .active, !family.isParentFlowActive, !family.sessionTimer.phase.blocksFarmPlay,
+              !pauseMenu, decorationBox, var updated = game else { return }
         let feedback = updated.send(intent)
         guard store(updated) else { return }
         audio.clearVoiceCues()

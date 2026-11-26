@@ -10,6 +10,7 @@
 		02ADCFE778FBE5986AF0F55E /* WorldScenery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EFA5BF116BC7ED93C9006C1 /* WorldScenery.swift */; };
 		06F8FAE144515E174D639B16 /* ParentalGateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEC271EB38DEDBD5672320C /* ParentalGateView.swift */; };
 		0CA89F138335F590AF7121E9 /* FamilyStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713CC3433EA008AE3DE35AF0 /* FamilyStorage.swift */; };
+		11AFA534502FDF3731FFD0ED /* WorldModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65DF7FE678C30CEC8EA6819 /* WorldModelTests.swift */; };
 		11EF8EBA609B7268AD0579F5 /* FarmDriveWork.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F1E413E976BF09703A21DA /* FarmDriveWork.swift */; };
 		143FC502D5663F615EDCCC43 /* FarmStoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19DE9665D468800E61652C7F /* FarmStoryTests.swift */; };
 		166A0DFA748DD8018C19EF1D /* FarmContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C84ADF4713C263A3B6F10BE /* FarmContent.swift */; };
@@ -146,6 +147,7 @@
 		9E6361A10A138AE4801A878D /* FarmStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FarmStory.swift; sourceTree = "<group>"; };
 		A112472CDF6CE57017DAF6F3 /* ProductionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductionTests.swift; sourceTree = "<group>"; };
 		A11E41DD006C25205C09BE94 /* FamilyRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamilyRootView.swift; sourceTree = "<group>"; };
+		A65DF7FE678C30CEC8EA6819 /* WorldModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldModelTests.swift; sourceTree = "<group>"; };
 		AF4A1AE57CDD65DFDFFC375F /* ProfileSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettings.swift; sourceTree = "<group>"; };
 		B4DEEBA25D821E81DEAE2CFB /* FirstHarvestIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstHarvestIntegrationTests.swift; sourceTree = "<group>"; };
 		B8729B14B86F6E5EF3E680FA /* FarmLevelParcelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FarmLevelParcelView.swift; sourceTree = "<group>"; };
@@ -364,6 +366,7 @@
 			children = (
 				97F80516CE9A71F98E47D699 /* FarmDriveWorkTests.swift */,
 				5430A858BC0649F949299253 /* WorldLayoutTests.swift */,
+				A65DF7FE678C30CEC8EA6819 /* WorldModelTests.swift */,
 			);
 			path = World;
 			sourceTree = "<group>";
@@ -538,6 +541,7 @@
 				9AA03AFD5E5697E15C33743E /* FirstHarvestIntegrationTests.swift in Sources */,
 				F174ADB1FB014BD0F358413C /* ProductionTests.swift in Sources */,
 				4E665C5D145BC71DD8F1A48F /* WorldLayoutTests.swift in Sources */,
+				11AFA534502FDF3731FFD0ED /* WorldModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

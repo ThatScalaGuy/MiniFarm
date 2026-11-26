@@ -72,7 +72,7 @@ enum ProfileStage: String, Codable, CaseIterable, Sendable, Identifiable {
         switch self {
         case .sprout: "Keimling (3 bis 4 Jahre)"
         case .shoot: "Spross (5 bis 6 Jahre)"
-        case .bloom: "Blüte (7 bis 8 Jahre)"
+        case .bloom: "Blüte (ab 7 Jahren)"
         }
     }
 }

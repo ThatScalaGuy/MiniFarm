@@ -2,6 +2,19 @@ import XCTest
 @testable import MiniFarm
 
 final class FirstHarvestIntegrationTests: XCTestCase {
+    func testTimeLimitAllowsTheLastWishButStopsTheWorldBehindGoodNight() throws {
+        let catalog = try FarmCatalog.load(from: Bundle.main.bundleURL.appendingPathComponent("Content"))
+        var game = FarmGame(catalog: catalog, stage: .sprout)
+        game.send(.startWish(try XCTUnwrap(game.wishes.first?.id)))
+        let settings = FamilyRuntimeSettings(profile: FamilyProfile(avatar: .cow), system: .init())
+        let lastWish = game.worldSnapshot(settings: settings, caption: nil, timer: .windDown(graceRemaining: 10))
+        XCTAssertTrue(lastWish.eveningDue)
+        XCTAssertFalse(lastWish.paused)
+        let bedtime = game.worldSnapshot(settings: settings, caption: nil, timer: .fallbackSleep(remaining: 8))
+        XCTAssertTrue(bedtime.paused)
+        XCTAssertEqual(bedtime.active?.stepID, lastWish.active?.stepID)
+    }
+
     func testParentHintTimingChangesTheActualDelayBeforePelleHelps() throws {
         let catalog = try FarmCatalog.load(from: Bundle.main.bundleURL.appendingPathComponent("Content"))
         for (timing, delay) in [(HelpTiming.earlier, 4), (.normal, 8), (.later, 12)] {

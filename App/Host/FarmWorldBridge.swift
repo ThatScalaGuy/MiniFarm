@@ -1,5 +1,14 @@
 import Foundation
 
+extension SessionTimer.Phase {
+    var blocksFarmPlay: Bool {
+        switch self {
+        case .fallbackSleep, .finished: true
+        default: false
+        }
+    }
+}
+
 extension FarmGame {
     private var worldOffers: [WorldOffering] {
         let wishes = wishes.map {
@@ -47,7 +56,7 @@ extension FarmGame {
         view.shelf = state.production.shelf
         view.coins = state.coins
         view.nightStory = story
-        view.paused = paused
+        view.paused = paused || timer.blocksFarmPlay
         view.secondsUntilIdleHint = secondsUntilIdleHint
         view.caredFor = caredAnimalIDs
         let discoverable = Set(locations.flatMap { discoveries(at: $0.id) }.map(\.id))
