@@ -145,22 +145,23 @@ struct FarmDriveView: View {
         let a = project(row.right, row.ground, row.z), b = project(row.left, row.ground, row.z)
         let middle = CGPoint(x: (a.x + b.x) * 0.5, y: (a.y + b.y) * 0.5)
         ZStack {
-            rowControl(span: max(75, a.x - b.x), slope: (a.y - b.y) / max(1, a.x - b.x))
-                .position(middle)
-            if hornVisible {
-                let p = project(row.x(motion.travel), row.ground + 1.0, row.z)
-                Image(systemName: "music.note.list").font(.title2.bold()).foregroundStyle(FarmPaper.pine)
-                    .padding(7).background(FarmPaper.cream, in: Capsule()).position(p)
-                    .allowsHitTesting(false).accessibilityHidden(true)
-            }
-            VStack(spacing: 0) {
-                progressBadge
-                Spacer(minLength: 0)
-                controls
+            if !stopped {
+                rowControl(span: max(75, a.x - b.x), slope: (a.y - b.y) / max(1, a.x - b.x))
+                    .position(middle)
+                if hornVisible {
+                    let p = project(row.x(motion.travel), row.ground + 1.0, row.z)
+                    Image(systemName: "music.note.list").font(.title2.bold()).foregroundStyle(FarmPaper.pine)
+                        .padding(7).background(FarmPaper.cream, in: Capsule()).position(p)
+                        .allowsHitTesting(false).accessibilityHidden(true)
+                }
+                VStack(spacing: 0) {
+                    progressBadge
+                    Spacer(minLength: 0)
+                    controls
+                }
             }
         }
         .frame(width: framing.size.width, height: framing.size.height)
-        .disabled(stopped)
         .onAppear {
             if motion.travel == 0 && motion.pilot == .child { motion = FarmDriveMotion(strips: row.workSpans) }
             rig.install(in: root, site: site, lane: row, job: job)
