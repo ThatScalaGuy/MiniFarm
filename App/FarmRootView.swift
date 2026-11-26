@@ -70,12 +70,17 @@ struct FarmRootView: View {
 }
 
 struct FarmSavedGame {
+    private struct Header: Decodable { let schemaVersion: Int }
+
     let state: FarmState
     let date: Date
 
     static func decode(_ payload: StoredPayload) throws -> Self {
         guard payload.schemaVersion == 1 else { throw SaveDataUnsupported() }
-        return try Self(state: JSONDecoder().decode(FarmState.self, from: payload.data), date: payload.savedAt)
+        let decoder = JSONDecoder()
+        let header = try decoder.decode(Header.self, from: payload.data)
+        guard header.schemaVersion <= 1 else { throw SaveDataUnsupported() }
+        return try Self(state: decoder.decode(FarmState.self, from: payload.data), date: payload.savedAt)
     }
 }
 

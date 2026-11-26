@@ -116,7 +116,9 @@ final class FamilyJourneyUITests: XCTestCase {
     private func createProfile(_ app: XCUIApplication, avatar: String) {
         tap(app, "family.parent.addProfile")
         tap(app, "family.newProfile.avatar.\(avatar)")
+        scroll(app, to: element(app, "family.newProfile.stage.sprout"))
         tap(app, "family.newProfile.stage.sprout")
+        scroll(app, to: element(app, "family.newProfile.create"))
         tap(app, "family.newProfile.create")
         XCTAssertTrue(element(app, "family.profile.stage").waitForExistence(timeout: timeout))
         app.navigationBars.buttons.element(boundBy: 0).tap()

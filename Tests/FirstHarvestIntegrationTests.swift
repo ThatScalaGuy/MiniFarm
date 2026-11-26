@@ -2,6 +2,13 @@ import XCTest
 @testable import MiniFarm
 
 final class FirstHarvestIntegrationTests: XCTestCase {
+    func testNewerFarmInsideAKnownContainerIsUnavailableInsteadOfCorrupt() {
+        let future = StoredPayload(data: Data(#"{"schemaVersion":2}"#.utf8), schemaVersion: 1, savedAt: .now)
+        XCTAssertThrowsError(try FarmSavedGame.decode(future)) { XCTAssertTrue($0 is SaveDataUnsupported) }
+        let broken = StoredPayload(data: Data(#"{"schemaVersion":1}"#.utf8), schemaVersion: 1, savedAt: .now)
+        XCTAssertThrowsError(try FarmSavedGame.decode(broken)) { XCTAssertTrue($0 is DecodingError) }
+    }
+
     @MainActor
     func testProfileWelcomeAndBothFirstNightsActuallyStartBundledGermanRecordings() throws {
         let catalog = try FarmCatalog.load(from: Bundle.main.bundleURL.appendingPathComponent("Content"))
