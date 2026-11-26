@@ -31,3 +31,9 @@ Die vollständig beschriebenen Sollfunktionen stehen in [docs](docs/README.md). 
 ### Früher Prüfpunkt
 
 Der Host bei `4334ee9` besteht auf dem isolierten iPhone-17e-Simulator (iOS 27.2) zwei Tests: sichtbarer Appstart und Privacy Manifest im installierten Bundle. Das ist ausdrücklich **noch kein Spielnachweis**. Die tatsächlichen Build Settings lauten `IPHONEOS_DEPLOYMENT_TARGET=18.0`, `SWIFT_VERSION=6.0`, `TARGETED_DEVICE_FAMILY=1,2` und `DEVELOPMENT_TEAM=V75G3N885G`.
+
+### Spielbarer Zwischenstand
+
+Auf dem iPhone 17e (Simulator, iOS 27.2) hat `FarmJourneyTests.testFirstHarvestAndRestoredStep` den kompletten Weg in 148,457 s durchlaufen: Elternschranke, neues Kuhprofil, Säen mit Neustart mitten im Wunsch, Gießen, Huhn füttern, freiwilliges Schlafen, Ernten und Verkauf bei Tilda. Die sichtbare Kasse wechselte beim Verkauf von **0 auf 1** und zeigte nach dem zweiten Neustart weiterhin **1**. `Tools/verify_first_harvest.py` bestätigte aus dem SHA-256-geprüften Spielstand Tag 2, ein gefüttertes Huhn, ein leeres Erntebeet, zwei verbliebene Radieschen und den Radieschen-Aufkleber. Der Pfad nutzt echte Eingaben und keine vorinstallierten Spielstände.
+
+Der Quellstand `0bf35d2` enthält außerdem den auf Vollbild umgestellten Fotoexport. Im ersten Zwischenpaket sind die abgeschlossene iPad-Vollreise, die neue Sprachaufnahme-Lieferung und das vollständige Ansteuern der Bewegungsvarianten noch nicht als geprüft ausgewiesen. Es ist ein lokaler Spielstand der Entwicklung, keine App-Store-Freigabe.

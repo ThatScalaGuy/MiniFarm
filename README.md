@@ -14,11 +14,13 @@ Für den lokalen Prüflauf die UDIDs eines iPhone- und eines iPad-Simulators aus
 sh Tools/test_simulators.sh <iPhone-UDID> <iPad-UDID>
 ```
 
-Der Lauf erzeugt das Projekt neu, baut einmal, prüft beide Geräte und schreibt Ergebnis-Bundles, Bildschirmfotos und Testberichte unter `build/qa.*`. Er löscht keine Simulatoren.
+Der Lauf erzeugt das Projekt neu, baut einmal, prüft beide Geräte und schreibt Ergebnis-Bundles, Bildschirmfotos und Testberichte unter `build/qa.*`. `Tools/verify_first_harvest.py` liest das gespeicherte Ergebnis der UI-Reise, `Tools/verify_journey_images.swift` erkennt unter anderem abgeschnittene Bildschirmfotos. Nur die gesonderten DEBUG-Testprofile werden neu angelegt; der Lauf löscht keine Simulatoren.
+
+`python3 Tools/export_project.py MiniFarm.zip` exportiert den zuletzt lokal eingecheckten Projektstand. Die Kopie enthält Quellcode, Medien, Generatoren, Scheme und Protokolle, nicht jedoch lokale Konten, Zertifikate, MCP-Einstellungen oder Caches. Zum Spielen werden Blender, ElevenLabs, ein API-Schlüssel und XcodeGen **nicht** benötigt.
 
 ## Blender MCP
 
-Die Projektkonfiguration startet den [offiziellen Blender-MCP-Server](https://projects.blender.org/lab/blender_mcp)
+Im Git-Checkout startet die MCP-Projektkonfiguration den [offiziellen Blender-MCP-Server](https://projects.blender.org/lab/blender_mcp)
 über `uvx` aus einer festgelegten Git-Revision. Voraussetzung sind
 [uv](https://docs.astral.sh/uv/getting-started/installation/) (`uvx` im PATH),
 Git, Python 3.10 oder neuer und beim ersten Start eine Internetverbindung.
