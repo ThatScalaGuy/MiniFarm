@@ -475,8 +475,13 @@ struct FarmPlayView: View {
     }
 
     private func askPelle() {
-        if state.active == nil, let wish = offers.first { start(wish) }
-        else { send(.help) }
+        if state.active == nil, let wish = offers.first {
+            diorama.greetPelle(at: WorldSite.at(wish.locationID), motion: motion)
+            start(wish)
+        } else {
+            diorama.greetPelle(at: site, motion: motion)
+            send(.help)
+        }
     }
 
     private func perform(_ obj: WorldObject) {

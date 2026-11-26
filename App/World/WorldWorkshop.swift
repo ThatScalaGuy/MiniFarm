@@ -310,8 +310,8 @@ final class WorldWorkshop {
         let id = "anim." + socket.assetID + "." + motion
         guard let asset = models.assets[id], asset.variantOf == socket.assetID, let task = load(asset) else { return }
         performers.add(socket)
-        Task { [weak socket] in
-            guard let template = await task.value, let socket, socket.generation == generation, let scene = socket.scene else { return }
+        Task { [weak self, weak socket] in
+            guard let template = await task.value, let self, let socket, socket.generation == generation, let scene = socket.scene else { return }
             let model = template.clone(recursive: true)
             guard let clip = model.availableAnimations.first else {
                 logger.error("Missing root animation in \(asset.file, privacy: .public)")

@@ -42,6 +42,8 @@ struct WorldObject: Equatable, Identifiable {
                 anchored = true
             } else if model == site.animal, choices.filter({ turn.physicalModel($0) == model }).count == 1 {
                 local = [0.68, 0.12, 0.01]; anchored = true
+            } else if model == "animal.dog", choices.filter({ turn.physicalModel($0) == model }).count == 1 {
+                local = [-2.05, 0.08, 0.48]; anchored = true
             }
             return Self(id: choice?.id ?? "action", choiceID: choice?.id, model: model,
                         label: choice?.label ?? turn.vignette?.label ?? "Anfassen", symbol: choice?.symbol,
@@ -75,6 +77,14 @@ final class FarmDiorama {
     private var light: DirectionalLight
     private var landKey = ""
     private var findKey: String?
+    private struct AnimalCue {
+        let socket: String
+        let motion: String
+        let siteID: String?
+        let requested: ContinuousClock.Instant
+    }
+    private var cue: AnimalCue?
+    private weak var cuedSocket: Entity?
 
     private struct SceneryKey: Equatable {
         var places: [String]
@@ -233,6 +243,8 @@ final class FarmDiorama {
         }
         light.light.color = UIColor(farmRGB: state.sunProgress > 0.72 ? 0xffdbaf : (state.season == "season.winter" ? 0xeaf3ff : 0xffefd6))
         focused = site
+        if !motion { cue = nil }
+        applyCue(at: site)
     }
 
     func drag(_ obj: WorldObject, translation: CGSize) {
@@ -251,6 +263,29 @@ final class FarmDiorama {
 
     func dropPoint(_ site: WorldSite) -> WPoint { site.center + [1.48, 0.095, 0.8] }
 
+    func greetPelle(at site: WorldSite?, motion: Bool) {
+        if motion { requestCue("tailwag", socket: "pelle", at: site) }
+    }
+
+    private func requestCue(_ motion: String, socket: String, at site: WorldSite?) {
+        cue = AnimalCue(socket: socket, motion: motion, siteID: site?.id, requested: .now)
+        cuedSocket = nil
+        if focused == site { applyCue(at: site) }
+    }
+
+    private func applyCue(at site: WorldSite?) {
+        // The host may finish the activity immediately and replace its scenery.
+        // Transfer this gesture to the replacement resident, never to a later visit.
+        guard let cue else { return }
+        guard cue.siteID == site?.id, cue.requested.duration(to: .now) < .seconds(1) else {
+            self.cue = nil; return
+        }
+        if let entity = root.findEntity(named: cue.socket), cuedSocket !== entity {
+            cuedSocket = entity
+            w.setAction(cue.motion, on: entity)
+        }
+    }
+
     func respond(to obj: WorldObject, turn: WorldTurn, site: WorldSite, motion: Bool) {
         effects.children.removeAll()
         animating.removeAll()
@@ -260,7 +295,16 @@ final class FarmDiorama {
         let dest = dropPoint(site) + [0, 0.32, 0]
         let tag = turn.vignette?.effect
         let particleColor = tag == "water" ? 0x6db9cb : (tag == "care" ? 0xe8a08e : 0xefd074)
-        if let species = site.animal, let animal = furniture.findEntity(named: "resident." + species) {
+        let animalMotion: String? = switch (turn.offering.activityID, obj.model) {
+        case ("act.animal.feed", "animal.chicken"): "eat"
+        case ("act.animal.pet", "animal.dog"): "care"
+        case ("act.animal.pet", "animal.cat"): "nuzzle"
+        default: nil
+        }
+        if let animalMotion, motion {
+            let socket = obj.model == "animal.dog" ? "pelle" : (obj.anchored ? "resident." + obj.model : "pick:" + obj.id)
+            requestCue(animalMotion, socket: socket, at: site)
+        } else if let species = site.animal, let animal = furniture.findEntity(named: "resident." + species) {
             resident = animal
             residentRest = animal.transform
         }
